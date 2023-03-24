@@ -1,0 +1,293 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Profile /> Should render and match the snapshot 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 .ant-card {
+  -webkit-flex: 1 !important;
+  -ms-flex: 1 !important;
+  flex: 1 !important;
+  cursor: default;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c2 p {
+  color: #4d186e;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.c1 .inputValue {
+  height: auto;
+  padding: 8px;
+}
+
+.c1 .inputValue:hover {
+  cursor: text;
+  background: rgba(9,30,66,0.04);
+}
+
+.c1 .placeHolderView {
+  color: #808080 !important;
+}
+
+<div>
+  <div
+    class="ant-card ant-card-bordered"
+  >
+    <div
+      class="ant-card-body"
+    >
+      <div
+        class="c0"
+      >
+        <div>
+          <div
+            class="u-mb-1"
+          >
+            <div
+              class="c1"
+            >
+              <div
+                class="inputValue"
+                data-testid="INPUT_VALUE"
+              >
+                John Doe
+              </div>
+            </div>
+          </div>
+          <div
+            class="u-mb-1"
+          >
+            <div
+              class="c1"
+            >
+              <div
+                class="inputValue"
+                data-testid="INPUT_VALUE"
+              >
+                Software Engineer at GrowExx
+              </div>
+            </div>
+          </div>
+          <div
+            class="u-mb-5"
+          >
+            <div
+              class="c1"
+            >
+              <div
+                class="inputValue"
+                data-testid="INPUT_VALUE"
+              >
+                Ahmedabad, India
+              </div>
+            </div>
+          </div>
+          <div
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner"
+          >
+            <div
+              class="ant-card-head"
+            >
+              <div
+                class="ant-card-head-wrapper"
+              >
+                <div
+                  class="ant-card-head-title"
+                >
+                  About
+                </div>
+                <div
+                  class="ant-card-extra"
+                >
+                  <div
+                    class="c2"
+                  >
+                    <button
+                      class="ant-btn"
+                      data-testid="About_Edit"
+                      type="button"
+                    >
+                      <span>
+                        Edit
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="ant-card-body"
+            >
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            </div>
+          </div>
+          <br />
+          <div
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner"
+          >
+            <div
+              class="ant-card-head"
+            >
+              <div
+                class="ant-card-head-wrapper"
+              >
+                <div
+                  class="ant-card-head-title"
+                >
+                  Experience
+                </div>
+                <div
+                  class="ant-card-extra"
+                >
+                  <div
+                    class="c2"
+                  >
+                    <button
+                      class="ant-btn"
+                      data-testid="Experience_Edit"
+                      type="button"
+                    >
+                      <span>
+                        Edit
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="ant-card-body"
+            >
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            </div>
+          </div>
+          <br />
+          <div
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner"
+          >
+            <div
+              class="ant-card-head"
+            >
+              <div
+                class="ant-card-head-wrapper"
+              >
+                <div
+                  class="ant-card-head-title"
+                >
+                  Education
+                </div>
+                <div
+                  class="ant-card-extra"
+                >
+                  <div
+                    class="c2"
+                  >
+                    <button
+                      class="ant-btn"
+                      data-testid="Education_Edit"
+                      type="button"
+                    >
+                      <span>
+                        Edit
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="ant-card-body"
+            >
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            </div>
+          </div>
+          <br />
+          <div
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner"
+          >
+            <div
+              class="ant-card-head"
+            >
+              <div
+                class="ant-card-head-wrapper"
+              >
+                <div
+                  class="ant-card-head-title"
+                >
+                  Licenses and Certificates
+                </div>
+                <div
+                  class="ant-card-extra"
+                >
+                  <div
+                    class="c2"
+                  >
+                    <button
+                      class="ant-btn"
+                      data-testid="LicensesAndCertifications_edit"
+                      type="button"
+                    >
+                      <span>
+                        Edit
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="ant-card-body"
+            >
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            </div>
+          </div>
+          <br />
+          <div
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner"
+          >
+            <div
+              class="ant-card-head"
+            >
+              <div
+                class="ant-card-head-wrapper"
+              >
+                <div
+                  class="ant-card-head-title"
+                >
+                  Upload Resume
+                </div>
+              </div>
+            </div>
+            <div
+              class="ant-card-body"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

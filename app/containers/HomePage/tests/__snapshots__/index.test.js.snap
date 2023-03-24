@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomePage /> should render and match the snapshot 1`] = `
+.c5 {
+  list-style: none;
+  margin: 0;
+  width: 100%;
+  max-height: 30em;
+  overflow-y: auto;
+  padding: 0 1em;
+}
+
+.c4 {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.c2 {
+  color: black;
+  margin-left: 0.4em;
+}
+
+.c1 {
+  margin-bottom: 1em;
+}
+
+.c3 {
+  outline: none;
+  border: none;
+  border-bottom: 1px dotted #999;
+  background-color: transparent;
+}
+
+.c0 {
+  margin: 3em auto;
+}
+
+.c0:first-child {
+  margin-top: 0;
+}
+
+<article>
+  <div>
+    <section
+      class="c0"
+    >
+      <h2>
+        <span>
+          Try me!
+        </span>
+      </h2>
+      <form
+        class="c1"
+      >
+        <label
+          for="username"
+        >
+          <span>
+            Show Github repositories by
+          </span>
+          <span
+            class="c2"
+          >
+            <span>
+              @
+            </span>
+          </span>
+          <input
+            class="c3"
+            id="username"
+            placeholder="mxstbr"
+            type="text"
+            value=""
+          />
+        </label>
+      </form>
+      <div
+        class="c4"
+      >
+        <ul
+          class="c5"
+        />
+      </div>
+    </section>
+  </div>
+</article>
+`;

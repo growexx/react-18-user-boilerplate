@@ -1,0 +1,290 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 button {
+  margin-bottom: 12px;
+}
+
+.c1 {
+  -webkit-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+}
+
+<div>
+  <div
+    class="c0"
+  >
+    <div
+      class="c1"
+    >
+      <button
+        class="ant-btn ant-btn-primary"
+        data-testid="ExportButton"
+        disabled=""
+        type="button"
+      >
+        <span>
+          Export Data
+        </span>
+      </button>
+    </div>
+    <div
+      class="ant-table-wrapper"
+    >
+      <div
+        class="ant-spin-nested-loading"
+      >
+        <div
+          class="ant-spin-container"
+        >
+          <div
+            class="ant-table ant-table-scroll-horizontal"
+            data-testid="DataTable"
+          >
+            <div
+              class="ant-table-container"
+            >
+              <div
+                class="ant-table-content"
+                style="overflow-x: auto; overflow-y: hidden;"
+              >
+                <table
+                  style="width: 350px; min-width: 100%; table-layout: auto;"
+                >
+                  <colgroup>
+                    <col
+                      class="ant-table-selection-col"
+                    />
+                  </colgroup>
+                  <thead
+                    class="ant-table-thead"
+                  >
+                    <tr>
+                      <th
+                        class="ant-table-cell ant-table-selection-column"
+                      >
+                        <div
+                          class="ant-table-selection"
+                        >
+                          <label
+                            class="ant-checkbox-wrapper"
+                          >
+                            <span
+                              class="ant-checkbox"
+                            >
+                              <input
+                                class="ant-checkbox-input"
+                                type="checkbox"
+                                value=""
+                              />
+                              <span
+                                class="ant-checkbox-inner"
+                              />
+                            </span>
+                          </label>
+                        </div>
+                      </th>
+                      <th
+                        class="ant-table-cell"
+                      >
+                        Name
+                      </th>
+                      <th
+                        class="ant-table-cell"
+                      >
+                        Age
+                      </th>
+                      <th
+                        class="ant-table-cell"
+                      >
+                        Address
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="ant-table-tbody"
+                  >
+                    <tr
+                      aria-hidden="true"
+                      class="ant-table-measure-row"
+                      style="height: 0px; font-size: 0;"
+                    >
+                      <td
+                        style="padding: 0px; border: 0px; height: 0px;"
+                      >
+                        <div
+                          style="height: 0px; overflow: hidden;"
+                        >
+                           
+                        </div>
+                      </td>
+                      <td
+                        style="padding: 0px; border: 0px; height: 0px;"
+                      >
+                        <div
+                          style="height: 0px; overflow: hidden;"
+                        >
+                           
+                        </div>
+                      </td>
+                      <td
+                        style="padding: 0px; border: 0px; height: 0px;"
+                      >
+                        <div
+                          style="height: 0px; overflow: hidden;"
+                        >
+                           
+                        </div>
+                      </td>
+                      <td
+                        style="padding: 0px; border: 0px; height: 0px;"
+                      >
+                        <div
+                          style="height: 0px; overflow: hidden;"
+                        >
+                           
+                        </div>
+                      </td>
+                    </tr>
+                    <tr
+                      class="ant-table-row ant-table-row-level-0"
+                      data-row-key="1"
+                    >
+                      <td
+                        class="ant-table-cell ant-table-selection-column"
+                      >
+                        <label
+                          class="ant-checkbox-wrapper"
+                        >
+                          <span
+                            class="ant-checkbox"
+                          >
+                            <input
+                              class="ant-checkbox-input"
+                              type="checkbox"
+                              value=""
+                            />
+                            <span
+                              class="ant-checkbox-inner"
+                            />
+                          </span>
+                        </label>
+                      </td>
+                      <td
+                        class="ant-table-cell"
+                      >
+                        John Brown
+                      </td>
+                      <td
+                        class="ant-table-cell"
+                      >
+                        32
+                      </td>
+                      <td
+                        class="ant-table-cell"
+                      >
+                        New York No. 1 Lake Park
+                      </td>
+                    </tr>
+                    <tr
+                      class="ant-table-row ant-table-row-level-0"
+                      data-row-key="2"
+                    >
+                      <td
+                        class="ant-table-cell ant-table-selection-column"
+                      >
+                        <label
+                          class="ant-checkbox-wrapper"
+                        >
+                          <span
+                            class="ant-checkbox"
+                          >
+                            <input
+                              class="ant-checkbox-input"
+                              type="checkbox"
+                              value=""
+                            />
+                            <span
+                              class="ant-checkbox-inner"
+                            />
+                          </span>
+                        </label>
+                      </td>
+                      <td
+                        class="ant-table-cell"
+                      >
+                        Jim Green
+                      </td>
+                      <td
+                        class="ant-table-cell"
+                      >
+                        42
+                      </td>
+                      <td
+                        class="ant-table-cell"
+                      >
+                        London No. 1 Lake Park
+                      </td>
+                    </tr>
+                    <tr
+                      class="ant-table-row ant-table-row-level-0"
+                      data-row-key="3"
+                    >
+                      <td
+                        class="ant-table-cell ant-table-selection-column"
+                      >
+                        <label
+                          class="ant-checkbox-wrapper"
+                        >
+                          <span
+                            class="ant-checkbox"
+                          >
+                            <input
+                              class="ant-checkbox-input"
+                              type="checkbox"
+                              value=""
+                            />
+                            <span
+                              class="ant-checkbox-inner"
+                            />
+                          </span>
+                        </label>
+                      </td>
+                      <td
+                        class="ant-table-cell"
+                      >
+                        Joe Black
+                      </td>
+                      <td
+                        class="ant-table-cell"
+                      >
+                        32
+                      </td>
+                      <td
+                        class="ant-table-cell"
+                      >
+                        Sidney No. 1 Lake Park
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
