@@ -748,7 +748,7 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
             >
               <section>
                 <span>
-                  © 2021 React Boilerplate
+                  © 2023 React Boilerplate
                 </span>
                 <section>
                   <span>
@@ -1589,7 +1589,7 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
             >
               <section>
                 <span>
-                  © 2021 React Boilerplate
+                  © 2023 React Boilerplate
                 </span>
                 <section>
                   <span>
@@ -2411,7 +2411,7 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
         >
           <section>
             <span>
-              © 2021 React Boilerplate
+              © 2023 React Boilerplate
             </span>
             <section>
               <span>
@@ -3217,7 +3217,7 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
         >
           <section>
             <span>
-              © 2021 React Boilerplate
+              © 2023 React Boilerplate
             </span>
             <section>
               <span>
