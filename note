@@ -1,3 +1,4 @@
+// All dependencies in this project
 @babel/cli                                            7.4.3  →   7.21.0
 @babel/core                                           7.4.3  →   7.21.3
 babel-plugin-import                                 ^1.13.3  →  ^1.13.6
