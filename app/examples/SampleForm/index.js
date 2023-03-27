@@ -126,7 +126,7 @@ export class SampleForm extends PureComponent {
             label="Notes"
             name="notes"
             component={ATextarea}
-            onChange={e => updateField('Notes', e.target.value)}
+            onChange={(e, data) => updateField('Notes', data)}
           />
 
           <FormItem>
@@ -179,10 +179,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps); // prettier-ignore
 
 export default compose(
   withReducer,

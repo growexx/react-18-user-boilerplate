@@ -37,10 +37,13 @@ exports[`<Loader /> should render and match the snapshot 1`] = `
         >
           <div
             class="ant-tabs-tab ant-tabs-tab-active"
+            data-node-key="1"
           >
             <div
+              aria-controls="rc-tabs-test-panel-1"
               aria-selected="true"
               class="ant-tabs-tab-btn"
+              id="rc-tabs-test-tab-1"
               role="tab"
               tabindex="0"
             >
@@ -49,10 +52,13 @@ exports[`<Loader /> should render and match the snapshot 1`] = `
           </div>
           <div
             class="ant-tabs-tab"
+            data-node-key="2"
           >
             <div
+              aria-controls="rc-tabs-test-panel-2"
               aria-selected="false"
               class="ant-tabs-tab-btn"
+              id="rc-tabs-test-tab-2"
               role="tab"
               tabindex="0"
             >
@@ -61,10 +67,13 @@ exports[`<Loader /> should render and match the snapshot 1`] = `
           </div>
           <div
             class="ant-tabs-tab"
+            data-node-key="3"
           >
             <div
+              aria-controls="rc-tabs-test-panel-3"
               aria-selected="false"
               class="ant-tabs-tab-btn"
+              id="rc-tabs-test-tab-3"
               role="tab"
               tabindex="0"
             >
@@ -80,12 +89,12 @@ exports[`<Loader /> should render and match the snapshot 1`] = `
         class="ant-tabs-nav-operations ant-tabs-nav-operations-hidden"
       >
         <button
-          aria-controls="null-more-popup"
+          aria-controls="rc-tabs-test-more-popup"
           aria-expanded="false"
           aria-haspopup="listbox"
           aria-hidden="true"
           class="ant-tabs-nav-more"
-          id="null-more"
+          id="rc-tabs-test-more"
           style="visibility: hidden; order: 1;"
           tabindex="-1"
           type="button"
@@ -120,7 +129,9 @@ exports[`<Loader /> should render and match the snapshot 1`] = `
       >
         <div
           aria-hidden="false"
+          aria-labelledby="rc-tabs-test-tab-1"
           class="ant-tabs-tabpane ant-tabs-tabpane-active"
+          id="rc-tabs-test-panel-1"
           role="tabpanel"
           tabindex="0"
         >
@@ -186,7 +197,7 @@ exports[`<Loader /> should render and match the snapshot 1`] = `
                           <div
                             class="ant-empty-description"
                           >
-                            No Data
+                            No data
                           </div>
                         </div>
                       </div>
@@ -197,20 +208,6 @@ exports[`<Loader /> should render and match the snapshot 1`] = `
             </div>
           </div>
         </div>
-        <div
-          aria-hidden="true"
-          class="ant-tabs-tabpane"
-          role="tabpanel"
-          style="display: none;"
-          tabindex="-1"
-        />
-        <div
-          aria-hidden="true"
-          class="ant-tabs-tabpane"
-          role="tabpanel"
-          style="display: none;"
-          tabindex="-1"
-        />
       </div>
     </div>
   </div>

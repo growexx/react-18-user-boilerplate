@@ -152,10 +152,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 200px; min-width: 200px;"
+                      style="width: 200px;"
                     />
                     <col
-                      style="width: 150px; min-width: 150px;"
+                      style="width: 150px;"
                     />
                   </colgroup>
                   <thead
@@ -271,13 +271,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                   </colgroup>
                   <thead
@@ -758,13 +758,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                   </colgroup>
                   <thead
@@ -985,13 +985,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                   </colgroup>
                   <thead
@@ -1232,13 +1232,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                   </colgroup>
                   <thead
@@ -1419,13 +1419,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                   </colgroup>
                   <thead
@@ -1586,13 +1586,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                   </colgroup>
                   <thead

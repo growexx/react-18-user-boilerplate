@@ -8,8 +8,7 @@ exports[`<ListWithLoadMore /> should render and match the snapshot 1`] = `
     class="ant-list-pagination"
   >
     <ul
-      class="ant-pagination mini"
-      unselectable="unselectable"
+      class="ant-pagination ant-pagination-mini"
     >
       <li
         aria-disabled="true"

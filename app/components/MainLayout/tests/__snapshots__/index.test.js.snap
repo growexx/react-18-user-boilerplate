@@ -228,7 +228,7 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
     class="ant-spin-container"
   >
     <div
-      class="main-layout c0"
+      class="c0 main-layout"
       data-environment="test"
     >
       <section
@@ -255,12 +255,16 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
               </a>
             </div>
             <ul
-              class="ant-menu ant-menu-dark ant-menu-inline-collapsed ant-menu-root ant-menu-vertical"
+              class="ant-menu ant-menu-root ant-menu-vertical ant-menu-dark ant-menu-inline-collapsed"
+              data-menu-list="true"
               role="menu"
+              tabindex="0"
             >
               <li
                 class="ant-menu-item ant-menu-item-selected"
+                data-menu-id="rc-menu-uuid-test-/"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="smile"
@@ -281,7 +285,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/"
                   >
@@ -291,7 +297,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-test-/sample-form"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="form"
@@ -315,7 +323,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/sample-form"
                   >
@@ -325,7 +335,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-test-/loader"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="loading"
@@ -346,7 +358,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/loader"
                   >
@@ -356,7 +370,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-test-/export-data"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="export"
@@ -377,7 +393,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/export-data"
                   >
@@ -387,7 +405,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-test-/number-converter-demo"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="number"
@@ -408,7 +428,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/number-converter-demo"
                   >
@@ -418,7 +440,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-test-/users"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="user"
@@ -439,7 +463,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/users"
                   >
@@ -449,7 +475,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-test-/github-search"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="search"
@@ -470,7 +498,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/github-search"
                   >
@@ -480,7 +510,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-test-/charts"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="pie-chart"
@@ -501,7 +533,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/charts"
                   >
@@ -511,7 +545,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-test-/multi-tab-support"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="message"
@@ -532,7 +568,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/multi-tab-support"
                   >
@@ -542,7 +580,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-test-/products"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="shopping"
@@ -563,7 +603,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/products"
                   >
@@ -572,6 +614,10 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                 </span>
               </li>
             </ul>
+            <div
+              aria-hidden="true"
+              style="display: none;"
+            />
           </div>
         </aside>
         <section
@@ -696,14 +742,14 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                   class="c5"
                 >
                   <div
-                    class="ant-btn-group ant-dropdown-button"
+                    class="ant-space-compact ant-space-compact-block ant-dropdown-button"
                   >
                     <button
-                      class="ant-btn ant-btn-default"
+                      class="ant-btn ant-btn-default ant-btn-compact-item ant-btn-compact-first-item"
                       type="button"
                     />
                     <button
-                      class="ant-btn ant-btn-default ant-btn-icon-only ant-dropdown-trigger"
+                      class="ant-btn ant-btn-default ant-btn-icon-only ant-btn-compact-item ant-btn-compact-last-item ant-dropdown-trigger"
                       type="button"
                     >
                       <span
@@ -1064,7 +1110,7 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
     class="ant-spin-container"
   >
     <div
-      class="main-layout c0"
+      class="c0 main-layout"
     >
       <section
         class="ant-layout ant-layout-has-sider"
@@ -1090,12 +1136,16 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
               </a>
             </div>
             <ul
-              class="ant-menu ant-menu-dark ant-menu-inline-collapsed ant-menu-root ant-menu-vertical"
+              class="ant-menu ant-menu-root ant-menu-vertical ant-menu-dark ant-menu-inline-collapsed"
+              data-menu-list="true"
               role="menu"
+              tabindex="0"
             >
               <li
                 class="ant-menu-item ant-menu-item-selected"
+                data-menu-id="rc-menu-uuid-32860-4-/"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="smile"
@@ -1116,7 +1166,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/"
                   >
@@ -1126,7 +1178,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-32860-4-/sample-form"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="form"
@@ -1150,7 +1204,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/sample-form"
                   >
@@ -1160,7 +1216,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-32860-4-/loader"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="loading"
@@ -1181,7 +1239,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/loader"
                   >
@@ -1191,7 +1251,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-32860-4-/export-data"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="export"
@@ -1212,7 +1274,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/export-data"
                   >
@@ -1222,7 +1286,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-32860-4-/number-converter-demo"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="number"
@@ -1243,7 +1309,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/number-converter-demo"
                   >
@@ -1253,7 +1321,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-32860-4-/users"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="user"
@@ -1274,7 +1344,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/users"
                   >
@@ -1284,7 +1356,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-32860-4-/github-search"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="search"
@@ -1305,7 +1379,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/github-search"
                   >
@@ -1315,7 +1391,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-32860-4-/charts"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="pie-chart"
@@ -1336,7 +1414,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/charts"
                   >
@@ -1346,7 +1426,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-32860-4-/multi-tab-support"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="message"
@@ -1367,7 +1449,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/multi-tab-support"
                   >
@@ -1377,7 +1461,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
               </li>
               <li
                 class="ant-menu-item"
+                data-menu-id="rc-menu-uuid-32860-4-/products"
                 role="menuitem"
+                tabindex="-1"
               >
                 <span
                   aria-label="shopping"
@@ -1398,7 +1484,9 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
                     />
                   </svg>
                 </span>
-                <span>
+                <span
+                  class="ant-menu-title-content"
+                >
                   <a
                     href="/products"
                   >
@@ -1407,6 +1495,10 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
                 </span>
               </li>
             </ul>
+            <div
+              aria-hidden="true"
+              style="display: none;"
+            />
           </div>
         </aside>
         <section
@@ -1531,14 +1623,14 @@ exports[`<MainLayout /> should render and match the snapshot 2`] = `
                   class="c5"
                 >
                   <div
-                    class="ant-btn-group ant-dropdown-button"
+                    class="ant-space-compact ant-space-compact-block ant-dropdown-button"
                   >
                     <button
-                      class="ant-btn ant-btn-default"
+                      class="ant-btn ant-btn-default ant-btn-compact-item ant-btn-compact-first-item"
                       type="button"
                     />
                     <button
-                      class="ant-btn ant-btn-default ant-btn-icon-only ant-dropdown-trigger"
+                      class="ant-btn ant-btn-default ant-btn-icon-only ant-btn-compact-item ant-btn-compact-last-item ant-dropdown-trigger"
                       type="button"
                     >
                       <span
@@ -1909,7 +2001,7 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
     class="ant-spin-container"
   >
     <div
-      class="main-layout c0"
+      class="c0 main-layout"
     >
       <section
         class="ant-layout"
@@ -1918,7 +2010,7 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
           class="ant-layout-header headerLayout"
         >
           <div
-            class="logo c1"
+            class="c1 logo"
           >
             <a
               href="/"
@@ -2014,14 +2106,14 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                 class="c5"
               >
                 <div
-                  class="ant-btn-group ant-dropdown-button"
+                  class="ant-space-compact ant-space-compact-block ant-dropdown-button"
                 >
                   <button
-                    class="ant-btn ant-btn-default"
+                    class="ant-btn ant-btn-default ant-btn-compact-item ant-btn-compact-first-item"
                     type="button"
                   />
                   <button
-                    class="ant-btn ant-btn-default ant-btn-icon-only ant-dropdown-trigger"
+                    class="ant-btn ant-btn-default ant-btn-icon-only ant-btn-compact-item ant-btn-compact-last-item ant-dropdown-trigger"
                     type="button"
                   >
                     <span
@@ -2061,13 +2153,17 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
               class="ant-layout-sider-children"
             >
               <ul
-                class="ant-menu ant-menu-dark ant-menu-root ant-menu-inline"
+                class="ant-menu ant-menu-root ant-menu-inline ant-menu-dark"
+                data-menu-list="true"
                 role="menu"
+                tabindex="0"
               >
                 <li
                   class="ant-menu-item ant-menu-item-selected"
+                  data-menu-id="rc-menu-uuid-32860-8-/"
                   role="menuitem"
                   style="padding-left: 24px;"
+                  tabindex="-1"
                 >
                   <span
                     aria-label="smile"
@@ -2088,7 +2184,9 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                       />
                     </svg>
                   </span>
-                  <span>
+                  <span
+                    class="ant-menu-title-content"
+                  >
                     <a
                       href="/"
                     >
@@ -2098,8 +2196,10 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                 </li>
                 <li
                   class="ant-menu-item"
+                  data-menu-id="rc-menu-uuid-32860-8-/sample-form"
                   role="menuitem"
                   style="padding-left: 24px;"
+                  tabindex="-1"
                 >
                   <span
                     aria-label="form"
@@ -2123,7 +2223,9 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                       />
                     </svg>
                   </span>
-                  <span>
+                  <span
+                    class="ant-menu-title-content"
+                  >
                     <a
                       href="/sample-form"
                     >
@@ -2133,8 +2235,10 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                 </li>
                 <li
                   class="ant-menu-item"
+                  data-menu-id="rc-menu-uuid-32860-8-/loader"
                   role="menuitem"
                   style="padding-left: 24px;"
+                  tabindex="-1"
                 >
                   <span
                     aria-label="loading"
@@ -2155,7 +2259,9 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                       />
                     </svg>
                   </span>
-                  <span>
+                  <span
+                    class="ant-menu-title-content"
+                  >
                     <a
                       href="/loader"
                     >
@@ -2165,8 +2271,10 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                 </li>
                 <li
                   class="ant-menu-item"
+                  data-menu-id="rc-menu-uuid-32860-8-/export-data"
                   role="menuitem"
                   style="padding-left: 24px;"
+                  tabindex="-1"
                 >
                   <span
                     aria-label="export"
@@ -2187,7 +2295,9 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                       />
                     </svg>
                   </span>
-                  <span>
+                  <span
+                    class="ant-menu-title-content"
+                  >
                     <a
                       href="/export-data"
                     >
@@ -2197,8 +2307,10 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                 </li>
                 <li
                   class="ant-menu-item"
+                  data-menu-id="rc-menu-uuid-32860-8-/number-converter-demo"
                   role="menuitem"
                   style="padding-left: 24px;"
+                  tabindex="-1"
                 >
                   <span
                     aria-label="number"
@@ -2219,7 +2331,9 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                       />
                     </svg>
                   </span>
-                  <span>
+                  <span
+                    class="ant-menu-title-content"
+                  >
                     <a
                       href="/number-converter-demo"
                     >
@@ -2229,8 +2343,10 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                 </li>
                 <li
                   class="ant-menu-item"
+                  data-menu-id="rc-menu-uuid-32860-8-/users"
                   role="menuitem"
                   style="padding-left: 24px;"
+                  tabindex="-1"
                 >
                   <span
                     aria-label="user"
@@ -2251,7 +2367,9 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                       />
                     </svg>
                   </span>
-                  <span>
+                  <span
+                    class="ant-menu-title-content"
+                  >
                     <a
                       href="/users"
                     >
@@ -2261,8 +2379,10 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                 </li>
                 <li
                   class="ant-menu-item"
+                  data-menu-id="rc-menu-uuid-32860-8-/github-search"
                   role="menuitem"
                   style="padding-left: 24px;"
+                  tabindex="-1"
                 >
                   <span
                     aria-label="search"
@@ -2283,7 +2403,9 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                       />
                     </svg>
                   </span>
-                  <span>
+                  <span
+                    class="ant-menu-title-content"
+                  >
                     <a
                       href="/github-search"
                     >
@@ -2293,8 +2415,10 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                 </li>
                 <li
                   class="ant-menu-item"
+                  data-menu-id="rc-menu-uuid-32860-8-/charts"
                   role="menuitem"
                   style="padding-left: 24px;"
+                  tabindex="-1"
                 >
                   <span
                     aria-label="pie-chart"
@@ -2315,7 +2439,9 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                       />
                     </svg>
                   </span>
-                  <span>
+                  <span
+                    class="ant-menu-title-content"
+                  >
                     <a
                       href="/charts"
                     >
@@ -2325,8 +2451,10 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                 </li>
                 <li
                   class="ant-menu-item"
+                  data-menu-id="rc-menu-uuid-32860-8-/multi-tab-support"
                   role="menuitem"
                   style="padding-left: 24px;"
+                  tabindex="-1"
                 >
                   <span
                     aria-label="message"
@@ -2347,7 +2475,9 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                       />
                     </svg>
                   </span>
-                  <span>
+                  <span
+                    class="ant-menu-title-content"
+                  >
                     <a
                       href="/multi-tab-support"
                     >
@@ -2357,8 +2487,10 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                 </li>
                 <li
                   class="ant-menu-item"
+                  data-menu-id="rc-menu-uuid-32860-8-/products"
                   role="menuitem"
                   style="padding-left: 24px;"
+                  tabindex="-1"
                 >
                   <span
                     aria-label="shopping"
@@ -2379,7 +2511,9 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                       />
                     </svg>
                   </span>
-                  <span>
+                  <span
+                    class="ant-menu-title-content"
+                  >
                     <a
                       href="/products"
                     >
@@ -2388,6 +2522,10 @@ exports[`<MainLayout /> with variant 2 should render and match the snapshot 1`] 
                   </span>
                 </li>
               </ul>
+              <div
+                aria-hidden="true"
+                style="display: none;"
+              />
             </div>
           </aside>
           <main
@@ -2749,7 +2887,7 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
     class="ant-spin-container"
   >
     <div
-      class="main-layout c0"
+      class="c0 main-layout"
     >
       <section
         class="ant-layout"
@@ -2758,7 +2896,7 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
           class="ant-layout-header headerLayout"
         >
           <div
-            class="logo c1"
+            class="c1 logo"
           >
             <a
               href="/"
@@ -2770,13 +2908,17 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
             </a>
           </div>
           <ul
-            class="ant-menu ant-menu-dark c2 ant-menu-root ant-menu-inline"
+            class="ant-menu ant-menu-root ant-menu-inline ant-menu-dark c2"
+            data-menu-list="true"
             role="menu"
+            tabindex="0"
           >
             <li
-              class="ant-menu-item c3 ant-menu-item-selected"
+              class="ant-menu-item ant-menu-item-selected c3"
+              data-menu-id="rc-menu-uuid-32860-11-/"
               role="menuitem"
               style="padding-left: 24px;"
+              tabindex="-1"
             >
               <span
                 aria-label="smile"
@@ -2797,7 +2939,9 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
                   />
                 </svg>
               </span>
-              <span>
+              <span
+                class="ant-menu-title-content"
+              >
                 <a
                   href="/"
                 />
@@ -2805,8 +2949,10 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
             </li>
             <li
               class="ant-menu-item c3"
+              data-menu-id="rc-menu-uuid-32860-11-/sample-form"
               role="menuitem"
               style="padding-left: 24px;"
+              tabindex="-1"
             >
               <span
                 aria-label="form"
@@ -2830,7 +2976,9 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
                   />
                 </svg>
               </span>
-              <span>
+              <span
+                class="ant-menu-title-content"
+              >
                 <a
                   href="/sample-form"
                 />
@@ -2838,8 +2986,10 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
             </li>
             <li
               class="ant-menu-item c3"
+              data-menu-id="rc-menu-uuid-32860-11-/loader"
               role="menuitem"
               style="padding-left: 24px;"
+              tabindex="-1"
             >
               <span
                 aria-label="loading"
@@ -2860,7 +3010,9 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
                   />
                 </svg>
               </span>
-              <span>
+              <span
+                class="ant-menu-title-content"
+              >
                 <a
                   href="/loader"
                 />
@@ -2868,8 +3020,10 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
             </li>
             <li
               class="ant-menu-item c3"
+              data-menu-id="rc-menu-uuid-32860-11-/export-data"
               role="menuitem"
               style="padding-left: 24px;"
+              tabindex="-1"
             >
               <span
                 aria-label="export"
@@ -2890,7 +3044,9 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
                   />
                 </svg>
               </span>
-              <span>
+              <span
+                class="ant-menu-title-content"
+              >
                 <a
                   href="/export-data"
                 />
@@ -2898,8 +3054,10 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
             </li>
             <li
               class="ant-menu-item c3"
+              data-menu-id="rc-menu-uuid-32860-11-/number-converter-demo"
               role="menuitem"
               style="padding-left: 24px;"
+              tabindex="-1"
             >
               <span
                 aria-label="number"
@@ -2920,7 +3078,9 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
                   />
                 </svg>
               </span>
-              <span>
+              <span
+                class="ant-menu-title-content"
+              >
                 <a
                   href="/number-converter-demo"
                 />
@@ -2928,8 +3088,10 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
             </li>
             <li
               class="ant-menu-item c3"
+              data-menu-id="rc-menu-uuid-32860-11-/users"
               role="menuitem"
               style="padding-left: 24px;"
+              tabindex="-1"
             >
               <span
                 aria-label="user"
@@ -2950,7 +3112,9 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
                   />
                 </svg>
               </span>
-              <span>
+              <span
+                class="ant-menu-title-content"
+              >
                 <a
                   href="/users"
                 />
@@ -2958,8 +3122,10 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
             </li>
             <li
               class="ant-menu-item c3"
+              data-menu-id="rc-menu-uuid-32860-11-/github-search"
               role="menuitem"
               style="padding-left: 24px;"
+              tabindex="-1"
             >
               <span
                 aria-label="search"
@@ -2980,7 +3146,9 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
                   />
                 </svg>
               </span>
-              <span>
+              <span
+                class="ant-menu-title-content"
+              >
                 <a
                   href="/github-search"
                 />
@@ -2988,8 +3156,10 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
             </li>
             <li
               class="ant-menu-item c3"
+              data-menu-id="rc-menu-uuid-32860-11-/charts"
               role="menuitem"
               style="padding-left: 24px;"
+              tabindex="-1"
             >
               <span
                 aria-label="pie-chart"
@@ -3010,7 +3180,9 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
                   />
                 </svg>
               </span>
-              <span>
+              <span
+                class="ant-menu-title-content"
+              >
                 <a
                   href="/charts"
                 />
@@ -3018,8 +3190,10 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
             </li>
             <li
               class="ant-menu-item c3"
+              data-menu-id="rc-menu-uuid-32860-11-/multi-tab-support"
               role="menuitem"
               style="padding-left: 24px;"
+              tabindex="-1"
             >
               <span
                 aria-label="message"
@@ -3040,7 +3214,9 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
                   />
                 </svg>
               </span>
-              <span>
+              <span
+                class="ant-menu-title-content"
+              >
                 <a
                   href="/multi-tab-support"
                 />
@@ -3048,8 +3224,10 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
             </li>
             <li
               class="ant-menu-item c3"
+              data-menu-id="rc-menu-uuid-32860-11-/products"
               role="menuitem"
               style="padding-left: 24px;"
+              tabindex="-1"
             >
               <span
                 aria-label="shopping"
@@ -3070,13 +3248,19 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
                   />
                 </svg>
               </span>
-              <span>
+              <span
+                class="ant-menu-title-content"
+              >
                 <a
                   href="/products"
                 />
               </span>
             </li>
           </ul>
+          <div
+            aria-hidden="true"
+            style="display: none;"
+          />
           <div
             class="c4"
           >
@@ -3162,14 +3346,14 @@ exports[`<MainLayout /> with variant 3 should render and match the snapshot 1`] 
                 class="c7"
               >
                 <div
-                  class="ant-btn-group ant-dropdown-button"
+                  class="ant-space-compact ant-space-compact-block ant-dropdown-button"
                 >
                   <button
-                    class="ant-btn ant-btn-default"
+                    class="ant-btn ant-btn-default ant-btn-compact-item ant-btn-compact-first-item"
                     type="button"
                   />
                   <button
-                    class="ant-btn ant-btn-default ant-btn-icon-only ant-dropdown-trigger"
+                    class="ant-btn ant-btn-default ant-btn-icon-only ant-btn-compact-item ant-btn-compact-last-item ant-dropdown-trigger"
                     type="button"
                   >
                     <span

@@ -126,7 +126,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
                     class="c2"
                   >
                     <button
-                      class="ant-btn"
+                      class="ant-btn ant-btn-default"
                       data-testid="About_Edit"
                       type="button"
                     >
@@ -166,7 +166,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
                     class="c2"
                   >
                     <button
-                      class="ant-btn"
+                      class="ant-btn ant-btn-default"
                       data-testid="Experience_Edit"
                       type="button"
                     >
@@ -206,7 +206,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
                     class="c2"
                   >
                     <button
-                      class="ant-btn"
+                      class="ant-btn ant-btn-default"
                       data-testid="Education_Edit"
                       type="button"
                     >
@@ -246,7 +246,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
                     class="c2"
                   >
                     <button
-                      class="ant-btn"
+                      class="ant-btn ant-btn-default"
                       data-testid="LicensesAndCertifications_edit"
                       type="button"
                     >
