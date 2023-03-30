@@ -1,14 +1,23 @@
 // Important modules this config uses
 const path = require('path');
-const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
-const OfflinePlugin = require('offline-plugin');
-const { HashedModuleIdsPlugin } = require('webpack');
-const TerserPlugin = require('terser-webpack-plugin');
+const { DefinePlugin } = require('webpack');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { GenerateSW } = require('workbox-webpack-plugin');
+const { merge } = require('webpack-merge');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
-module.exports = require('./webpack.base.babel')({
+module.exports = require('./webpack.base.babel.js')({
   mode: 'production',
 
   // In production, we skip all hot-reloading stuff
@@ -17,59 +26,40 @@ module.exports = require('./webpack.base.babel')({
     path.join(process.cwd(), 'app/app.js'),
   ],
 
-  // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].chunk.js',
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].chunk.js',
+    assetModuleFilename: 'assets/[name].[hash][ext]',
   },
 
   optimization: {
     minimize: true,
     minimizer: [
       new TerserPlugin({
+        parallel: true,
         terserOptions: {
-          warnings: false,
-          compress: {
-            comparisons: false,
-          },
-          parse: {},
-          mangle: true,
-          output: {
+          ecma: 6,
+          format: {
             comments: false,
-            ascii_only: true,
           },
         },
-        parallel: true,
-        cache: true,
-        sourceMap: true,
       }),
+      new CssMinimizerPlugin(),
     ],
-    nodeEnv: 'production',
-    sideEffects: true,
-    concatenateModules: true,
-    runtimeChunk: 'single',
+    runtimeChunk: {
+      name: (entrypoint) => `runtime-${entrypoint.name}`,
+    },
     splitChunks: {
       chunks: 'all',
-      maxInitialRequests: 10,
-      minSize: 0,
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name(module) {
-            const packageName = module.context.match(
-              /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
-            )[1];
-            return `npm.${packageName.replace('@', '')}`;
-          },
-        },
-      },
+      name: false,
     },
   },
 
   plugins: [
-    // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'app/index.html',
+      filename: 'index.html',
+      inject: true,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -82,67 +72,83 @@ module.exports = require('./webpack.base.babel')({
         minifyCSS: true,
         minifyURLs: true,
       },
-      inject: true,
     }),
-
-    // Put it in the end to capture all the HtmlWebpackPlugin's
-    // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
-    new OfflinePlugin({
-      relativePaths: false,
-      publicPath: '/',
-      appShell: '/',
-
-      // No need to cache .htaccess. See http://mxs.is/googmp,
-      // this is applied before any match in `caches` section
-      excludes: ['.htaccess', 'index.html'],
-
-      caches: {
-        main: [':rest:'],
-
-        // All chunks marked as `additional`, loaded after main section
-        // and do not prevent SW to install. Change to `optional` if
-        // do not want them to be preloaded at all (cached only when first loaded)
-        additional: ['*.chunk.js'],
-      },
-
-      // Removes warning for about `additional` section usage
-      safeToUseOptionalCaches: true,
+    new MiniCssExtractPlugin({
+      filename: 'static/css/[name].[contenthash:8].css',
+      chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
     }),
-
+    new CleanWebpackPlugin(),
+    new Dotenv(),
     new CompressionPlugin({
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
       minRatio: 0.8,
     }),
-
+    new DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      __DEV__: false,
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(process.cwd(), 'public'),
+          globOptions: {
+            ignore: ['**/index.html'],
+          },
+          noErrorOnMissing: true,
+        },
+      ],
+    }),
+    new WebpackManifestPlugin(),
     new WebpackPwaManifest({
       name: 'React Boilerplate',
       short_name: 'React BP',
       description: 'My React Boilerplate-based project!',
       background_color: '#fafafa',
       theme_color: '#b1624d',
-      inject: true,
-      ios: true,
       icons: [
         {
           src: path.resolve('app/images/favicons/android-chrome-512x512.png'),
           sizes: [16, 32, 192, 512],
+          purpose: 'maskable',
         },
         {
           src: path.resolve('app/images/favicons/apple-touch-icon.png'),
           sizes: [120, 152, 167, 180],
           ios: true,
+          purpose: 'maskable',
         },
       ],
+      filename: 'manifest.json',
+      crossorigin: 'use-credentials',
+      inject: true,
+      fingerprints: true,
+      ios: true,
+      includeDirectory: true,
+      publicPath: '/',
+      start_url: '.',
+      display: 'standalone',
     }),
 
-    new HashedModuleIdsPlugin({
-      hashFunction: 'sha256',
-      hashDigest: 'hex',
-      hashDigestLength: 20,
+    // new HashedModuleIdsPlugin({
+    //   hashFunction: 'sha256',
+    //   hashDigest: 'hex',
+    //   hashDigestLength: 20,
+    // }),
+
+    new Dotenv({
+      path: './.env.production',
     }),
-    new Dotenv(),
+    // new ForkTsCheckerWebpackPlugin({
+    //   async: false,
+    //   typescript: {
+    //     diagnosticOptions: {
+    //       semantic: true,
+    //       syntactic: true,
+    //     },
+    //   },
+    // }),
   ],
 
   performance: {
