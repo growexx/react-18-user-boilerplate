@@ -13,8 +13,7 @@ module.exports = require('./webpack.base.babel')({
 
   // In production, we skip all hot-reloading stuff
   entry: [
-    'react-app-polyfill/ie11',
-    'react-app-polyfill/stable',
+    require.resolve('react-app-polyfill/ie11'),
     path.join(process.cwd(), 'app/app.js'),
   ],
 
@@ -147,7 +146,7 @@ module.exports = require('./webpack.base.babel')({
   ],
 
   performance: {
-    assetFilter: assetFilename =>
+    assetFilter: (assetFilename) =>
       !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
   },
 });

@@ -12,7 +12,7 @@ const themeVariables = lessToJs(
     'utf8',
   ),
 );
-module.exports = options => ({
+module.exports = (options) => ({
   mode: options.mode,
   entry: options.entry,
   output: Object.assign(
@@ -54,9 +54,9 @@ module.exports = options => ({
       {
         test: /\.(eot|otf|ttf|woff|woff2)$/,
         type: 'asset/resource',
-        generator: {
-          filename: 'fonts/[name][ext]',
-        },
+        // generator: {
+        //   filename: 'fonts/[name][ext]',
+        // },
       },
       {
         test: /\.svg$/,
@@ -66,9 +66,9 @@ module.exports = options => ({
             maxSize: 10 * 1024,
           },
         },
-        generator: {
-          filename: 'images/[name][ext]',
-        },
+        // generator: {
+        //   filename: 'images/[name][ext]',
+        // },
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -78,9 +78,9 @@ module.exports = options => ({
             maxSize: 10 * 1024,
           },
         },
-        generator: {
-          filename: 'images/[name][ext]',
-        },
+        // generator: {
+        //   filename: 'images/[name][ext]',
+        // },
         use: [
           {
             loader: 'image-webpack-loader',
@@ -104,9 +104,9 @@ module.exports = options => ({
       {
         test: /\.html$/,
         type: 'asset/resource',
-        generator: {
-          filename: '[name][ext]',
-        },
+        // generator: {
+        //   filename: '[name][ext]',
+        // },
       },
       {
         test: /\.(mp4|webm)$/,
@@ -116,9 +116,9 @@ module.exports = options => ({
             maxSize: 10 * 1024,
           },
         },
-        generator: {
-          filename: 'videos/[name][ext]',
-        },
+        // generator: {
+        //   filename: 'videos/[name][ext]',
+        // },
       },
       {
         test: /\.md$/,
