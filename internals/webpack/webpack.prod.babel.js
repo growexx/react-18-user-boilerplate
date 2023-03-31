@@ -11,8 +11,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-const BundleAnalyzerPlugin =
-  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { GenerateSW } = require('workbox-webpack-plugin');
 const { merge } = require('webpack-merge');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
@@ -47,7 +46,7 @@ module.exports = require('./webpack.base.babel.js')({
       new CssMinimizerPlugin(),
     ],
     runtimeChunk: {
-      name: (entrypoint) => `runtime-${entrypoint.name}`,
+      name: entrypoint => `runtime-${entrypoint.name}`,
     },
     splitChunks: {
       chunks: 'all',
@@ -152,7 +151,7 @@ module.exports = require('./webpack.base.babel.js')({
   ],
 
   performance: {
-    assetFilter: (assetFilename) =>
+    assetFilter: assetFilename =>
       !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
   },
 });

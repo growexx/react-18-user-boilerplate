@@ -5,9 +5,9 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {
-    logLevel: 'warn',
+    // logLevel: 'warn',
     publicPath,
-    silent: true,
+    // silent: true,
     stats: 'errors-only',
   });
 }
