@@ -39,8 +39,8 @@ const SideBar = props => {
       <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={[location.pathname]}
-        selectedKeys={[location.pathname]}
+        // defaultSelectedKeys={[location.pathname]}
+        // selectedKeys={[location.pathname]}
       >
         {GET_FILTERED_MENU_ITEM(props.user && props.user.role).map(menu => (
           <Menu.Item key={menu.to} icon={menu.icon}>

@@ -38,6 +38,7 @@ import configureStore from './configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n.js';
+import { render } from 'react-dom';
 
 // Make font awesome library to be used across project
 library.add(fab, far, fas);
@@ -92,7 +93,7 @@ if (!window.Intl) {
       throw err;
     });
 } else {
-  render(translationMessages);
+  // render(translationMessages);
 }
 
 // Install ServiceWorker and AppCache in the end since

@@ -13,9 +13,9 @@ module.exports = require('./webpack.base.babel')({
 
   // Add hot reloading in development
   entry: [
-    require.resolve('react-app-polyfill/ie11'),
+    // require.resolve('react-app-polyfill/ie11'),
     'webpack-hot-middleware/client?reload=true',
-    path.join(process.cwd(), 'app/app.js'), // Start with js/app.js
+    path.join(process.cwd(), './app/app.js'), // Start with js/app.js
   ],
 
   // Don't use hashes in dev mode for better performance

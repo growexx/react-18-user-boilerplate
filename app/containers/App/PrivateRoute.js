@@ -1,25 +1,16 @@
 /* eslint-disable space-before-function-paren */
 import React from 'react';
-import { Route, Redirect } from 'react-router';
+import { Route, Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { userExists } from 'utils/Helper';
 import { ROUTES } from '../constants';
-const PrivateRoute = mainProps => {
-  const { component: Component, ...rest } = mainProps;
 
+const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
-        userExists() ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: ROUTES.LOGIN,
-            }}
-          />
-        )
+      element={
+        userExists() ? <Component /> : <Navigate to={ROUTES.LOGIN} replace />
       }
     />
   );

@@ -4,7 +4,6 @@
 
 const path = require('path');
 const fs = require('fs');
-
 const lessToJs = require('less-vars-to-js');
 const themeVariables = lessToJs(
   fs.readFileSync(
@@ -27,13 +26,11 @@ module.exports = options => ({
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.jsx?$/, // Transform all .js and .jsx files required somewhere with Babel
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
+          options: options.babelQuery,
         },
       },
       {
@@ -51,28 +48,27 @@ module.exports = options => ({
         ],
       },
       {
+        // Preprocess 3rd party .css files located in node_modules
         test: /\.css$/,
         include: /node_modules/,
         use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(eot|otf|ttf|woff|woff2)$/,
-        type: 'asset/resource',
-        // generator: {
-        //   filename: 'fonts/[name][ext]',
-        // },
+        use: 'file-loader',
       },
       {
         test: /\.svg$/,
-        type: 'asset',
-        parser: {
-          dataUrlCondition: {
-            maxSize: 10 * 1024,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              // Inline files smaller than 10 kB
+              limit: 10 * 1024,
+              noquotes: true,
+            },
           },
-        },
-        // generator: {
-        //   filename: 'images/[name][ext]',
-        // },
+        ],
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -107,22 +103,16 @@ module.exports = options => ({
       },
       {
         test: /\.html$/,
-        type: 'asset/resource',
-        // generator: {
-        //   filename: '[name][ext]',
-        // },
+        use: 'html-loader',
       },
       {
         test: /\.(mp4|webm)$/,
-        type: 'asset',
-        parser: {
-          dataUrlCondition: {
-            maxSize: 10 * 1024,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
           },
         },
-        // generator: {
-        //   filename: 'videos/[name][ext]',
-        // },
       },
       {
         test: /\.md$/,
@@ -137,7 +127,6 @@ module.exports = options => ({
       },
       {
         test: /react-infinite-scroller\/.*\.js$/,
-        type: 'javascript/auto',
         loader: 'babel-loader',
       },
     ],

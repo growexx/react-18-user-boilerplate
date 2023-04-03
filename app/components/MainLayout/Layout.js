@@ -40,8 +40,9 @@ const HeaderMenuItem = styled(Menu.Item)`
   width: fit-content !important;
 `;
 
-function Layouts({ layoutVariant, collapsed, toggle }) {
+function Layouts({ layoutVariant, collapsed, toggle, ...rest }) {
   const location = useLocation();
+  console.log(location, 'location', rest);
 
   // eslint-disable-next-line default-case
   switch (layoutVariant) {

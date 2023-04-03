@@ -10,7 +10,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import Profile from 'containers/Profile/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
@@ -46,6 +46,7 @@ const AppWrapper = styled.div`
 
 export default function App() {
   useEffect(() => {
+    console.log('here is in app');
     window.addEventListener('storage', manageSession, []);
     return () => {
       window.removeEventListener('storage', window);
@@ -63,9 +64,10 @@ export default function App() {
           <link {...favIcon} key={index} />
         ))}
       </Helmet>
-      <Switch>
-        <PrivateRoute exact path={ROUTES.HOME} component={FeaturePage} />
-        <PrivateRoute path={ROUTES.GITHUB_SEARCH} component={HomePage} />
+      <Routes>
+        {/* <PrivateRoute exact path={ROUTES.HOME} component={FeaturePage} /> */}
+        <PrivateRoute exact path={ROUTES.HOME} element={<FeaturePage />} />
+        {/* <PrivateRoute path={ROUTES.GITHUB_SEARCH} component={HomePage} />
         <PrivateRoute path={ROUTES.PROFILE} component={Profile} />
         <PrivateRoute path={ROUTES.LOGOUT} component={Logout} />
         <PrivateRoute path={ROUTES.LOADER} component={Loader} />
@@ -76,10 +78,10 @@ export default function App() {
         <PrivateRoute
           path={ROUTES.MULTI_TAB_SUPPORT}
           component={MultiTabSupport}
-        />
+        /> */}
         <PrivateRoute
           path={ROUTES.CHANGE_PASSWORD}
-          component={ChangePassword}
+          element={<ChangePassword />}
         />
         <RoleMiddleWare
           path={ROUTES.TEST_ADMIN_PAGE}
@@ -87,26 +89,26 @@ export default function App() {
           // ShowError redirects to 403
           showError
         />
-        <PrivateRoute path={ROUTES.SAMPLE_FORM} component={SampleForm} />
+        {/* <PrivateRoute path={ROUTES.SAMPLE_FORM} component={SampleForm} />
         <PrivateRoute
           path={ROUTES.NUMERAL_CONVERTER}
           component={NumeralConversion}
-        />
-        <AuthRoute exact path={ROUTES.LOGIN} component={Login} />
+        /> */}
+        <Route exact path="/login" element={<Login />} />
         <AuthRoute
           exact
           path={ROUTES.TWO_FACTOR_AUTHENTICATION}
-          component={TwoFactorAuthentication}
+          element={<TwoFactorAuthentication />}
         />
-        <AuthRoute exact path={ROUTES.REGISTER} component={Register} />
-        <AuthRoute
+        <AuthRoute exact path={ROUTES.REGISTER} element={<Register />} />
+        {/* <AuthRoute
           exact
           path={ROUTES.FORGOT_PASSWORD}
           component={ForgotPassword}
         />
         <Route exact path={ROUTES.UNAUTHORIZED} component={UnauthorizedPage} />
-        <Route path="" component={NotFoundPage} />
-      </Switch>
+        <Route path="" component={NotFoundPage} /> */}
+      </Routes>
       <GlobalStyle />
     </AppWrapper>
   );
