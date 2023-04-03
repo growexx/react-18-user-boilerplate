@@ -9,22 +9,22 @@ import { Spin } from 'antd';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectAppLoading } from 'containers/App/selectors';
-import App from 'containers/App';
-import Emitter from 'utils/events';
-import { userExists } from 'utils/Helper';
-import { EMITTER_EVENTS } from 'utils/constants';
+import { EMITTER_EVENTS } from '../../utils/constants';
+import { userExists } from '../../utils/Helper';
+import Emitter from '../../utils/events';
+import App from '../../containers/App';
+import { makeSelectAppLoading } from '../../containers/App/selectors';
 import { LAYOUT_CONFIG } from '../constants';
 import { StyledMainLayout } from './StyledMainLayout';
 import Layouts from './Layout';
 
 function MainLayout(props) {
-  const { appLoading, defaultLayout, location } = props;
+  const { appLoading, defaultLayout } = props;
   const [collapsed, setCollapsed] = useState(true);
   const [layoutVariant, setLayoutVariant] = useState(defaultLayout);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
+    const urlParams = ''; // new URLSearchParams(location.search);
     const layoutVariantFromUrl = urlParams.get('layout')
       ? +urlParams.get('layout')
       : defaultLayout;
@@ -32,7 +32,7 @@ function MainLayout(props) {
     setCollapsed(
       ![LAYOUT_CONFIG.VERTICAL_OPTION_2].includes(layoutVariantFromUrl),
     );
-  }, [defaultLayout, location.search]);
+  }, [defaultLayout]);
 
   useEffect(() => {
     function handleLogIn() {
