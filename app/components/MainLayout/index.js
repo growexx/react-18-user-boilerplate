@@ -24,7 +24,7 @@ function MainLayout(props) {
   const [layoutVariant, setLayoutVariant] = useState(defaultLayout);
 
   useEffect(() => {
-    const urlParams = ''; // new URLSearchParams(location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     const layoutVariantFromUrl = urlParams.get('layout')
       ? +urlParams.get('layout')
       : defaultLayout;

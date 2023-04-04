@@ -66,7 +66,12 @@ export default function App() {
       </Helmet>
       <Routes>
         {/* <PrivateRoute exact path={ROUTES.HOME} component={FeaturePage} /> */}
-        <PrivateRoute exact path={ROUTES.HOME} element={<FeaturePage />} />
+
+        {/* <Route exact path={ROUTES.HOME} element={<FeaturePage />} /> */}
+        <Route element={<PrivateRoute />}>
+          <Route exact path={ROUTES.HOME} element={<FeaturePage />} />
+        </Route>
+        {/* <PrivateRoute exact path={ROUTES.HOME} component={FeaturePage} /> */}
         {/* <PrivateRoute path={ROUTES.GITHUB_SEARCH} component={HomePage} />
         <PrivateRoute path={ROUTES.PROFILE} component={Profile} />
         <PrivateRoute path={ROUTES.LOGOUT} component={Logout} />
@@ -79,7 +84,7 @@ export default function App() {
           path={ROUTES.MULTI_TAB_SUPPORT}
           component={MultiTabSupport}
         /> */}
-        <PrivateRoute
+        {/* <PrivateRoute
           path={ROUTES.CHANGE_PASSWORD}
           element={<ChangePassword />}
         />
@@ -88,19 +93,19 @@ export default function App() {
           component={() => <div>This is Admin Role Page</div>}
           // ShowError redirects to 403
           showError
-        />
+        /> */}
         {/* <PrivateRoute path={ROUTES.SAMPLE_FORM} component={SampleForm} />
         <PrivateRoute
           path={ROUTES.NUMERAL_CONVERTER}
           component={NumeralConversion}
         /> */}
         <Route exact path="/login" element={<Login />} />
-        <AuthRoute
+        {/* <AuthRoute
           exact
           path={ROUTES.TWO_FACTOR_AUTHENTICATION}
           element={<TwoFactorAuthentication />}
         />
-        <AuthRoute exact path={ROUTES.REGISTER} element={<Register />} />
+        <AuthRoute exact path={ROUTES.REGISTER} element={<Register />} /> */}
         {/* <AuthRoute
           exact
           path={ROUTES.FORGOT_PASSWORD}

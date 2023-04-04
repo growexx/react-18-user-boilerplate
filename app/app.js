@@ -26,6 +26,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 // Import root app
 import MainLayout from './components/MainLayout';
 import history from './utils/history';
+import { BrowserRouter } from 'react-router-dom';
 
 // Import Language Provider
 // import LanguageProvider from 'containers/LanguageProvider';
@@ -59,11 +60,13 @@ const MOUNT_NODE = ReactDOM.createRoot(document.getElementById('app'));
 
 MOUNT_NODE.render(
   <Provider store={store}>
-    {/* <LanguageProvider messages={messages}> */}
-    <ConnectedRouter history={history}>
+    <BrowserRouter>
+      {/* <LanguageProvider messages={messages}> */}
+      {/* <ConnectedRouter history={history}> */}
       <MainLayout />
-    </ConnectedRouter>
-    {/* </LanguageProvider> */}
+      {/* </ConnectedRouter> */}
+      {/* </LanguageProvider> */}
+    </BrowserRouter>
   </Provider>,
 );
 
