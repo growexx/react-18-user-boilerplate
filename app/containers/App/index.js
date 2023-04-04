@@ -46,7 +46,6 @@ const AppWrapper = styled.div`
 
 export default function App() {
   useEffect(() => {
-    console.log('here is in app');
     window.addEventListener('storage', manageSession, []);
     return () => {
       window.removeEventListener('storage', window);
@@ -65,54 +64,52 @@ export default function App() {
         ))}
       </Helmet>
       <Routes>
-        {/* <PrivateRoute exact path={ROUTES.HOME} component={FeaturePage} /> */}
-
-        {/* <Route exact path={ROUTES.HOME} element={<FeaturePage />} /> */}
+        {/* Private Routes */}
         <Route element={<PrivateRoute />}>
           <Route exact path={ROUTES.HOME} element={<FeaturePage />} />
+          <Route path={ROUTES.GITHUB_SEARCH} element={<HomePage />} />
+          <Route path={ROUTES.PROFILE} element={<Profile />} />
+          <Route path={ROUTES.LOGOUT} element={<Logout />} />
+          <Route path={ROUTES.LOADER} element={<Loader />} />
+          <Route path={ROUTES.EXPORT_DATA} element={<ExportDataToCsv />} />
+          <Route path={ROUTES.USERS} element={<Users />} />
+          <Route path={ROUTES.CHARTS} element={<Charts />} />
+          <Route path={ROUTES.PRODUCTS} element={<Products />} />
+          <Route
+            path={ROUTES.MULTI_TAB_SUPPORT}
+            element={<MultiTabSupport />}
+          />
+          <Route path={ROUTES.CHANGE_PASSWORD} element={<ChangePassword />} />
+          <Route path={ROUTES.SAMPLE_FORM} element={<SampleForm />} />
+          <Route
+            path={ROUTES.NUMERAL_CONVERTER}
+            element={<NumeralConversion />}
+          />
         </Route>
-        {/* <PrivateRoute exact path={ROUTES.HOME} component={FeaturePage} /> */}
-        {/* <PrivateRoute path={ROUTES.GITHUB_SEARCH} component={HomePage} />
-        <PrivateRoute path={ROUTES.PROFILE} component={Profile} />
-        <PrivateRoute path={ROUTES.LOGOUT} component={Logout} />
-        <PrivateRoute path={ROUTES.LOADER} component={Loader} />
-        <PrivateRoute path={ROUTES.EXPORT_DATA} component={ExportDataToCsv} />
-        <PrivateRoute path={ROUTES.USERS} component={Users} />
-        <PrivateRoute path={ROUTES.CHARTS} component={Charts} />
-        <PrivateRoute path={ROUTES.PRODUCTS} component={Products} />
-        <PrivateRoute
-          path={ROUTES.MULTI_TAB_SUPPORT}
-          component={MultiTabSupport}
-        /> */}
-        {/* <PrivateRoute
-          path={ROUTES.CHANGE_PASSWORD}
-          element={<ChangePassword />}
-        />
+        {/* 
         <RoleMiddleWare
           path={ROUTES.TEST_ADMIN_PAGE}
           component={() => <div>This is Admin Role Page</div>}
           // ShowError redirects to 403
           showError
         /> */}
-        {/* <PrivateRoute path={ROUTES.SAMPLE_FORM} component={SampleForm} />
-        <PrivateRoute
-          path={ROUTES.NUMERAL_CONVERTER}
-          component={NumeralConversion}
-        /> */}
-        <Route exact path="/login" element={<Login />} />
-        {/* <AuthRoute
-          exact
-          path={ROUTES.TWO_FACTOR_AUTHENTICATION}
-          element={<TwoFactorAuthentication />}
-        />
-        <AuthRoute exact path={ROUTES.REGISTER} element={<Register />} /> */}
-        {/* <AuthRoute
-          exact
-          path={ROUTES.FORGOT_PASSWORD}
-          component={ForgotPassword}
-        />
+        {/* Auth Routes */}
+        <Route element={<AuthRoute />}>
+          <Route exact path={ROUTES.LOGIN} element={<Login />} />
+          <Route
+            exact
+            path={ROUTES.TWO_FACTOR_AUTHENTICATION}
+            element={<TwoFactorAuthentication />}
+          />
+          <Route exact path={ROUTES.REGISTER} element={<Register />} />
+          <Route
+            exact
+            path={ROUTES.FORGOT_PASSWORD}
+            element={<ForgotPassword />}
+          />
+        </Route>
         <Route exact path={ROUTES.UNAUTHORIZED} component={UnauthorizedPage} />
-        <Route path="" component={NotFoundPage} /> */}
+        <Route path="" component={NotFoundPage} />
       </Routes>
       <GlobalStyle />
     </AppWrapper>
