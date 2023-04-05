@@ -36,7 +36,16 @@ import history from './utils/history';
 
 // import { render } from 'react-dom';
 import configureStore from './configureStore';
+import { Route, Routes } from 'react-router-dom';
+import FeaturePage from './containers/FeaturePage';
+import { Switch } from 'antd';
+// import { configureStore, createListenerMiddleware } from '@reduxjs/toolkit';
+// import configureStore from './configureStore';
 
+// const store = configureStore({
+//   reducer: createReducer(initialState, history),
+//   middleware: getDefaultMiddleware => getDefaultMiddleware(),
+// });
 // Import i18n messages
 // import { translationMessages } from './i18n.js';
 
@@ -61,8 +70,10 @@ MOUNT_NODE.render(
   <Provider store={store}>
     {/* <LanguageProvider messages={messages}> */}
     <ConnectedRouter history={history}>
-      <MainLayout />
+      <>Hii</>
+      {/* <MainLayout /> */}
     </ConnectedRouter>
+
     {/* </LanguageProvider> */}
   </Provider>,
 );

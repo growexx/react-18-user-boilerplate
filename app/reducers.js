@@ -13,9 +13,10 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
  * Merges the main reducer with the router state and dynamically injected reducers
  */
 export default function createReducer(injectedReducers = {}) {
+  console.log(injectedReducers, history);
   return combineReducers({
     global: globalReducer,
-    language: languageProviderReducer,
+    // language: languageProviderReducer,
     router: connectRouter(history),
     form: reduxFormReducer,
     ...injectedReducers,

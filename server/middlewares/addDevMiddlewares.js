@@ -22,8 +22,6 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
     compiler,
     webpackConfig.output.publicPath,
   );
-  console.log(webpackConfig, 'webpack config');
-  console.log(process.cwd(), 'this is a webpack middleware');
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
@@ -35,10 +33,8 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   app.get('*', (req, res) => {
     fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
       if (err) {
-        console.log(err, 'err here ');
         res.sendStatus(404);
       } else {
-        console.log(file.toString(), 'else here ');
         res.send(file.toString());
       }
     });

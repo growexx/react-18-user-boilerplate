@@ -24,7 +24,8 @@ function MainLayout(props) {
   const [layoutVariant, setLayoutVariant] = useState(defaultLayout);
 
   useEffect(() => {
-    const urlParams = ''; // new URLSearchParams(location.search);
+    console.log(window.location.search, 'in mainlay');
+    const urlParams = new URLSearchParams(window.location.search);
     const layoutVariantFromUrl = urlParams.get('layout')
       ? +urlParams.get('layout')
       : defaultLayout;
@@ -80,7 +81,7 @@ function MainLayout(props) {
 
 MainLayout.propTypes = {
   appLoading: PropTypes.bool,
-  location: PropTypes.object,
+  // location: PropTypes.object,
   defaultLayout: PropTypes.number,
 };
 
