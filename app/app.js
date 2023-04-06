@@ -10,7 +10,7 @@ import '@babel/polyfill';
 
 // Import all the third party stuff
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
@@ -54,20 +54,17 @@ openSansObserver.load().then(() => {
 // Create redux store with history
 const initialState = {};
 const store = configureStore(initialState, history);
-const MOUNT_NODE = document.getElementById('app');
+const MOUNT_NODE = ReactDOM.createRoot(document.getElementById('app'));
 
-const render = messages => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <ConnectedRouter history={history}>
-          <MainLayout />
-        </ConnectedRouter>
-      </LanguageProvider>
-    </Provider>,
-    MOUNT_NODE,
-  );
-};
+MOUNT_NODE.render(
+  <Provider store={store}>
+    {/* <LanguageProvider messages={messages}> */}
+    <ConnectedRouter history={history}>
+      <MainLayout />
+    </ConnectedRouter>
+    {/* </LanguageProvider> */}
+  </Provider>,
+);
 
 if (module.hot) {
   // Hot reloadable React components and translation json files
@@ -75,7 +72,7 @@ if (module.hot) {
   // have to be constants at compile-time
   module.hot.accept(['./i18n', 'containers/App'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-    render(translationMessages);
+    // render(translationMessages);
   });
 }
 
@@ -95,7 +92,7 @@ if (!window.Intl) {
       throw err;
     });
 } else {
-  render(translationMessages);
+  // render(translationMessages);
 }
 
 // Install ServiceWorker and AppCache in the end since
