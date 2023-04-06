@@ -176,6 +176,11 @@ svg-url-loader                                      2.3.3  →    8.0.0
 // refactor: removed noquotes option, defaulting it to true 
 
 terser-webpack-plugin                               1.2.4  →    5.3.7
+// node 10.13
+// removed
+// cache: true,
+// sourceMap: true,
+
 url-loader                                          1.1.2  →    4.1.1
 rimraf                                              2.6.3  →    4.4.1
 sanitize.css                                        8.0.1  →   13.0.0

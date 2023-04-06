@@ -20,7 +20,7 @@
     "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
     "preinstall": "npm run npmcheckversion",
     "prebuild": "npm run build:clean",
-    "build": "webpack --config internals/webpack/webpack.dev.babel.js --progress --color --stats",
+    "build": "webpack --config internals/webpack/webpack.prod.babel.js --progress --color --stats",
     "build:clean": "rimraf ./build",
     "start": "node server",
     "start:tunnel": "node server",
