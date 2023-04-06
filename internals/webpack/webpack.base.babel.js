@@ -145,8 +145,7 @@ module.exports = options => ({
     extensions: ['.js', '.jsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main'],
   },
-  infrastructureLogging: options.infrastructureLogging,
-  stats: options.stats,
+  stats: 'errors-only',
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
   performance: options.performance || {},
