@@ -56,7 +56,7 @@ module.exports = options => ({
       },
       {
         test: /\.(eot|otf|ttf|woff|woff2)$/,
-        use: 'file-loader',
+        type: 'asset/resource',
       },
       {
         test: /\.svg$/,
@@ -66,21 +66,19 @@ module.exports = options => ({
             options: {
               // Inline files smaller than 10 kB
               limit: 10 * 1024,
-              noquotes: true,
             },
           },
         ],
       },
       {
-        test: /\.(jpg|png|gif)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              // Inline files smaller than 10 kB
-              limit: 10 * 1024,
-            },
+        test: /\.(jpe?g|png|gif)$/,
+        type: 'asset/resource',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024,
           },
+        },
+        use: [
           {
             loader: 'image-webpack-loader',
             options: {
@@ -95,10 +93,12 @@ module.exports = options => ({
                 interlaced: false,
               },
               optipng: {
+                enabled: true,
                 optimizationLevel: 7,
               },
               pngquant: {
-                quality: '65-90',
+                enabled: true,
+                quality: [0.65, 0.9],
                 speed: 4,
               },
             },
@@ -106,15 +106,19 @@ module.exports = options => ({
         ],
       },
       {
+        test: /\.(ico)$/,
+        type: 'asset/resource',
+      },
+      {
         test: /\.html$/,
         use: 'html-loader',
       },
       {
         test: /\.(mp4|webm)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024,
           },
         },
       },
@@ -141,6 +145,8 @@ module.exports = options => ({
     extensions: ['.js', '.jsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main'],
   },
+  infrastructureLogging: options.infrastructureLogging,
+  stats: options.stats,
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
   performance: options.performance || {},

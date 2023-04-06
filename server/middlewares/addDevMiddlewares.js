@@ -5,10 +5,8 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {
-    logLevel: 'warn',
-    publicPath,
-    silent: true,
-    stats: 'errors-only',
+    publicPath: 'auto',
+    serverSideRender: true,
   });
 }
 
@@ -18,7 +16,7 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
     compiler,
     webpackConfig.output.publicPath,
   );
-
+  console.log(webpackConfig.output.publicPath, 'here ');
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
 

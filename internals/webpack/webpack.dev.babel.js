@@ -48,6 +48,13 @@ module.exports = require('./webpack.base.babel')({
   // See https://webpack.js.org/configuration/devtool/#devtool
   devtool: 'eval-source-map',
 
+  stats: 'errors-only',
+
+  infrastructureLogging: {
+    appendOnly: true,
+    level: 'warn',
+  },
+
   performance: {
     hints: false,
   },
