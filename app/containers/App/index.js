@@ -10,7 +10,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import Profile from 'containers/Profile/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
@@ -59,12 +59,12 @@ export default function App() {
         defaultTitle="React.js Boilerplate"
       >
         <meta name="description" content="A React.js Boilerplate application" />
-        {FAV_ICONS.map((favIcon, index) => (
+        {/* {FAV_ICONS.map((favIcon, index) => (
           <link {...favIcon} key={index} />
-        ))}
+        ))} */}
       </Helmet>
-      <Switch>
-        <PrivateRoute exact path={ROUTES.HOME} component={FeaturePage} />
+      <Routes>
+        {/* <PrivateRoute exact path={ROUTES.HOME} component={FeaturePage} />
         <PrivateRoute path={ROUTES.GITHUB_SEARCH} component={HomePage} />
         <PrivateRoute path={ROUTES.PROFILE} component={Profile} />
         <PrivateRoute path={ROUTES.LOGOUT} component={Logout} />
@@ -104,9 +104,9 @@ export default function App() {
           path={ROUTES.FORGOT_PASSWORD}
           component={ForgotPassword}
         />
-        <Route exact path={ROUTES.UNAUTHORIZED} component={UnauthorizedPage} />
-        <Route path="" component={NotFoundPage} />
-      </Switch>
+        <Route exact path={ROUTES.UNAUTHORIZED} component={UnauthorizedPage} /> */}
+        <Route path="/" element={<NotFoundPage />} />
+      </Routes>
       <GlobalStyle />
     </AppWrapper>
   );
