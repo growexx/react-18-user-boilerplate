@@ -10,7 +10,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Routes } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import Profile from 'containers/Profile/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
@@ -63,8 +63,8 @@ export default function App() {
           <link {...favIcon} key={index} />
         ))}
       </Helmet>
-      <Switch>
-        <PrivateRoute exact path={ROUTES.HOME} component={FeaturePage} />
+      <Routes>
+        {/* <PrivateRoute exact path={ROUTES.HOME} component={FeaturePage} />
         <PrivateRoute path={ROUTES.GITHUB_SEARCH} component={HomePage} />
         <PrivateRoute path={ROUTES.PROFILE} component={Profile} />
         <PrivateRoute path={ROUTES.LOGOUT} component={Logout} />
@@ -103,10 +103,18 @@ export default function App() {
           exact
           path={ROUTES.FORGOT_PASSWORD}
           component={ForgotPassword}
+        /> */}
+        <Route exact path="/" element={<Login />} />
+        <Route
+          exact
+          path="/two-factor-authentication"
+          element={<FeaturePage />}
         />
+        <Route exact path="/login" element={<UnauthorizedPage />} />
+        <Route exact path={ROUTES.REGISTER} element={<Register />} />
         <Route exact path={ROUTES.UNAUTHORIZED} component={UnauthorizedPage} />
-        <Route path="" component={NotFoundPage} />
-      </Switch>
+        <Route path="/*" element={<NotFoundPage />} />
+      </Routes>
       <GlobalStyle />
     </AppWrapper>
   );

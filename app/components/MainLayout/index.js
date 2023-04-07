@@ -24,7 +24,7 @@ function MainLayout(props) {
   const [layoutVariant, setLayoutVariant] = useState(defaultLayout);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
+    const urlParams = new URLSearchParams(location);
     const layoutVariantFromUrl = urlParams.get('layout')
       ? +urlParams.get('layout')
       : defaultLayout;
@@ -32,7 +32,7 @@ function MainLayout(props) {
     setCollapsed(
       ![LAYOUT_CONFIG.VERTICAL_OPTION_2].includes(layoutVariantFromUrl),
     );
-  }, [defaultLayout, location.search]);
+  }, [defaultLayout, location]);
 
   useEffect(() => {
     function handleLogIn() {
@@ -74,7 +74,7 @@ function MainLayout(props) {
       </Spin>
     );
   }
-
+  console.log(props);
   return <App />;
 }
 
