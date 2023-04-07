@@ -23,8 +23,8 @@ const getMenu = MenuItems => (
 const Avatar = props => (
   <AvatarWrapper>
     <Dropdown.Button
-      menu={getMenu(props.menu)}
-      placement="bottom"
+      overlay={getMenu(props.menu)}
+      placement="bottomCenter"
       icon={<UserOutlined />}
     />
   </AvatarWrapper>
