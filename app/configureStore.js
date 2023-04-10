@@ -3,19 +3,19 @@
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
-// import { routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory } from 'history';
 import createReducer from './reducers';
-import routeSaga from './routeSaga';
+
+const history = createBrowserHistory();
 
 const {
   createReduxHistory,
   routerMiddleware,
   routerReducer,
 } = createReduxHistoryContext({
-  history: createBrowserHistory(),
+  history,
 });
 
 export default function configureStore(initialState = {}) {
@@ -53,11 +53,9 @@ export default function configureStore(initialState = {}) {
     composeEnhancers(...enhancers),
   );
 
-  // Extensions
-  sagaMiddleware.run(routeSaga);
   store.runSaga = sagaMiddleware.run;
-  store.injectedReducers = {}; // Reducer registry
-  store.injectedSagas = {}; // Saga registry
+  store.injectedReducers = {};
+  store.injectedSagas = {};
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
@@ -67,6 +65,5 @@ export default function configureStore(initialState = {}) {
     });
   }
 
-  const history = createReduxHistory(store);
   return { store, history };
 }
