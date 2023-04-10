@@ -8,6 +8,7 @@ import createSagaMiddleware from 'redux-saga';
 import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory } from 'history';
 import createReducer from './reducers';
+import routeSaga from './routeSaga';
 
 const {
   createReduxHistory,
@@ -53,6 +54,7 @@ export default function configureStore(initialState = {}) {
   );
 
   // Extensions
+  sagaMiddleware.run(routeSaga);
   store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry

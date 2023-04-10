@@ -16,7 +16,7 @@ import { Provider } from 'react-redux';
 import FontFaceObserver from 'fontfaceobserver';
 // import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
-import { HistoryRouter } from 'redux-first-history/rr6';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 
 // Font Awesome Initialization
 // Remove which is not needed
@@ -54,16 +54,16 @@ openSansObserver.load().then(() => {
 
 // Create redux store with history
 const initialState = {};
-const { store, history } = configureStore(initialState, history);
+const { store, history } = configureStore(initialState);
 const MOUNT_NODE = ReactDOM.createRoot(document.getElementById('app'));
 
 MOUNT_NODE.render(
   <Provider store={store}>
     {/* <LanguageProvider messages={messages}> */}
     {/* <ConnectedRouter history={history}> */}
-    <HistoryRouter history={history}>
+    <Router history={history}>
       <MainLayout />
-    </HistoryRouter>
+    </Router>
     {/* </ConnectedRouter> */}
     {/* </LanguageProvider> */}
   </Provider>,
