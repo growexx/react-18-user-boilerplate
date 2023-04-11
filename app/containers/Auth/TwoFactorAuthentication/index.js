@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -24,11 +24,18 @@ import AuthSideContainer from '../index';
 import { AUTH_TYPE } from '../constants';
 import { StyledAuthContainer } from '../StyledAuthContainer';
 import { changeValue, fireSubmit } from './actions';
+import OTPInput from 'react-otp-input';
 
 export function TwoFactorAuthentication(props) {
+  const [otp, setOtp] = useState('');
   useInjectReducer({ key: FORM_KEY, reducer });
   useInjectSaga({ key: FORM_KEY, saga });
-  const { value, onChangeValue } = props;
+  const { onChangeValue } = props;
+
+  const changeOptValue = currValue => {
+    setOtp(currValue);
+    onChangeValue(currValue);
+  };
   return (
     <div>
       <Helmet>
@@ -44,10 +51,12 @@ export function TwoFactorAuthentication(props) {
           <p className="twoFactorAuthenticationTitle">
             <FormattedMessage {...messages.twoFactorAuthenticationTitle} />
           </p>
-          <OtpComponent
-            value={value}
-            onChange={onChangeValue}
-            numInputs={OTP_LENGTH}
+          <OTPInput
+            value={otp}
+            onChange={changeOptValue}
+            numInputs={6}
+            renderSeparator={<span>-</span>}
+            renderInput={props => <input {...props} />}
           />
         </StyledTwoFactorAuthentication>
       </StyledAuthContainer>

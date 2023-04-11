@@ -74,7 +74,7 @@ function MainLayout(props) {
       </Spin>
     );
   }
-  console.log(props);
+
   return <App />;
 }
 
