@@ -57,17 +57,18 @@ const initialState = {};
 const { store, history } = configureStore(initialState);
 const MOUNT_NODE = ReactDOM.createRoot(document.getElementById('app'));
 
-MOUNT_NODE.render(
-  <Provider store={store}>
-    {/* <LanguageProvider messages={messages}> */}
-    {/* <ConnectedRouter history={history}> */}
-    <Router history={history}>
-      <MainLayout />
-    </Router>
-    {/* </ConnectedRouter> */}
-    {/* </LanguageProvider> */}
-  </Provider>,
-);
+const renderMessage = message =>
+  MOUNT_NODE.render(
+    <Provider store={store}>
+      <LanguageProvider messages={message}>
+        {/* <ConnectedRouter history={history}> */}
+        <Router history={history}>
+          <MainLayout />
+        </Router>
+        {/* </ConnectedRouter> */}
+      </LanguageProvider>
+    </Provider>,
+  );
 
 if (module.hot) {
   // Hot reloadable React components and translation json files
@@ -75,27 +76,28 @@ if (module.hot) {
   // have to be constants at compile-time
   module.hot.accept(['./i18n', 'containers/App'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-    // render(translationMessages);
+    renderMessage(translationMessages);
   });
 }
 
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {
   new Promise(resolve => {
-    resolve(import('intl'));
+    resolve(import('@formatjs/intl-pluralrules/polyfill'));
   })
     .then(() =>
       Promise.all([
-        import('intl/locale-data/jsonp/en.js'),
-        import('intl/locale-data/jsonp/de.js'),
+        import('@formatjs/intl-pluralrules/polyfill'),
+        import('@formatjs/intl-pluralrules/locale-data/en'),
+        import('@formatjs/intl-pluralrules/locale-data/de'),
       ]),
     ) // eslint-disable-line prettier/prettier
-    .then(() => render(translationMessages))
+    .then(() => renderMessage(translationMessages))
     .catch(err => {
       throw err;
     });
 } else {
-  // render(translationMessages);
+  renderMessage(translationMessages);
 }
 
 // Install ServiceWorker and AppCache in the end since

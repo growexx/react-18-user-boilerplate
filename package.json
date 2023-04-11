@@ -74,7 +74,7 @@
     "babel-core": "7.0.0-bridge.0"
   },
   "dependencies": {
-    "@babel/polyfill": "7.4.3",
+    "@formatjs/intl-pluralrules": "^5.1.10",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
@@ -119,7 +119,7 @@
     "react-helmet": "6.1.0",
     "react-html-parser": "^2.0.2",
     "react-infinite-scroller": "^1.2.6",
-    "react-intl": "2.9.0",
+    "react-intl": "^3.12.1",
     "react-otp-input": "^3.0.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
@@ -147,6 +147,7 @@
     "@babel/plugin-transform-modules-commonjs": "7.21.2",
     "@babel/plugin-transform-react-constant-elements": "7.21.3",
     "@babel/plugin-transform-react-inline-elements": "7.21.0",
+    "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@babel/register": "7.21.0",
@@ -169,6 +170,7 @@
     "circular-dependency-plugin": "5.2.2",
     "compare-versions": "3.6.0",
     "compression-webpack-plugin": "^10.0.0",
+    "core-js": "^3.9.1",
     "coveralls": "3.1.1",
     "css-loader": "6.7.3",
     "eslint": "5.16.0",

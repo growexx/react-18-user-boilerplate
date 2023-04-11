@@ -8,7 +8,10 @@ module.exports = {
     '!app/*/*/Loadable.{js,jsx}',
   ],
   modulePathIgnorePatterns: ['stories'],
-  transformIgnorePatterns: ['node_modules/(?!(.*antd/es)/)'],
+  transformIgnorePatterns: [
+    'node_modules/(?!(.*antd/es)/)',
+    '/node_modules/(?!intl-messageformat|intl-messageformat-parser).+\\.js$',
+  ],
   coverageThreshold: {
     global: {
       statements: 90,
