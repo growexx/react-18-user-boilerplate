@@ -79,7 +79,7 @@ class MainLayout extends React.Component {
 MainLayout.propTypes = {
   appLoading: PropTypes.bool,
   defaultLayout: PropTypes.number,
-  location: PropTypes.string,
+  location: PropTypes.object,
 };
 
 MainLayout.defaultProps = {
