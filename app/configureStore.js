@@ -10,11 +10,7 @@ import createReducer from './reducers';
 
 const history = createBrowserHistory();
 
-const {
-  createReduxHistory,
-  routerMiddleware,
-  routerReducer,
-} = createReduxHistoryContext({
+const { routerMiddleware, routerReducer } = createReduxHistoryContext({
   history,
 });
 

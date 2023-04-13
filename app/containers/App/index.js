@@ -86,13 +86,15 @@ export default function App() {
             element={<NumeralConversion />}
           />
         </Route>
-        {/* 
-        <RoleMiddleWare
-          path={ROUTES.TEST_ADMIN_PAGE}
-          component={() => <div>This is Admin Role Page</div>}
-          // ShowError redirects to 403
-          showError
-        /> */}
+        {/* RoleMiddleware */}
+        <Route element={<RoleMiddleWare />}>
+          <Route
+            path={ROUTES.TEST_ADMIN_PAGE}
+            element={() => <div>This is Admin Role Page</div>}
+            // ShowError redirects to 403
+            // showError
+          />
+        </Route>
         {/* Auth Routes */}
         <Route element={<AuthRoute />}>
           <Route exact path={ROUTES.LOGIN} element={<Login />} />

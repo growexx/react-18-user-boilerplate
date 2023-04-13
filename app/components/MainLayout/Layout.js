@@ -40,7 +40,7 @@ const HeaderMenuItem = styled(Menu.Item)`
   width: fit-content !important;
 `;
 
-function Layouts({ layoutVariant, collapsed, toggle }) {
+function Layouts({ layoutVariant, collapsed, toggle, user }) {
   const location = useLocation();
 
   // eslint-disable-next-line default-case
@@ -95,13 +95,11 @@ function Layouts({ layoutVariant, collapsed, toggle }) {
               defaultSelectedKeys={[location.pathname]}
               selectedKeys={[location.pathname]}
             >
-              {GET_FILTERED_MENU_ITEM(props.user && props.user.role).map(
-                menu => (
-                  <HeaderMenuItem key={menu.to} icon={menu.icon}>
-                    <Link to={menu.to} />
-                  </HeaderMenuItem>
-                ),
-              )}
+              {GET_FILTERED_MENU_ITEM(user && user.role).map(menu => (
+                <HeaderMenuItem key={menu.to} icon={menu.icon}>
+                  <Link to={menu.to} />
+                </HeaderMenuItem>
+              ))}
             </HeaderMenu>
             <AppHeader menuBackground />
           </Header>
@@ -166,6 +164,7 @@ Layouts.propTypes = {
   layoutVariant: PropTypes.number,
   collapsed: PropTypes.bool,
   toggle: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default Layouts;
