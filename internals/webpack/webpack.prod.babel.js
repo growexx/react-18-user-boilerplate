@@ -4,6 +4,7 @@ const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { GenerateSW } = require('workbox-webpack-plugin');
 
@@ -26,7 +27,6 @@ module.exports = require('./webpack.base.babel')({
     minimize: true,
     minimizer: [
       compiler => {
-        const TerserPlugin = require('terser-webpack-plugin');
         new TerserPlugin({
           terserOptions: {
             warnings: false,

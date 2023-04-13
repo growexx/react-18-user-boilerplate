@@ -9,11 +9,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
+import OTPInput from 'react-otp-input';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import OtpComponent from 'components/OtpComponent';
 import { makeSelectValue } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -24,7 +24,6 @@ import AuthSideContainer from '../index';
 import { AUTH_TYPE } from '../constants';
 import { StyledAuthContainer } from '../StyledAuthContainer';
 import { changeValue, fireSubmit } from './actions';
-import OTPInput from 'react-otp-input';
 
 export function TwoFactorAuthentication(props) {
   const [otp, setOtp] = useState('');
@@ -52,11 +51,19 @@ export function TwoFactorAuthentication(props) {
             <FormattedMessage {...messages.twoFactorAuthenticationTitle} />
           </p>
           <OTPInput
+            style
             value={otp}
             onChange={changeOptValue}
             numInputs={6}
             renderSeparator={<span>-</span>}
-            renderInput={props => <input {...props} />}
+            inputStyle={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '15%',
+              fontWeight: 'bold',
+              fontSize: '18px',
+            }}
+            renderInput={currentProps => <input {...currentProps} />}
           />
         </StyledTwoFactorAuthentication>
       </StyledAuthContainer>
