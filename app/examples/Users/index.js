@@ -573,7 +573,7 @@ export class Users extends Component {
             label="Email *"
             placeholder="john.doe@growexx.com"
             onChange={updateField}
-            defaultValue={userStoreData.email}
+            defaultValue={userStoreData && userStoreData.email}
           />
           <Field
             name="firstName"
@@ -581,7 +581,7 @@ export class Users extends Component {
             label="First Name *"
             placeholder="John"
             onChange={updateField}
-            defaultValue={userStoreData.firstName}
+            defaultValue={userStoreData && userStoreData.firstName}
           />
           <Field
             name="lastName"
@@ -589,7 +589,7 @@ export class Users extends Component {
             label="Last Name *"
             placeholder="Doe"
             onChange={updateField}
-            defaultValue={userStoreData.lastName}
+            defaultValue={userStoreData && userStoreData.lastName}
           />
         </form>
       </Modal>
