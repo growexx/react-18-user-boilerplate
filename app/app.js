@@ -12,9 +12,7 @@ import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-// import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
-// import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 
@@ -61,11 +59,9 @@ const renderMessage = message =>
   MOUNT_NODE.render(
     <Provider store={store}>
       <LanguageProvider messages={message}>
-        {/* <ConnectedRouter history={history}> */}
         <Router history={history}>
           <MainLayout />
         </Router>
-        {/* </ConnectedRouter> */}
       </LanguageProvider>
     </Provider>,
   );
