@@ -11,11 +11,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { AvatarWrapper } from './StyledAvatar';
 
-const returnItems = itemArr => ({
+export const returnItems = itemArr => ({
   items: getNewMenu(itemArr),
 });
 
-const getNewMenu = MenuItems =>
+export const getNewMenu = MenuItems =>
   MenuItems.map((menuItem, index) => ({
     key: index,
     label: <Link to={menuItem.to}>{menuItem.tabName}</Link>,
@@ -34,5 +34,5 @@ const Avatar = props => (
 export default Avatar;
 
 Avatar.propTypes = {
-  menu: PropTypes.array,
+  menu: PropTypes.any,
 };
