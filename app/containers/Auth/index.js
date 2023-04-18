@@ -34,8 +34,7 @@ const getRegisterSideContent = () => (
     </p>
     <Link to={ROUTES.LOGIN}>
       <Button>
-        Sign Up
-        {/* <FormattedMessage {...messages.sidebarLogin} /> */}
+        <FormattedMessage {...messages.sidebarLogin} />
       </Button>
     </Link>
   </div>

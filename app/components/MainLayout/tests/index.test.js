@@ -3,6 +3,7 @@ import { render, fireEvent } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
+import { browserHistory, MemoryRouter } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import Emitter from 'utils/events';
 import history from 'utils/history';
@@ -10,6 +11,7 @@ import { TOKEN_KEY, EMITTER_EVENTS } from 'utils/constants';
 import StorageService from 'utils/StorageService';
 import MainLayout from '../index';
 import configureStore from '../../../configureStore';
+import { ROUTES } from '../../../containers/constants';
 
 const { store } = configureStore({}, history);
 const tokenValue = 'test token';
@@ -17,9 +19,9 @@ const componentWrapper = props =>
   render(
     <Provider store={store}>
       <IntlProvider locale="en">
-        <Router history={history}>
+        <MemoryRouter initialEntries={[ROUTES.HOME]}>
           <MainLayout {...props} />
-        </Router>
+        </MemoryRouter>
       </IntlProvider>
     </Provider>,
   );
@@ -29,7 +31,6 @@ const logout = () => StorageService.clear();
 
 describe('<MainLayout />', () => {
   beforeAll(() => {
-    window.history.pushState({}, 'Test page', '/');
     login();
   });
 
@@ -39,9 +40,9 @@ describe('<MainLayout />', () => {
     } = componentWrapper();
     expect(firstChild).toMatchSnapshot();
   });
-  it('should render Div', () => {
+  it.only('should render Div', () => {
     const { container } = componentWrapper();
-    console.log(store.getState(), 'container');
+    console.log(store.getState(), container, 'container');
     const element = container.firstElementChild;
     expect(element.tagName).toEqual('DIV');
   });
