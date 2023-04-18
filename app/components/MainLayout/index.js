@@ -95,6 +95,7 @@ const withConnect = connect(mapStateToProps);
 const MainLayoutWithConnect = withConnect(MainLayout);
 
 const MainLayoutWrapper = () => {
+  console.log('in main layout');
   const location = useLocation();
 
   return <MainLayoutWithConnect location={location} />;
