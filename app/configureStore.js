@@ -8,10 +8,8 @@ import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory } from 'history';
 import createReducer from './reducers';
 
-const history = createBrowserHistory();
-
-const { routerMiddleware, routerReducer } = createReduxHistoryContext({
-  history,
+const { createReduxHistory, routerMiddleware } = createReduxHistoryContext({
+  history: createBrowserHistory(),
 });
 
 export default function configureStore(initialState = {}) {
@@ -44,7 +42,7 @@ export default function configureStore(initialState = {}) {
   const enhancers = [applyMiddleware(...middlewares)];
 
   const store = createStore(
-    createReducer(routerReducer),
+    createReducer(),
     initialState,
     composeEnhancers(...enhancers),
   );
@@ -61,5 +59,10 @@ export default function configureStore(initialState = {}) {
     });
   }
 
-  return { store, history };
+  const history = createReduxHistory(store);
+
+  return {
+    store,
+    history,
+  };
 }
