@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+// import { render, fireEvent } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
@@ -12,19 +12,11 @@ import StorageService from 'utils/StorageService';
 import MainLayout from '../index';
 import configureStore from '../../../configureStore';
 import { ROUTES } from '../../../containers/constants';
+import { render } from '../../../test-utils';
 
 const { store } = configureStore({}, history);
 const tokenValue = 'test token';
-const componentWrapper = props =>
-  render(
-    <Provider store={store}>
-      <IntlProvider locale="en">
-        <MemoryRouter initialEntries={[ROUTES.HOME]}>
-          <MainLayout {...props} />
-        </MemoryRouter>
-      </IntlProvider>
-    </Provider>,
-  );
+const componentWrapper = props => render(<MainLayout {...props} />);
 
 const login = () => StorageService.set(TOKEN_KEY, tokenValue);
 const logout = () => StorageService.clear();
@@ -40,7 +32,7 @@ describe('<MainLayout />', () => {
     } = componentWrapper();
     expect(firstChild).toMatchSnapshot();
   });
-  it.only('should render Div', () => {
+  it('should render Div', () => {
     const { container } = componentWrapper();
     console.log(store.getState(), container, 'container');
     const element = container.firstElementChild;

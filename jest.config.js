@@ -20,6 +20,7 @@ module.exports = {
       lines: 90,
     },
   },
+  testEnvironment: 'jsdom',
   moduleDirectories: ['node_modules', 'app'],
   moduleNameMapper: {
     '.*\\.(css|less|styl|scss|sass)$': '<rootDir>/internals/mocks/cssModule.js',
