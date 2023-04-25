@@ -7,11 +7,9 @@
 import React from 'react';
 import { fireEvent, render, waitForElement } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
-import { browserHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import history from 'utils/history';
 import request from 'utils/request';
-// import { ConnectedRouter } from 'connected-react-router';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import Users, { mapDispatchToProps } from '../index';
 import configureStore from '../../../configureStore';
