@@ -11,7 +11,8 @@ import { browserHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import history from 'utils/history';
 import request from 'utils/request';
-import { ConnectedRouter } from 'connected-react-router';
+// import { ConnectedRouter } from 'connected-react-router';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import Users, { mapDispatchToProps } from '../index';
 import configureStore from '../../../configureStore';
 import {
@@ -25,7 +26,7 @@ import {
 import { TEST_IDS } from '../constants';
 jest.mock('utils/request');
 
-let store;
+let globalStore;
 const props = {
   pristine: true,
   reset: true,
@@ -49,18 +50,19 @@ const fieldUpdateViaPlaceHolder = [
 
 const componentWrapper = updatedProps =>
   render(
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <IntlProvider locale="en">
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <Users {...props} {...updatedProps} />
-        </ConnectedRouter>
+        </Router>
       </IntlProvider>
     </Provider>,
   );
 
 describe('Check component:<Users /> is rendering properly', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
 
   beforeEach(() => {
@@ -127,7 +129,8 @@ describe('Check component:<Users /> is rendering properly', () => {
 
 describe('Check listing of users is rendering properly', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
 
   beforeEach(() => {
@@ -140,9 +143,11 @@ describe('Check listing of users is rendering properly', () => {
 
   it('No Records found for users', async () => {
     request.mockImplementation(() => Promise.resolve(responseWithZeroList()));
-    const { getByText } = componentWrapper({ demo: false });
-    await waitForElement(() => getByText('No Data'));
-    expect(getByText('No Data')).toBeTruthy();
+    componentWrapper({ demo: false });
+    await waitForElement(() =>
+      document.querySelector('.ant-empty-description'),
+    );
+    expect(document.querySelector('.ant-empty-description')).toBeTruthy();
   });
 
   it('Users Listing with few records should be shown', async () => {
@@ -167,9 +172,11 @@ describe('Check listing of users is rendering properly', () => {
 
   it('Failed Users Listing api', async () => {
     request.mockImplementationOnce(() => Promise.reject(failedResponse));
-    const { getByText } = componentWrapper({ demo: false });
-    await waitForElement(() => getByText('No Data'));
-    expect(getByText('No Data')).toBeTruthy();
+    componentWrapper({ demo: false });
+    await waitForElement(() =>
+      document.querySelector('.ant-empty-description'),
+    );
+    expect(document.querySelector('.ant-empty-description')).toBeTruthy();
   });
 
   it('Toggle User Status', async () => {
@@ -242,7 +249,8 @@ describe('Check listing of users is rendering properly', () => {
 
 describe('New Users', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
 
   beforeEach(() => {
@@ -325,7 +333,8 @@ describe('New Users', () => {
 
 describe('Update User', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
 
   beforeEach(() => {
@@ -427,7 +436,8 @@ describe('Update User', () => {
 
 describe('Status Filter', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
 
   beforeEach(() => {
@@ -466,7 +476,8 @@ describe('Status Filter', () => {
 
 describe('Search & Sorting user list', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
 
   beforeEach(() => {

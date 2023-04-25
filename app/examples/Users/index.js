@@ -184,7 +184,7 @@ export class Users extends Component {
             </Button>
             <Popconfirm
               title={MESSAGES.DELETE}
-              visible={
+              open={
                 isPopUpVisible &&
                 popUpAction === POPUP_ACTION.DELETE &&
                 userId === data.id
@@ -377,6 +377,7 @@ export class Users extends Component {
         }),
       )
       .catch(error => {
+        console.log(error, 'error in catch');
         notification.error({
           message: error && error.message,
         });
