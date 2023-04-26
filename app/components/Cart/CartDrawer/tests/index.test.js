@@ -14,7 +14,7 @@ describe('<CartDrawer />', () => {
       window.localStorage[key] = value;
     };
     window.localStorage.getItem = key => window.localStorage[key];
-    const { getByTestId, getByRole } = render(
+    const { getByTestId, getByRole, getByText } = render(
       <CartDrawer visible setVisible={mockFunction} />,
     );
     window.localStorage.setItem('products', JSON.stringify(dummyData));
@@ -26,6 +26,6 @@ describe('<CartDrawer />', () => {
     );
     fireEvent.click(getByTestId('product-delete'));
     fireEvent.click(getByRole('img'));
-    expect(getByTestId('drawer')).toBeTruthy();
+    expect(getByText('Product Deleted Successfully from cart')).toBeTruthy();
   });
 });
