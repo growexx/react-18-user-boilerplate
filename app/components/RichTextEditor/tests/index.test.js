@@ -11,13 +11,12 @@ import { render } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { EditorState } from 'draft-js';
-import { ConnectedRouter } from 'connected-react-router';
-import { browserHistory } from 'react-router-dom';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
 import RichTextEditor from '../index';
 import configureStore from '../../../configureStore';
 jest.mock('draft-js/lib/generateRandomKey', () => () => '123');
-let store;
+let globalStore;
 const props = {
   value: EditorState.createEmpty(),
   onChange: jest.fn(),
@@ -25,18 +24,19 @@ const props = {
 
 const componentWrapper = () =>
   render(
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <IntlProvider locale="en">
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <RichTextEditor {...props} />
-        </ConnectedRouter>
+        </Router>
       </IntlProvider>
     </Provider>,
   );
 
 describe('<RichTextEditor />', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
   it('Should render and match the snapshot', () => {
     jest.spyOn(global.Math, 'random').mockReturnValue(0.123456789);

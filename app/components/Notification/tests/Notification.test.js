@@ -2,9 +2,9 @@ import React from 'react';
 import { fireEvent, render, wait } from 'react-testing-library';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
-import { ConnectedRouter } from 'connected-react-router/immutable';
 import { createMemoryHistory } from 'history';
 import configureStore from 'configureStore';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import 'jest-dom/extend-expect';
 import {
   TEST_IDS,
@@ -20,7 +20,7 @@ jest.mock('components/Notification/constants');
 
 describe('<Notification />', () => {
   const history = createMemoryHistory();
-  const store = configureStore({}, history);
+  const { store } = configureStore({});
   it('should render notifications first time with success', async () => {
     getNotificationsMock.mockImplementation(() =>
       getNotificationsSuccessMock(),
@@ -28,9 +28,9 @@ describe('<Notification />', () => {
     const { getByTestId, getByText } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <Notification />
-          </ConnectedRouter>
+          </Router>
         </IntlProvider>
       </Provider>,
     );
@@ -48,9 +48,9 @@ describe('<Notification />', () => {
     const { getByTestId, getByText, getAllByTestId } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <Notification />
-          </ConnectedRouter>
+          </Router>
         </IntlProvider>
       </Provider>,
     );
@@ -73,9 +73,9 @@ describe('<Notification />', () => {
     const { getByTestId, getByText, queryByTestId } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <Notification />
-          </ConnectedRouter>
+          </Router>
         </IntlProvider>
       </Provider>,
     );
@@ -94,9 +94,9 @@ describe('<Notification />', () => {
     const { getByTestId, getByText, queryByTestId } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <Notification />
-          </ConnectedRouter>
+          </Router>
         </IntlProvider>
       </Provider>,
     );
@@ -114,9 +114,9 @@ describe('<Notification />', () => {
     const { getByTestId, getByText } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <Notification />
-          </ConnectedRouter>
+          </Router>
         </IntlProvider>
       </Provider>,
     );
@@ -134,9 +134,9 @@ describe('<Notification />', () => {
     const { getByTestId, getByText } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <Notification />
-          </ConnectedRouter>
+          </Router>
         </IntlProvider>
       </Provider>,
     );
@@ -151,9 +151,9 @@ describe('<Notification />', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <Notification />
-          </ConnectedRouter>
+          </Router>
         </IntlProvider>
       </Provider>,
     );
