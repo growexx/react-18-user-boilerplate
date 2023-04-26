@@ -2,10 +2,9 @@ import React from 'react';
 import { fireEvent, render } from 'react-testing-library';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
-import { ConnectedRouter } from 'connected-react-router/immutable';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import { createMemoryHistory } from 'history';
 import products from '../../../examples/Products/stub/product.json';
-
 import Cart from '../index';
 import configureStore from '../../../configureStore';
 
@@ -13,15 +12,15 @@ const dummyData = products.products.slice(0, 2);
 
 describe('<Cart />', () => {
   const history = createMemoryHistory();
-  const store = configureStore({}, history);
+  const { store } = configureStore({}, history);
 
   it('should render a div', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <Cart />
-          </ConnectedRouter>
+          </Router>
         </IntlProvider>
       </Provider>,
     );

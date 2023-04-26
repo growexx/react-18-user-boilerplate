@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'react-testing-library';
+import { act, fireEvent, render } from 'react-testing-library';
 import user from '@testing-library/user-event';
 import { IntlProvider } from 'react-intl';
 import FileUpload from '../index';
@@ -34,9 +34,9 @@ describe('<FileUpload />', () => {
     const hiddenFileInput = container.querySelector('input');
     user.upload(hiddenFileInput, file);
     // Another way of testing it.
-    // await act(async () => {
-    //   fireEvent.change(hiddenFileInput, { target: { files: [file] } });
-    // });
+    act(async () => {
+      fireEvent.change(hiddenFileInput, { target: { files: [file] } });
+    });
     expect(hiddenFileInput.files[0]).toStrictEqual(file);
   });
 });

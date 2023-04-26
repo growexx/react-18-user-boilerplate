@@ -3,21 +3,21 @@ import renderer from 'react-test-renderer';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';
-
 import Footer from '../index';
 import configureStore from '../../../configureStore';
 
 describe('<Footer />', () => {
-  let store;
+  let globalStore;
 
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({}, browserHistory);
+    globalStore = store;
   });
 
   it('should render and match the snapshot', () => {
     const renderedComponent = renderer
       .create(
-        <Provider store={store}>
+        <Provider store={globalStore}>
           <IntlProvider locale="en">
             <Footer />
           </IntlProvider>

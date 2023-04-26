@@ -2,24 +2,21 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
-import { ConnectedRouter } from 'connected-react-router/immutable';
-import { createMemoryHistory } from 'history';
-
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import Header from '../index';
 import { StyledAppHeader } from '../StyledAppHeader';
 import configureStore from '../../../configureStore';
 
 describe('<Header />', () => {
-  const history = createMemoryHistory();
-  const store = configureStore({}, history);
+  const { store, history } = configureStore({}, history);
 
   it('should render a div', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <Header />
-          </ConnectedRouter>
+          </Router>
         </IntlProvider>
       </Provider>,
     );
@@ -30,9 +27,9 @@ describe('<Header />', () => {
     render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <Header menuBackground />
-          </ConnectedRouter>
+          </Router>
         </IntlProvider>
       </Provider>,
     );
@@ -42,9 +39,9 @@ describe('<Header />', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <StyledAppHeader menuBackground />
-          </ConnectedRouter>
+          </Router>
         </IntlProvider>
       </Provider>,
     );
@@ -55,9 +52,9 @@ describe('<Header />', () => {
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <StyledAppHeader />
-          </ConnectedRouter>
+          </Router>
         </IntlProvider>
       </Provider>,
     );
