@@ -377,7 +377,6 @@ export class Users extends Component {
         }),
       )
       .catch(error => {
-        console.log(error, 'error in catch');
         notification.error({
           message: error && error.message,
         });
