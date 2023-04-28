@@ -627,7 +627,7 @@ export class Users extends Component {
                   <SearchWrapper
                     allowClear
                     placeholder="Search User"
-                    isListLoading
+                    // isListLoading
                     value={search}
                     onChange={this.onSearchUser}
                     onSearch={value => this.loadUserDetails({ search: value })}
