@@ -643,6 +643,11 @@ export const failedResponse = {
   message: 'You do not have access',
 };
 
+export const successResponse = {
+  status: 1,
+  message: 'Success',
+};
+
 // Add | Edit
 export const addNewUserFailure = () => ({
   response: {},
