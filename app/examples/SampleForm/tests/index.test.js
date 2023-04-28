@@ -7,15 +7,19 @@
  */
 
 import React from 'react';
-import { fireEvent, render, queryByAttribute } from 'react-testing-library';
+import {
+  fireEvent,
+  render,
+  queryByAttribute,
+  screen,
+} from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
-import { browserHistory } from 'react-router-dom';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import { Provider } from 'react-redux';
 import history from 'utils/history';
-import { ConnectedRouter } from 'connected-react-router';
 import SampleForm from '../index';
 import configureStore from '../../../configureStore';
-let store;
+let globalStore;
 const props = {
   pristine: true,
   reset: true,
@@ -23,17 +27,18 @@ const props = {
 };
 const componentWrapper = () =>
   render(
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <IntlProvider locale="en">
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <SampleForm {...props} />
-        </ConnectedRouter>
+        </Router>
       </IntlProvider>
     </Provider>,
   );
 describe('<SampleForm />', () => {
   beforeEach(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
   it('Should render and match the snapshot', () => {
     const {
@@ -80,6 +85,7 @@ describe('<SampleForm />', () => {
     fireEvent.change(getByTestId('Notes'), eventObject);
     fireEvent.focus(getByPlaceholderText('From'), eventObject);
     fireEvent.blur(getByPlaceholderText('From'), eventObject);
+    screen.getByPlaceholderText('From').blur();
     // onChange from
     fireEvent.mouseDown(getByPlaceholderText('From'));
     fireEvent.change(getByPlaceholderText('From'), {
