@@ -1,10 +1,9 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
-import { ConnectedRouter } from 'connected-react-router';
 import history from 'utils/history';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import { TOKEN_KEY } from 'utils/constants';
 import StorageService from 'utils/StorageService';
 import Login from 'containers/Auth/Login/Loadable';
@@ -14,7 +13,7 @@ import RoleMiddleWare from '../RoleMiddleWare';
 import { ROLES, ROUTES } from '../../constants';
 
 jest.mock('utils/request');
-let store;
+let globalStore;
 const tokenValue = 'test token';
 const props = {
   component: Login,
@@ -37,11 +36,11 @@ const mockAPI = response => {
 
 const componentWrapper = localProps =>
   render(
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <IntlProvider locale="en">
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <RoleMiddleWare {...props} {...localProps} />
-        </ConnectedRouter>
+        </Router>
       </IntlProvider>
     </Provider>,
   );
@@ -50,7 +49,8 @@ const login = () => StorageService.set(TOKEN_KEY, tokenValue);
 
 describe('<RoleMiddleWare />', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
     login();
   });
   afterEach(() => {

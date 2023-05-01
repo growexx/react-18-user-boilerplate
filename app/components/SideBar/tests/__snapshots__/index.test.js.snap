@@ -29,6 +29,7 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
     >
       <li
         class="ant-menu-item ant-menu-item-selected"
+        data-menu-id="rc-menu-uuid-test-/"
         role="menuitem"
         tabindex="-1"
       >
@@ -63,6 +64,7 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/sample-form"
         role="menuitem"
         tabindex="-1"
       >
@@ -100,6 +102,7 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/loader"
         role="menuitem"
         tabindex="-1"
       >
@@ -134,6 +137,7 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/export-data"
         role="menuitem"
         tabindex="-1"
       >
@@ -168,6 +172,7 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/number-converter-demo"
         role="menuitem"
         tabindex="-1"
       >
@@ -202,6 +207,7 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/users"
         role="menuitem"
         tabindex="-1"
       >
@@ -236,6 +242,7 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/github-search"
         role="menuitem"
         tabindex="-1"
       >
@@ -270,6 +277,7 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/charts"
         role="menuitem"
         tabindex="-1"
       >
@@ -304,6 +312,7 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/multi-tab-support"
         role="menuitem"
         tabindex="-1"
       >
@@ -338,6 +347,7 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/products"
         role="menuitem"
         tabindex="-1"
       >

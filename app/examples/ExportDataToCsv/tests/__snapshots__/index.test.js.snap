@@ -34,9 +34,7 @@ exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
         disabled=""
         type="button"
       >
-        <span>
-          Export Data
-        </span>
+        Export Data
       </button>
     </div>
     <div
@@ -87,7 +85,6 @@ exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
                                 aria-label="Select all"
                                 class="ant-checkbox-input"
                                 type="checkbox"
-                                value=""
                               />
                               <span
                                 class="ant-checkbox-inner"
@@ -119,7 +116,7 @@ exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
                     <tr
                       aria-hidden="true"
                       class="ant-table-measure-row"
-                      style="height: 0px; font-size: 0;"
+                      style="height: 0px; font-size: 0px;"
                     >
                       <td
                         style="padding: 0px; border: 0px; height: 0px;"
@@ -174,7 +171,6 @@ exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
                             <input
                               class="ant-checkbox-input"
                               type="checkbox"
-                              value=""
                             />
                             <span
                               class="ant-checkbox-inner"
@@ -214,7 +210,6 @@ exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
                             <input
                               class="ant-checkbox-input"
                               type="checkbox"
-                              value=""
                             />
                             <span
                               class="ant-checkbox-inner"
@@ -254,7 +249,6 @@ exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
                             <input
                               class="ant-checkbox-input"
                               type="checkbox"
-                              value=""
                             />
                             <span
                               class="ant-checkbox-inner"

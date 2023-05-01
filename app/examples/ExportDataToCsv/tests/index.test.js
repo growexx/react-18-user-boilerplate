@@ -7,29 +7,29 @@
  */
 
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { fireEvent, render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
-import { browserHistory } from 'react-router-dom';
 import ExportDataToCsv from '../index';
 import configureStore from '../../../configureStore';
-let store;
+let globalStore;
 const componentWrapper = () =>
   render(
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <IntlProvider locale="en">
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <ExportDataToCsv />
-        </ConnectedRouter>
+        </Router>
       </IntlProvider>
     </Provider>,
   );
 
 describe('<ExportDataToCsv />', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
   it('Should render and match the snapshot', () => {
     const {
@@ -42,8 +42,8 @@ describe('<ExportDataToCsv />', () => {
     const checkbox = container.querySelector('input');
     const element = checkbox;
     fireEvent.click(element);
-    const { getByTestId } = componentWrapper();
-    const buttonElement = getByTestId('ExportButton');
+    const { getAllByTestId } = componentWrapper();
+    const buttonElement = getAllByTestId('ExportButton')[0];
     fireEvent.click(buttonElement);
     expect(buttonElement.tagName).toEqual('BUTTON');
   });
