@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render, fireEvent, act, wait } from 'react-testing-library';
+import { render, fireEvent, act, waitFor } from '@testing-library/react';
 import 'jest-dom/extend-expect';
 import { IntlProvider } from 'react-intl';
 import ImageUpload from '../index';
@@ -49,7 +49,7 @@ describe('<ImageUpload />', () => {
     await act(async () => {
       fireEvent.change(hiddenFileInput, { target: { files: [file] } });
     });
-    await wait(async () => {
+    await waitFor(async () => {
       expect(container.querySelector('a')).toBeInTheDocument();
     });
     fireEvent.click(getByTitle('Preview file'));

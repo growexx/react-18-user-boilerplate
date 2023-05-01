@@ -50,9 +50,7 @@ exports[`<HomePage /> should render and match the snapshot 1`] = `
       class="c0"
     >
       <h2>
-        <span>
-          Try me!
-        </span>
+        Try me!
       </h2>
       <form
         class="c1"
@@ -60,15 +58,11 @@ exports[`<HomePage /> should render and match the snapshot 1`] = `
         <label
           for="username"
         >
-          <span>
-            Show Github repositories by
-          </span>
+          Show Github repositories by
           <span
             class="c2"
           >
-            <span>
-              @
-            </span>
+            @
           </span>
           <input
             class="c3"

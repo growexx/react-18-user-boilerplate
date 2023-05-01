@@ -7,18 +7,16 @@
  */
 
 import React from 'react';
-import { fireEvent, render } from 'react-testing-library';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import 'jest-dom/extend-expect';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
-import { browserHistory } from 'react-router-dom';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
 import configureStore from 'configureStore';
 import InlineEdit from 'components/InlineEdit/index';
 import { TEST_IDS } from 'components/InlineEdit/stub';
-let store;
+let globalStore;
 const props = {
   onSave: jest.fn(),
   value: 'testValue',
@@ -26,18 +24,19 @@ const props = {
 };
 const componentWrapper = () =>
   render(
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <IntlProvider locale="en">
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <InlineEdit {...props} />
-        </ConnectedRouter>
+        </Router>
       </IntlProvider>
     </Provider>,
   );
 
 describe('<InlineEdit />', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
   it('Should render and match the snapshot', () => {
     const {
@@ -48,13 +47,13 @@ describe('<InlineEdit />', () => {
   it('Should double click and input box is appeared', () => {
     const { getByTestId } = componentWrapper();
     // show the input
-    userEvent.dblClick(getByTestId(TEST_IDS.INPUT_VALUE));
+    fireEvent.dblClick(getByTestId(TEST_IDS.INPUT_VALUE));
     expect(getByTestId(TEST_IDS.INPUT_EDIT)).toBeInTheDocument();
   });
   it('Should double click and cancel the editing', () => {
     const { getByTestId, getByText } = componentWrapper();
     // show the input
-    userEvent.dblClick(getByTestId(TEST_IDS.INPUT_VALUE));
+    fireEvent.dblClick(getByTestId(TEST_IDS.INPUT_VALUE));
     expect(getByTestId(TEST_IDS.INPUT_EDIT)).toBeInTheDocument();
     fireEvent.change(getByTestId(TEST_IDS.INPUT_EDIT), {
       target: {
@@ -68,7 +67,7 @@ describe('<InlineEdit />', () => {
   it('Should double click and write in input box', async () => {
     const { getByTestId } = componentWrapper();
     // show the input
-    userEvent.dblClick(getByTestId(TEST_IDS.INPUT_VALUE));
+    fireEvent.dblClick(getByTestId(TEST_IDS.INPUT_VALUE));
     expect(getByTestId(TEST_IDS.INPUT_EDIT)).toBeInTheDocument();
     // write on the input
     fireEvent.change(getByTestId(TEST_IDS.INPUT_EDIT), {
@@ -84,7 +83,7 @@ describe('<InlineEdit />', () => {
     props.value = '';
     const { getByTestId, queryByTestId } = componentWrapper();
     // show the input
-    userEvent.dblClick(getByTestId(TEST_IDS.INPUT_VALUE));
+    fireEvent.dblClick(getByTestId(TEST_IDS.INPUT_VALUE));
     expect(getByTestId(TEST_IDS.INPUT_EDIT)).toBeInTheDocument();
     fireEvent.keyDown(getByTestId(TEST_IDS.INPUT_EDIT), {
       keyCode: 27,
@@ -94,7 +93,7 @@ describe('<InlineEdit />', () => {
   it('Should double click and press enter button', () => {
     const { getByTestId, queryByTestId } = componentWrapper();
     // show the input
-    userEvent.dblClick(getByTestId(TEST_IDS.INPUT_VALUE));
+    fireEvent.dblClick(getByTestId(TEST_IDS.INPUT_VALUE));
     expect(getByTestId(TEST_IDS.INPUT_EDIT)).toBeInTheDocument();
     fireEvent.keyDown(getByTestId(TEST_IDS.INPUT_EDIT), {
       keyCode: 13,
@@ -104,7 +103,7 @@ describe('<InlineEdit />', () => {
   it('Should double click and fire mouse down', () => {
     const { getByTestId } = componentWrapper();
     // show the input
-    userEvent.dblClick(getByTestId(TEST_IDS.INPUT_VALUE));
+    fireEvent.dblClick(getByTestId(TEST_IDS.INPUT_VALUE));
     // click on input should not close it
     fireEvent.mouseDown(getByTestId(TEST_IDS.INPUT_EDIT));
     expect(getByTestId(TEST_IDS.INPUT_EDIT)).toBeInTheDocument();

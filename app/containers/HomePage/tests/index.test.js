@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';
@@ -14,17 +14,18 @@ import { loadRepos } from '../../App/actions';
 import configureStore from '../../../configureStore';
 
 describe('<HomePage />', () => {
-  let store;
+  let globalStore;
 
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({}, browserHistory);
+    globalStore = store;
   });
 
   it('should render and match the snapshot', () => {
     const {
       container: { firstChild },
     } = render(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <IntlProvider locale="en">
           <HomePage loading={false} error={false} repos={[]} />
         </IntlProvider>
@@ -36,7 +37,7 @@ describe('<HomePage />', () => {
   it('should fetch the repos on mount if a username exists', () => {
     const submitSpy = jest.fn();
     render(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <IntlProvider locale="en">
           <HomePage
             username="Not Empty"
@@ -46,13 +47,13 @@ describe('<HomePage />', () => {
         </IntlProvider>
       </Provider>,
     );
-    expect(submitSpy).toHaveBeenCalledTimes(0);
+    expect(submitSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should not call onSubmitForm if username is an empty string', () => {
     const submitSpy = jest.fn();
     render(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <IntlProvider locale="en">
           <HomePage onChangeUsername={() => {}} onSubmitForm={submitSpy} />
         </IntlProvider>
@@ -64,7 +65,7 @@ describe('<HomePage />', () => {
   it('should not call onSubmitForm if username is null', () => {
     const submitSpy = jest.fn();
     render(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <IntlProvider locale="en">
           <HomePage
             username=""

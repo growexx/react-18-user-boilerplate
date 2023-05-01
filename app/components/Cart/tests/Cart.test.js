@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from 'react-testing-library';
+import { fireEvent, render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';

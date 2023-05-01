@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { act, fireEvent, render } from 'react-testing-library';
+import { act, fireEvent, render } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import { IntlProvider } from 'react-intl';
 import FileUpload from '../index';
