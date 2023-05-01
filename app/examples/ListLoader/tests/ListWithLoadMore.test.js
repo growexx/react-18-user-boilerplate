@@ -1,28 +1,28 @@
 import React from 'react';
-import { fireEvent, render, wait } from 'react-testing-library';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
-import { ConnectedRouter } from 'connected-react-router';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
 import request from 'utils/request';
 import configureStore from '../../../configureStore';
 import ListWithLoadMore from '../ListWithLoadMore';
-let store;
+let globalStore;
 jest.mock('utils/request');
 const componentWrapper = () =>
   render(
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <IntlProvider locale="en">
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <ListWithLoadMore />
-        </ConnectedRouter>
+        </Router>
       </IntlProvider>
     </Provider>,
   );
 describe('<ListWithLoadMore />', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
 
   it('should render and match the snapshot', () => {
@@ -47,7 +47,7 @@ describe('<ListWithLoadMore />', () => {
       }),
     );
     const { container } = componentWrapper();
-    await wait(() => expect(request).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(request).toHaveBeenCalledTimes(2));
     fireEvent.click(container.querySelector('button'));
     expect(request).toHaveBeenCalled();
   });
