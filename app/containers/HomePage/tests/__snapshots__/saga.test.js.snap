@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`getRepos Saga should call the repoLoadingError action if the response errors 1`] = `
-Object {
+{
   "@@redux-saga/IO": true,
   "combinator": false,
-  "payload": Object {
-    "args": Array [],
+  "payload": {
+    "args": [],
     "selector": [Function],
   },
   "type": "SELECT",
@@ -13,14 +13,14 @@ Object {
 `;
 
 exports[`getRepos Saga should call the repoLoadingError action if the response errors 2`] = `
-Object {
+{
   "@@redux-saga/IO": true,
   "combinator": false,
-  "payload": Object {
-    "args": Array [
+  "payload": {
+    "args": [
       "https://api.github.com/users/mxstbr/repos?type=all&sort=updated",
-      Object {
-        "headers": Object {},
+      {
+        "headers": {},
         "method": "GET",
       },
     ],
@@ -32,11 +32,11 @@ Object {
 `;
 
 exports[`getRepos Saga should dispatch the reposLoaded action if it requests the data successfully 1`] = `
-Object {
+{
   "@@redux-saga/IO": true,
   "combinator": false,
-  "payload": Object {
-    "args": Array [],
+  "payload": {
+    "args": [],
     "selector": [Function],
   },
   "type": "SELECT",
@@ -44,14 +44,14 @@ Object {
 `;
 
 exports[`getRepos Saga should dispatch the reposLoaded action if it requests the data successfully 2`] = `
-Object {
+{
   "@@redux-saga/IO": true,
   "combinator": false,
-  "payload": Object {
-    "args": Array [
+  "payload": {
+    "args": [
       "https://api.github.com/users/mxstbr/repos?type=all&sort=updated",
-      Object {
-        "headers": Object {},
+      {
+        "headers": {},
         "method": "GET",
       },
     ],

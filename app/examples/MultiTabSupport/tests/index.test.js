@@ -1,14 +1,13 @@
 import React from 'react';
-import { fireEvent, render } from 'react-testing-library';
+import { fireEvent, render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
-import { ConnectedRouter } from 'connected-react-router';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
 import configureStore from '../../../configureStore';
 import MultiTabSupport from '../index';
 import { TEST_IDS } from '../constants';
-let store;
+let globalStore;
 global.BroadcastChannel = jest.fn(() => ({
   removeEventListener: jest.fn(),
   addEventListener: jest.fn((name, func) => {
@@ -32,17 +31,18 @@ global.window = Object.assign(global.window, {
 
 const componentWrapper = () =>
   render(
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <IntlProvider locale="en">
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <MultiTabSupport />
-        </ConnectedRouter>
+        </Router>
       </IntlProvider>
     </Provider>,
   );
 describe('<MultiTabSupport />', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
 
   it('should render and match the snapshot', () => {
@@ -55,7 +55,8 @@ describe('<MultiTabSupport />', () => {
 
 describe('<MultiTabSupport /> Test add message and clear local storage', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
 
   it('should add message', () => {
