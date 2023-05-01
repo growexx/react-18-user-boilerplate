@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 import LocaleToggle, { mapDispatchToProps } from '../index';
 import { changeLocale } from '../../LanguageProvider/actions';
@@ -11,15 +10,16 @@ import configureStore from '../../../configureStore';
 import { translationMessages } from '../../../i18n';
 
 describe('<LocaleToggle />', () => {
-  let store;
+  let globalStore;
 
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
 
   it('should match the snapshot', () => {
     const { container } = render(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <LanguageProvider messages={translationMessages}>
           <LocaleToggle />
         </LanguageProvider>
@@ -30,7 +30,7 @@ describe('<LocaleToggle />', () => {
 
   it('should present the default `en` english language option', () => {
     const { container } = render(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <LanguageProvider messages={translationMessages}>
           <LocaleToggle />
         </LanguageProvider>
