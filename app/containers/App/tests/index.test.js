@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { render } from 'react-testing-library';
+import { act, render } from '@testing-library/react';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { browserHistory, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import App from '../index';
 import configureStore from '../../../configureStore';
@@ -10,11 +10,11 @@ import { ROUTES } from '../../constants';
 import StorageService from '../../../utils/StorageService';
 import { TOKEN_KEY } from '../../../utils/constants';
 
-let store;
+let globalStore;
 const renderer = new ShallowRenderer();
 const componentWrapper = () =>
   render(
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <IntlProvider locale="en">
         <MemoryRouter initialEntries={[ROUTES.TEST_ADMIN_PAGE]}>
           <App />
@@ -25,11 +25,12 @@ const componentWrapper = () =>
 
 describe('<App />', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
     StorageService.set(TOKEN_KEY, 'TOKENVALUE');
   });
   it('should render and match the snapshot', () => {
-    renderer.render(<App />);
+    act(() => renderer.render(<App />));
     const renderedOutput = renderer.getRenderOutput();
     expect(renderedOutput).toMatchSnapshot();
   });
