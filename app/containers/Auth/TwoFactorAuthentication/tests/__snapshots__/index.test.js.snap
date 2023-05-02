@@ -1,51 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<TwoFactorAuthentication /> Should render and match the snapshot 1`] = `
-.c2 {
-  width: 50%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c2 .otpComponentContainerStyle {
-  width: 100%;
-}
-
-.c2 .otpComponentInputStyle {
-  color: #4d186e;
-  border: 1px solid #d9d9d9;
-  width: 100% !important;
-  height: 40px;
-  border-radius: 10px;
-}
-
-.c2 .otpComponentFocusStyle {
-  border: 1px solid #4d186e;
-  outline: none;
-  border-radius: 10px;
-}
-
-.c2 .otpComponentDisabledStyle {
-  background: #f5f5f5;
-}
-
-.c2 .otpComponentErrorStyle {
-  border: 1px solid #ff0000;
-}
-
 .c1 {
   font-family: 'Montserrat',sans-serif;
   display: -webkit-box;
@@ -172,16 +127,12 @@ exports[`<TwoFactorAuthentication /> Should render and match the snapshot 1`] = 
           <p
             class="title"
           >
-            <span>
-              New Here!
-            </span>
+            New Here!
           </p>
           <p
             class="subTitle"
           >
-            <span>
-              To join us, please sign up with your personal info
-            </span>
+            To join us, please sign up with your personal info
           </p>
           <a
             href="/register"
@@ -190,9 +141,7 @@ exports[`<TwoFactorAuthentication /> Should render and match the snapshot 1`] = 
               class="ant-btn ant-btn-default"
               type="button"
             >
-              <span>
-                SIGN UP
-              </span>
+              SIGN UP
             </button>
           </a>
         </div>
@@ -204,117 +153,74 @@ exports[`<TwoFactorAuthentication /> Should render and match the snapshot 1`] = 
       <p
         class="twoFactorAuthenticationTitle"
       >
-        <span>
-          Two Factor Authentication
-        </span>
+        Two Factor Authentication
       </p>
       <div
-        class="c2"
+        style="display: flex; align-items: center;"
       >
-        <div
-          class="otpComponentContainerStyle"
-          style="display: flex;"
-        >
-          <div
-            style="display: flex; align-items: center;"
-          >
-            <input
-              aria-label="Please enter verification code. Digit 1"
-              autocomplete="off"
-              class="otpComponentInputStyle otpComponentFocusStyle"
-              maxlength="1"
-              placeholder="0"
-              style="width: 1em; text-align: center;"
-              type="tel"
-              value=""
-            />
-            <span>
-              -
-            </span>
-          </div>
-          <div
-            style="display: flex; align-items: center;"
-          >
-            <input
-              aria-label="Digit 2"
-              autocomplete="off"
-              class="otpComponentInputStyle"
-              maxlength="1"
-              placeholder="0"
-              style="width: 1em; text-align: center;"
-              type="tel"
-              value=""
-            />
-            <span>
-              -
-            </span>
-          </div>
-          <div
-            style="display: flex; align-items: center;"
-          >
-            <input
-              aria-label="Digit 3"
-              autocomplete="off"
-              class="otpComponentInputStyle"
-              maxlength="1"
-              placeholder="0"
-              style="width: 1em; text-align: center;"
-              type="tel"
-              value=""
-            />
-            <span>
-              -
-            </span>
-          </div>
-          <div
-            style="display: flex; align-items: center;"
-          >
-            <input
-              aria-label="Digit 4"
-              autocomplete="off"
-              class="otpComponentInputStyle"
-              maxlength="1"
-              placeholder="0"
-              style="width: 1em; text-align: center;"
-              type="tel"
-              value=""
-            />
-            <span>
-              -
-            </span>
-          </div>
-          <div
-            style="display: flex; align-items: center;"
-          >
-            <input
-              aria-label="Digit 5"
-              autocomplete="off"
-              class="otpComponentInputStyle"
-              maxlength="1"
-              placeholder="0"
-              style="width: 1em; text-align: center;"
-              type="tel"
-              value=""
-            />
-            <span>
-              -
-            </span>
-          </div>
-          <div
-            style="display: flex; align-items: center;"
-          >
-            <input
-              aria-label="Digit 6"
-              autocomplete="off"
-              class="otpComponentInputStyle"
-              maxlength="1"
-              placeholder="0"
-              style="width: 1em; text-align: center;"
-              type="tel"
-              value=""
-            />
-          </div>
-        </div>
+        <input
+          aria-label="Please enter OTP character 1"
+          autocomplete="off"
+          maxlength="1"
+          style="width: 40px; text-align: center; height: 40px; border-radius: 15%; font-weight: bold; font-size: 18px;"
+          type="text"
+          value=""
+        />
+        <span>
+          -
+        </span>
+        <input
+          aria-label="Please enter OTP character 2"
+          autocomplete="off"
+          maxlength="1"
+          style="width: 40px; text-align: center; height: 40px; border-radius: 15%; font-weight: bold; font-size: 18px;"
+          type="text"
+          value=""
+        />
+        <span>
+          -
+        </span>
+        <input
+          aria-label="Please enter OTP character 3"
+          autocomplete="off"
+          maxlength="1"
+          style="width: 40px; text-align: center; height: 40px; border-radius: 15%; font-weight: bold; font-size: 18px;"
+          type="text"
+          value=""
+        />
+        <span>
+          -
+        </span>
+        <input
+          aria-label="Please enter OTP character 4"
+          autocomplete="off"
+          maxlength="1"
+          style="width: 40px; text-align: center; height: 40px; border-radius: 15%; font-weight: bold; font-size: 18px;"
+          type="text"
+          value=""
+        />
+        <span>
+          -
+        </span>
+        <input
+          aria-label="Please enter OTP character 5"
+          autocomplete="off"
+          maxlength="1"
+          style="width: 40px; text-align: center; height: 40px; border-radius: 15%; font-weight: bold; font-size: 18px;"
+          type="text"
+          value=""
+        />
+        <span>
+          -
+        </span>
+        <input
+          aria-label="Please enter OTP character 6"
+          autocomplete="off"
+          maxlength="1"
+          style="width: 40px; text-align: center; height: 40px; border-radius: 15%; font-weight: bold; font-size: 18px;"
+          type="text"
+          value=""
+        />
       </div>
     </div>
   </div>

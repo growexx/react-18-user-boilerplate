@@ -232,16 +232,12 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
           <p
             class="title"
           >
-            <span>
-              New Here!
-            </span>
+            New Here!
           </p>
           <p
             class="subTitle"
           >
-            <span>
-              To join us, please sign up with your personal info
-            </span>
+            To join us, please sign up with your personal info
           </p>
           <a
             href="/register"
@@ -250,9 +246,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
               class="ant-btn ant-btn-default"
               type="button"
             >
-              <span>
-                SIGN UP
-              </span>
+              SIGN UP
             </button>
           </a>
         </div>
@@ -264,9 +258,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
       <p
         class="createAccount"
       >
-        <span>
-          Account Details
-        </span>
+        Account Details
       </p>
       <div
         class="LoginSubContainer"
@@ -335,9 +327,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
         <p
           class="emailLogin"
         >
-          <span>
-            or use your email for Login
-          </span>
+          or use your email for Login
         </p>
         <div
           class="accountData"
@@ -449,9 +439,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
                     class="ant-btn ant-btn-default"
                     type="submit"
                   >
-                    <span>
-                      SIGN IN
-                    </span>
+                    SIGN IN
                   </button>
                 </div>
               </div>
@@ -462,9 +450,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
       <a
         href="/forgot-password"
       >
-        <span>
-          Forgot Password ?
-        </span>
+        Forgot Password ?
       </a>
     </div>
   </div>

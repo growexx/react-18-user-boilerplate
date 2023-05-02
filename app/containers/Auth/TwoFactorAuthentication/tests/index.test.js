@@ -9,28 +9,28 @@
 import React from 'react';
 import { render } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
-import { browserHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import history from 'utils/history';
-import { ConnectedRouter } from 'connected-react-router';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import { TwoFactorAuthentication, mapDispatchToProps } from '../index';
 import Lodable from '../Loadable';
 import { TEST_OTP_VALUE, TEST_OTP_VALUE_WITHOUT_LENGTH } from '../constants';
 import configureStore from '../../../../configureStore';
-let store;
+let globalStore;
 const componentWrapper = Component =>
   render(
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <IntlProvider locale="en">
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <Component />
-        </ConnectedRouter>
+        </Router>
       </IntlProvider>
     </Provider>,
   );
 describe('<TwoFactorAuthentication />', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
   it('Should render and match the snapshot', () => {
     const {
