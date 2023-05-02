@@ -6,7 +6,7 @@ import { memoryHistory } from 'react-router-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 import configureStore from '../../configureStore';
 import injectReducer, { useInjectReducer } from '../injectReducer';
@@ -18,7 +18,7 @@ const Component = () => null;
 const reducer = s => s;
 
 describe('injectReducer decorator', () => {
-  let store;
+  let globalStore;
   let injectors;
   let ComponentWithReducer;
 
@@ -27,7 +27,8 @@ describe('injectReducer decorator', () => {
   });
 
   beforeEach(() => {
-    store = configureStore({}, memoryHistory);
+    const { store } = configureStore({}, memoryHistory);
+    globalStore = store;
     injectors = {
       injectReducer: jest.fn(),
     };
@@ -37,7 +38,7 @@ describe('injectReducer decorator', () => {
 
   it('should inject a given reducer', () => {
     renderer.create(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <ComponentWithReducer />
       </Provider>,
     );
@@ -56,7 +57,7 @@ describe('injectReducer decorator', () => {
   it('should propagate props', () => {
     const props = { testProp: 'test' };
     const renderedComponent = renderer.create(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <ComponentWithReducer {...props} />
       </Provider>,
     );
@@ -65,7 +66,7 @@ describe('injectReducer decorator', () => {
 });
 
 describe('useInjectReducer hook', () => {
-  let store;
+  let globalStore;
   let injectors;
   let ComponentWithReducer;
 
@@ -74,7 +75,8 @@ describe('useInjectReducer hook', () => {
       injectReducer: jest.fn(),
     };
     reducerInjectors.default = jest.fn().mockImplementation(() => injectors);
-    store = configureStore({}, memoryHistory);
+    const { store } = configureStore({}, memoryHistory);
+    globalStore = store;
     ComponentWithReducer = () => {
       useInjectReducer({ key: 'test', reducer });
       return null;
@@ -83,11 +85,11 @@ describe('useInjectReducer hook', () => {
 
   it('should inject a given reducer', () => {
     render(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <ComponentWithReducer />
       </Provider>,
     );
 
-    expect(injectors.injectReducer).toHaveBeenCalledTimes(0);
+    expect(injectors.injectReducer).toHaveBeenCalledTimes(1);
   });
 });
