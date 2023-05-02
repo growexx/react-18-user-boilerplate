@@ -5,7 +5,7 @@
 import { memoryHistory } from 'react-router-dom';
 import { put } from 'redux-saga/effects';
 import renderer from 'react-test-renderer';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import React from 'react';
 import { Provider } from 'react-redux';
 
@@ -21,7 +21,7 @@ function* testSaga() {
 }
 
 describe('injectSaga decorator', () => {
-  let store;
+  let globalStore;
   let injectors;
   let ComponentWithSaga;
 
@@ -30,7 +30,8 @@ describe('injectSaga decorator', () => {
   });
 
   beforeEach(() => {
-    store = configureStore({}, memoryHistory);
+    const { store } = configureStore({}, memoryHistory);
+    globalStore = store;
     injectors = {
       injectSaga: jest.fn(),
       ejectSaga: jest.fn(),
@@ -46,7 +47,7 @@ describe('injectSaga decorator', () => {
   it('should inject given saga, mode, and props', () => {
     const props = { test: 'test' };
     renderer.create(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <ComponentWithSaga {...props} />
       </Provider>,
     );
@@ -62,7 +63,7 @@ describe('injectSaga decorator', () => {
   it('should eject on unmount with a correct saga key', () => {
     const props = { test: 'test' };
     const renderedComponent = renderer.create(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <ComponentWithSaga {...props} />
       </Provider>,
     );
@@ -82,7 +83,7 @@ describe('injectSaga decorator', () => {
   it('should propagate props', () => {
     const props = { testProp: 'test' };
     const renderedComponent = renderer.create(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <ComponentWithSaga {...props} />
       </Provider>,
     );
@@ -91,7 +92,7 @@ describe('injectSaga decorator', () => {
 });
 
 describe('useInjectSaga hook', () => {
-  let store;
+  let globalStore;
   let injectors;
   let ComponentWithSaga;
 
@@ -100,7 +101,8 @@ describe('useInjectSaga hook', () => {
   });
 
   beforeEach(() => {
-    store = configureStore({}, memoryHistory);
+    const { store } = configureStore({}, memoryHistory);
+    globalStore = store;
     injectors = {
       injectSaga: jest.fn(),
       ejectSaga: jest.fn(),
@@ -119,7 +121,7 @@ describe('useInjectSaga hook', () => {
   it('should inject given saga and mode', () => {
     const props = { test: 'test' };
     render(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <ComponentWithSaga {...props} />
       </Provider>,
     );
@@ -130,7 +132,7 @@ describe('useInjectSaga hook', () => {
   it('should eject on unmount with a correct saga key', () => {
     const props = { test: 'test' };
     const { unmount } = render(
-      <Provider store={store}>
+      <Provider store={globalStore}>
         <ComponentWithSaga {...props} />
       </Provider>,
     );
