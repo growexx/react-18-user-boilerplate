@@ -37,6 +37,12 @@ class Notification extends React.Component {
     setTimeout(() => {
       getNotificationsMock()
         .then(res => {
+          console.log(
+            res,
+            res.status,
+            res.data.length,
+            'in loading notifications',
+          );
           if (res.status) {
             if (res.data.length !== NOTIFICATION_LIMIT) {
               this.setState({
