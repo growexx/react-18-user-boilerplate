@@ -125,7 +125,7 @@ describe('injectors', () => {
 
   describe('injectSaga helper', () => {
     beforeEach(() => {
-      const { store } = configureStore({}, memoryHistory);
+      const { store } = configureStore({});
       globalStore = store;
       injectSaga = injectSagaFactory(globalStore, true);
       ejectSaga = ejectSagaFactory(globalStore, true);

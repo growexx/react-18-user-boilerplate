@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent, render } from 'react-testing-library';
+import { fireEvent, render } from '@testing-library/react';
 /**
  * user-event is a companion library for Testing Library
  * that provides more advanced simulation of browser
@@ -23,8 +23,7 @@ import userEvent from '@testing-library/user-event';
 import 'jest-dom/extend-expect';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
-import { browserHistory } from 'react-router-dom';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import { TEST_IDS } from 'components/InlineEdit/stub';
 import history from 'utils/history';
 import Profile from '../index';
@@ -32,22 +31,23 @@ import configureStore from '../../../configureStore';
 import { DATA_TEST_IDS } from '../constants';
 jest.mock('draft-js/lib/generateRandomKey', () => jest.fn(() => '123'));
 
-let store;
+let globalStore;
 
 const componentWrapper = () =>
   render(
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <IntlProvider locale="en">
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <Profile />
-        </ConnectedRouter>
+        </Router>
       </IntlProvider>
     </Provider>,
   );
 
 describe('<Profile />', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
   });
   it('Should render and match the snapshot', () => {
     const {

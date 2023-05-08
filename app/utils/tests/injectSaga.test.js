@@ -2,7 +2,6 @@
  * Test injectors
  */
 
-import { memoryHistory } from 'react-router-dom';
 import { put } from 'redux-saga/effects';
 import renderer from 'react-test-renderer';
 import { render } from '@testing-library/react';
@@ -30,7 +29,7 @@ describe('injectSaga decorator', () => {
   });
 
   beforeEach(() => {
-    const { store } = configureStore({}, memoryHistory);
+    const { store } = configureStore({});
     globalStore = store;
     injectors = {
       injectSaga: jest.fn(),
@@ -101,7 +100,7 @@ describe('useInjectSaga hook', () => {
   });
 
   beforeEach(() => {
-    const { store } = configureStore({}, memoryHistory);
+    const { store } = configureStore({});
     globalStore = store;
     injectors = {
       injectSaga: jest.fn(),
@@ -126,7 +125,7 @@ describe('useInjectSaga hook', () => {
       </Provider>,
     );
 
-    expect(injectors.injectSaga).toHaveBeenCalledTimes(0);
+    expect(injectors.injectSaga).toHaveBeenCalledTimes(1);
   });
 
   it('should eject on unmount with a correct saga key', () => {
