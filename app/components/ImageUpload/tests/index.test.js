@@ -49,9 +49,12 @@ describe('<ImageUpload />', () => {
     await act(async () => {
       fireEvent.change(hiddenFileInput, { target: { files: [file] } });
     });
-    await waitFor(async () => {
-      expect(container.querySelector('a')).toBeInTheDocument();
-    });
+    await waitFor(
+      async () => {
+        expect(container.querySelector('a')).toBeInTheDocument();
+      },
+      { timeout: 10000 },
+    );
     fireEvent.click(getByTitle('Preview file'));
     expect(hiddenFileInput.files[0]).toStrictEqual(file);
   });

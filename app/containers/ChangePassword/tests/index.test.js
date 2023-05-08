@@ -11,7 +11,6 @@ import { fireEvent, render, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import history from 'utils/history';
-import { browserHistory } from 'react-router-dom';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import ChangePassword, { mapDispatchToProps } from '../index';
 import Lodable from '../Loadable';
@@ -37,7 +36,7 @@ const componentWrapper = Component =>
   );
 describe('<ChangePassword />', () => {
   beforeAll(() => {
-    const { store } = configureStore({}, browserHistory);
+    const { store } = configureStore({});
     globalStore = store;
   });
 

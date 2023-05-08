@@ -31,6 +31,7 @@ import configureStore from '../../../configureStore';
 import { DATA_TEST_IDS } from '../constants';
 jest.mock('draft-js/lib/generateRandomKey', () => jest.fn(() => '123'));
 
+const user = userEvent.setup();
 let globalStore;
 
 const componentWrapper = () =>
@@ -75,7 +76,7 @@ describe('<Profile />', () => {
   it('Should double click on name and write in input box', async () => {
     const { getAllByTestId } = componentWrapper();
     // show the input
-    userEvent.dblClick(getAllByTestId(TEST_IDS.INPUT_VALUE)[0]);
+    await user.dblClick(getAllByTestId(TEST_IDS.INPUT_VALUE)[0]);
     expect(getAllByTestId(TEST_IDS.INPUT_EDIT)[0]).toBeInTheDocument();
     // write on the input
     fireEvent.change(getAllByTestId(TEST_IDS.INPUT_EDIT)[0], {
@@ -90,7 +91,7 @@ describe('<Profile />', () => {
   it('Should double click on designation and write in input box', async () => {
     const { getAllByTestId } = componentWrapper();
     // show the input
-    userEvent.dblClick(getAllByTestId(TEST_IDS.INPUT_VALUE)[1]);
+    await user.dblClick(getAllByTestId(TEST_IDS.INPUT_VALUE)[1]);
     expect(getAllByTestId(TEST_IDS.INPUT_EDIT)[0]).toBeInTheDocument();
     // write on the input
     fireEvent.change(getAllByTestId(TEST_IDS.INPUT_EDIT)[0], {
@@ -105,7 +106,7 @@ describe('<Profile />', () => {
   it('Should double click on location and write in input box', async () => {
     const { getAllByTestId } = componentWrapper();
     // show the input
-    userEvent.dblClick(getAllByTestId(TEST_IDS.INPUT_VALUE)[2]);
+    await user.dblClick(getAllByTestId(TEST_IDS.INPUT_VALUE)[2]);
     expect(getAllByTestId(TEST_IDS.INPUT_EDIT)[0]).toBeInTheDocument();
     // write on the input
     fireEvent.change(getAllByTestId(TEST_IDS.INPUT_EDIT)[0], {
@@ -120,7 +121,7 @@ describe('<Profile />', () => {
   it('Should fire mouse down on other target and input should be disappeared', async () => {
     const { getAllByTestId } = componentWrapper();
     // show the input
-    userEvent.dblClick(getAllByTestId(TEST_IDS.INPUT_VALUE)[2]);
+    await user.dblClick(getAllByTestId(TEST_IDS.INPUT_VALUE)[2]);
     expect(getAllByTestId(TEST_IDS.INPUT_EDIT)[0]).toBeInTheDocument();
     fireEvent.mouseDown(getAllByTestId(TEST_IDS.INPUT_VALUE)[0]);
     expect(getAllByTestId(TEST_IDS.INPUT_VALUE)[2]).toBeInTheDocument();

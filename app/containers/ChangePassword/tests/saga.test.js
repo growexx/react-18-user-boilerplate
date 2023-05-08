@@ -1,5 +1,6 @@
 /* eslint-disable space-before-function-paren */
 import { runSaga } from 'redux-saga';
+import { act } from '@testing-library/react';
 import { takeLatest } from 'redux-saga/effects';
 import configureStore from 'redux-mock-store';
 import { FORM_KEY, SUBMIT_DATA } from '../constants';
@@ -34,8 +35,10 @@ export async function recordSaga(saga) {
 }
 describe('Testing getPasswordChange', () => {
   test('getPasswordChange', async () => {
-    await recordSaga(setSagaFunction);
-    expect(recordSaga(setSagaFunction)).toBeTruthy();
+    act(async () => {
+      await recordSaga(setSagaFunction);
+    });
+    expect(await recordSaga(setSagaFunction)).toBeTruthy();
   });
 });
 describe('Testing changePassword', () => {
