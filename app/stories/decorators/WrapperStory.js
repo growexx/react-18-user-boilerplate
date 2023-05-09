@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import history from 'utils/history';
 import configureStore from '../../configureStore';
-const store = configureStore({}, history);
+const { store } = configureStore({});
 
 const WrapperStory = props => (
   <Provider store={store}>

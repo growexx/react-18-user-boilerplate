@@ -12,8 +12,7 @@ import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
-import history from 'utils/history';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
@@ -35,21 +34,19 @@ import { translationMessages } from './i18n';
 
 // Create redux store with history
 const initialState = {};
-const store = configureStore(initialState, history);
-const MOUNT_NODE = document.getElementById('app');
+const { store, history } = configureStore(initialState);
+const MOUNT_NODE = ReactDOM.createRoot(document.getElementById('app'));
 
-const render = messages => {
-  ReactDOM.render(
+const renderMessage = message =>
+  MOUNT_NODE.render(
     <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <ConnectedRouter history={history}>
+      <LanguageProvider messages={message}>
+        <Router history={history}>
           <App />
-        </ConnectedRouter>
+        </Router>
       </LanguageProvider>
     </Provider>,
-    MOUNT_NODE,
   );
-};
 
 if (module.hot) {
   // Hot reloadable React components and translation json files
@@ -57,7 +54,7 @@ if (module.hot) {
   // have to be constants at compile-time
   module.hot.accept(['./i18n', 'containers/App'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-    render(translationMessages);
+    renderMessage(translationMessages);
   });
 }
 
@@ -66,13 +63,19 @@ if (!window.Intl) {
   new Promise(resolve => {
     resolve(import('intl'));
   })
-    .then(() => Promise.all([import('intl/locale-data/jsonp/en.js')]))
-    .then(() => render(translationMessages))
+    .then(() =>
+      Promise.all([
+        import('@formatjs/intl-pluralrules/polyfill'),
+        import('@formatjs/intl-pluralrules/locale-data/en'),
+        import('@formatjs/intl-pluralrules/locale-data/de'),
+      ]),
+    ) // eslint-disable-line prettier/prettier
+    .then(() => renderMessage(translationMessages))
     .catch(err => {
       throw err;
     });
 } else {
-  render(translationMessages);
+  renderMessage(translationMessages);
 }
 
 // Install ServiceWorker and AppCache in the end since
