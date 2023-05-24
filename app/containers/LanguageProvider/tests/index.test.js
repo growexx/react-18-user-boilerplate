@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { FormattedMessage, defineMessages } from 'react-intl';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';
@@ -30,15 +30,16 @@ describe('<LanguageProvider />', () => {
 });
 
 describe('<ConnectedLanguageProvider />', () => {
-  let store;
+  let globalState;
 
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({}, browserHistory);
+    globalState = store;
   });
 
   it('should render the default language messages', () => {
     const { queryByText } = render(
-      <Provider store={store}>
+      <Provider store={globalState}>
         <ConnectedLanguageProvider messages={translationMessages}>
           <FormattedMessage {...messages.someMessage} />
         </ConnectedLanguageProvider>

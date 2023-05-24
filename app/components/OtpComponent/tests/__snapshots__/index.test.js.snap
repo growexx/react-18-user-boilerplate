@@ -51,107 +51,68 @@ exports[`<OtpComponent /> Should render and match the snapshot 1`] = `
 >
   <div
     class="otpComponentContainerStyle"
-    style="display: flex;"
+    style="display: flex; align-items: center;"
   >
-    <div
-      style="display: flex; align-items: center;"
-    >
-      <input
-        aria-label="Please enter verification code. Digit 1"
-        autocomplete="off"
-        class="otpComponentInputStyle otpComponentFocusStyle"
-        maxlength="1"
-        placeholder="0"
-        style="width: 1em; text-align: center;"
-        type="tel"
-        value=""
-      />
-      <span>
-        -
-      </span>
-    </div>
-    <div
-      style="display: flex; align-items: center;"
-    >
-      <input
-        aria-label="Digit 2"
-        autocomplete="off"
-        class="otpComponentInputStyle"
-        maxlength="1"
-        placeholder="0"
-        style="width: 1em; text-align: center;"
-        type="tel"
-        value=""
-      />
-      <span>
-        -
-      </span>
-    </div>
-    <div
-      style="display: flex; align-items: center;"
-    >
-      <input
-        aria-label="Digit 3"
-        autocomplete="off"
-        class="otpComponentInputStyle"
-        maxlength="1"
-        placeholder="0"
-        style="width: 1em; text-align: center;"
-        type="tel"
-        value=""
-      />
-      <span>
-        -
-      </span>
-    </div>
-    <div
-      style="display: flex; align-items: center;"
-    >
-      <input
-        aria-label="Digit 4"
-        autocomplete="off"
-        class="otpComponentInputStyle"
-        maxlength="1"
-        placeholder="0"
-        style="width: 1em; text-align: center;"
-        type="tel"
-        value=""
-      />
-      <span>
-        -
-      </span>
-    </div>
-    <div
-      style="display: flex; align-items: center;"
-    >
-      <input
-        aria-label="Digit 5"
-        autocomplete="off"
-        class="otpComponentInputStyle"
-        maxlength="1"
-        placeholder="0"
-        style="width: 1em; text-align: center;"
-        type="tel"
-        value=""
-      />
-      <span>
-        -
-      </span>
-    </div>
-    <div
-      style="display: flex; align-items: center;"
-    >
-      <input
-        aria-label="Digit 6"
-        autocomplete="off"
-        class="otpComponentInputStyle"
-        maxlength="1"
-        placeholder="0"
-        style="width: 1em; text-align: center;"
-        type="tel"
-        value=""
-      />
-    </div>
+    <input
+      aria-label="Please enter OTP character 1"
+      autocomplete="off"
+      class="otpComponentInputStyle"
+      maxlength="1"
+      placeholder="0"
+      style="width: 1em; text-align: center;"
+      type="text"
+      value=""
+    />
+    <input
+      aria-label="Please enter OTP character 2"
+      autocomplete="off"
+      class="otpComponentInputStyle"
+      maxlength="1"
+      placeholder="0"
+      style="width: 1em; text-align: center;"
+      type="text"
+      value=""
+    />
+    <input
+      aria-label="Please enter OTP character 3"
+      autocomplete="off"
+      class="otpComponentInputStyle"
+      maxlength="1"
+      placeholder="0"
+      style="width: 1em; text-align: center;"
+      type="text"
+      value=""
+    />
+    <input
+      aria-label="Please enter OTP character 4"
+      autocomplete="off"
+      class="otpComponentInputStyle"
+      maxlength="1"
+      placeholder="0"
+      style="width: 1em; text-align: center;"
+      type="text"
+      value=""
+    />
+    <input
+      aria-label="Please enter OTP character 5"
+      autocomplete="off"
+      class="otpComponentInputStyle"
+      maxlength="1"
+      placeholder="0"
+      style="width: 1em; text-align: center;"
+      type="text"
+      value=""
+    />
+    <input
+      aria-label="Please enter OTP character 6"
+      autocomplete="off"
+      class="otpComponentInputStyle"
+      maxlength="1"
+      placeholder="0"
+      style="width: 1em; text-align: center;"
+      type="text"
+      value=""
+    />
   </div>
 </div>
 `;

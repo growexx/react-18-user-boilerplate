@@ -85,8 +85,8 @@ module.exports = {
         config: './internals/webpack/webpack.prod.babel.js',
       },
       node: {
-        paths: ['app']
-      }
+        paths: ['app'],
+      },
     },
   },
 };

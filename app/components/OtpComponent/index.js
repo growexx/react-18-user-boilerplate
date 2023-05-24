@@ -13,6 +13,7 @@ class OtpComponent extends React.PureComponent {
     return (
       <StyledOtpComponent>
         <OtpInput
+          renderInput={props => <input {...props} />}
           value={this.props.value}
           onChange={this.props.onChange}
           numInputs={this.props.numInputs}

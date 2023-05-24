@@ -1,33 +1,38 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
-import { ConnectedRouter } from 'connected-react-router';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
 import { userExists } from 'utils/Helper';
 import Login from 'containers/Auth/Login/Loadable';
 import configureStore from '../../../configureStore';
 import AuthRoute from '../AuthRoute';
 jest.mock('utils/Helper');
+jest.mock('react-router', () => ({
+  ...jest.requireActual('react-router'),
+  Navigate: jest.fn(() => <div data-testid="navigate" />),
+}));
+
 const props = {
   component: Login,
 };
-let store;
+let globalStore;
 const componentWrapper = () =>
   render(
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <IntlProvider locale="en">
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <AuthRoute {...props} />
-        </ConnectedRouter>
+        </Router>
       </IntlProvider>
     </Provider>,
   );
 
 describe('<MainLayout />', () => {
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    const { store } = configureStore({});
+    globalStore = store;
     userExists.mockImplementation(() => true);
   });
   it('should render and match the snapshot', () => {

@@ -81,9 +81,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
   <p
     class="c0"
   >
-    <span>
-      This demo uses numeral library for conversion of number
-    </span>
+    This demo uses numeral library for conversion of number
   </p>
   <div
     class="c1"
@@ -119,14 +117,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
     class="c2"
   >
     <p>
-      <span>
-        Create
-      </span>
+      Create
     </p>
     <p>
-      <span>
-        Create an instance of a numeral. Numeral takes numbers or strings that it trys to convert into a number.
-      </span>
+      Create an instance of a numeral. Numeral takes numbers or strings that it trys to convert into a number.
     </p>
     <div
       class="ant-table-wrapper"
@@ -152,10 +146,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 200px; min-width: 200px;"
+                      style="width: 200px;"
                     />
                     <col
-                      style="width: 150px; min-width: 150px;"
+                      style="width: 150px;"
                     />
                   </colgroup>
                   <thead
@@ -180,7 +174,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr
                       aria-hidden="true"
                       class="ant-table-measure-row"
-                      style="height: 0px; font-size: 0;"
+                      style="height: 0px; font-size: 0px;"
                     >
                       <td
                         style="padding: 0px; border: 0px; height: 0px;"
@@ -229,23 +223,17 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
     class="c3"
   >
     <p>
-      <span>
-        Format
-      </span>
+      Format
     </p>
     <p>
-      <span>
-        Numbers can be formatted to look like currency, percentages, times, or even plain old numbers with decimal places, thousands, and abbreviations.
-      </span>
+      Numbers can be formatted to look like currency, percentages, times, or even plain old numbers with decimal places, thousands, and abbreviations.
     </p>
   </div>
   <div
     class="c2"
   >
     <p>
-      <span>
-        Numbers
-      </span>
+      Numbers
     </p>
     <div
       class="ant-table-wrapper"
@@ -271,13 +259,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                   </colgroup>
                   <thead
@@ -307,7 +295,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr
                       aria-hidden="true"
                       class="ant-table-measure-row"
-                      style="height: 0px; font-size: 0;"
+                      style="height: 0px; font-size: 0px;"
                     >
                       <td
                         style="padding: 0px; border: 0px; height: 0px;"
@@ -730,9 +718,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
     class="c2"
   >
     <p>
-      <span>
-        Currency
-      </span>
+      Currency
     </p>
     <div
       class="ant-table-wrapper"
@@ -758,13 +744,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                   </colgroup>
                   <thead
@@ -794,7 +780,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr
                       aria-hidden="true"
                       class="ant-table-measure-row"
-                      style="height: 0px; font-size: 0;"
+                      style="height: 0px; font-size: 0px;"
                     >
                       <td
                         style="padding: 0px; border: 0px; height: 0px;"
@@ -957,9 +943,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
     class="c2"
   >
     <p>
-      <span>
-        Bytes
-      </span>
+      Bytes
     </p>
     <div
       class="ant-table-wrapper"
@@ -985,13 +969,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                   </colgroup>
                   <thead
@@ -1021,7 +1005,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr
                       aria-hidden="true"
                       class="ant-table-measure-row"
-                      style="height: 0px; font-size: 0;"
+                      style="height: 0px; font-size: 0px;"
                     >
                       <td
                         style="padding: 0px; border: 0px; height: 0px;"
@@ -1204,9 +1188,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
     class="c2"
   >
     <p>
-      <span>
-        Percentages
-      </span>
+      Percentages
     </p>
     <div
       class="ant-table-wrapper"
@@ -1232,13 +1214,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                   </colgroup>
                   <thead
@@ -1268,7 +1250,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr
                       aria-hidden="true"
                       class="ant-table-measure-row"
-                      style="height: 0px; font-size: 0;"
+                      style="height: 0px; font-size: 0px;"
                     >
                       <td
                         style="padding: 0px; border: 0px; height: 0px;"
@@ -1391,9 +1373,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
     class="c2"
   >
     <p>
-      <span>
-        Time
-      </span>
+      Time
     </p>
     <div
       class="ant-table-wrapper"
@@ -1419,13 +1399,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                   </colgroup>
                   <thead
@@ -1455,7 +1435,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr
                       aria-hidden="true"
                       class="ant-table-measure-row"
-                      style="height: 0px; font-size: 0;"
+                      style="height: 0px; font-size: 0px;"
                     >
                       <td
                         style="padding: 0px; border: 0px; height: 0px;"
@@ -1558,9 +1538,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
     class="c2"
   >
     <p>
-      <span>
-        Exponential
-      </span>
+      Exponential
     </p>
     <div
       class="ant-table-wrapper"
@@ -1586,13 +1564,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                 >
                   <colgroup>
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                     <col
-                      style="width: 100px; min-width: 100px;"
+                      style="width: 100px;"
                     />
                   </colgroup>
                   <thead
@@ -1622,7 +1600,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr
                       aria-hidden="true"
                       class="ant-table-measure-row"
-                      style="height: 0px; font-size: 0;"
+                      style="height: 0px; font-size: 0px;"
                     >
                       <td
                         style="padding: 0px; border: 0px; height: 0px;"

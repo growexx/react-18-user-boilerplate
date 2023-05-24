@@ -2,7 +2,7 @@
 
 exports[`<App /> should render and match the snapshot 1`] = `
 <div>
-  <Switch>
+  <UNDEFINED>
     <Route
       component={[Function]}
       exact={true}
@@ -11,7 +11,7 @@ exports[`<App /> should render and match the snapshot 1`] = `
     <Route
       component={[Function]}
     />
-  </Switch>
-  <GlobalStyleComponent />
+  </UNDEFINED>
+  <Memo(l) />
 </div>
 `;

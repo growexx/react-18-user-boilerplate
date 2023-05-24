@@ -10,12 +10,11 @@ import '@babel/polyfill';
 
 // Import all the third party stuff
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
-import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 
 // Font Awesome Initialization
 // Remove which is not needed
@@ -53,21 +52,19 @@ openSansObserver.load().then(() => {
 
 // Create redux store with history
 const initialState = {};
-const store = configureStore(initialState, history);
-const MOUNT_NODE = document.getElementById('app');
+const { store, history } = configureStore(initialState);
+const MOUNT_NODE = ReactDOM.createRoot(document.getElementById('app'));
 
-const render = messages => {
-  ReactDOM.render(
+const renderMessage = message =>
+  MOUNT_NODE.render(
     <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <ConnectedRouter history={history}>
+      <LanguageProvider messages={message}>
+        <Router history={history}>
           <MainLayout />
-        </ConnectedRouter>
+        </Router>
       </LanguageProvider>
     </Provider>,
-    MOUNT_NODE,
   );
-};
 
 if (module.hot) {
   // Hot reloadable React components and translation json files
@@ -75,7 +72,7 @@ if (module.hot) {
   // have to be constants at compile-time
   module.hot.accept(['./i18n', 'containers/App'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-    render(translationMessages);
+    renderMessage(translationMessages);
   });
 }
 
@@ -86,21 +83,22 @@ if (!window.Intl) {
   })
     .then(() =>
       Promise.all([
-        import('intl/locale-data/jsonp/en.js'),
-        import('intl/locale-data/jsonp/de.js'),
+        import('@formatjs/intl-pluralrules/polyfill'),
+        import('@formatjs/intl-pluralrules/locale-data/en'),
+        import('@formatjs/intl-pluralrules/locale-data/de'),
       ]),
     ) // eslint-disable-line prettier/prettier
-    .then(() => render(translationMessages))
+    .then(() => renderMessage(translationMessages))
     .catch(err => {
       throw err;
     });
 } else {
-  render(translationMessages);
+  renderMessage(translationMessages);
 }
 
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
-if (process.env.NODE_ENV === 'production') {
-  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
-}
+// if (process.env.NODE_ENV === 'production') {
+//   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+// }

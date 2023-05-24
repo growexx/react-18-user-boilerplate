@@ -7,15 +7,10 @@
  *   script `extract-intl`, and must use CommonJS module syntax
  *   You CANNOT use import/export in this file.
  */
-const addLocaleData = require('react-intl').addLocaleData; //eslint-disable-line
-const enLocaleData = require('react-intl/locale-data/en');
-const deLocaleData = require('react-intl/locale-data/de');
+require('@formatjs/intl-pluralrules/polyfill');
 
 const enTranslationMessages = require('./translations/en.json');
 const deTranslationMessages = require('./translations/de.json');
-
-addLocaleData(enLocaleData);
-addLocaleData(deLocaleData);
 
 const DEFAULT_LOCALE = 'en';
 

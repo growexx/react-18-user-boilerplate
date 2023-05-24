@@ -1,12 +1,12 @@
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import CartDrawer from '../index';
 import products from '../../../../examples/Products/stub/product.json';
 
 const mockFunction = () => {};
 const dummyData = products.products.slice(0, 2);
 describe('<CartDrawer />', () => {
-  test('display should delete product', () => {
+  test('display should delete product', async () => {
     window.product = dummyData;
     window.localStorage = {};
     window.setCount = mockFunction;
@@ -14,7 +14,7 @@ describe('<CartDrawer />', () => {
       window.localStorage[key] = value;
     };
     window.localStorage.getItem = key => window.localStorage[key];
-    const { getByTestId, getByRole } = render(
+    const { getAllByTestId, getAllByRole, getByText } = render(
       <CartDrawer visible setVisible={mockFunction} />,
     );
     window.localStorage.setItem('products', JSON.stringify(dummyData));
@@ -24,8 +24,8 @@ describe('<CartDrawer />', () => {
         newValue: 'test_value',
       }),
     );
-    fireEvent.click(getByTestId('product-delete'));
-    fireEvent.click(getByRole('img'));
-    expect(getByTestId('drawer')).toBeTruthy();
+    fireEvent.click(getAllByTestId('product-delete')[0]);
+    fireEvent.click(getAllByRole('img')[0]);
+    expect(getByText('Product Deleted Successfully from cart')).toBeTruthy();
   });
 });

@@ -22,12 +22,16 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </a>
     </div>
     <ul
-      class="ant-menu ant-menu-dark ant-menu-inline-collapsed ant-menu-root ant-menu-vertical"
+      class="ant-menu ant-menu-root ant-menu-vertical ant-menu-dark ant-menu-inline-collapsed"
+      data-menu-list="true"
       role="menu"
+      tabindex="0"
     >
       <li
         class="ant-menu-item ant-menu-item-selected"
+        data-menu-id="rc-menu-uuid-test-/"
         role="menuitem"
+        tabindex="-1"
       >
         <span
           aria-label="smile"
@@ -48,7 +52,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
             />
           </svg>
         </span>
-        <span>
+        <span
+          class="ant-menu-title-content"
+        >
           <a
             href="/"
           >
@@ -58,7 +64,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/sample-form"
         role="menuitem"
+        tabindex="-1"
       >
         <span
           aria-label="form"
@@ -82,7 +90,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
             />
           </svg>
         </span>
-        <span>
+        <span
+          class="ant-menu-title-content"
+        >
           <a
             href="/sample-form"
           >
@@ -92,7 +102,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/loader"
         role="menuitem"
+        tabindex="-1"
       >
         <span
           aria-label="loading"
@@ -113,7 +125,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
             />
           </svg>
         </span>
-        <span>
+        <span
+          class="ant-menu-title-content"
+        >
           <a
             href="/loader"
           >
@@ -123,7 +137,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/export-data"
         role="menuitem"
+        tabindex="-1"
       >
         <span
           aria-label="export"
@@ -144,7 +160,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
             />
           </svg>
         </span>
-        <span>
+        <span
+          class="ant-menu-title-content"
+        >
           <a
             href="/export-data"
           >
@@ -154,7 +172,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/number-converter-demo"
         role="menuitem"
+        tabindex="-1"
       >
         <span
           aria-label="number"
@@ -175,7 +195,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
             />
           </svg>
         </span>
-        <span>
+        <span
+          class="ant-menu-title-content"
+        >
           <a
             href="/number-converter-demo"
           >
@@ -185,7 +207,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/users"
         role="menuitem"
+        tabindex="-1"
       >
         <span
           aria-label="user"
@@ -206,7 +230,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
             />
           </svg>
         </span>
-        <span>
+        <span
+          class="ant-menu-title-content"
+        >
           <a
             href="/users"
           >
@@ -216,7 +242,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/github-search"
         role="menuitem"
+        tabindex="-1"
       >
         <span
           aria-label="search"
@@ -237,7 +265,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
             />
           </svg>
         </span>
-        <span>
+        <span
+          class="ant-menu-title-content"
+        >
           <a
             href="/github-search"
           >
@@ -247,7 +277,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/charts"
         role="menuitem"
+        tabindex="-1"
       >
         <span
           aria-label="pie-chart"
@@ -268,7 +300,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
             />
           </svg>
         </span>
-        <span>
+        <span
+          class="ant-menu-title-content"
+        >
           <a
             href="/charts"
           >
@@ -278,7 +312,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/multi-tab-support"
         role="menuitem"
+        tabindex="-1"
       >
         <span
           aria-label="message"
@@ -299,7 +335,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
             />
           </svg>
         </span>
-        <span>
+        <span
+          class="ant-menu-title-content"
+        >
           <a
             href="/multi-tab-support"
           >
@@ -309,7 +347,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="ant-menu-item"
+        data-menu-id="rc-menu-uuid-test-/products"
         role="menuitem"
+        tabindex="-1"
       >
         <span
           aria-label="shopping"
@@ -330,7 +370,9 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
             />
           </svg>
         </span>
-        <span>
+        <span
+          class="ant-menu-title-content"
+        >
           <a
             href="/products"
           >
@@ -339,6 +381,10 @@ exports[`<SideBar /> should render and match the snapshot 1`] = `
         </span>
       </li>
     </ul>
+    <div
+      aria-hidden="true"
+      style="display: none;"
+    />
   </div>
 </aside>
 `;

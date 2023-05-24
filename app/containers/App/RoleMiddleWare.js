@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 /* import { Spin } from 'antd'; */
 import {
   RESTRICTED_ROUTES,
@@ -11,6 +11,7 @@ import {
 import { USER_DATA_KEY } from '../../utils/constants';
 import StorageService from '../../utils/StorageService';
 import { loginSuccessResponse } from '../Auth/Login/stub/login.stub';
+import { withRouter } from './withRouter';
 
 class RoleMiddleWare extends React.Component {
   /**
@@ -64,7 +65,7 @@ class RoleMiddleWare extends React.Component {
           });
         } else {
           logout();
-          this.props.history.push('/login');
+          this.props.navigate('/login');
         }
       });
     }
@@ -83,9 +84,9 @@ class RoleMiddleWare extends React.Component {
 
     if (!this.doesRoleHaveRouteAccess(role, this.props.path)) {
       if (this.props.showError) {
-        this.props.history.push(ROUTES.UNAUTHORIZED);
+        this.props.navigate(ROUTES.UNAUTHORIZED);
       } else {
-        this.props.history.push(ROLE_BASED_DEFAULT_ROUTE[role]);
+        this.props.navigate(ROLE_BASED_DEFAULT_ROUTE[role]);
       }
     }
   };
@@ -110,9 +111,7 @@ class RoleMiddleWare extends React.Component {
 
   render() {
     const { component: Component, ...rest } = this.props;
-    return (
-      <Component {...rest} Component={null} userData={this.state.userData} />
-    );
+    return <Outlet {...rest} Component={null} userData={this.state.userData} />;
     // Note: Remove in actual Code
     // -------------Demo--------------------
 
@@ -121,7 +120,7 @@ class RoleMiddleWare extends React.Component {
     return this.state.loader ? (
       <Spin spinning={this.state.loader} size="large" />
     ) : (
-      <Component {...rest} Component={null} userData={this.state.userData} />
+      <Outlet {...rest} Component={null} userData={this.state.userData} />
     );
     */
   }
@@ -132,6 +131,7 @@ RoleMiddleWare.propTypes = {
   childProps: PropTypes.any,
   component: PropTypes.any,
   path: PropTypes.string,
+  navigate: PropTypes.func,
   showError: PropTypes.bool,
 };
 

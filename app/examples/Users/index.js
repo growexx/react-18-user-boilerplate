@@ -184,7 +184,7 @@ export class Users extends Component {
             </Button>
             <Popconfirm
               title={MESSAGES.DELETE}
-              visible={
+              open={
                 isPopUpVisible &&
                 popUpAction === POPUP_ACTION.DELETE &&
                 userId === data.id
@@ -342,14 +342,15 @@ export class Users extends Component {
     sortKey = newSortKey || sortKey;
     search = this.getLatestValue(newSearch, search);
     status = this.getLatestValue(newStatus, status);
-    pagination = this.getUpdatedPagination({ pagination, status });
+    pagination = this.getUpdatedPagination({
+      pagination,
+      status,
+    });
 
     // Actual API Call
     const data = { method: 'GET' };
 
-    let requestURL = `${API_URL}${API_ENDPOINTS.USERS}?pagination=1&pageSize=${
-      pagination.pageSize
-    }&skip=${pagination.current}&sortType=${sortType}&`;
+    let requestURL = `${API_URL}${API_ENDPOINTS.USERS}?pagination=1&pageSize=${pagination.pageSize}&skip=${pagination.current}&sortType=${sortType}&`; // prettier-ignore
     if (search) {
       requestURL += `search=${search}&`;
     }
@@ -376,7 +377,9 @@ export class Users extends Component {
         }),
       )
       .catch(error => {
-        notification.error({ message: error && error.message });
+        notification.error({
+          message: error && error.message,
+        });
       });
   };
 
@@ -548,7 +551,7 @@ export class Users extends Component {
     return (
       <Modal
         title={userId ? 'Edit User' : 'Add User'}
-        visible={showUserModal}
+        open={showUserModal}
         onOk={handleSubmit(this.updateUser)}
         confirmLoading={isListLoading}
         onCancel={() => this.toggleModals()}
@@ -570,7 +573,7 @@ export class Users extends Component {
             label="Email *"
             placeholder="john.doe@growexx.com"
             onChange={updateField}
-            defaultValue={userStoreData.email}
+            defaultValue={userStoreData && userStoreData.email}
           />
           <Field
             name="firstName"
@@ -578,7 +581,7 @@ export class Users extends Component {
             label="First Name *"
             placeholder="John"
             onChange={updateField}
-            defaultValue={userStoreData.firstName}
+            defaultValue={userStoreData && userStoreData.firstName}
           />
           <Field
             name="lastName"
@@ -586,7 +589,7 @@ export class Users extends Component {
             label="Last Name *"
             placeholder="Doe"
             onChange={updateField}
-            defaultValue={userStoreData.lastName}
+            defaultValue={userStoreData && userStoreData.lastName}
           />
         </form>
       </Modal>
@@ -624,7 +627,7 @@ export class Users extends Component {
                   <SearchWrapper
                     allowClear
                     placeholder="Search User"
-                    isListLoading
+                    // isListLoading
                     value={search}
                     onChange={this.onSearchUser}
                     onSearch={value => this.loadUserDetails({ search: value })}
@@ -699,10 +702,7 @@ export const mapDispatchToProps = dispatch => ({
   fillFields: (key, value) => dispatch(actions.updateField(key, value)),
 });
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps); // prettier-ignore
 
 export default compose(
   withReducer,

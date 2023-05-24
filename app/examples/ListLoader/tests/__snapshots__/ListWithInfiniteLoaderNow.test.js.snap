@@ -75,7 +75,7 @@ exports[`<ListWithInfiniteLoader /> should render and match the snapshot 1`] = `
                 <div
                   class="ant-empty-description"
                 >
-                  No Data
+                  No data
                 </div>
               </div>
             </div>

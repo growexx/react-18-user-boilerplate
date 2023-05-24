@@ -1,16 +1,8 @@
-/**
- * MainLayout.js
- *
- * This is the entry file for the application, only setup and boilerplate
- * code.
- */
-
 import React from 'react';
 import { Spin } from 'antd';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { withRouter } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectAppLoading } from 'containers/App/selectors';
 import App from 'containers/App';
@@ -43,10 +35,10 @@ class MainLayout extends React.Component {
 
   componentDidMount() {
     Emitter.on(EMITTER_EVENTS.LOG_IN, () => {
-      this.forceUpdate();
+      this.setState({});
     });
     Emitter.on(EMITTER_EVENTS.LOG_OUT, () => {
-      this.forceUpdate();
+      this.setState({});
     });
   }
 
@@ -86,8 +78,8 @@ class MainLayout extends React.Component {
 
 MainLayout.propTypes = {
   appLoading: PropTypes.bool,
-  location: PropTypes.object,
   defaultLayout: PropTypes.number,
+  location: PropTypes.object,
 };
 
 MainLayout.defaultProps = {
@@ -100,4 +92,12 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps);
 
-export default compose(withConnect)(withRouter(MainLayout));
+const MainLayoutWithConnect = withConnect(MainLayout);
+
+const MainLayoutWrapper = () => {
+  const location = useLocation();
+
+  return <MainLayoutWithConnect location={location} />;
+};
+
+export default MainLayoutWrapper;

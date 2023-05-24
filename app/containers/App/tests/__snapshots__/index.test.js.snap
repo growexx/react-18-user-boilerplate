@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> should render and match the snapshot 1`] = `
-<ForwardRef(App__AppWrapper)
+<App__AppWrapper
   data-testid="AppRoutes"
 >
   <HelmetWrapper
@@ -43,85 +43,96 @@ exports[`<App /> should render and match the snapshot 1`] = `
       rel="apple-touch-icon"
     />
   </HelmetWrapper>
-  <Switch>
-    <PrivateRoute
-      component={[Function]}
-      exact={true}
-      path="/"
-    />
-    <PrivateRoute
-      component={[Function]}
-      path="/github-search"
-    />
-    <PrivateRoute
-      component={[Function]}
-      path="/profile"
-    />
-    <PrivateRoute
-      component={[Function]}
-      path="/logout"
-    />
-    <PrivateRoute
-      component={[Function]}
-      path="/loader"
-    />
-    <PrivateRoute
-      component={[Function]}
-      path="/export-data"
-    />
-    <PrivateRoute
-      component={[Function]}
-      path="/users"
-    />
-    <PrivateRoute
-      component={[Function]}
-      path="/charts"
-    />
-    <PrivateRoute
-      component={[Function]}
-      path="/products"
-    />
-    <PrivateRoute
-      component={[Function]}
-      path="/multi-tab-support"
-    />
-    <PrivateRoute
-      component={[Function]}
-      path="/change-password"
-    />
-    <withRouter(RoleMiddleWare)
-      component={[Function]}
-      path="/admin"
-      showError={true}
-    />
-    <PrivateRoute
-      component={[Function]}
-      path="/sample-form"
-    />
-    <PrivateRoute
-      component={[Function]}
-      path="/number-converter-demo"
-    />
-    <AuthRoute
-      component={[Function]}
-      exact={true}
-      path="/login"
-    />
-    <AuthRoute
-      component={[Function]}
-      exact={true}
-      path="/two-factor-authentication"
-    />
-    <AuthRoute
-      component={[Function]}
-      exact={true}
-      path="/register"
-    />
-    <AuthRoute
-      component={[Function]}
-      exact={true}
-      path="/forgot-password"
-    />
+  <Routes>
+    <Route
+      element={<PrivateRoute />}
+    >
+      <Route
+        element={<Unknown />}
+        exact={true}
+        path="/"
+      />
+      <Route
+        element={<Unknown />}
+        path="/github-search"
+      />
+      <Route
+        element={<Unknown />}
+        path="/profile"
+      />
+      <Route
+        element={<Unknown />}
+        path="/logout"
+      />
+      <Route
+        element={<Unknown />}
+        path="/loader"
+      />
+      <Route
+        element={<Unknown />}
+        path="/export-data"
+      />
+      <Route
+        element={<Unknown />}
+        path="/users"
+      />
+      <Route
+        element={<Unknown />}
+        path="/charts"
+      />
+      <Route
+        element={<Unknown />}
+        path="/products"
+      />
+      <Route
+        element={<Unknown />}
+        path="/multi-tab-support"
+      />
+      <Route
+        element={<Unknown />}
+        path="/change-password"
+      />
+      <Route
+        element={<Unknown />}
+        path="/sample-form"
+      />
+      <Route
+        element={<Unknown />}
+        path="/number-converter-demo"
+      />
+    </Route>
+    <Route
+      element={<Unknown />}
+    >
+      <Route
+        element={[Function]}
+        path="/admin"
+      />
+    </Route>
+    <Route
+      element={<AuthRoute />}
+    >
+      <Route
+        element={<Unknown />}
+        exact={true}
+        path="/login"
+      />
+      <Route
+        element={<Unknown />}
+        exact={true}
+        path="/two-factor-authentication"
+      />
+      <Route
+        element={<Unknown />}
+        exact={true}
+        path="/register"
+      />
+      <Route
+        element={<Unknown />}
+        exact={true}
+        path="/forgot-password"
+      />
+    </Route>
     <Route
       component={[Function]}
       exact={true}
@@ -131,7 +142,7 @@ exports[`<App /> should render and match the snapshot 1`] = `
       component={[Function]}
       path=""
     />
-  </Switch>
-  <GlobalStyleComponent />
-</ForwardRef(App__AppWrapper)>
+  </Routes>
+  <Memo(l) />
+</App__AppWrapper>
 `;

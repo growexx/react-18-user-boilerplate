@@ -10,7 +10,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import Profile from 'containers/Profile/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
@@ -63,50 +63,56 @@ export default function App() {
           <link {...favIcon} key={index} />
         ))}
       </Helmet>
-      <Switch>
-        <PrivateRoute exact path={ROUTES.HOME} component={FeaturePage} />
-        <PrivateRoute path={ROUTES.GITHUB_SEARCH} component={HomePage} />
-        <PrivateRoute path={ROUTES.PROFILE} component={Profile} />
-        <PrivateRoute path={ROUTES.LOGOUT} component={Logout} />
-        <PrivateRoute path={ROUTES.LOADER} component={Loader} />
-        <PrivateRoute path={ROUTES.EXPORT_DATA} component={ExportDataToCsv} />
-        <PrivateRoute path={ROUTES.USERS} component={Users} />
-        <PrivateRoute path={ROUTES.CHARTS} component={Charts} />
-        <PrivateRoute path={ROUTES.PRODUCTS} component={Products} />
-        <PrivateRoute
-          path={ROUTES.MULTI_TAB_SUPPORT}
-          component={MultiTabSupport}
-        />
-        <PrivateRoute
-          path={ROUTES.CHANGE_PASSWORD}
-          component={ChangePassword}
-        />
-        <RoleMiddleWare
-          path={ROUTES.TEST_ADMIN_PAGE}
-          component={() => <div>This is Admin Role Page</div>}
-          // ShowError redirects to 403
-          showError
-        />
-        <PrivateRoute path={ROUTES.SAMPLE_FORM} component={SampleForm} />
-        <PrivateRoute
-          path={ROUTES.NUMERAL_CONVERTER}
-          component={NumeralConversion}
-        />
-        <AuthRoute exact path={ROUTES.LOGIN} component={Login} />
-        <AuthRoute
-          exact
-          path={ROUTES.TWO_FACTOR_AUTHENTICATION}
-          component={TwoFactorAuthentication}
-        />
-        <AuthRoute exact path={ROUTES.REGISTER} component={Register} />
-        <AuthRoute
-          exact
-          path={ROUTES.FORGOT_PASSWORD}
-          component={ForgotPassword}
-        />
+      <Routes>
+        {/* Private Routes */}
+        <Route element={<PrivateRoute />}>
+          <Route exact path={ROUTES.HOME} element={<FeaturePage />} />
+          <Route path={ROUTES.GITHUB_SEARCH} element={<HomePage />} />
+          <Route path={ROUTES.PROFILE} element={<Profile />} />
+          <Route path={ROUTES.LOGOUT} element={<Logout />} />
+          <Route path={ROUTES.LOADER} element={<Loader />} />
+          <Route path={ROUTES.EXPORT_DATA} element={<ExportDataToCsv />} />
+          <Route path={ROUTES.USERS} element={<Users />} />
+          <Route path={ROUTES.CHARTS} element={<Charts />} />
+          <Route path={ROUTES.PRODUCTS} element={<Products />} />
+          <Route
+            path={ROUTES.MULTI_TAB_SUPPORT}
+            element={<MultiTabSupport />}
+          />
+          <Route path={ROUTES.CHANGE_PASSWORD} element={<ChangePassword />} />
+          <Route path={ROUTES.SAMPLE_FORM} element={<SampleForm />} />
+          <Route
+            path={ROUTES.NUMERAL_CONVERTER}
+            element={<NumeralConversion />}
+          />
+        </Route>
+        {/* RoleMiddleware */}
+        <Route element={<RoleMiddleWare />}>
+          <Route
+            path={ROUTES.TEST_ADMIN_PAGE}
+            element={() => <div>This is Admin Role Page</div>}
+            // ShowError redirects to 403
+            // showError
+          />
+        </Route>
+        {/* Auth Routes */}
+        <Route element={<AuthRoute />}>
+          <Route exact path={ROUTES.LOGIN} element={<Login />} />
+          <Route
+            exact
+            path={ROUTES.TWO_FACTOR_AUTHENTICATION}
+            element={<TwoFactorAuthentication />}
+          />
+          <Route exact path={ROUTES.REGISTER} element={<Register />} />
+          <Route
+            exact
+            path={ROUTES.FORGOT_PASSWORD}
+            element={<ForgotPassword />}
+          />
+        </Route>
         <Route exact path={ROUTES.UNAUTHORIZED} component={UnauthorizedPage} />
         <Route path="" component={NotFoundPage} />
-      </Switch>
+      </Routes>
       <GlobalStyle />
     </AppWrapper>
   );

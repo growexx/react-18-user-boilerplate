@@ -4,16 +4,16 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
+import OTPInput from 'react-otp-input';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import OtpComponent from 'components/OtpComponent';
 import { makeSelectValue } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -26,9 +26,15 @@ import { StyledAuthContainer } from '../StyledAuthContainer';
 import { changeValue, fireSubmit } from './actions';
 
 export function TwoFactorAuthentication(props) {
+  const [otp, setOtp] = useState('');
   useInjectReducer({ key: FORM_KEY, reducer });
   useInjectSaga({ key: FORM_KEY, saga });
-  const { value, onChangeValue } = props;
+  const { onChangeValue } = props;
+
+  const changeOptValue = currValue => {
+    setOtp(currValue);
+    onChangeValue(currValue);
+  };
   return (
     <div>
       <Helmet>
@@ -44,10 +50,20 @@ export function TwoFactorAuthentication(props) {
           <p className="twoFactorAuthenticationTitle">
             <FormattedMessage {...messages.twoFactorAuthenticationTitle} />
           </p>
-          <OtpComponent
-            value={value}
-            onChange={onChangeValue}
-            numInputs={OTP_LENGTH}
+          <OTPInput
+            style
+            value={otp}
+            onChange={changeOptValue}
+            numInputs={6}
+            renderSeparator={<span>-</span>}
+            inputStyle={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '15%',
+              fontWeight: 'bold',
+              fontSize: '18px',
+            }}
+            renderInput={currentProps => <input {...currentProps} />}
           />
         </StyledTwoFactorAuthentication>
       </StyledAuthContainer>

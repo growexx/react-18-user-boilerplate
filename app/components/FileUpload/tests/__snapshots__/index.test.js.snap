@@ -44,9 +44,7 @@ exports[`<FileUpload /> Should render and match the snapshot 1`] = `
         <p
           class="ant-upload-text"
         >
-          <span>
-            Click or drag file to this area to upload.
-          </span>
+          Click or drag file to this area to upload.
         </p>
       </div>
     </span>

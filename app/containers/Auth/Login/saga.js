@@ -3,7 +3,7 @@
  */
 
 import { /* call, select */ put, takeLatest } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
+import { push } from 'redux-first-history';
 /* import sha256 from 'sha256'; 
 import Emitter from 'utils/events';
 import request from 'utils/request';

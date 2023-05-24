@@ -4,7 +4,7 @@
  * This is the SideBar Component File.
  */
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import PropTypes from 'prop-types';
 import { ROUTES } from 'containers/constants';
@@ -16,11 +16,14 @@ import { GET_FILTERED_MENU_ITEM } from './constants';
 const { Sider } = Layout;
 
 const SideBar = props => {
+  const location = useLocation();
+
   const Logo = !props.collapsed ? (
     <img src={GrowExxLogo} alt="logo" />
   ) : (
     <img src={GrowExxTriangleLogo} alt="logo" />
   );
+
   return (
     <Sider
       trigger={null}
@@ -36,8 +39,8 @@ const SideBar = props => {
       <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={[props.location.pathname]}
-        selectedKeys={[props.location.pathname]}
+        defaultSelectedKeys={[location.pathname]}
+        selectedKeys={[location.pathname]}
       >
         {GET_FILTERED_MENU_ITEM(props.user && props.user.role).map(menu => (
           <Menu.Item key={menu.to} icon={menu.icon}>
@@ -49,11 +52,10 @@ const SideBar = props => {
   );
 };
 
-export default withRouter(SideBar);
+export default SideBar;
 
 SideBar.propTypes = {
   collapsed: PropTypes.bool,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  location: PropTypes.object.isRequired,
   layoutVariant: PropTypes.number,
 };

@@ -53,8 +53,8 @@ const CartDrawer = ({ visible, setVisible }) => {
       placement="right"
       closable
       onClose={onCloseHandler}
-      visible={visible}
-      width="320"
+      open={visible}
+      width={320}
       data-testid="drawer"
     >
       <List

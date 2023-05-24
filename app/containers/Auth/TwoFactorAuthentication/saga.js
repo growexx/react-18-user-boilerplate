@@ -3,7 +3,7 @@
  */
 
 import { put, takeLatest } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
+import { push } from 'redux-first-history';
 import Emitter from 'utils/events';
 import { loginSuccessResponse } from 'containers/Auth/Login/stub/login.stub';
 import { SUBMIT } from './constants';

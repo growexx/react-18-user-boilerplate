@@ -11,7 +11,7 @@ React Boilerplate v4.0.0 is out and it's a doozy! Here are the highlights:
   - We've added `useInjectSaga` and `useInjectReducer` hooks to manage saga and reducer injection. They're integrated into the generators and thus become the new defaults. (Should you need them, the HOCs are still there.)
   - The generators don't support classes anymore. The `PureComponent` vs `Component` choice was replaced with an option to wrap your component inside `React.memo`.
 - After much deliberation, `Immutable.js` is finally gone. We've added `Immer` instead. With it, we can write very concise and readable reducers while sticking to native JavaScript data structures.
-- Following the release of React Hooks, it's become even clearer that `react-testing-library` is now the industry-standard for React DOM testing. Workarounds for the incompatibilities between `enzyme` and `styled-components` are gone and we can now write leaner and more meaningful tests.
+- Following the release of React Hooks, it's become even clearer that `@testing-library/react` is now the industry-standard for React DOM testing. Workarounds for the incompatibilities between `enzyme` and `styled-components` are gone and we can now write leaner and more meaningful tests.
 
 There are many more changes to our documentation, internals and general project setup. You can find a full changelog below.
 
@@ -22,7 +22,7 @@ We hope you enjoy this release and welcome any feedback, bug reports or feature 
 ### Main
 
 - **Remove `Immutable.js` in favor of `Immer`** (**@julienben**, **@robertaird**)
-- **Migrate from `enzyme` to `react-testing-library`** (**@mensae**)
+- **Migrate from `enzyme` to `@testing-library/react`** (**@mensae**)
   - New instructions for snapshot and behavior testing
 - **Embracing Hooks** (**@julienben**)
   - Add `eslint-plugin-react-hooks`
@@ -41,12 +41,12 @@ We hope you enjoy this release and welcome any feedback, bug reports or feature 
 ### Internals updates
 
 - Many dependency updates including: (**@julienben**)
-  - react and react-dom (`16.6` to `16.8.6`)
-  - react-redux (`5` to `7`) (**@bumi001**, **@jwinn**)
+  - react and react-dom (`16.8.6` to `18.2.0`)
+  - react-redux (`7` to `8`) (**@bumi001**, **@jwinn**)
   - connected-react-router (`4` to `6`)
   - react-router-dom (`4` to `5`)
   - redux-saga (`0.16` to `1`)
-  - sanitize.css (`4` to `8`)
+  - sanitize.css (`8` to `13`)
 - Update default saga injection mode to DAEMON (**@howardya**)
 - Update generators to reflect all the stack changes
 - Migrate default Node version to `lts/dubnium` (**@julienben**)
@@ -80,7 +80,7 @@ Next steps will include re-thinking immutability in the store (RFC @ #2092), re-
 
 ### Main
 
-- **Upgrades to Babel 7, React 16.6, ESLint 5, styled-components 4** (@julienben)
+- **Upgrades to Babel 7, React 18.2, ESLint 5, styled-components 4** (@julienben)
   - Config file and Babel plugin cleanup (@gretzky)
   - Fix extract-intl script for Babel 7 (@fanixk)
 - **Webpack improvements**
@@ -99,6 +99,7 @@ Next steps will include re-thinking immutability in the store (RFC @ #2092), re-
 ### Other Updates
 
 - Migration from deprecated react-router-redux to connected-react-router (@julienben)
+- Migration from deprecated connected-react-router to redux-first-history (@julienben)
 - Migration from react-loadable to loadable-components (@julienben)
 - Quick start - Clone to a named directory (@spawnia)
 - Scoped variables in i18n messages (@hatsuo)
@@ -119,16 +120,16 @@ Next steps for us will be revisiting the dev branch, revisiting outstanding PRs 
 
 ### Main
 
-- **Upgrade Webpack to v4** (@julienben @stern-shawn)
+- **Upgrade Webpack to v5** (@julienben @stern-shawn)
   - Syntax / function changes (mode, optimization, etc.)
   - Remove webpack loader syntax from main app
   - Better SVG handling
 - **Upgrade Redux to v4** (@gretzky)
-- **Upgrade React to v16** (@blling @gretzky)
+- **Upgrade React to v18** (@blling @gretzky)
 - **Upgrade Enzyme to v3** (@blling @gretzky)
   - Add in new Adapter, as required
   - Minor Jest config tweaks to include new Enzyme setup config
-- **Upgrade styled-components to v3** (@julienben)
+- **Upgrade styled-components to v5** (@julienben)
   - Reconfigure Jest snapshot testing for styled-components (@gretzky)
 - **Added support for node v9, v8** (@julienben)
   - Removed support for node v6
