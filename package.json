@@ -134,6 +134,7 @@
     "sanitize.css": "^13.0.0",
     "sha256": "^0.2.0",
     "styled-components": "^5.3.9",
+    "swr": "^2.2.0",
     "validator": "^13.9.0",
     "webpack-bundle-analyzer": "^4.8.0",
     "webpack-manifest-plugin": "^5.0.0",

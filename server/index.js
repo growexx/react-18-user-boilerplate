@@ -2,6 +2,7 @@
 
 const express = require('express');
 const logger = require('./logger');
+require('dotenv').config();
 
 const argv = require('./argv');
 const port = require('./port');
@@ -45,6 +46,8 @@ app.listen(port, host, async err => {
   if (ngrok) {
     let url;
     try {
+      if (process.env.NGROK_AUTH_TOKEN)
+        await ngrok.authtoken(process.env.NGROK_AUTH_TOKEN);
       url = await ngrok.connect(port);
     } catch (e) {
       return logger.error(e);
