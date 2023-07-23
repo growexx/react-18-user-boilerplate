@@ -6,7 +6,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory } from 'history';
+import * as Sentry from '@sentry/react';
 import createReducer from './reducers';
+
+const sentryReduxEnhancer = Sentry.createReduxEnhancer({});
 
 const { createReduxHistory, routerMiddleware } = createReduxHistoryContext({
   history: createBrowserHistory(),
@@ -39,7 +42,7 @@ export default function configureStore(initialState = {}) {
   // 2. routerMiddleware: Syncs the location/URL path to the state
   const middlewares = [sagaMiddleware, routerMiddleware];
 
-  const enhancers = [applyMiddleware(...middlewares)];
+  const enhancers = [applyMiddleware(...middlewares), sentryReduxEnhancer];
 
   const store = createStore(
     createReducer(),

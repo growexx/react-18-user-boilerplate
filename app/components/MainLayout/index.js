@@ -9,6 +9,7 @@ import App from 'containers/App';
 import Emitter from 'utils/events';
 import { userExists } from 'utils/Helper';
 import { EMITTER_EVENTS } from 'utils/constants';
+import * as Sentry from '@sentry/react';
 import { LAYOUT_CONFIG } from '../constants';
 import { StyledMainLayout } from './StyledMainLayout';
 import Layouts from './Layout';
@@ -92,7 +93,7 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps);
 
-const MainLayoutWithConnect = withConnect(MainLayout);
+const MainLayoutWithConnect = withConnect(Sentry.withProfiler(MainLayout));
 
 const MainLayoutWrapper = () => {
   const location = useLocation();
