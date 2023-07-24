@@ -37,6 +37,7 @@ import AuthRoute from './AuthRoute';
 import GlobalStyle from '../../global-styles';
 import { ROUTES } from '../constants';
 import { manageSession } from '../../utils/Helper';
+import GraphQLDemo from '../../examples/GraphQLDemo/Loadable';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -75,6 +76,7 @@ export default function App() {
           <Route path={ROUTES.USERS} element={<Users />} />
           <Route path={ROUTES.CHARTS} element={<Charts />} />
           <Route path={ROUTES.PRODUCTS} element={<Products />} />
+          <Route path={ROUTES.GRAPHQL_DEMO} element={<GraphQLDemo />} />
           <Route
             path={ROUTES.MULTI_TAB_SUPPORT}
             element={<MultiTabSupport />}

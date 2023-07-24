@@ -23,6 +23,7 @@ export const ROUTES = {
   FORGOT_PASSWORD: '/forgot-password',
   MULTI_TAB_SUPPORT: '/multi-tab-support',
   PRODUCTS: '/products',
+  GRAPHQL_DEMO: '/graphql-demo',
 };
 
 // API-ROUTES
