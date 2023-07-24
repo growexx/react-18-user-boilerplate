@@ -87,6 +87,7 @@
 | Two Factor              | Basic demo  for OtpComponent and two factor     |
 | User Management         | Basic demo User list with Pagination, Sort, Search, Filter, Add/Edit/Delete User     |
 | Admin Charts            | Charts Pages with statistics and Filters        |
+| Security Question       | Register and Reset Via security question        |
 | Real-Time-Chat          | Real time chat with firebase                    |
 | Multi Tab Communication | Demo to communicate between tabs                |
 | Firebase Cloud Messaging| Basic example for push notifications using fcm  |

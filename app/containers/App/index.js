@@ -30,6 +30,10 @@ import ChangePassword from 'containers/ChangePassword/Loadable';
 import MultiTabSupport from 'examples/MultiTabSupport/Loadable';
 import ForgotPassword from 'containers/Auth/ForgotPassword/Loadable';
 import NumeralConversion from 'examples/NumeralConversion/Loadable';
+import RegisterQuestion from 'examples/SecurityQuestion/RegisterQuestion';
+import ResetPassword from 'examples/SecurityQuestion/ResetPassword';
+import ResetPasswordMain from 'examples/SecurityQuestion/ResetPassword/ResetPasswordMain';
+import PasswordChange from 'examples/SecurityQuestion/ResetPassword/PasswordChange';
 import { FAV_ICONS } from './constants';
 import PrivateRoute from './PrivateRoute';
 import RoleMiddleWare from './RoleMiddleWare';
@@ -85,6 +89,10 @@ export default function App() {
             path={ROUTES.NUMERAL_CONVERTER}
             element={<NumeralConversion />}
           />
+          <Route
+            path={ROUTES.REGISTER_QUESTION}
+            element={<RegisterQuestion />}
+          />
         </Route>
         {/* RoleMiddleware */}
         <Route element={<RoleMiddleWare />}>
@@ -108,6 +116,16 @@ export default function App() {
             exact
             path={ROUTES.FORGOT_PASSWORD}
             element={<ForgotPassword />}
+          />
+          <Route
+            exact
+            path={ROUTES.PASSWORD_CHANGE}
+            element={<PasswordChange />}
+          />
+          <Route path={ROUTES.RESET_PASSWORD} element={<ResetPasswordMain />} />
+          <Route
+            path={ROUTES.RESET_PASSWORD_SECURITY}
+            element={<ResetPassword />}
           />
         </Route>
         <Route exact path={ROUTES.UNAUTHORIZED} component={UnauthorizedPage} />

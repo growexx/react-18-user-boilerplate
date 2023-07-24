@@ -22,7 +22,7 @@ const componentWrapper = () =>
     <Provider store={globalStore}>
       <IntlProvider locale="en">
         <Router history={history}>
-          <ForgotPassword />
+          <ForgotPassword history={history} />
         </Router>
       </IntlProvider>
     </Provider>,
