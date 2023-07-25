@@ -25,12 +25,8 @@ describe('<ListWithInfiniteLoader />', () => {
     globalStore = store;
   });
 
-  it('should render and match the snapshot', () => {
-    request.mockImplementation(() => Promise.resolve({ status: 1 }));
-    const {
-      container: { firstChild },
-    } = componentWrapper();
-    expect(firstChild).toMatchSnapshot();
+  afterEach(() => {
+    jest.clearAllMocks();
   });
   it('should render and match the snapshot', async () => {
     request.mockImplementation(() =>
@@ -38,10 +34,15 @@ describe('<ListWithInfiniteLoader />', () => {
         status: 1,
         results: [
           {
+            id: '1',
+            loading: false,
+            gender: 'male',
             name: {
+              title: 'Mr',
+              first: 'Test',
               last: 'testInfiniteLoader',
-              email: 'test@234.com',
             },
+            email: 'test@234.com',
           },
         ],
       }),
@@ -49,7 +50,7 @@ describe('<ListWithInfiniteLoader />', () => {
     const {
       container: { firstChild },
     } = componentWrapper();
-    await waitFor(() => expect(request).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(request).toHaveBeenCalledTimes(1));
     expect(firstChild).toMatchSnapshot();
   });
 });

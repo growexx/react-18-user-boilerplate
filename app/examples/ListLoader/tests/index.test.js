@@ -12,7 +12,6 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
-import request from 'utils/request';
 import configureStore from '../../../configureStore';
 import Loader from '../index';
 let globalStore;
@@ -34,10 +33,7 @@ describe('<Loader />', () => {
   });
 
   it('should render and match the snapshot', () => {
-    request.mockImplementation(() => Promise.resolve({ status: 1 }));
-    const {
-      container: { firstChild },
-    } = componentWrapper();
-    expect(firstChild).toMatchSnapshot();
+    const { container } = componentWrapper();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
