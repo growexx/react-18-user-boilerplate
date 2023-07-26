@@ -16,11 +16,31 @@ import {
 } from 'components/Notification/stub';
 import Notification from 'components/Notification/index';
 import { getNotificationsMock } from 'components/Notification/constants';
+import { io } from 'socket.io-client';
 jest.mock('components/Notification/constants');
+jest.mock('socket.io-client');
 
 describe('<Notification />', () => {
   const history = createMemoryHistory();
   const { store } = configureStore({}, history);
+  const mockSocketOn = jest.fn();
+  const mockSocketOnWithPayload = jest.fn(
+    (notificationType, newNotificationCallbackFn) => {
+      newNotificationCallbackFn({
+        title: 'New notification',
+        body: 'You have new notification',
+        icon:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZZrv3_PEnkdOIZvnr0COONt3kL7rSSq623dB3fyLCgT7GARpReF26nPOre6JCLHKu7KQ&usqp=CAU',
+      });
+    },
+  );
+  beforeEach(() => {
+    io.mockImplementation(() => ({
+      connect: mockSocketOn,
+      on: mockSocketOn,
+      close: mockSocketOn,
+    }));
+  });
   it('should render notifications first time with success', async () => {
     getNotificationsMock.mockImplementation(() =>
       getNotificationsSuccessMock(),
@@ -166,6 +186,11 @@ describe('<Notification />', () => {
     expect(getByTestId(TEST_IDS.EMPTY_CONTAINER)).toBeInTheDocument();
   });
   it('should render a div', () => {
+    io.mockImplementation(() => ({
+      connect: mockSocketOn,
+      on: mockSocketOnWithPayload,
+      close: mockSocketOn,
+    }));
     const { container } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
