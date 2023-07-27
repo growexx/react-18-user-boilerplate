@@ -41,12 +41,7 @@ export function Login() {
   const dispatch = useDispatch();
   const stateToProps = useSelector(state => selectLogin(state), shallowEqual);
   return (
-    <Form
-      onFinish={() => {
-        console.log('called');
-        dispatch(fireLogin());
-      }}
-    >
+    <Form onFinish={() => dispatch(fireLogin())}>
       <StyledAuthContainer>
         <Helmet>
           <title>Login</title>
