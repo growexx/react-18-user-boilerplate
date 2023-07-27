@@ -6,6 +6,7 @@ import StorageService from 'utils/StorageService';
 import { createHttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { setContext } from 'apollo-link-context';
+import fetch from 'whatwg-fetch';
 import messages from './messages';
 
 const extractMessage = errorExtension => {
@@ -114,6 +115,7 @@ const httpLink = createHttpLink({
   uri:
     process.env
       .REACT_APP_GRAPHQL_ENDPOINT /** https://48p1r2roz4.sse.codesandbox.io */,
+  fetch,
 });
 
 export const link = errorLink.concat(authLink.concat(httpLink));

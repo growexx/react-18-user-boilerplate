@@ -232,6 +232,6 @@
     "webpack-dev-middleware": "6.0.2",
     "webpack-hot-middleware": "2.25.3",
     "webpack-pwa-manifest": "^4.3.0",
-    "whatwg-fetch": "3.6.2"
+    "whatwg-fetch": "^3.6.2"
   }
 }
