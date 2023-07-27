@@ -110,11 +110,11 @@
 ## Optional Feature Branches 
 
 1.  Hooks Support :  **feature/12-Hooks-Support**  <br />
-2.  Google Analytics Integration :  **feature/18-Analytics-Tools** <br />
-3.  Graphql support for boilerplate :  **feature/11-GraphQL-Support** <br />
+2.  Google Analytics Integration :  **feature/18-analytics-tools** <br />
+3.  Graphql support for boilerplate :  **feature/11-graphql-support** <br />
 4.  React-Hook-Form support for boilerplate :  **feature/react-hook-form** <br/>
-5.  Firebase Social Login support for boilerplate :  **feature/social-login** <br/>
-6.  Sentry Performance Monitoring & Error Tracking:  **feature/RB-13-Sentry-setup**<br/>
-7.  Real Time Chat:  **feature/RB-66-Real-Time-Chat**  <br/>
-8.  Real Time Notifications with socket.io: **feature/RB-87-Notifications-socket.io** <br/>
+5.  Firebase Social Login support for boilerplate :  **feature/Social-login** <br/>
+6.  Sentry Performance Monitoring & Error Tracking:  **feature/Sentry-setup**<br/>
+7.  Real Time Chat:  **feature/Real-time-chat**  <br/>
+8.  Real Time Notifications with socket.io: **feature/87-notifications-socket.io** <br/>
 9.  Firebase Cloud Messaging:  **feature/RB-85-Push-Notifications-FCM**<br />
