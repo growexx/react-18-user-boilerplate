@@ -11,18 +11,18 @@ import 'antd/es/modal/style';
 import 'antd/es/slider/style';
 import { API_ENDPOINTS } from 'containers/constants';
 
-class ImageUpload extends React.Component {
-  state = {
+const ImageUpload = () => {
+  const [state, setState] = React.useState({
     fileList: [],
-  };
+  });
 
-  onChange = ({ fileList: newFileList }) => {
-    this.setState({
+  const onChange = ({ fileList: newFileList }) => {
+    setState({
       fileList: newFileList,
     });
   };
 
-  onPreview = async file => {
+  const onPreview = async file => {
     let src = file.url;
     if (!src) {
       src = await new Promise(resolve => {
@@ -36,24 +36,21 @@ class ImageUpload extends React.Component {
     const imgWindow = window.open(src);
     imgWindow.document.write(image.outerHTML);
   };
-
-  render() {
-    return (
-      <ImgCrop rotate>
-        <Upload
-          action={API_ENDPOINTS.IMAGE_UPLOAD}
-          listType="picture-card"
-          fileList={this.state.fileList}
-          onChange={this.onChange}
-          onPreview={this.onPreview}
-          maxCount={1}
-        >
-          {this.state.fileList.length < 1 && '+ Upload'}
-        </Upload>
-      </ImgCrop>
-    );
-  }
-}
+  return (
+    <ImgCrop rotate>
+      <Upload
+        action={API_ENDPOINTS.IMAGE_UPLOAD}
+        listType="picture-card"
+        fileList={state.fileList}
+        onChange={onChange}
+        onPreview={onPreview}
+        maxCount={1}
+      >
+        {state.fileList.length < 1 && '+ Upload'}
+      </Upload>
+    </ImgCrop>
+  );
+};
 
 ImageUpload.propTypes = {};
 

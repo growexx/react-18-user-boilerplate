@@ -7,12 +7,12 @@
  */
 
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import history from 'utils/history';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
-import { Login, mapDispatchToProps } from '../index';
+import { Login } from '../index';
 import Lodable from '../Loadable';
 import configureStore from '../../../../configureStore';
 let globalStore;
@@ -29,6 +29,7 @@ const componentWrapper = Component =>
       </IntlProvider>
     </Provider>,
   );
+
 describe('<Login />', () => {
   beforeAll(() => {
     const { store } = configureStore({});
@@ -41,30 +42,25 @@ describe('<Login />', () => {
     } = componentWrapper(Login);
     expect(firstChild).toMatchSnapshot();
   });
-  it('mapDispatch to props', () => {
-    const mockFn = jest.fn();
-    const eventObject = {
-      target: {
-        value: 'test',
-      },
-      preventDefault: jest.fn(),
-    };
-    const returnValue = mapDispatchToProps(mockFn);
-    returnValue.onChangeEmail(eventObject);
-    returnValue.onChangePassword(eventObject);
-    returnValue.onSignIn(eventObject);
-    const eventObjectWithoutPreventDefault = {
-      target: {
-        value: 'test',
-      },
-    };
-    returnValue.onSignIn(eventObjectWithoutPreventDefault);
-    expect(mockFn).toBeCalled();
-  });
   it('Should render and match the snapshot Loadable', () => {
     const {
       container: { firstChild },
     } = componentWrapper(Lodable);
     expect(firstChild).toMatchSnapshot();
+  });
+  it('Should dispatch events', () => {
+    const { getByPlaceholderText, getByText } = componentWrapper(Login);
+    fireEvent.change(getByPlaceholderText('Email'), {
+      target: {
+        value: 'it@growexx.com',
+      },
+    });
+    fireEvent.change(getByPlaceholderText('Password'), {
+      target: {
+        value: 'it@growexx.com',
+      },
+    });
+    fireEvent.click(getByText('SIGN IN'));
+    expect(jest.fn()).toBeCalled();
   });
 });

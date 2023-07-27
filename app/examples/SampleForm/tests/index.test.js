@@ -24,6 +24,7 @@ const props = {
   pristine: true,
   reset: true,
   submitting: true,
+  handleSubmit: jest.fn(),
 };
 const componentWrapper = () =>
   render(

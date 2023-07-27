@@ -17,37 +17,27 @@ import {
   TABLE_DATA,
 } from './constants';
 import messages from './messages';
-class ExportDataToCsv extends React.Component {
-  state = {
-    selectedRows: [],
-  };
+const ExportDataToCsv = () => {
+  const [selectedRowsState, setSelectedRows] = React.useState([]);
 
-  rowSelection = {
+  const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-      // eslint-disable-next-line no-console
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        'selectedRows: ',
-        selectedRows,
-      );
-      this.setState({
-        selectedRows,
-      });
+      setSelectedRows(selectedRows);
     },
   };
 
   /**
    * export data client side
    */
-  exportDataClientSide = () => {
-    exportJsonAsCSV(this.state.selectedRows, FIELDS_FOR_CSV, CSV_FILE_NAME);
+  const exportDataClientSide = () => {
+    exportJsonAsCSV(selectedRowsState, FIELDS_FOR_CSV, CSV_FILE_NAME);
   };
 
   /**
    * export data server side
    * exportDataServerSide = () => {
     const payload = {
-      data: this.state.selectedRows,
+      data: selectedRowsState,
       fields: FIELDS_FOR_CSV,
     };
     request(API_ENDPOINTS.EXPORT_CSV, payload).then(res => {
@@ -61,39 +51,36 @@ class ExportDataToCsv extends React.Component {
   };
   */
 
-  render() {
-    return (
-      <div>
-        <Helmet>
-          <title>ExportDataToCsv</title>
-          <meta name="description" content="Description of ExportDataToCsv" />
-        </Helmet>
-        <StyledExport>
-          <StyledButton>
-            <Button
-              data-testid="ExportButton"
-              type="primary"
-              onClick={this.exportDataClientSide}
-              disabled={this.state.selectedRows.length === 0}
-            >
-              <FormattedMessage {...messages.exportData} />
-            </Button>
-          </StyledButton>
-          <Table
-            scroll={{ x: 350 }}
-            data-testid="DataTable"
-            pagination={false}
-            rowSelection={{
-              type: 'checkbox',
-              ...this.rowSelection,
-            }}
-            columns={TABLE_COLUMNS}
-            dataSource={TABLE_DATA}
-          />
-        </StyledExport>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <Helmet>
+        <title>ExportDataToCsv</title>
+        <meta name="description" content="Description of ExportDataToCsv" />
+      </Helmet>
+      <StyledExport>
+        <StyledButton>
+          <Button
+            data-testid="ExportButton"
+            type="primary"
+            onClick={exportDataClientSide}
+            disabled={selectedRowsState.length === 0}
+          >
+            <FormattedMessage {...messages.exportData} />
+          </Button>
+        </StyledButton>
+        <Table
+          data-testid="DataTable"
+          pagination={false}
+          rowSelection={{
+            type: 'checkbox',
+            ...rowSelection,
+          }}
+          columns={TABLE_COLUMNS}
+          dataSource={TABLE_DATA}
+        />
+      </StyledExport>
+    </div>
+  );
+};
 
 export default ExportDataToCsv;

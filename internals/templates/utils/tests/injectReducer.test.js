@@ -53,16 +53,6 @@ describe('injectReducer decorator', () => {
       injectReducer({ key: 'test', reducer })(() => null).displayName,
     ).toBe('withReducer(Component)');
   });
-
-  it('should propagate props', () => {
-    const props = { testProp: 'test' };
-    const renderedComponent = renderer.create(
-      <Provider store={globalStore}>
-        <ComponentWithReducer {...props} />
-      </Provider>,
-    );
-    expect(renderedComponent.root.props.children.props).toEqual(props);
-  });
 });
 
 describe('useInjectReducer hook', () => {

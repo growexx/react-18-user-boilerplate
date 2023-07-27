@@ -47,7 +47,7 @@ exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
           class="ant-spin-container"
         >
           <div
-            class="ant-table ant-table-scroll-horizontal"
+            class="ant-table"
             data-testid="DataTable"
           >
             <div
@@ -55,10 +55,9 @@ exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
             >
               <div
                 class="ant-table-content"
-                style="overflow-x: auto; overflow-y: hidden;"
               >
                 <table
-                  style="width: 350px; min-width: 100%; table-layout: auto;"
+                  style="table-layout: auto;"
                 >
                   <colgroup>
                     <col
@@ -113,48 +112,6 @@ exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
                   <tbody
                     class="ant-table-tbody"
                   >
-                    <tr
-                      aria-hidden="true"
-                      class="ant-table-measure-row"
-                      style="height: 0px; font-size: 0px;"
-                    >
-                      <td
-                        style="padding: 0px; border: 0px; height: 0px;"
-                      >
-                        <div
-                          style="height: 0px; overflow: hidden;"
-                        >
-                           
-                        </div>
-                      </td>
-                      <td
-                        style="padding: 0px; border: 0px; height: 0px;"
-                      >
-                        <div
-                          style="height: 0px; overflow: hidden;"
-                        >
-                           
-                        </div>
-                      </td>
-                      <td
-                        style="padding: 0px; border: 0px; height: 0px;"
-                      >
-                        <div
-                          style="height: 0px; overflow: hidden;"
-                        >
-                           
-                        </div>
-                      </td>
-                      <td
-                        style="padding: 0px; border: 0px; height: 0px;"
-                      >
-                        <div
-                          style="height: 0px; overflow: hidden;"
-                        >
-                           
-                        </div>
-                      </td>
-                    </tr>
                     <tr
                       class="ant-table-row ant-table-row-level-0"
                       data-row-key="1"

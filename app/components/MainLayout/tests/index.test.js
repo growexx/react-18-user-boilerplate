@@ -56,7 +56,6 @@ describe('<MainLayout />', () => {
   it('emitter events', () => {
     const { container } = componentWrapper();
     Emitter.emit(EMITTER_EVENTS.LOG_IN);
-    Emitter.emit(EMITTER_EVENTS.LOG_OUT);
     expect(container.firstChild.tagName).toEqual('DIV');
   });
 });

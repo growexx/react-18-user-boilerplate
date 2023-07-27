@@ -14,24 +14,15 @@ import {
   GoogleOutlined,
   WindowsFilled,
 } from '@ant-design/icons';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import PropTypes from 'prop-types';
-import { createStructuredSelector } from 'reselect';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import {
-  makeSelectEmail,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectPassword,
-} from 'containers/Auth/Login/selectors';
 import messages from './messages';
 import { StyledLogin } from './StyledLogin';
-import { makeSelectSuccess } from './selectors';
 import { changeEmail, changePassword, fireLogin } from './actions';
 import reducer from './reducer';
 import saga from './saga';
+import { selectLogin } from './selectors';
 import { StyledAuthContainer } from '../StyledAuthContainer';
 import AuthSideContainer from '../index';
 import { AUTH_TYPE } from '../constants';
@@ -44,19 +35,18 @@ const showNotification = () => {
     message: <FormattedMessage {...messages.notificationToast} />,
   });
 };
-export function Login({
-  loading,
-  onSignIn,
-  email,
-  password,
-  error,
-  onChangeEmail,
-  onChangePassword,
-}) {
+export function Login() {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
+  const dispatch = useDispatch();
+  const stateToProps = useSelector(state => selectLogin(state), shallowEqual);
   return (
-    <Form onFinish={onSignIn}>
+    <Form
+      onFinish={() => {
+        console.log('called');
+        dispatch(fireLogin());
+      }}
+    >
       <StyledAuthContainer>
         <Helmet>
           <title>Login</title>
@@ -94,9 +84,9 @@ export function Login({
               >
                 <Input
                   placeholder="Email"
-                  onChange={onChangeEmail}
+                  onChange={evt => dispatch(changeEmail(evt.target.value))}
                   type="email"
-                  value={email}
+                  value={stateToProps.email}
                 />
               </Form.Item>
               <Form.Item
@@ -111,15 +101,15 @@ export function Login({
                 ]}
               >
                 <Input.Password
-                  value={password}
+                  value={stateToProps.password}
                   placeholder="Password"
-                  onChange={onChangePassword}
+                  onChange={evt => dispatch(changePassword(evt.target.value))}
                   type="password"
                 />
               </Form.Item>
             </div>
             <Form.Item>
-              <Button loading={loading} htmlType="submit">
+              <Button loading={stateToProps.loading} htmlType="submit">
                 <FormattedMessage {...messages.signIn} />
               </Button>
             </Form.Item>
@@ -128,46 +118,10 @@ export function Login({
             <FormattedMessage {...messages.forgotPassword} />
           </Link>
         </StyledLogin>
-        {error === true && showNotification()}
+        {stateToProps.error === true && showNotification()}
       </StyledAuthContainer>
     </Form>
   );
 }
 
-Login.propTypes = {
-  history: PropTypes.object,
-  loading: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  success: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  onSignIn: PropTypes.func,
-  email: PropTypes.string,
-  password: PropTypes.string,
-  onChangePassword: PropTypes.func,
-  onChangeEmail: PropTypes.func,
-};
-
-const mapStateToProps = createStructuredSelector({
-  email: makeSelectEmail(),
-  password: makeSelectPassword(),
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
-  success: makeSelectSuccess(),
-});
-
-export function mapDispatchToProps(dispatch) {
-  return {
-    onChangeEmail: evt => dispatch(changeEmail(evt.target.value)),
-    onChangePassword: evt => dispatch(changePassword(evt.target.value)),
-    onSignIn: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(fireLogin());
-    },
-  };
-}
-
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-export default compose(withConnect)(Login);
+export default Login;
