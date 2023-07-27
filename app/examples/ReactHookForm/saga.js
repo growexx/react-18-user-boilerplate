@@ -1,11 +1,9 @@
 import { takeLatest } from '@redux-saga/core/effects';
-// import makeSelectSampleForm from './selectors';
 import { SUBMIT_DATA } from './constants';
 
+// eslint-disable-next-line no-unused-vars
 export function* submitData(action) {
-  // eslint-disable-next-line no-console
-  console.log('submitData body :: ', action.payload);
-  // Note: Add API Call
+  // Note: Add API Call with action.payload
 }
 
 // Individual exports for testing

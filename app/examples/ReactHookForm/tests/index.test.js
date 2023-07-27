@@ -36,7 +36,6 @@ describe('ReactHookForm Component', () => {
     expect(screen.getByLabelText(/Email:/i)).toBeTruthy();
     expect(screen.getByLabelText(/Favorite color:/i)).toBeTruthy();
 
-    // The submit button should be in the document
     expect(screen.getByText(/Submit/i)).toBeTruthy();
   });
 
@@ -55,7 +54,6 @@ describe('ReactHookForm Component', () => {
       target: { value: 'johndoe@gmail.com' },
     });
 
-    // Continue filling the rest of the fields...
     const getById = queryByAttribute.bind(null, 'id');
     const eventObject = {
       preventDefault: jest.fn(),
@@ -74,7 +72,6 @@ describe('ReactHookForm Component', () => {
         value: 'ff0000',
       },
     });
-    // .ant-select-item-option-content
     fireEvent.click(
       document.querySelectorAll('.ant-select-item-option-content')[0],
     );
@@ -82,7 +79,6 @@ describe('ReactHookForm Component', () => {
     fireEvent.focus(screen.getByPlaceholderText('From'), eventObject);
     fireEvent.blur(screen.getByPlaceholderText('From'), eventObject);
     screen.getByPlaceholderText('From').blur();
-    // // onChange from
     fireEvent.mouseDown(screen.getByPlaceholderText('From'));
     fireEvent.change(screen.getByPlaceholderText('From'), {
       target: {
@@ -90,7 +86,6 @@ describe('ReactHookForm Component', () => {
       },
     });
     fireEvent.click(document.querySelectorAll('.ant-picker-cell-selected')[0]);
-    // // onChange To
     const to = screen.getByPlaceholderText('To');
     fireEvent.mouseDown(to);
     fireEvent.change(to, {

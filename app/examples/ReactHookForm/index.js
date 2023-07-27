@@ -59,7 +59,6 @@ const ReactHookForm = props => {
       </div>
       <StyledItem>
         <Form control={control} onSubmit={handleSubmit(onSubmit)}>
-          {/* First Name */}
           <FormItem>
             <label htmlFor="firstName">First Name: </label>
             <Controller
@@ -82,7 +81,6 @@ const ReactHookForm = props => {
             )}
           </FormItem>
 
-          {/* Last Name */}
           <FormItem>
             <label htmlFor="lastName">Last Name: </label>
             <Controller
@@ -105,7 +103,6 @@ const ReactHookForm = props => {
             )}
           </FormItem>
 
-          {/* Email */}
           <FormItem>
             <label htmlFor="email">Email: </label>
             <Controller
@@ -130,7 +127,6 @@ const ReactHookForm = props => {
             )}
           </FormItem>
 
-          {/* Gender Sex */}
           <FormItem>
             <label htmlFor="sex">Sex: </label>
             <Controller
@@ -149,7 +145,6 @@ const ReactHookForm = props => {
             />
           </FormItem>
 
-          {/* Favorite Color */}
           <FormItem>
             <label htmlFor="favoriteColor">Favorite Color: </label>
             <Controller
@@ -166,7 +161,6 @@ const ReactHookForm = props => {
             />
           </FormItem>
 
-          {/* Employed */}
           <FormItem>
             <label htmlFor="employed">Employed: </label>
             <Controller
@@ -185,7 +179,6 @@ const ReactHookForm = props => {
             />
           </FormItem>
 
-          {/* Filter dates */}
           <FormItem>
             <label htmlFor="rangePicker">Filter dates: </label>
             <Controller
@@ -208,7 +201,6 @@ const ReactHookForm = props => {
             />
           </FormItem>
 
-          {/* Notes */}
           <FormItem>
             <label htmlFor="notes">Notes: </label>
             <Controller
