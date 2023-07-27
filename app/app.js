@@ -33,6 +33,7 @@ import LanguageProvider from 'containers/LanguageProvider';
 import '!file-loader?name=[name].[ext]!./images/favicons/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess'; // eslint-disable-line import/extensions
 
+import 'file-loader?name=firebase-messaging-sw.js!./firebase-messaging-sw';
 import configureStore from './configureStore';
 
 // Import i18n messages

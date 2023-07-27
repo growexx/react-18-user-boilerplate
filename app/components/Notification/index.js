@@ -4,20 +4,23 @@
  * This is the Notification Component file.
  */
 import React from 'react';
+import { Waypoint } from 'react-waypoint';
+import { Badge, Button, List, Skeleton, Empty, notification } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { Waypoint } from 'react-waypoint';
-import { Badge, List, Skeleton, Empty, notification, Button } from 'antd';
 import { BellOutlined } from '@ant-design/icons';
 import { TEST_IDS } from 'components/Notification/stub';
 import {
   NotificationWrapper,
   StyledPopOver,
 } from 'components/Notification/StyledNotification';
+import { fcm } from 'utils/firebase';
 import {
   NOTIFICATION_LIMIT,
   getNotificationsMock,
 } from 'components/Notification/constants';
+import { onMessage } from 'firebase/messaging';
+import { withRouter } from '../../containers/App/withRouter';
 
 class Notification extends React.Component {
   constructor(props) {
@@ -32,42 +35,58 @@ class Notification extends React.Component {
     this.newNotificationsCursor = 0;
   }
 
-  loadNotifications = () => {
+  loadNotifications = (notificationType, payload) => {
     const { notificationList, unreadCount } = this.state;
-    setTimeout(() => {
-      getNotificationsMock()
-        .then(res => {
-          if (res.status) {
-            if (res.data.length !== NOTIFICATION_LIMIT) {
+    if (notificationType === 'pushNotification') {
+      const {
+        notification: { body, icon, click_action: clickAction },
+      } = payload;
+      const notificationObject = {
+        update: body,
+        read: false,
+        clickAction,
+        icon,
+      };
+      this.setState({
+        notificationList: [notificationObject, ...notificationList],
+        unreadCount: unreadCount + 1,
+      });
+    } else {
+      setTimeout(() => {
+        getNotificationsMock()
+          .then(res => {
+            if (res.status) {
+              if (res.data.length !== NOTIFICATION_LIMIT) {
+                this.setState({
+                  hasMore: false,
+                });
+              }
               this.setState({
-                hasMore: false,
+                notificationList: [...notificationList, ...res.data],
+                loading: false,
+                unreadCount: unreadCount + res.data.length,
+                newItemsLoading: false,
+              });
+            } else {
+              this.setState({
+                notificationList,
+                unreadCount,
+                loading: false,
+                newItemsLoading: false,
               });
             }
-            this.setState({
-              notificationList: [...notificationList, ...res.data],
-              loading: false,
-              unreadCount: res.data.length + unreadCount,
-              newItemsLoading: false,
-            });
-          } else {
+          })
+          .catch(err => {
+            notification.error({ message: err.message });
             this.setState({
               notificationList,
               unreadCount,
               loading: false,
               newItemsLoading: false,
             });
-          }
-        })
-        .catch(err => {
-          notification.error({ message: err.message });
-          this.setState({
-            notificationList,
-            unreadCount,
-            loading: false,
-            newItemsLoading: false,
           });
-        });
-    }, 2000);
+      }, 2000);
+    }
   };
 
   componentDidMount() {
@@ -75,25 +94,10 @@ class Notification extends React.Component {
       loading: true,
     });
     this.loadNotifications();
+    onMessage(fcm, payload => {
+      this.loadNotifications('pushNotification', payload);
+    });
   }
-
-  getNewNotificationsLoader = loaderCount => {
-    const { loading, newItemsLoading } = this.state;
-    const loaderArray = [];
-    // eslint-disable-next-line no-plusplus
-    for (let index = 0; index < loaderCount; index++) {
-      loaderArray.push(
-        <Skeleton
-          avatar
-          title={false}
-          loading={newItemsLoading || loading}
-          active
-          key={index}
-        />,
-      );
-    }
-    return <div className="newNotificationsLoader">{loaderArray}</div>;
-  };
 
   handleReadCount = () => {
     const { notificationList } = this.state;
@@ -126,6 +130,24 @@ class Notification extends React.Component {
     }
   };
 
+  getNewNotificationsLoader = loaderCount => {
+    const { loading, newItemsLoading } = this.state;
+    const loaderArray = [];
+    // eslint-disable-next-line no-plusplus
+    for (let index = 0; index < loaderCount; index++) {
+      loaderArray.push(
+        <Skeleton
+          avatar
+          title={false}
+          loading={newItemsLoading || loading}
+          active
+          key={index}
+        />,
+      );
+    }
+    return <div className="newNotificationsLoader">{loaderArray}</div>;
+  };
+
   markAllNotificationsAsRead = () => {
     const { notificationList } = this.state;
     const updatedNotificationList = notificationList.map(
@@ -146,6 +168,13 @@ class Notification extends React.Component {
     this.loadNotifications();
   };
 
+  getIcon = icon => {
+    if (typeof icon === 'object') {
+      return icon;
+    }
+    return <img src={icon} alt="icon" />;
+  };
+
   getNotificationContent = () => {
     const { notificationList, loading, hasMore } = this.state;
     const notificationsLength = notificationList.length;
@@ -159,7 +188,6 @@ class Notification extends React.Component {
             <Empty data-testid={TEST_IDS.EMPTY_CONTAINER} />
           ) : (
             notificationList.map((item, index) => (
-              // eslint-disable-next-line react/no-array-index-key
               <List.Item
                 // eslint-disable-next-line react/no-array-index-key
                 key={`${index}_${item}`}
@@ -167,7 +195,9 @@ class Notification extends React.Component {
                 onClick={() => this.handleNotificationClick(item, index)}
                 data-testid={TEST_IDS.NOTIFICATION_ITEM}
               >
-                <span className="notificationIcon">{item.icon}</span>
+                <span className="notificationIcon">
+                  {this.getIcon(item.icon)}
+                </span>
                 <p className="notificationContent">{item.update}</p>
               </List.Item>
             ))
@@ -242,4 +272,4 @@ class Notification extends React.Component {
     );
   }
 }
-export default Notification;
+export default withRouter(Notification);

@@ -6,7 +6,7 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const { GenerateSW } = require('workbox-webpack-plugin');
+const { createServiceWorkerEnv } = require('../../scripts/service-worker-env');
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
@@ -85,13 +85,6 @@ module.exports = require('./webpack.base.babel')({
       inject: true,
     }),
 
-    new GenerateSW({
-      // these options encourage the ServiceWorkers to get in there fast
-      // and not allow any straggling "old" SWs to hang around
-      clientsClaim: true,
-      skipWaiting: true,
-    }),
-
     new CompressionPlugin({
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,
@@ -126,6 +119,20 @@ module.exports = require('./webpack.base.babel')({
       hashDigestLength: 20,
     }),
     new Dotenv(),
+    {
+      apply(compiler) {
+        // Service Worker Hook
+        compiler.hooks.afterEmit.tapAsync(
+          'DoneCompilation',
+          (compilation, callback) => {
+            // Create Service Worker env file
+            createServiceWorkerEnv(compiler.outputFileSystem, () => {
+              callback();
+            });
+          },
+        );
+      },
+    },
   ],
 
   performance: {

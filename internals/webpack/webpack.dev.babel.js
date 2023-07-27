@@ -7,6 +7,8 @@ const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
+const { createServiceWorkerEnv } = require('../../scripts/service-worker-env');
 
 module.exports = require('./webpack.base.babel')({
   mode: 'development',
@@ -42,18 +44,32 @@ module.exports = require('./webpack.base.babel')({
       failOnError: false, // show a warning when there is a circular dependency
     }),
     new Dotenv(),
+    new GenerateSW({
+      // Configuration options for the plugin go here
+      clientsClaim: true,
+      skipWaiting: true,
+      cleanupOutdatedCaches: true,
+      importScripts: ['./app/firebase-messaging-sw.js'],
+    }),
+    {
+      apply(compiler) {
+        // Service Worker Hook
+        compiler.hooks.afterEmit.tapAsync(
+          'DoneCompilation',
+          (compilation, callback) => {
+            // Create Service Worker env file
+            createServiceWorkerEnv(compiler.outputFileSystem, () => {
+              callback();
+            });
+          },
+        );
+      },
+    },
   ],
 
   // Emit a source map for easier debugging
   // See https://webpack.js.org/configuration/devtool/#devtool
   devtool: 'eval-source-map',
-
-  stats: 'errors-only',
-
-  infrastructureLogging: {
-    appendOnly: true,
-    level: 'warn',
-  },
 
   performance: {
     hints: false,

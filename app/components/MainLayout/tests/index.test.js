@@ -9,6 +9,15 @@ import StorageService from 'utils/StorageService';
 import MainLayout from '../index';
 import configureStore from '../../../configureStore';
 
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
+
 const { store, history } = configureStore({});
 const tokenValue = 'test token';
 const componentWrapper = props =>
