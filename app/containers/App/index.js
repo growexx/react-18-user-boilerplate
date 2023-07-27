@@ -30,6 +30,7 @@ import ChangePassword from 'containers/ChangePassword/Loadable';
 import MultiTabSupport from 'examples/MultiTabSupport/Loadable';
 import ForgotPassword from 'containers/Auth/ForgotPassword/Loadable';
 import NumeralConversion from 'examples/NumeralConversion/Loadable';
+import ReactHookForm from 'examples/ReactHookForm/Loadable';
 import { FAV_ICONS } from './constants';
 import PrivateRoute from './PrivateRoute';
 import RoleMiddleWare from './RoleMiddleWare';
@@ -85,6 +86,7 @@ export default function App() {
             path={ROUTES.NUMERAL_CONVERTER}
             element={<NumeralConversion />}
           />
+          <Route path={ROUTES.REACT_HOOK_FORM} element={<ReactHookForm />} />
         </Route>
         {/* RoleMiddleware */}
         <Route element={<RoleMiddleWare />}>
