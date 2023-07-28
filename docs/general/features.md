@@ -13,7 +13,7 @@
 | Redux-Saga              | Built in support for redux, react-redux and saga|
 | i18n international support      | Supports multiple languages with react-intl.    |
 | SEO support             | SEO support with react-helmet                   |
-| Webpack Chunk Analyser  | npm run analyze                                 |
+| Webpack Chunk Analyzer  | npm run analyze                                 |
 | Ngrok support           | npm run start:tunnel                            |
 | Commitzen               | standard way for commits                        |
 | Pre-Commit              | Restriction for commits                         |
@@ -58,7 +58,7 @@
 |                         |                                                 |
 | Export Data as CSV      | Export data as csv ( client and backend side ) |         
 | Numeral Conversion      | Numeral js library added for all numeric actions|   
-| Localstorage            | Util to add, delete and get items from localstorage |      
+| Local storage           | Util to add, delete and get items from local storage |      
 | Event Emitter           | Util to on and off emitter events.              |
 | Form Validations        | Redux form fields with validations              |
 | Inject reducer          | Inject reducer in redux form.                   |

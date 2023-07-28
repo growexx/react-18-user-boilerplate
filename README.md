@@ -97,10 +97,10 @@ More about firebase setup can be found [here](docs/general/firebase.md).
   More about two factor authentication setup can be found [here](docs/general/twoFactorAuthentication.md).
   </dd>
   
-<dt>Ecommerce Cart Functionality</dt>
+<dt>E-commerce Cart Functionality</dt>
   <dd>You can add and delete the product in the cart and also consistency is managed between the tabs using local storage. 
   
-  More about Ecommerce Cart Functionality setup can be found [here](docs/general/ecommerceCartFunctionality.md).
+  More about E-commerce Cart Functionality setup can be found [here](docs/general/ecommerceCartFunctionality.md).
   </dd>
   <dt>Real Time Chat</dt>
   <dd> Real time chat is feature of chatting and sending messages real time with the use of firebase.
