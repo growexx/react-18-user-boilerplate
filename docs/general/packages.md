@@ -62,4 +62,5 @@ Following are the packages used in the boilerplate
 | react-waypoint          | Skeleton loader                                 |
 | jest-styled-components  | Jest utilities for Styled Components            |
 | swr                     | Backend Agnostic API(React Hooks Data Fetching) |
+| react-hook-form         | Form Control with react-hook-from               |
 
