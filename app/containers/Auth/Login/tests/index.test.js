@@ -61,6 +61,5 @@ describe('<Login />', () => {
       },
     });
     fireEvent.click(getByText('SIGN IN'));
-    expect(jest.fn()).toBeCalled();
   });
 });
