@@ -78,10 +78,10 @@ More about google analytics can be found [here](docs/general/googleAnalytics.md)
 More about graphql setup can be found [here](docs/general/graphql.md).
 
   </dd>
-  <dt>React-Final-Form Support</dt>
-  <dd>Boilerplate supports React-Final-Form. It has demo and setup added out of the box for React-Final-Form. This feature is optional and is based on requirement, so not merged in main branch.
+  <dt>React-Hook-Form Support</dt>
+  <dd>Boilerplate supports React-Hook-Form. It has demo and setup added out of the box for React-Hook-Form. This feature is optional and is based on requirement, so not merged in main branch.
   <br/>
-  Support for React-Final-Form can be found in <b>feature/React-Final-Form</b> branch.
+  Support for React-Hook-Form can be found in <b>feature/react-hook-form</b> branch.
   </dd>
   <dt>Social Login with firebase</dt>
   <dd>Boilerplate supports social login using firebase. It has demo and setup added out of the box for firebase and it's authentication functions. This feature is optional and is based on requirement, so not merged in main branch.

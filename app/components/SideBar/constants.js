@@ -80,6 +80,11 @@ export const MenuItems = [
     tabName: 'Products',
     icon: <ShoppingOutlined />,
   },
+  {
+    to: ROUTES.REACT_HOOK_FORM,
+    tabName: 'React Hook Form',
+    icon: <FormOutlined />,
+  },
 ];
 
 /**
