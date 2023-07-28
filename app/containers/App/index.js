@@ -34,6 +34,7 @@ import RegisterQuestion from 'examples/SecurityQuestion/RegisterQuestion';
 import ResetPassword from 'examples/SecurityQuestion/ResetPassword';
 import ResetPasswordMain from 'examples/SecurityQuestion/ResetPassword/ResetPasswordMain';
 import PasswordChange from 'examples/SecurityQuestion/ResetPassword/PasswordChange';
+import ReactHookForm from 'examples/ReactHookForm/Loadable';
 import { FAV_ICONS } from './constants';
 import PrivateRoute from './PrivateRoute';
 import RoleMiddleWare from './RoleMiddleWare';
@@ -93,6 +94,7 @@ export default function App() {
             path={ROUTES.REGISTER_QUESTION}
             element={<RegisterQuestion />}
           />
+          <Route path={ROUTES.REACT_HOOK_FORM} element={<ReactHookForm />} />
         </Route>
         {/* RoleMiddleware */}
         <Route element={<RoleMiddleWare />}>

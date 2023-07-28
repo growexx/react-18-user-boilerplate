@@ -101,8 +101,8 @@ exports[`<App /> should render and match the snapshot 1`] = `
         path="/number-converter-demo"
       />
       <Route
-        element={<RegisterQuestion />}
-        path="/register-security-questions"
+        element={<Unknown />}
+        path="/react-hook-form"
       />
     </Route>
     <Route

@@ -27,6 +27,7 @@ export const ROUTES = {
   RESET_PASSWORD: '/reset-password',
   RESET_PASSWORD_SECURITY: '/reset-password-security',
   PASSWORD_CHANGE: '/password-change',
+  REACT_HOOK_FORM: '/react-hook-form',
 };
 
 // API-ROUTES

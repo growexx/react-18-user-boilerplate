@@ -23,7 +23,7 @@
 | Analytics Tool          | Google analytics tool integrated.               |
 | Hooks Support           | Hooks support provided for the boilerplate.     |
 | Graphql Support         | Graphql support provided for the boilerplate.   |
-| React-Final-Form        | React-Final-Form support added.                 |
+| React-Hook-Form         | React-Hook-Form support added.                  |
 | Redux-Form              | Redux-Form support added.                       |
 | Social login            | Boilerplate supports social login using firebase|
 | Two Factor Authentication          | Two Factor authentication with otp.             |
@@ -82,7 +82,7 @@
 | Rich Text Editor        | Rich text editor demo.                          |
 | Google Analytics events | Sidebar clicks capturing GA demo.               |
 | Apollo Hooks demo       | Basic demo for apollo hooks.                    |
-| React-Final-Form        | Basic demo  for React-Final-Form.               |
+| React-Hook-Form         | Basic demo  for React-Hook-Form.                |
 | Social Login demo       | Basic demo  for google and facebook login.      |
 | Two Factor              | Basic demo  for OtpComponent and two factor     |
 | User Management         | Basic demo User list with Pagination, Sort, Search, Filter, Add/Edit/Delete User     |
@@ -113,7 +113,7 @@
 1.  Hooks Support :  **feature/12-Hooks-Support**  <br />
 2.  Google Analytics Integration :  **feature/18-Analytics-Tools** <br />
 3.  Graphql support for boilerplate :  **feature/11-GraphQL-Support** <br />
-4.  React-Final-Form support for boilerplate :  **feature/React-Final-Form** <br/>
+4.  React-Hook-Form support for boilerplate :  **feature/react-hook-form** <br/>
 5.  Firebase Social Login support for boilerplate :  **feature/social-login** <br/>
 6.  Sentry Performance Monitoring & Error Tracking:  **feature/RB-13-Sentry-setup**<br/>
 7.  Real Time Chat:  **feature/RB-66-Real-Time-Chat**  <br/>
