@@ -9,7 +9,7 @@ import { setContext } from 'apollo-link-context';
 import fetch from 'whatwg-fetch';
 import messages from './messages';
 
-const extractMessage = errorExtension => {
+export const extractMessage = errorExtension => {
   const exception = errorExtension && errorExtension.exception;
   const errorResponse = exception.response;
   const defaultError = {
