@@ -85,7 +85,7 @@ export function* getSignIn() {
 /**
  * user login request/response handler with google
  */
-export function* getGoogleSignIn() {
+export function getGoogleSignIn() {
   /**
    * Remove following code, It's only for demo purpose
    */
@@ -105,7 +105,7 @@ export function* getGoogleSignIn() {
 /**
  * user login request/response handler with facebook
  */
-export function* getFacebookSignIn() {
+export function getFacebookSignIn() {
   /**
    * Remove following code, It's only for demo purpose
    */
