@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /**
  * THIS IS FOR NOTIFICATION FIREBASE
  */
