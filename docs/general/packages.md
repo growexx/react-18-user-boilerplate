@@ -62,3 +62,5 @@ Following are the packages used in the boilerplate
 | @sentry/react           | Sentry Performance & Error Monitoring           |
 | react-waypoint          | Skeleton loader                                 |
 | jest-styled-components  | Jest utilities for Styled Components            |
+| react-hook-form         | Form Control with react-hook-from               |
+
