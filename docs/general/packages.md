@@ -35,13 +35,13 @@ Following are the packages used in the boilerplate
 | storybook               | Visual components library                       |
 | stylelint               | Library to avoid errors and warnings            |
 | webpack                 | Module Bundler                                  |
-| babel                   | Javascript transcompiler                        |
+| babel                   | Javascript transpiler                           |
 | jest                    | Javascript testing solution                     |
 | shelljs                 | Typescript support                              |
 | react-testing-library   | Javascript testing solution                     |
 | corejs                  | To generate code documentation                  |
 | ngrok                   | Tunneling                                       |
-| plop                    | Microgenerator Framework                        |
+| plop                    | Micro-generator Framework                        |
 | pre-commit              | Git pre-commit hook                             |
 | prettier                | Code Formatting                                 |
 | react-test-renderer     | Javascript testing solution                     |

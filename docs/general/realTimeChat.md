@@ -529,7 +529,7 @@ This feature is an example of real time chat with Firebase firestore database.
 
   
 
-- called when user is selected from downdown.
+- called when user is selected from dropdown.
 
   
 
@@ -613,7 +613,7 @@ This feature is an example of real time chat with Firebase firestore database.
 
   
 
-- update the window if other chat window is clicked from chatlist or from user's dropdown.
+- update the window if other chat window is clicked from chat list or from user's dropdown.
 
   
 
@@ -785,7 +785,7 @@ This feature is an example of real time chat with Firebase firestore database.
 
   
 
-- called when chats are present and calles renderSingleMessage in return for each message.
+- called when chats are present and calls renderSingleMessage in return for each message.
 
   
 

@@ -20,7 +20,7 @@ except that tag, like meta tags:
 <meta property="og:image" content="img/yourimg.png" />
 ```
 
-The webpack `html-loader` does not recognise this as an image file and will not
+The webpack `html-loader` does not recognize this as an image file and will not
 transfer the image to the build folder. To get webpack to transfer them, you
 have to import them with the file loader in your JavaScript somewhere, e.g.:
 
