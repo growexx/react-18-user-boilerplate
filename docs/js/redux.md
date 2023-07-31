@@ -29,7 +29,7 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'yourcomponent', reducer });
+const withReducer = injectReducer({ key: 'your component', reducer });
 
 export default compose(
   // Put `withReducer` before `withConnect`

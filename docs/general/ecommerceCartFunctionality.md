@@ -1,6 +1,6 @@
-## Ecommerce Cart Functionality with Multi Tab Support Functionality
+## E-commerce Cart Functionality with Multi Tab Support Functionality
 
-This feature is an example of Ecommerce Cart Functionality using local Storage.
+This feature is an example of E-commerce Cart Functionality using local Storage.
 
 ## **_Feature List_**
 
@@ -14,4 +14,4 @@ This feature is an example of Ecommerce Cart Functionality using local Storage.
    3.app/components/ProductCard/index.js
    4.app/examples/Products/index.js
    5.app/examples/Products/utils.js  
-    **for multitab support used window and localStorage**)
+    **for multi-tab support used window and localStorage**)

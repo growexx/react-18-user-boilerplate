@@ -53,6 +53,8 @@ describe('<Login />', () => {
     returnValue.onChangeEmail(eventObject);
     returnValue.onChangePassword(eventObject);
     returnValue.onSignIn(eventObject);
+    returnValue.onGoogleSignIn();
+    returnValue.onFacebookSignIn();
     const eventObjectWithoutPreventDefault = {
       target: {
         value: 'test',

@@ -8,4 +8,4 @@
 
 4. Firebase social login demo is added into login component. (app/containers/Auth/Login/index.js)
 
-5. Saga file for login (app/containers/Auth/Login/saga.js) contains function calls for google and facebook. The code is commented for actual use.
+5. Saga file for login (app/containers/Auth/Login/saga.js) contains function calls for google and facebook.
