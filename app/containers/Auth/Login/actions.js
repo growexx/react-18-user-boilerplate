@@ -8,6 +8,8 @@ import {
   CHANGE_EMAIL,
   CHANGE_PASSWORD,
   ERROR,
+  FACEBOOK_LOGIN,
+  GOOGLE_LOGIN,
   LOADING,
   LOGIN,
   RESET,
@@ -102,5 +104,27 @@ export function fireLogin() {
 export function resetState() {
   return {
     type: RESET,
+  };
+}
+
+/**
+ * log the user, this action starts the request saga
+ *
+ * @return {object} An action object with a type of GOOGLE_LOGIN
+ */
+export function fireGoogleLogin() {
+  return {
+    type: GOOGLE_LOGIN,
+  };
+}
+
+/**
+ * log the user, this action starts the request saga
+ *
+ * @return {object} An action object with a type of FACEBOOK_LOGIN
+ */
+export function fireFacebookLogin() {
+  return {
+    type: FACEBOOK_LOGIN,
   };
 }
