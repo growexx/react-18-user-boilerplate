@@ -98,3 +98,6 @@ export const GET_FILTERED_MENU_ITEM = role =>
       ? ROLE_BASED_SIDEBAR_MENU[role || ROLES.USER].includes(item.to)
       : true,
   );
+
+// component name as ga label
+export const GA_LABEL_SIDEBAR = 'SideBar';

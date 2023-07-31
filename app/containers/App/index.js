@@ -38,6 +38,7 @@ import AuthRoute from './AuthRoute';
 import GlobalStyle from '../../global-styles';
 import { ROUTES } from '../constants';
 import { manageSession } from '../../utils/Helper';
+import { initGA, recordPageViewGA } from '../../utils/googleAnalytics';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -47,11 +48,20 @@ const AppWrapper = styled.div`
 
 export default function App() {
   useEffect(() => {
+    // google analytics init
+    initGA();
+    // first time page render
+    recordPageViewGA(window.location.pathname);
     window.addEventListener('storage', manageSession, []);
     return () => {
       window.removeEventListener('storage', window);
     };
   }, []);
+
+  useEffect(() => {
+    // record page view on every route change
+    recordPageViewGA(window.location.pathname);
+  }, [window.location.pathname]);
 
   return (
     <AppWrapper data-testid="AppRoutes">
