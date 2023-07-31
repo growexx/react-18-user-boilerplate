@@ -23,6 +23,9 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
+// Sentry Performance & Error Monitoring
+import * as Sentry from '@sentry/react';
+
 // Import root app
 import MainLayout from 'components/MainLayout';
 
@@ -54,6 +57,20 @@ openSansObserver.load().then(() => {
 const initialState = {};
 const { store, history } = configureStore(initialState);
 const MOUNT_NODE = ReactDOM.createRoot(document.getElementById('app'));
+
+Sentry.init({
+  dsn: process.env.SENTRY,
+  integrations: [
+    new Sentry.BrowserTracing({
+      routingInstrumentation: Sentry.reactRouterV6Instrumentation(history),
+    }),
+  ],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+});
 
 const renderMessage = message =>
   MOUNT_NODE.render(

@@ -59,6 +59,7 @@ Following are the packages used in the boilerplate
 | dotenv                  | Loads environment modules to process.env        |
 | react-otp-input         | Input for otp.                                  |
 | recharts                | Charts                                          |
+| @sentry/react           | Sentry Performance & Error Monitoring           |
 | react-waypoint          | Skeleton loader                                 |
 | jest-styled-components  | Jest utilities for Styled Components            |
 | react-hook-form         | Form Control with react-hook-from               |
