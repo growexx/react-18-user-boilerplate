@@ -80,6 +80,11 @@ export const MenuItems = [
     tabName: 'Products',
     icon: <ShoppingOutlined />,
   },
+  {
+    to: ROUTES.REAL_TIME_CHAT,
+    tabName: 'Real Time Chat',
+    icon: <MessageOutlined />,
+  },
 ];
 
 /**

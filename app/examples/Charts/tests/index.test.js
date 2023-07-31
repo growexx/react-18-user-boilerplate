@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /**
  *
  * Tests for Charts
@@ -5,7 +6,7 @@
  */
 
 import React from 'react';
-import { act, fireEvent, render } from '@testing-library/react';
+import { render, fireEvent, waitForElement } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import history from 'utils/history';
@@ -44,10 +45,8 @@ describe('Check component:<Charts /> is rendering properly', () => {
   });
 
   afterEach(() => {
-    act(() => {
-      jest.runOnlyPendingTimers();
-      jest.useRealTimers();
-    });
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
   });
 
   it('Should render and match the snapshot', () => {
@@ -65,6 +64,26 @@ describe('Check component:<Charts /> is rendering properly', () => {
       container: { firstChild },
     } = componentWrapper();
     expect(firstChild).toMatchSnapshot();
+    it('Should change the period', async () => {
+      const {
+        container: { firstChild },
+        getByRole,
+        debug,
+      } = componentWrapper();
+      fireEvent.mouseDown(getByRole('combobox'));
+      fireEvent.change(getByRole('combobox'), {
+        target: {
+          value: 'lastMonth',
+        },
+      });
+      debug();
+      await waitForElement(() => getByRole('option'));
+      fireEvent.click(
+        document.querySelectorAll('.ant-select-item-option-content')[1],
+      );
+      // fireEvent.click(getByTestId(TEST_IDS.PERIOD_DROPDOWN));
+      expect(firstChild).toMatchSnapshot();
+    });
   });
 
   it('Should change period', () => {

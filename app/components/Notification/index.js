@@ -4,11 +4,15 @@
  * This is the Notification Component file.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Waypoint } from 'react-waypoint';
 import { Badge, List, Skeleton, Empty, notification, Button } from 'antd';
-import { BellOutlined } from '@ant-design/icons';
+import { BellOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { getFireStoreCollectionReference } from 'utils/firebase';
+import { FIRESTORE_COLLECTIONS, ROUTES } from 'containers/constants';
+import { getUserData } from 'utils/Helper';
 import { TEST_IDS } from 'components/Notification/stub';
 import {
   NotificationWrapper,
@@ -18,6 +22,7 @@ import {
   NOTIFICATION_LIMIT,
   getNotificationsMock,
 } from 'components/Notification/constants';
+import { withRouter } from '../../containers/App/withRouter';
 
 class Notification extends React.Component {
   constructor(props) {
@@ -30,7 +35,76 @@ class Notification extends React.Component {
       hasMore: true,
     };
     this.newNotificationsCursor = 0;
+    this.unSubscribeToNewMessages = null;
   }
+
+  /**
+   * subscribeToNewMessages - real time updates for new message
+   */
+  subscribeToNewMessages = async () => {
+    let loggedInUserId;
+    await getFireStoreCollectionReference(FIRESTORE_COLLECTIONS.PROFILE)
+      .where(`email`, '==', getUserData().email)
+      .get()
+      .then(async querySnapshot => {
+        const { docs } = querySnapshot;
+        if (docs.length > 0) {
+          loggedInUserId = docs[0].id;
+        }
+      })
+      .catch(error => {
+        // eslint-disable-next-line no-console
+        console.log('Error getting documents: ', error);
+      });
+
+    this.unSubscribeToNewMessages = await getFireStoreCollectionReference(
+      FIRESTORE_COLLECTIONS.CHAT_WINDOW,
+    )
+      .where(`joined.${loggedInUserId}`, '==', true)
+      .onSnapshot(
+        async querySnapshot => {
+          if (!querySnapshot.empty) {
+            querySnapshot.forEach(doc => {
+              const { chats } = doc.data();
+              if (chats.length > 0) {
+                const { from, seen } = chats[chats.length - 1];
+                if (from.id !== loggedInUserId) {
+                  if (!seen.includes(loggedInUserId)) {
+                    const {
+                      history: {
+                        location: { pathname },
+                      },
+                    } = this.props;
+                    if (pathname !== ROUTES.REAL_TIME_CHAT) {
+                      const newNotification = {
+                        icon: <CheckCircleOutlined />,
+                        update: 'You Have Received New Messages',
+                        timestamp: 1596119686811,
+                        read: false,
+                      };
+                      this.setState(prevState => ({
+                        ...prevState,
+                        notificationList: [
+                          newNotification,
+                          ...prevState.notificationList,
+                        ],
+                        loading: false,
+                        unreadCount: prevState.unreadCount + 1,
+                        newItemsLoading: false,
+                      }));
+                    }
+                  }
+                }
+              }
+            });
+          }
+        },
+        error => {
+          // eslint-disable-next-line no-console
+          console.log('Error getting documents: ', error);
+        },
+      );
+  };
 
   loadNotifications = () => {
     const { notificationList, unreadCount } = this.state;
@@ -70,11 +144,12 @@ class Notification extends React.Component {
     }, 2000);
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setState({
       loading: true,
     });
     this.loadNotifications();
+    await this.subscribeToNewMessages();
   }
 
   getNewNotificationsLoader = loaderCount => {
@@ -242,4 +317,7 @@ class Notification extends React.Component {
     );
   }
 }
-export default Notification;
+Notification.propTypes = {
+  history: PropTypes.object,
+};
+export default withRouter(Notification);

@@ -1,11 +1,16 @@
 import React from 'react';
-import { fireEvent, render, waitFor } from '@testing-library/react';
+import { fireEvent, render, waitFor } from 'react-testing-library';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
-import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import { createMemoryHistory } from 'history';
-import configureStore from 'configureStore';
 import 'jest-dom/extend-expect';
+import { Router } from 'react-router-dom';
+import { getFireStoreCollectionReference } from 'utils/firebase';
+import { ROUTES } from 'containers/constants';
+import {
+  getFailureMockChatList,
+  getFailureResponse,
+} from 'examples/RealTimeChat/stub';
 import {
   TEST_IDS,
   getNotificationsSuccessMock,
@@ -13,10 +18,117 @@ import {
   getNotificationsFailureData,
   getNotificationsMockWithNoData,
   getNotificationsMockWithLessData,
+  getSuccessMockUserId,
+  getSuccessWindows,
 } from 'components/Notification/stub';
+
 import Notification from 'components/Notification/index';
 import { getNotificationsMock } from 'components/Notification/constants';
+
+import configureStore from 'configureStore';
+jest.mock('utils/firebase');
 jest.mock('components/Notification/constants');
+
+const mockGetFireStoreCollectionReference = async (
+  responseType,
+  dataLength,
+) => {
+  getFireStoreCollectionReference.mockImplementation(() => ({
+    where: jest.fn().mockImplementation(() => ({
+      onSnapshot: jest.fn(
+        (snapshotCallbackFunction, snapshotCallbackErrorFunction) => {
+          snapshotCallbackFunction(getSuccessWindows(dataLength));
+          snapshotCallbackErrorFunction(getFailureMockChatList());
+          return dataLength === 0 ? jest.fn() : '';
+        },
+      ),
+      get: jest
+        .fn()
+        .mockImplementationOnce(() =>
+          responseType === 'success'
+            ? getSuccessMockUserId(dataLength)
+            : getFailureResponse(),
+        ),
+    })),
+  }));
+};
+
+describe('<Notification /> with real time chat', () => {
+  const history = createMemoryHistory();
+  const store = configureStore({}, history);
+  beforeEach(() => getFireStoreCollectionReference.mockReset());
+  afterEach(() => getFireStoreCollectionReference.mockClear());
+  it('should render a div with real time chat path', () => {
+    mockGetFireStoreCollectionReference('success', 1);
+    history.push(ROUTES.REAL_TIME_CHAT);
+    const { container } = render(
+      <Provider store={store}>
+        <IntlProvider locale="en">
+          <Router history={history}>
+            <Notification />
+          </Router>
+        </IntlProvider>
+      </Provider>,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+  it('should render a div with real time chat path', () => {
+    mockGetFireStoreCollectionReference('success');
+    history.push(ROUTES.REAL_TIME_CHAT);
+    const { container } = render(
+      <Provider store={store}>
+        <IntlProvider locale="en">
+          <Router history={history}>
+            <Notification />
+          </Router>
+        </IntlProvider>
+      </Provider>,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+  it('should render a div with real time chat path', () => {
+    mockGetFireStoreCollectionReference('success');
+    history.push(ROUTES.HOME);
+    const { container } = render(
+      <Provider store={store}>
+        <IntlProvider locale="en">
+          <Router history={history}>
+            <Notification />
+          </Router>
+        </IntlProvider>
+      </Provider>,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+  it('should render a div', () => {
+    mockGetFireStoreCollectionReference('error');
+    history.push(ROUTES.HOME);
+    const { container } = render(
+      <Provider store={store}>
+        <IntlProvider locale="en">
+          <Router history={history}>
+            <Notification />
+          </Router>
+        </IntlProvider>
+      </Provider>,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+  it('should render a div with real time chat path with no user id', () => {
+    mockGetFireStoreCollectionReference('success', 0);
+    history.push(ROUTES.REAL_TIME_CHAT);
+    const { container } = render(
+      <Provider store={store}>
+        <IntlProvider locale="en">
+          <Router history={history}>
+            <Notification />
+          </Router>
+        </IntlProvider>
+      </Provider>,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+});
 
 describe('<Notification />', () => {
   const history = createMemoryHistory();

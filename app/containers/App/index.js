@@ -30,6 +30,7 @@ import ChangePassword from 'containers/ChangePassword/Loadable';
 import MultiTabSupport from 'examples/MultiTabSupport/Loadable';
 import ForgotPassword from 'containers/Auth/ForgotPassword/Loadable';
 import NumeralConversion from 'examples/NumeralConversion/Loadable';
+import RealTimeChat from 'examples/RealTimeChat/Loadable';
 import { FAV_ICONS } from './constants';
 import PrivateRoute from './PrivateRoute';
 import RoleMiddleWare from './RoleMiddleWare';
@@ -85,6 +86,7 @@ export default function App() {
             path={ROUTES.NUMERAL_CONVERTER}
             element={<NumeralConversion />}
           />
+          <Route path={ROUTES.REAL_TIME_CHAT} element={<RealTimeChat />} />
         </Route>
         {/* RoleMiddleware */}
         <Route element={<RoleMiddleWare />}>
@@ -111,6 +113,7 @@ export default function App() {
           />
         </Route>
         <Route exact path={ROUTES.UNAUTHORIZED} component={UnauthorizedPage} />
+
         <Route path="" component={NotFoundPage} />
       </Routes>
       <GlobalStyle />

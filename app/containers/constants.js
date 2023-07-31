@@ -21,6 +21,7 @@ export const ROUTES = {
   CHANGE_PASSWORD: '/change-password',
   TWO_FACTOR_AUTHENTICATION: '/two-factor-authentication',
   FORGOT_PASSWORD: '/forgot-password',
+  REAL_TIME_CHAT: '/real-time-chat',
   MULTI_TAB_SUPPORT: '/multi-tab-support',
   PRODUCTS: '/products',
 };
@@ -37,6 +38,7 @@ export const API_ENDPOINTS = {
   IMAGE_UPLOAD: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
   FORGOT_PASSWORD: `${API_URL}/${AUTH}/forgetpassword`,
   USERS: `${API_URL}/users`,
+  IMAGE_SRC: 'https://thispersondoesnotexist.com/image',
 };
 
 // Table Pagination default
@@ -109,4 +111,8 @@ export const GET_DEFAULT_PAGINATION = () => ({
 
 export const GENERIC_MOMENT_DATE_FORMAT = 'YYYY-MM-DD';
 export const FULL_GENERIC_MOMENT_DATE_FORMAT = 'YYYY-MM-DD hh:mm:ss a';
+export const FIRESTORE_COLLECTIONS = {
+  PROFILE: 'Profile',
+  CHAT_WINDOW: 'Chat_Window',
+};
 export const CHANNEL_NAME = 'DATA_CHANNEL_NAME';

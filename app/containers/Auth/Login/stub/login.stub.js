@@ -7,5 +7,6 @@ export const loginSuccessResponse = {
     fullName: 'John Doe',
     // User role: 1, Admin role: 10
     role: 1,
+    email: 'johndoe@growexx.com',
   },
 };

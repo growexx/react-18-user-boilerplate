@@ -59,6 +59,9 @@ Following are the packages used in the boilerplate
 | dotenv                  | Loads environment modules to process.env        |
 | react-otp-input         | Input for otp.                                  |
 | recharts                | Charts                                          |
+| firebase                | Firebase package crud operations                |
+| react-detect-offline    | Detects if browser is offline or online         |
+| react-waypoint          | Infinite scrolling in react                     |
 | react-waypoint          | Skeleton loader                                 |
 | jest-styled-components  | Jest utilities for Styled Components            |
 
