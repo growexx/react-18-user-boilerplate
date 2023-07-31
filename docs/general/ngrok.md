@@ -1,4 +1,4 @@
-### Sentry Setup steps
+### Ngrok Setup steps
 
 1. Ngrok setup is implemented out of box in the boilerplate. To start using the feature, checkout in branch named `feature/CWM-3181-ngrok-support`.
 
