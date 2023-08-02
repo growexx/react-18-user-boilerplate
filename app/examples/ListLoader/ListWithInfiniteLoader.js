@@ -5,7 +5,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { List, message, Avatar, Skeleton } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import PropTypes from 'prop-types';
@@ -15,93 +15,78 @@ import { compose } from 'redux';
 import { API_ENDPOINTS } from 'containers/constants';
 import { loadApp } from 'containers/App/actions';
 import request from 'utils/request';
+import useSWR from 'swr';
 import { ListWithInfiniteLoader as StyledList } from './StyledList';
 import messages from './messages';
 
-class ListWithInfiniteLoader extends React.Component {
-  state = {
-    data: [],
-    list: [],
-    loading: false,
-    hasMore: true,
-  };
+const ListWithInfiniteLoader = ({ onChangeAppLoading }) => {
+  const [data, setData] = useState([]);
+  const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [count, setCount] = useState(0);
 
-  componentDidMount() {
-    this.props.onChangeAppLoading(true);
-    this.fetchData(res => {
-      this.setState({
-        data: res.results,
-        list: res.results,
-        loading: false,
-      });
-      this.props.onChangeAppLoading(false);
-    });
-  }
-
-  fetchData = callback => {
-    request(API_ENDPOINTS.LIST, {
+  const fetchData = url => {
+    request(url, {
       method: 'GET',
-    }).then(res => callback(res));
+    }).then(res => {
+      setData([...data, ...res.results]);
+      setList([...data, ...res.results]);
+      setLoading(false);
+    });
   };
 
-  handleInfiniteOnLoad = () => {
-    const { data } = this.state;
-    this.setState({
-      loading: true,
-      list: data.concat(
-        [...new Array(3)].map(() => ({ loading: true, name: {} })),
-      ),
-    });
-    if (data.length > 14) {
+  onChangeAppLoading(true);
+
+  useSWR(`${API_ENDPOINTS.LIST}&count=${count}`, fetchData);
+
+  onChangeAppLoading(false);
+
+  const handleInfiniteOnLoad = () => {
+    setLoading(true);
+    setList(
+      data.concat([...new Array(3)].map(() => ({ loading: true, name: {} }))),
+    );
+
+    if (count > 14) {
       message.warning(<FormattedMessage {...messages.listLoaded} />);
-      this.setState({
-        hasMore: false,
-        loading: false,
-        list: data,
-      });
+      setHasMore(false);
+      setLoading(false);
+      setList(data);
       return;
     }
-    this.fetchData(res => {
-      const listData = data.concat(res.results);
-      this.setState({
-        data: listData,
-        list: listData,
-        loading: false,
-      });
-    });
+    setCount(count + 1);
   };
 
-  render() {
-    return (
-      <StyledList>
-        <div className="demo-infinite-container">
-          <InfiniteScroll
-            initialLoad={false}
-            pageStart={0}
-            loadMore={this.handleInfiniteOnLoad}
-            hasMore={!this.state.loading && this.state.hasMore}
-            useWindow
-          >
-            <List
-              dataSource={this.state.list}
-              renderItem={item => (
-                <List.Item key={item.id}>
-                  <Skeleton avatar title={false} loading={item.loading} active>
-                    <List.Item.Meta
-                      avatar={<Avatar src={API_ENDPOINTS.LIST_AVATAR} />}
-                      title={item.name.last}
-                      description={item.email}
-                    />
-                  </Skeleton>
-                </List.Item>
-              )}
-            />
-          </InfiniteScroll>
-        </div>
-      </StyledList>
-    );
-  }
-}
+  return (
+    <StyledList>
+      <div className="demo-infinite-container">
+        <InfiniteScroll
+          initialLoad={false}
+          pageStart={0}
+          loadMore={handleInfiniteOnLoad}
+          hasMore={!loading && hasMore}
+          useWindow
+        >
+          <List
+            dataSource={list}
+            renderItem={item => (
+              <List.Item key={item.id}>
+                <Skeleton avatar title={false} loading={item.loading} active>
+                  <List.Item.Meta
+                    avatar={<Avatar src={API_ENDPOINTS.LIST_AVATAR} />}
+                    title={item.name.last}
+                    description={item.email}
+                  />
+                </Skeleton>
+              </List.Item>
+            )}
+          />
+        </InfiniteScroll>
+      </div>
+    </StyledList>
+  );
+};
 
 ListWithInfiniteLoader.propTypes = {
   onChangeAppLoading: PropTypes.func,

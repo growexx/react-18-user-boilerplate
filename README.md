@@ -65,6 +65,14 @@ More about Redux-Form can be found [here](docs/third-party-integrations/redux-fo
 More about google analytics can be found [here](docs/general/googleAnalytics.md).
 
   </dd>
+
+  <dt>SWR Backend Agnostic</dt>
+  <dd>SWR support is given in the boilerplate. This feature is optional and is based on requirement, so not merged in main branch.
+  <br/>
+  Support for SWR Backend Agnostic API integration can be found in <b>feature/SWR-Implementation-Backend-Agnostic</b> branch.
+  More about SWR-Implementation-Backend-Agnostic can be found <a href="https://swr.vercel.app/">here</a>.
+
+  </dd>
   <dt>Hooks Support</dt>
   <dd>Boilerplate supports hooks and all current components are converted to hooks. This feature is optional and is based on requirement, so not merged in main branch.
   <br/>
