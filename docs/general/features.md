@@ -13,7 +13,7 @@
 | Redux-Saga              | Built in support for redux, react-redux and saga|
 | i18n international support      | Supports multiple languages with react-intl.    |
 | SEO support             | SEO support with react-helmet                   |
-| Webpack Chunk Analyser  | npm run analyze                                 |
+| Webpack Chunk Analyzer  | npm run analyze                                 |
 | Ngrok support           | npm run start:tunnel                            |
 | Commitzen               | standard way for commits                        |
 | Pre-Commit              | Restriction for commits                         |
@@ -23,7 +23,7 @@
 | Analytics Tool          | Google analytics tool integrated.               |
 | Hooks Support           | Hooks support provided for the boilerplate.     |
 | Graphql Support         | Graphql support provided for the boilerplate.   |
-| React-Final-Form        | React-Final-Form support added.                 |
+| React-Hook-Form         | React-Hook-Form support added.                  |
 | Redux-Form              | Redux-Form support added.                       |
 | Social login            | Boilerplate supports social login using firebase|
 | Two Factor Authentication          | Two Factor authentication with otp.             |
@@ -58,7 +58,7 @@
 |                         |                                                 |
 | Export Data as CSV      | Export data as csv ( client and backend side ) |         
 | Numeral Conversion      | Numeral js library added for all numeric actions|   
-| Localstorage            | Util to add, delete and get items from localstorage |      
+| Local storage           | Util to add, delete and get items from local storage |      
 | Event Emitter           | Util to on and off emitter events.              |
 | Form Validations        | Redux form fields with validations              |
 | Inject reducer          | Inject reducer in redux form.                   |
@@ -82,7 +82,7 @@
 | Rich Text Editor        | Rich text editor demo.                          |
 | Google Analytics events | Sidebar clicks capturing GA demo.               |
 | Apollo Hooks demo       | Basic demo for apollo hooks.                    |
-| React-Final-Form        | Basic demo  for React-Final-Form.               |
+| React-Hook-Form         | Basic demo  for React-Hook-Form.                |
 | Social Login demo       | Basic demo  for google and facebook login.      |
 | Two Factor              | Basic demo  for OtpComponent and two factor     |
 | User Management         | Basic demo User list with Pagination, Sort, Search, Filter, Add/Edit/Delete User     |
@@ -110,11 +110,11 @@
 ## Optional Feature Branches 
 
 1.  Hooks Support :  **feature/12-Hooks-Support**  <br />
-2.  Google Analytics Integration :  **feature/18-Analytics-Tools** <br />
-3.  Graphql support for boilerplate :  **feature/11-GraphQL-Support** <br />
-4.  React-Final-Form support for boilerplate :  **feature/React-Final-Form** <br/>
-5.  Firebase Social Login support for boilerplate :  **feature/social-login** <br/>
-6.  Sentry Performance Monitoring & Error Tracking:  **feature/RB-13-Sentry-setup**<br/>
-7.  Real Time Chat:  **feature/RB-66-Real-Time-Chat**  <br/>
-8.  Real Time Notifications with socket.io: **feature/RB-87-Notifications-socket.io** <br/>
+2.  Google Analytics Integration :  **feature/18-analytics-tools** <br />
+3.  Graphql support for boilerplate :  **feature/11-graphql-support** <br />
+4.  React-Hook-Form support for boilerplate :  **feature/react-hook-form** <br/>
+5.  Firebase Social Login support for boilerplate :  **feature/Social-login** <br/>
+6.  Sentry Performance Monitoring & Error Tracking:  **feature/Sentry-setup**<br/>
+7.  Real Time Chat:  **feature/Real-time-chat**  <br/>
+8.  Real Time Notifications with socket.io: **feature/87-notifications-socket.io** <br/>
 9.  Firebase Cloud Messaging:  **feature/RB-85-Push-Notifications-FCM**<br />

@@ -5,3 +5,5 @@ export const LOADING = 'boilerplate/Login/LOADING';
 export const SUCCESS = 'boilerplate/Login/SUCCESS';
 export const LOGIN = 'boilerplate/Login/LOGIN';
 export const RESET = 'boilerplate/Login/RESET';
+export const GOOGLE_LOGIN = 'boilerplate/Login/GOOGLELOGIN';
+export const FACEBOOK_LOGIN = 'boilerplate/Login/FACEBOOKLOGIN';

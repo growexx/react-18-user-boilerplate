@@ -23,12 +23,12 @@ they do.
   1.  It lists the project's package dependencies
 
   Baking the config in is a slightly unusual set-up, but it allows us to keep
-  the project root as uncluttered and grokkable-at-a-glance as possible.
+  the project root as uncluttered as possible.
 
 ## The `./internals` folder
 
 This is where the bulk of the tooling configuration lives, broken out into
-recognisable units of work.
+recognizable units of work.
 
 Feel free to change anything you like but don't be afraid to [ask upfront](https://spectrum.chat/react-boilerplate)
 whether you should: build systems are easy to break!

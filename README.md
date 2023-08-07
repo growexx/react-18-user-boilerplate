@@ -78,10 +78,10 @@ More about google analytics can be found [here](docs/general/googleAnalytics.md)
 More about graphql setup can be found [here](docs/general/graphql.md).
 
   </dd>
-  <dt>React-Final-Form Support</dt>
-  <dd>Boilerplate supports React-Final-Form. It has demo and setup added out of the box for React-Final-Form. This feature is optional and is based on requirement, so not merged in main branch.
+  <dt>React-Hook-Form Support</dt>
+  <dd>Boilerplate supports React-Hook-Form. It has demo and setup added out of the box for React-Hook-Form. This feature is optional and is based on requirement, so not merged in main branch.
   <br/>
-  Support for React-Final-Form can be found in <b>feature/React-Final-Form</b> branch.
+  Support for React-Hook-Form can be found in <b>feature/react-hook-form</b> branch.
   </dd>
   <dt>Social Login with firebase</dt>
   <dd>Boilerplate supports social login using firebase. It has demo and setup added out of the box for firebase and it's authentication functions. This feature is optional and is based on requirement, so not merged in main branch.
@@ -97,10 +97,10 @@ More about firebase setup can be found [here](docs/general/firebase.md).
   More about two factor authentication setup can be found [here](docs/general/twoFactorAuthentication.md).
   </dd>
   
-<dt>Ecommerce Cart Functionality</dt>
+<dt>E-commerce Cart Functionality</dt>
   <dd>You can add and delete the product in the cart and also consistency is managed between the tabs using local storage. 
   
-  More about Ecommerce Cart Functionality setup can be found [here](docs/general/ecommerceCartFunctionality.md).
+  More about E-commerce Cart Functionality setup can be found [here](docs/general/ecommerceCartFunctionality.md).
   </dd>
   <dt>Real Time Chat</dt>
   <dd> Real time chat is feature of chatting and sending messages real time with the use of firebase.

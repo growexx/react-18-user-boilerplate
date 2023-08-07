@@ -1,6 +1,14 @@
 import { initializeApp } from 'firebase/app';
-import { getMessaging, getToken } from 'firebase/messaging';
+import {
+  getMessaging,
+  getToken,
+  getAuth,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 
+// initializing firebase app
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -39,3 +47,39 @@ if ('serviceWorker' in navigator) {
       console.log(err);
     });
 }
+
+export const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
+
+/**
+ * Sign In With Google
+ * @returns
+ */
+export const signInWithGoogle = () => {
+  signInWithPopup(auth, googleProvider)
+    .then(res => {
+      // eslint-disable-next-line no-console
+      console.log(res.user);
+    })
+    .catch(error => {
+      // eslint-disable-next-line no-console
+      console.log(error.message);
+    });
+};
+
+/**
+ * Sign In With Facebook
+ * @returns
+ */
+export const signInWithFacebook = () => {
+  signInWithPopup(auth, facebookProvider)
+    .then(res => {
+      // eslint-disable-next-line no-console
+      console.log(res.user);
+    })
+    .catch(error => {
+      // eslint-disable-next-line no-console
+      console.log(error.message);
+    });
+};
