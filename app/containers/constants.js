@@ -23,6 +23,10 @@ export const ROUTES = {
   FORGOT_PASSWORD: '/forgot-password',
   MULTI_TAB_SUPPORT: '/multi-tab-support',
   PRODUCTS: '/products',
+  REGISTER_QUESTION: '/register-security-questions',
+  RESET_PASSWORD: '/reset-password',
+  RESET_PASSWORD_SECURITY: '/reset-password-security',
+  PASSWORD_CHANGE: '/password-change',
   REACT_HOOK_FORM: '/react-hook-form',
 };
 
