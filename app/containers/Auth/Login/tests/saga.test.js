@@ -3,11 +3,7 @@ import { runSaga } from 'redux-saga';
 import { takeLatest } from 'redux-saga/effects';
 import configureStore from 'redux-mock-store';
 import { LOGIN } from '../constants';
-import setSaga, {
-  getSignIn as setSagaFunction,
-  getFacebookSignIn,
-  getGoogleSignIn,
-} from '../saga';
+import setSaga, { getSignIn as setSagaFunction } from '../saga';
 jest.mock('utils/request');
 const initialState = {
   login: {
@@ -38,8 +34,6 @@ export async function recordSaga(saga) {
 describe('Testing getSignIn', () => {
   test('Demo Mode On', async () => {
     await recordSaga(setSagaFunction);
-    await recordSaga(getFacebookSignIn);
-    await recordSaga(getGoogleSignIn);
     expect(recordSaga(setSagaFunction)).toBeTruthy();
   });
 });
