@@ -8,8 +8,8 @@
 
 import React from 'react';
 import { EditorState } from 'draft-js';
-import { FormattedHTMLMessage } from 'react-intl';
-import ReactHtmlParser from 'react-html-parser';
+import { FormattedMessage } from 'react-intl';
+import parse from 'html-react-parser';
 import { Helmet } from 'react-helmet';
 import { Card, Button } from 'antd';
 import { stateToHTML } from 'draft-js-export-html';
@@ -96,7 +96,7 @@ class ProfileForm extends React.PureComponent {
                     this.setState({ editAbout: false });
                   }}
                 >
-                  <FormattedHTMLMessage {...messages.save} />
+                  <FormattedMessage {...messages.save} />
                 </Button>
               ) : (
                 <Button
@@ -105,7 +105,7 @@ class ProfileForm extends React.PureComponent {
                     this.setState({ editAbout: true });
                   }}
                 >
-                  <FormattedHTMLMessage {...messages.edit} />
+                  <FormattedMessage {...messages.edit} />
                 </Button>
               )}
             </CardExtraContainer>
@@ -122,7 +122,7 @@ class ProfileForm extends React.PureComponent {
               }}
             />
           ) : (
-            ReactHtmlParser(`${this.isContentEdited(aboutContent)}`)
+            parse(`${this.isContentEdited(aboutContent)}`)
           )}
         </Card>
         <br />
@@ -139,7 +139,7 @@ class ProfileForm extends React.PureComponent {
                     this.setState({ editExperience: false });
                   }}
                 >
-                  <FormattedHTMLMessage {...messages.save} />
+                  <FormattedMessage {...messages.save} />
                 </Button>
               ) : (
                 <Button
@@ -148,7 +148,7 @@ class ProfileForm extends React.PureComponent {
                     this.setState({ editExperience: true });
                   }}
                 >
-                  <FormattedHTMLMessage {...messages.edit} />
+                  <FormattedMessage {...messages.edit} />
                 </Button>
               )}
             </CardExtraContainer>
@@ -181,7 +181,7 @@ class ProfileForm extends React.PureComponent {
                     this.setState({ editEducation: false });
                   }}
                 >
-                  <FormattedHTMLMessage {...messages.save} />
+                  <FormattedMessage {...messages.save} />
                 </Button>
               ) : (
                 <Button
@@ -190,7 +190,7 @@ class ProfileForm extends React.PureComponent {
                     this.setState({ editEducation: true });
                   }}
                 >
-                  <FormattedHTMLMessage {...messages.edit} />
+                  <FormattedMessage {...messages.edit} />
                 </Button>
               )}
             </CardExtraContainer>
@@ -223,7 +223,7 @@ class ProfileForm extends React.PureComponent {
                     this.setState({ editLicensesAndCertifications: false });
                   }}
                 >
-                  <FormattedHTMLMessage {...messages.save} />
+                  <FormattedMessage {...messages.save} />
                 </Button>
               ) : (
                 <Button
@@ -232,7 +232,7 @@ class ProfileForm extends React.PureComponent {
                     this.setState({ editLicensesAndCertifications: true });
                   }}
                 >
-                  <FormattedHTMLMessage {...messages.edit} />
+                  <FormattedMessage {...messages.edit} />
                 </Button>
               )}
             </CardExtraContainer>

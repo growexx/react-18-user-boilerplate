@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedHTMLMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import LocaleToggle from 'containers/LocaleToggle';
 import Wrapper from './Wrapper';
 import messages from './messages';
@@ -8,9 +8,9 @@ function Footer() {
   return (
     <Wrapper>
       <section>
-        <FormattedHTMLMessage {...messages.copyRightMessage} />
+        <FormattedMessage {...messages.copyRightMessage} />
         <section>
-          <FormattedHTMLMessage {...messages.copyRightSubMessage} />
+          <FormattedMessage {...messages.copyRightSubMessage} />
         </section>
       </section>
       <section>
