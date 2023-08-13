@@ -25,7 +25,7 @@ module.exports = {
     '.*\\.(css|less|styl|scss|sass)$': '<rootDir>/internals/mocks/cssModule.js',
     '.*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|md)$':
       '<rootDir>/internals/mocks/image.js',
-    '^antd/es/(.*)$': '<rootDir>/node_modules/antd/lib/$1',
+    '^antd/es/(.*)$': '<rootDir>/node_modules/antd/es/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/internals/testing/test-bundler.js'],
   setupFiles: ['raf/polyfill'],

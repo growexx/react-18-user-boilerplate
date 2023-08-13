@@ -76,7 +76,7 @@ export default function App() {
       </Helmet>
       <Routes>
         {/* Private Routes */}
-        <Route element={<PrivateRoute />}>
+          <Route element={<PrivateRoute />}>
           <Route exact path={ROUTES.HOME} element={<FeaturePage />} />
           <Route path={ROUTES.GITHUB_SEARCH} element={<HomePage />} />
           <Route path={ROUTES.PROFILE} element={<Profile />} />
@@ -108,7 +108,7 @@ export default function App() {
           />
         </Route>
         {/* Auth Routes */}
-        <Route element={<AuthRoute />}>
+          <Route element={<AuthRoute />}>
           <Route exact path={ROUTES.LOGIN} element={<Login />} />
           <Route
             exact

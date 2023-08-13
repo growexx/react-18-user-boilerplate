@@ -3,10 +3,8 @@
  */
 
 import { combineReducers } from 'redux';
-import { reducer as reduxFormReducer } from 'redux-form';
 import { createBrowserHistory } from 'history';
 import { createReduxHistoryContext } from 'redux-first-history';
-import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
 const { routerReducer } = createReduxHistoryContext({
@@ -16,11 +14,11 @@ const { routerReducer } = createReduxHistoryContext({
  * Merges the main reducer with the router state and dynamically injected reducers
  */
 export default function createReducer(injectedReducers = {}) {
-  return combineReducers({
-    global: globalReducer,
+  const rootReducer = combineReducers({
     language: languageProviderReducer,
     router: routerReducer,
-    form: reduxFormReducer,
     ...injectedReducers,
   });
+
+  return rootReducer;
 }

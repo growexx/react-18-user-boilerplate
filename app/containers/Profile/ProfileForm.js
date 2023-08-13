@@ -164,7 +164,7 @@ class ProfileForm extends React.PureComponent {
               }}
             />
           ) : (
-            ReactHtmlParser(`${this.isContentEdited(experienceContent)}`)
+            parse(`${this.isContentEdited(experienceContent)}`)
           )}
         </Card>
         <br />
@@ -206,7 +206,7 @@ class ProfileForm extends React.PureComponent {
               }}
             />
           ) : (
-            ReactHtmlParser(`${this.isContentEdited(educationContent)}`)
+            parse(`${this.isContentEdited(educationContent)}`)
           )}
         </Card>
         <br />
@@ -248,7 +248,7 @@ class ProfileForm extends React.PureComponent {
               }}
             />
           ) : (
-            ReactHtmlParser(
+            parse(
               `${this.isContentEdited(licensesAndCertificationsContent)}`,
             )
           )}

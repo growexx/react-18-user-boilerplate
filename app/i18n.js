@@ -10,14 +10,12 @@
 require('@formatjs/intl-pluralrules/polyfill');
 
 const enTranslationMessages = require('./translations/en.json');
-const deTranslationMessages = require('./translations/de.json');
 
 const DEFAULT_LOCALE = 'en';
 
 // prettier-ignore
 const appLocales = [
   'en',
-  'de',
 ];
 
 const formatTranslationMessages = (locale, messages) => {
@@ -37,7 +35,6 @@ const formatTranslationMessages = (locale, messages) => {
 
 const translationMessages = {
   en: formatTranslationMessages('en', enTranslationMessages),
-  de: formatTranslationMessages('de', deTranslationMessages),
 };
 
 exports.appLocales = appLocales;

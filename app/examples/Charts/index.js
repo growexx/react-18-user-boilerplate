@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-indent-props */
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import { PageHeader, Space, Row, Divider } from 'antd';
+import { Space, Row, Divider } from 'antd';
+import { PageHeader } from '@ant-design/pro-layout';
 import PieCharts from './PieCharts';
 import Statistics from './Statistics';
 import BarCharts from './BarCharts';
