@@ -3,6 +3,8 @@ export const StyledMainLayout = styled.div`
   .ant-layout-sider {
     transition: none;
     background: #190426;
+    left:-8px;
+    top:0;
   }
   .ant-menu .ant-menu-item,
   .ant-menu-submenu-title,
@@ -42,6 +44,7 @@ export const StyledMainLayout = styled.div`
   }
   #components-layout-demo-custom-trigger .logo {
     display: flex;
+    padding:25px;
     justify-content: center;
     align-items: center;
     img {
@@ -60,7 +63,7 @@ export const StyledMainLayout = styled.div`
     &:before {
       content: attr(data-environment);
       background: #ff8c1e;
-      height: 25px;
+      height: 20px;
       position: fixed;
       top: 0;
       right: 0;
@@ -69,11 +72,12 @@ export const StyledMainLayout = styled.div`
       color: #fff;
       text-align: center;
       text-transform: uppercase;
+      padding-top:5px;
     }
 
     > .ant-layout {
       position: relative;
-      top: 25px;
+      top: 15px;
     }
   }
 

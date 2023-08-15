@@ -11,8 +11,15 @@ import '@babel/polyfill';
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import FontFaceObserver from 'fontfaceobserver';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
+// Font Awesome Initialization
+// Remove which is not needed
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
@@ -31,7 +38,17 @@ import configureStore from './configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
+// Make font awesome library to be used across project
+library.add(fab, far, fas);
 
+// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
+// the index.html file and this observer)
+const openSansObserver = new FontFaceObserver('Open Sans', {});
+
+// When Open Sans is loaded, add a font-family using Open Sans to the body
+openSansObserver.load().then(() => {
+  document.body.classList.add('fontLoaded');
+});
 // Create redux store with history
 const initialState = {};
 const { store, history } = configureStore(initialState);

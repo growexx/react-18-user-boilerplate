@@ -33,6 +33,7 @@ const SideBar = props => {
       collapsed={props.collapsed}
       id="components-layout-demo-custom-trigger"
     >
+      
       {showLogoInSideBar(props.layoutVariant) ? (
         <div className="logo">
           <Link to={ROUTES.HOME}>{Logo}</Link>

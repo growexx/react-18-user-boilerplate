@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Button, theme } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import App from 'containers/App';
@@ -42,6 +42,9 @@ const HeaderMenuItem = styled(Menu.Item)`
 
 function Layouts({ layoutVariant, collapsed, toggle, user }) {
   const location = useLocation();
+  const {
+    token: { colorBgContainer }
+  } = theme.useToken();
 
   // eslint-disable-next-line default-case
   switch (layoutVariant) {
@@ -125,20 +128,17 @@ function Layouts({ layoutVariant, collapsed, toggle, user }) {
             layoutVariant={layoutVariant}
           />
           <Layout className="site-layout">
-            <Header className="headerLayout">
-              <ToggleBreadCrumb>
-                <span
-                  className="sideBarTrigger"
-                  onClick={toggle}
-                  data-testid="ToggleIcon"
-                  onKeyDown={toggle}
-                  role="button"
-                  tabIndex={0}
-                  aria-label="Navigation Toggle"
-                >
-                  {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                </span>
-              </ToggleBreadCrumb>
+            <Header className="headerLayout"  style={{ padding: 0, background: colorBgContainer }}>
+            <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: '16px',
+                width: 64,
+                height: 64,
+              }}
+            />
               <AppHeader />
             </Header>
             <Content
