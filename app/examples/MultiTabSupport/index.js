@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Card, Space, Button } from 'antd';
 import styled from 'styled-components';
 import {
@@ -100,7 +100,7 @@ class MultiTabSupport extends Component {
             <MessageContainer>
               {messages.map(message => (
                 <Space>
-                  {moment(new Date(message)).format(
+                  {dayjs(new Date(message)).format(
                     FULL_GENERIC_MOMENT_DATE_FORMAT,
                   )}
                 </Space>
@@ -111,7 +111,7 @@ class MultiTabSupport extends Component {
             <MessageContainer>
               {localStorageMessages.map(message => (
                 <Space>
-                  {moment(new Date(message)).format(
+                  {dayjs(new Date(message)).format(
                     FULL_GENERIC_MOMENT_DATE_FORMAT,
                   )}
                 </Space>

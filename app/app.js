@@ -10,13 +10,13 @@ import '@babel/polyfill';
 
 // Import all the third party stuff
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import App from 'containers/App';
+import MainLayout from 'components/MainLayout';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
@@ -42,7 +42,7 @@ const renderMessage = message =>
     <Provider store={store}>
       <LanguageProvider messages={message}>
         <Router history={history}>
-          <App />
+          <MainLayout />
         </Router>
       </LanguageProvider>
     </Provider>,
