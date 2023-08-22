@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 /* eslint-disable react/jsx-indent-props */
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
@@ -64,38 +64,42 @@ const logsTableProps = {
   showHeader: true,
 };
 
-export class Users extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // User Data
-      userList: [],
+// export class Users extends Component {
+export const Users = ({
+  demo,
+  fillFields,
+  dispatch,
+  userStoreData,
+  reset,
+  pristine,
+  submitting,
+  invalid,
+  updateField,
+  handleSubmit}) => {
+  // User Data
+  const [userList, setUserList] = useState([])
+  const [isListLoading, setIsListLoading] = useState(true)
+  // Table Pagination
+  const [pagination, setPagination] = useState(GET_DEFAULT_PAGINATION())
+  const [sortType, setSortType] = useState(SORTING.ASC)
+  const [sortKey, setSortKey] = useState('id')
+  const [search, setSearch] = useState('')
+  // Popup
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false)
+  const [popUpAction, setPopUpAction] = useState('')
+  const [isPopUpLoading, setIsPopUpLoading] = useState(false)
+  const [userId, setUserId] = useState('')
+  const [status, setStatus] = useState('')
+  // Modal
+  const [showUserModal, setShowUserModal] = useState(false)
 
-      isListLoading: true,
+  useEffect(() => {
+    loadUserDetails({pagination})
+  }, [])
 
-      // Table Pagination
-      pagination: GET_DEFAULT_PAGINATION(),
+  const debouncedLoadUserDetails = debounce(d => loadUserDetails(d), 300);
 
-      sortType: SORTING.ASC,
-      sortKey: 'id',
-      search: '',
-
-      // Popup
-      isPopUpVisible: false,
-      popUpAction: '',
-      isPopUpLoading: false,
-      userId: '',
-      status: '',
-
-      // Modal
-      showUserModal: false,
-    };
-    this.debouncedLoadUserDetails = debounce(d => this.loadUserDetails(d), 300);
-  }
-
-  getColumnProps = () => {
-    const { isPopUpVisible, popUpAction, userId, isPopUpLoading } = this.state;
-
+  const getColumnProps = () => {
     return [
       {
         title: 'User Id',
@@ -138,19 +142,13 @@ export class Users extends Component {
             loading={isPopUpLoading && userId === data.id}
             disabled={isPopUpLoading}
             onChange={active => {
-              this.setState(
-                {
-                  userId: data.id,
-                  isPopUpLoading: true,
-                },
-                () => {
-                  this.handlePopupOk({
-                    status: active
-                      ? ACCOUNT_STATUS.ACTIVE
-                      : ACCOUNT_STATUS.SUSPENDED,
-                  });
-                },
-              );
+              setUserId(data.id)
+              setIsPopUpLoading(true)
+              handlePopupOk({
+                status: active
+                  ? ACCOUNT_STATUS.ACTIVE
+                  : ACCOUNT_STATUS.SUSPENDED,
+              });
             }}
           />
         ),
@@ -177,7 +175,7 @@ export class Users extends Component {
               data-testid={TEST_IDS.EDIT_BUTTON}
               type="secondary"
               htmlType="submit"
-              onClick={() => this.editUser(data.id)}
+              onClick={() => editUser(data.id)}
               title={userId ? 'Edit User' : 'Add User'}
             >
               <FontAwesomeIcon icon={faEdit} />
@@ -189,7 +187,7 @@ export class Users extends Component {
                 popUpAction === POPUP_ACTION.DELETE &&
                 userId === data.id
               }
-              onConfirm={() => this.handlePopupOk({ isDeleted: true })}
+              onConfirm={() => handlePopupOk({ isDeleted: true })}
               okButtonProps={{
                 loading: isPopUpLoading,
                 'data-testid': TEST_IDS.DELETE_BUTTON_CONFIRMED,
@@ -197,14 +195,14 @@ export class Users extends Component {
               cancelButtonProps={{
                 'data-testid': TEST_IDS.DELETE_CONFIRMATION_CANCEL,
               }}
-              onCancel={this.handlePopupCancel}
+              onCancel={handlePopupCancel}
             >
               <Button
                 data-testid={TEST_IDS.DELETE_BUTTON}
                 type="secondary"
                 htmlType="submit"
                 onClick={() =>
-                  this.showPopConfirm(POPUP_ACTION.DELETE, data.id)
+                  showPopConfirm(POPUP_ACTION.DELETE, data.id)
                 }
                 title={MESSAGES.TITLE.DELETE}
               >
@@ -220,12 +218,10 @@ export class Users extends Component {
   /**
    * Individual row Action Popup handler
    */
-  handlePopupCancel = () => {
-    this.setState({
-      userId: '',
-      popUpAction: '',
-      isPopUpVisible: false,
-    });
+  const handlePopupCancel = () => {
+    setUserId('')
+    setPopUpAction('')
+    setIsPopUpVisible(false)
   };
 
   /**
@@ -233,15 +229,13 @@ export class Users extends Component {
    * @param {*} action
    * @param {*} userId
    */
-  showPopConfirm = (action, userId) => {
-    this.setState({
-      userId,
-      popUpAction: action,
-      isPopUpVisible: true,
-    });
+  const showPopConfirm = (action, userId) => {
+    setUserId(userId)
+    setPopUpAction(action)
+    setIsPopUpVisible(true)
   };
 
-  showError(error) {
+  const showError = (error) => {
     error.response
       .json()
       .then(err => notification.error({ message: err.message }));
@@ -251,76 +245,63 @@ export class Users extends Component {
    * Handles Popup Ok Action
    * Used for Delete, Toggle Status
    */
-  handlePopupOk = payload => {
-    const { demo } = this.props;
-    const { userId, popUpAction, userList } = this.state;
+  const handlePopupOk = payload => {
     const resetAction = () => {
-      this.setState({
-        isPopUpLoading: false,
-        isPopUpVisible: false,
-        userId: '',
-        popUpAction: '',
-      });
+      setIsPopUpLoading(false)
+      setIsPopUpVisible(false)
+      setUserId('')
+      setPopUpAction('')
     };
+
     const currentUser = userList.find(u => u.id === userId);
-    this.setState(
-      {
-        isPopUpLoading: true,
-      },
-      () => {
-        const isDelete = popUpAction === POPUP_ACTION.DELETE;
-        if (isDelete) {
-          (demo
-            ? deleteUserAPIMock(userId)
-            : request(`${API_URL}?id=${userId}`, { method: 'DELETE' })
-          )
-            .then(response => {
-              resetAction();
-              notification.success({
-                message: response && response.message,
-              });
-              this.loadUserDetails();
-            })
-            .catch(error => {
-              this.showError(error);
-              resetAction();
-            });
-        } else {
-          (demo
-            ? updateUserAPIMock({ ...currentUser, ...payload })
-            : request(`${API_URL}`, {
-                method: 'PUT',
-                body: {
-                  ...currentUser,
-                  ...payload,
-                },
-              })
-          )
-            .then(() => {
-              resetAction();
-              notification.success({ message: 'Updated User' });
-              this.loadUserDetails();
-            })
-            .catch(error => {
-              this.showError(error);
-              resetAction();
-            });
-        }
-      },
-    );
+    const isDelete = popUpAction === POPUP_ACTION.DELETE;
+
+    setIsPopUpLoading(true)
+
+    if (isDelete) {
+      (demo
+        ? deleteUserAPIMock(userId)
+        : request(`${API_URL}?id=${userId}`, { method: 'DELETE' })
+      )
+        .then(response => {
+          resetAction();
+          notification.success({
+            message: response && response.message,
+          });
+          loadUserDetails();
+        })
+        .catch(error => {
+          showError(error);
+          resetAction();
+        });
+    } else {
+      (demo
+        ? updateUserAPIMock({ ...currentUser, ...payload })
+        : request(`${API_URL}`, {
+            method: 'PUT',
+            body: {
+              ...currentUser,
+              ...payload,
+            },
+          })
+      )
+        .then(() => {
+          resetAction();
+          notification.success({ message: 'Updated User' });
+          loadUserDetails();
+        })
+        .catch(error => {
+          showError(error);
+          resetAction();
+        });
+    }
   };
 
-  componentDidMount() {
-    const { pagination } = this.state;
-    this.loadUserDetails({ pagination });
-  }
-
-  getLatestValue(newValue, oldValue) {
+  const getLatestValue = (newValue, oldValue) => {
     return newValue === '' ? newValue : newValue || oldValue;
   }
 
-  getUpdatedPagination({ status: newStatus, pagination }) {
-    const { status } = this.state;
+  const getUpdatedPagination = ({ status: newStatus, pagination }) => {
     if (status !== newStatus) {
       return GET_DEFAULT_PAGINATION();
     }
@@ -328,52 +309,50 @@ export class Users extends Component {
     return pagination;
   }
 
-  loadUserDetails = ({
+  const loadUserDetails = ({
     pagination: newPagination,
     sortType: newSortType,
     sortKey: newSortKey,
     search: newSearch,
     status: newStatus,
   } = {}) => {
-    let { pagination, sortType, search, status, sortKey } = this.state;
-    const { demo } = this.props;
-    pagination = newPagination || pagination;
-    sortType = newSortType || sortType;
-    sortKey = newSortKey || sortKey;
-    search = this.getLatestValue(newSearch, search);
-    status = this.getLatestValue(newStatus, status);
-    pagination = this.getUpdatedPagination({
-      pagination,
-      status,
+    let paginationData = newPagination || pagination;
+    let sortTypeData = newSortType || sortType;
+    let sortKeyData = newSortKey || sortKey;
+    let searchData = getLatestValue(newSearch, search);
+    let statusData = getLatestValue(newStatus, status);
+    paginationData = getUpdatedPagination({
+      pagination: paginationData,
+      status: statusData,
     });
 
     // Actual API Call
     const data = { method: 'GET' };
 
-    let requestURL = `${API_URL}${API_ENDPOINTS.USERS}?pagination=1&pageSize=${pagination.pageSize}&skip=${pagination.current}&sortType=${sortType}&`; // prettier-ignore
-    if (search) {
-      requestURL += `search=${search}&`;
+    let requestURL = `${API_URL}${API_ENDPOINTS.USERS}?pagination=1&pageSize=${paginationData.pageSize}&skip=${paginationData.current}&sortType=${sortTypeData}&`; // prettier-ignore
+    if (searchData) {
+      requestURL += `search=${searchData}&`;
     }
-    if (status) {
-      requestURL += `status=${status}&`;
+    if (statusData) {
+      requestURL += `status=${statusData}&`;
     }
 
     (demo
       ? getUsersAPIMock({
-          limit: pagination.pageSize,
-          skip: pagination.current,
-          sortType,
-          sortKey,
-          search,
-          status,
+          limit: paginationData.pageSize,
+          skip: paginationData.current,
+          sortType: sortTypeData,
+          sortKey: sortKeyData,
+          search: searchData,
+          status: statusData,
         })
       : request(requestURL, data)
     )
       .then(response =>
-        this.setUserDetails(response, {
-          pagination,
-          search,
-          status,
+        setUserDetails(response, {
+          pagination: paginationData,
+          search: searchData,
+          status: statusData,
         }),
       )
       .catch(error => {
@@ -383,14 +362,12 @@ export class Users extends Component {
       });
   };
 
-  setUserDetails = (response, { pagination, status }) => {
+  const setUserDetails = (response, { pagination, status }) => {
     if (get(response, 'status')) {
-      this.setState({
-        userList: get(response, 'data', []),
-        pagination: get(response, 'pagination', pagination),
-        isListLoading: false,
-        status,
-      });
+      setUserList(get(response, 'data', []))
+      setPagination(get(response, 'pagination', pagination))
+      setIsListLoading(false)
+      setStatus(status)
     } else {
       notification.error({ message: get(response, 'message') });
     }
@@ -402,26 +379,23 @@ export class Users extends Component {
    * @param {*} _filters
    * @param {*} sorter
    */
-  onTableOptionChange = (pagination, _filters, sorter) => {
-    this.loadUserDetails({
+  const onTableOptionChange = (pagination, _filters, sorter) => {
+    loadUserDetails({
       pagination,
       sortType: GET_SORT_ORDER(sorter.order),
       sortKey: sorter.columnKey,
     });
   };
 
-  onSearchUser = e => {
+  const onSearchUser = e => {
     const { value } = e.target;
-    this.setState(
-      { search: value, pagination: GET_DEFAULT_PAGINATION() },
-      () => {
-        this.debouncedLoadUserDetails({ search: value });
-      },
-    );
+    setSearch(value)
+    setPagination(GET_DEFAULT_PAGINATION())
+    debouncedLoadUserDetails({ search: value });
   };
 
-  onStatusSelectChange = status => {
-    this.loadUserDetails({ status });
+  const onStatusSelectChange = status => {
+    loadUserDetails({ status });
   };
 
   /**
@@ -429,7 +403,7 @@ export class Users extends Component {
    * @param {*} record
    * @returns
    */
-  expandableRowRender = record => (
+  const expandableRowRender = record => (
     <Row gutter={5} className="p-2">
       <Col span={6}>
         <Image src={record.profileUrl} width={100} height={100} />
@@ -442,9 +416,7 @@ export class Users extends Component {
    * Edit existing User
    * @param {string} userId
    */
-  editUser = userId => {
-    const { userList } = this.state;
-    const { fillFields, dispatch } = this.props;
+  const editUser = userId => {
     // eslint-disable-next-line no-underscore-dangle
     const user = userList.find(item => item.id === userId);
     if (user) {
@@ -455,96 +427,66 @@ export class Users extends Component {
         dispatch(change(USERS_KEY, key, storeData[key]));
         fillFields(key, storeData[key]);
       });
-      this.setState({
-        userId,
-        showUserModal: true,
-        isPopUpVisible: false,
-      });
+      setUserId(userId)
+      setShowUserModal(true)
+      setIsPopUpVisible(false)
     }
   };
 
   /**
    * This modal handler verified data and submits to the backend
    */
-  updateUser = () => {
-    const { userStoreData, reset, demo } = this.props;
-    const { showUserModal, userId } = this.state;
-    this.setState(
-      {
-        isListLoading: true,
+  const updateUser = () => {
+    setIsListLoading(true)
+    const isUpdate = !!userId;
+    const payload = {
+      method: isUpdate ? 'PUT' : 'POST',
+      body: {
+        ...userStoreData,
+        id: userStoreData.id,
       },
-      () => {
-        const isUpdate = !!userId;
-        const payload = {
-          method: isUpdate ? 'PUT' : 'POST',
-          body: {
+    };
+    const URL = `${API_URL}`;
+
+    (demo
+      ? updateUserAPIMock(
+          {
             ...userStoreData,
             id: userStoreData.id,
           },
-        };
-        const URL = `${API_URL}`;
-
-        (demo
-          ? updateUserAPIMock(
-              {
-                ...userStoreData,
-                id: userStoreData.id,
-              },
-              !isUpdate,
-            )
-          : request(URL, payload)
+          !isUpdate,
         )
-          .then(res => {
-            this.setState(
-              {
-                isListLoading: false,
-                showUserModal: !showUserModal,
-                userId: '',
-              },
-              () => {
-                this.loadUserDetails();
-              },
-            );
-            notification.success({ message: res.message });
-            reset();
-          })
-          .catch(error => {
-            this.showError(error);
-            this.setState({
-              isListLoading: false,
-            });
-          });
-      },
-    );
+      : request(URL, payload)
+    )
+      .then(res => {
+        setIsListLoading(false)
+        setShowUserModal(!showUserModal)
+        setUserId('')
+
+        loadUserDetails();
+        notification.success({ message: res.message });
+        reset();
+      })
+      .catch(error => {
+        showError(error);
+        setIsListLoading(false)
+      });
   };
 
   /**
    * Toggle Modal
    */
-  toggleModals = () => {
-    const { reset } = this.props;
+  const toggleModals = () => {
     reset();
-    const { showUserModal, userId } = this.state;
-    this.setState({
-      showUserModal: !showUserModal,
-      userId: showUserModal ? '' : userId,
-    });
+    setShowUserModal(!showUserModal)
+    setUserId(showUserModal ? '' : userId)
   };
 
   /**
    * Modal
    * @returns {Modal} Form
    */
-  userModal = () => {
-    const { showUserModal, isListLoading, userId } = this.state;
-    const {
-      pristine,
-      submitting,
-      invalid,
-      updateField,
-      handleSubmit,
-      userStoreData,
-    } = this.props;
+  const userModal = () => {
     const performingAction = pristine || submitting || invalid || isListLoading;
     const cancelDisabled = submitting || isListLoading;
 
@@ -552,9 +494,9 @@ export class Users extends Component {
       <Modal
         title={userId ? 'Edit User' : 'Add User'}
         open={showUserModal}
-        onOk={handleSubmit(this.updateUser)}
+        onOk={handleSubmit(updateUser)}
         confirmLoading={isListLoading}
-        onCancel={() => this.toggleModals()}
+        onCancel={() => toggleModals()}
         okButtonProps={{
           disabled: performingAction,
           'data-testid': TEST_IDS.USER_MODAL_OK,
@@ -565,7 +507,7 @@ export class Users extends Component {
           'data-testid': TEST_IDS.USER_MODAL_CANCEL,
         }}
       >
-        <form onSubmit={this.updateUser} className="mb-3">
+        <form onSubmit={updateUser} className="mb-3">
           <Field
             name="email"
             disabled={!!userId}
@@ -595,73 +537,69 @@ export class Users extends Component {
       </Modal>
     );
   };
+  
+  const options = Object.keys(ACCOUNT_STATUS).map(key => ({
+    value: ACCOUNT_STATUS[key],
+    label: ACCOUNT_STATUS[key],
+  }));
 
-  render() {
-    const { userList, isListLoading, pagination, search } = this.state;
-    const options = Object.keys(ACCOUNT_STATUS).map(key => ({
-      value: ACCOUNT_STATUS[key],
-      label: ACCOUNT_STATUS[key],
-    }));
-
-    return (
-      <div>
-        <Helmet>
-          <title>Users List</title>
-          <meta name="description" content="Users" />
-        </Helmet>
-        <PageHeaderWrapper
-          title="Users"
-          extra={[
-            <FiltersWrapper>
-              <FilterItems>
-                <AccountStatusDropDown
-                  placeholder="User Status"
+  return (
+    <div>
+      <Helmet>
+        <title>Users List</title>
+        <meta name="description" content="Users" />
+      </Helmet>
+      <PageHeaderWrapper
+        title="Users"
+        extra={[
+          <FiltersWrapper>
+            <FilterItems>
+              <AccountStatusDropDown
+                placeholder="User Status"
+                allowClear
+                onChange={onStatusSelectChange}
+                options={options}
+                disabled={isListLoading}
+              />
+            </FilterItems>
+            <FilterItems>
+              <Tooltip title="Search by Name, Email">
+                <SearchWrapper
                   allowClear
-                  onChange={this.onStatusSelectChange}
-                  options={options}
-                  disabled={isListLoading}
+                  placeholder="Search User"
+                  value={search}
+                  onChange={onSearchUser}
+                  onSearch={value => loadUserDetails({ search: value })}
                 />
-              </FilterItems>
-              <FilterItems>
-                <Tooltip title="Search by Name, Email">
-                  <SearchWrapper
-                    allowClear
-                    placeholder="Search User"
-                    // isListLoading
-                    value={search}
-                    onChange={this.onSearchUser}
-                    onSearch={value => this.loadUserDetails({ search: value })}
-                  />
-                </Tooltip>
-              </FilterItems>
-              <FilterItems>
-                <Button
-                  data-testid={TEST_IDS.ADD_USER}
-                  color="primary"
-                  onClick={() => this.toggleModals()}
-                >
-                  Add User
-                </Button>
-              </FilterItems>
-            </FiltersWrapper>,
-          ]}
+              </Tooltip>
+            </FilterItems>
+            <FilterItems>
+              <Button
+                data-testid={TEST_IDS.ADD_USER}
+                color="primary"
+                onClick={() => toggleModals()}
+              >
+                Add User
+              </Button>
+            </FilterItems>
+          </FiltersWrapper>,
+        ]}
+      />
+      <MainContentWrapper>
+        <DataTableWrapper
+          {...logsTableProps}
+          expandedRowRender={expandableRowRender}
+          rowKey={record => record.id}
+          pagination={pagination}
+          loading={isListLoading}
+          columns={getColumnProps()}
+          dataSource={userList}
+          onChange={onTableOptionChange}
         />
-        <MainContentWrapper>
-          <DataTableWrapper
-            {...logsTableProps}
-            expandedRowRender={this.expandableRowRender}
-            rowKey={record => record.id}
-            pagination={pagination}
-            loading={isListLoading}
-            columns={this.getColumnProps(this)}
-            dataSource={userList}
-            onChange={this.onTableOptionChange}
-          />
-          {this.userModal()}
-        </MainContentWrapper>
-      </div>
-    );
-  }
+        {userModal()}
+      </MainContentWrapper>
+    </div>
+  );
 }
 
 Users.propTypes = {

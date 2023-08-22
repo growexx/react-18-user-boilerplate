@@ -8,38 +8,36 @@ import OtpInput from 'react-otp-input';
 import PropTypes from 'prop-types';
 import { StyledOtpComponent } from './StyledOtpComponent';
 
-class OtpComponent extends React.PureComponent {
-  render() {
-    return (
-      <StyledOtpComponent>
-        <OtpInput
-          renderInput={props => <input {...props} />}
-          value={this.props.value}
-          onChange={this.props.onChange}
-          numInputs={this.props.numInputs}
-          separator={this.props.separator}
-          placeholder={this.props.placeholder}
-          // container of inputs
-          containerStyle={this.props.containerStyle}
-          // each input
-          inputStyle={this.props.inputStyle}
-          // Style applied or class passed to inputs on focus.
-          focusStyle={this.props.focusStyle}
-          isDisabled={this.props.isDisabled}
-          // Style applied or class passed to each input when disabled.
-          disabledStyle={this.props.disabledStyle}
-          hasErrored={this.props.hasErrored}
-          // Style applied or class passed to each input when errored.
-          errorStyle={this.props.errorStyle}
-          shouldAutoFocus={this.props.shouldAutoFocus}
-          // Restrict input to only numbers.
-          isInputNum={this.props.isInputNum}
-          // Masks input characters.
-          isInputSecure={this.props.isInputSecure}
-        />
-      </StyledOtpComponent>
-    );
-  }
+const OtpComponent = props => {
+  return (
+    <StyledOtpComponent>
+      <OtpInput
+        renderInput={props => <input {...props} />}
+        value={props.value}
+        onChange={props.onChange}
+        numInputs={props.numInputs}
+        separator={props.separator}
+        placeholder={props.placeholder}
+        // container of inputs
+        containerStyle={props.containerStyle}
+        // each input
+        inputStyle={props.inputStyle}
+        // Style applied or class passed to inputs on focus.
+        focusStyle={props.focusStyle}
+        isDisabled={props.isDisabled}
+        // Style applied or class passed to each input when disabled.
+        disabledStyle={props.disabledStyle}
+        hasErrored={props.hasErrored}
+        // Style applied or class passed to each input when errored.
+        errorStyle={props.errorStyle}
+        shouldAutoFocus={props.shouldAutoFocus}
+        // Restrict input to only numbers.
+        isInputNum={props.isInputNum}
+        // Masks input characters.
+        isInputSecure={props.isInputSecure}
+      />
+    </StyledOtpComponent>
+  );
 }
 
 OtpComponent.propTypes = {

@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserOutlined } from '@ant-design/icons';
 import { FormattedMessage } from 'react-intl';
@@ -19,20 +19,12 @@ import AuthSideContainer from '../index';
 import { AUTH_TYPE } from '../constants';
 import { StyledForgotPassword } from './StyledForgotPassword';
 
-class ForgotPassword extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: false,
-    };
-  }
+const ForgotPassword = () => {
+  const [loading, setLoading] = useState(false)
+  const formRef = useRef()
 
-  formRef = React.createRef();
-
-  onFinish = values => {
-    this.setState({
-      loading: true,
-    });
+  const onFinish = values => {
+    setLoading(true)
     // API Call
     request(`${API_ENDPOINTS.FORGOT_PASSWORD}`, {
       method: 'POST',
@@ -42,80 +34,75 @@ class ForgotPassword extends React.Component {
         notification.success({
           description: res.message,
         });
-        this.setState({
-          loading: false,
-        });
+        setLoading(false)
       })
       .catch(async err => {
-        this.setState({
-          loading: false,
-        });
+        setLoading(false)
         notification.error({
           description: (await err.response.json()).message,
         });
       });
   };
 
-  render() {
-    return (
-      <StyledAuthContainer>
-        <AuthSideContainer authType={AUTH_TYPE[0]} />
-        <StyledForgotPassword>
-          <p className="forgotPassword">Reset Password</p>
-          <div className="LoginSubContainer">
-            <div className="accountData">
-              <Form
-                ref={this.formRef}
-                onFinish={this.onFinish}
-                name="control-ref"
+  return (
+    <StyledAuthContainer>
+      <AuthSideContainer authType={AUTH_TYPE[0]} />
+      <StyledForgotPassword>
+        <p className="forgotPassword">Reset Password</p>
+        <div className="LoginSubContainer">
+          <div className="accountData">
+            <Form
+              ref={formRef}
+              onFinish={onFinish}
+              name="control-ref"
+            >
+              <Form.Item
+                name="email"
+                rules={[
+                  {
+                    type: 'email',
+                    message: <FormattedMessage {...messages.validEmail} />,
+                  },
+                  {
+                    required: true,
+                    message: (
+                      <FormattedMessage {...messages.emailRequiredMessage} />
+                    ),
+                  },
+                ]}
               >
-                <Form.Item
-                  name="email"
-                  rules={[
-                    {
-                      type: 'email',
-                      message: <FormattedMessage {...messages.validEmail} />,
-                    },
-                    {
-                      required: true,
-                      message: (
-                        <FormattedMessage {...messages.emailRequiredMessage} />
-                      ),
-                    },
-                  ]}
-                >
-                  <Input
-                    prefix={<UserOutlined className="site-form-item-icon" />}
-                    placeholder="Email"
-                  />
-                </Form.Item>
-                <Form.Item shouldUpdate>
-                  {() => (
-                    <Button
-                      data-testid={TEST_IDS.RESET_PASSWORD}
-                      loading={this.state.loading}
-                      type="primary"
-                      htmlType="submit"
-                      disabled={
-                        this.formRef &&
-                        this.formRef.current &&
-                        (!this.formRef.current.isFieldsTouched(true) ||
-                          !!this.formRef.current
-                            .getFieldsError()
-                            .filter(({ errors }) => errors.length).length)
-                      }
-                    >
-                      Reset
-                    </Button>
-                  )}
-                </Form.Item>
-              </Form>
-              <Link to={ROUTES.LOGIN}>Login?</Link>
-            </div>
+                <Input
+                  prefix={<UserOutlined className="site-form-item-icon" />}
+                  placeholder="Email"
+                />
+              </Form.Item>
+              <Form.Item shouldUpdate>
+                {() => (
+                  <Button
+                    data-testid={TEST_IDS.RESET_PASSWORD}
+                    loading={loading}
+                    type="primary"
+                    htmlType="submit"
+                    disabled={
+                      formRef &&
+                      formRef.current &&
+                      (!formRef.current.isFieldsTouched(true) ||
+                        !!formRef.current
+                          .getFieldsError()
+                          .filter(({ errors }) => errors.length).length)
+                    }
+                  >
+                    Reset
+                  </Button>
+                )}
+              </Form.Item>
+            </Form>
+            <Link to={ROUTES.LOGIN}>Login?</Link>
           </div>
-        </StyledForgotPassword>
-      </StyledAuthContainer>
-    );
-  }
+        </div>
+      </StyledForgotPassword>
+    </StyledAuthContainer>
+  );
 }
+
 export default ForgotPassword;
