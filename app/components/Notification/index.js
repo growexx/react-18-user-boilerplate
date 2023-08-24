@@ -7,6 +7,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Waypoint } from 'react-waypoint';
+import { io } from 'socket.io-client';
 import { Badge, List, Skeleton, Empty, notification, Button } from 'antd';
 import { BellOutlined } from '@ant-design/icons';
 import { TEST_IDS } from 'components/Notification/stub';
@@ -17,6 +18,7 @@ import {
 import {
   NOTIFICATION_LIMIT,
   getNotificationsMock,
+  SOCKET_CONNECTION_FIELDS,
 } from 'components/Notification/constants';
 
 class Notification extends React.Component {
@@ -30,44 +32,65 @@ class Notification extends React.Component {
       hasMore: true,
     };
     this.newNotificationsCursor = 0;
+    this.socket = io(process.env.API_URL, {
+      autoConnect: false,
+    });
   }
 
-  loadNotifications = () => {
+  loadNotifications = (notificationType, payload) => {
     const { notificationList, unreadCount } = this.state;
-    setTimeout(() => {
-      getNotificationsMock()
-        .then(res => {
-          if (res.status) {
-            if (res.data.length !== NOTIFICATION_LIMIT) {
+    if (
+      notificationType === SOCKET_CONNECTION_FIELDS.NEW_NOTIFICATION &&
+      payload
+    ) {
+      const { body, icon } = payload;
+      const notificationObject = {
+        update: body,
+        read: false,
+        icon,
+      };
+      this.setState({
+        notificationList: [notificationObject, ...notificationList],
+        loading: false,
+        unreadCount: unreadCount + 1,
+        newItemsLoading: false,
+      });
+    } else {
+      setTimeout(() => {
+        getNotificationsMock()
+          .then(res => {
+            if (res.status) {
+              if (res.data.length !== NOTIFICATION_LIMIT) {
+                this.setState({
+                  hasMore: false,
+                });
+              }
               this.setState({
-                hasMore: false,
+                notificationList: [...notificationList, ...res.data],
+                loading: false,
+                unreadCount: unreadCount + res.data.length,
+                newItemsLoading: false,
+              });
+            } else {
+              this.setState({
+                notificationList,
+                unreadCount,
+                loading: false,
+                newItemsLoading: false,
               });
             }
-            this.setState({
-              notificationList: [...notificationList, ...res.data],
-              loading: false,
-              unreadCount: res.data.length + unreadCount,
-              newItemsLoading: false,
-            });
-          } else {
+          })
+          .catch(err => {
+            notification.error({ message: err.message });
             this.setState({
               notificationList,
               unreadCount,
               loading: false,
               newItemsLoading: false,
             });
-          }
-        })
-        .catch(err => {
-          notification.error({ message: err.message });
-          this.setState({
-            notificationList,
-            unreadCount,
-            loading: false,
-            newItemsLoading: false,
           });
-        });
-    }, 2000);
+      }, 2000);
+    }
   };
 
   componentDidMount() {
@@ -75,6 +98,17 @@ class Notification extends React.Component {
       loading: true,
     });
     this.loadNotifications();
+    this.socket.connect();
+    this.socket.on(SOCKET_CONNECTION_FIELDS.NEW_NOTIFICATION, payload => {
+      this.loadNotifications(
+        SOCKET_CONNECTION_FIELDS.NEW_NOTIFICATION,
+        payload,
+      );
+    });
+  }
+
+  componentWillUnmount() {
+    this.socket.close();
   }
 
   getNewNotificationsLoader = loaderCount => {
@@ -146,6 +180,13 @@ class Notification extends React.Component {
     this.loadNotifications();
   };
 
+  getIcon = icon => {
+    if (typeof icon === 'object') {
+      return icon;
+    }
+    return <img src={icon} alt="icon" />;
+  };
+
   getNotificationContent = () => {
     const { notificationList, loading, hasMore } = this.state;
     const notificationsLength = notificationList.length;
@@ -167,7 +208,9 @@ class Notification extends React.Component {
                 onClick={() => this.handleNotificationClick(item, index)}
                 data-testid={TEST_IDS.NOTIFICATION_ITEM}
               >
-                <span className="notificationIcon">{item.icon}</span>
+                <span className="notificationIcon">
+                  {this.getIcon(item.icon)}
+                </span>
                 <p className="notificationContent">{item.update}</p>
               </List.Item>
             ))
