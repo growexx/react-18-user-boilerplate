@@ -5,7 +5,7 @@
 import { combineReducers } from 'redux';
 import { createBrowserHistory } from 'history';
 import { createReduxHistoryContext } from 'redux-first-history';
-import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import languageProviderReducer from 'containers/LanguageProvider/slice';
 
 const { routerReducer } = createReduxHistoryContext({
   history: createBrowserHistory(),

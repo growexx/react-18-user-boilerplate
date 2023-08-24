@@ -34,7 +34,7 @@ import '!file-loader?name=[name].[ext]!./images/favicons/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
-import configureStore from './configureStore';
+import { store, history } from './configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -51,10 +51,8 @@ openSansObserver.load().then(() => {
 });
 // Create redux store with history
 const initialState = {};
-const { store, history } = configureStore(initialState);
 const MOUNT_NODE = ReactDOM.createRoot(document.getElementById('app'));
-
-const renderMessage = message =>
+const renderMessage = (message) =>
   MOUNT_NODE.render(
     <Provider store={store}>
       <LanguageProvider messages={message}>
@@ -77,7 +75,7 @@ if (module.hot) {
 
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {
-  new Promise(resolve => {
+  new Promise((resolve) => {
     resolve(import('intl'));
   })
     .then(() =>
@@ -88,7 +86,7 @@ if (!window.Intl) {
       ]),
     ) // eslint-disable-line prettier/prettier
     .then(() => renderMessage(translationMessages))
-    .catch(err => {
+    .catch((err) => {
       throw err;
     });
 } else {
