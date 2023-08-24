@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, createRef } from 'react';
+import React, { memo, useState, useEffect, useRef } from 'react';
 import { Input, Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -12,140 +12,120 @@ import PropTypes from 'prop-types';
 import { ESC_KEY_CODE } from 'components/InlineEdit/constants';
 import { StyledInlineInput } from 'components/InlineEdit/StyledInlineInput';
 import { TEST_IDS } from 'components/InlineEdit/stub';
-class InlineEdit extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isInputActive: false,
-      inputValue: props.value,
-    };
-    this.inputContainerRef = createRef(null);
-  }
 
-  handleOutSide = e => {
-    const { isInputActive } = this.state;
+function InlineEdit ({ value, onSave, placeholder }) {
+  const [isInputActive, setIsInputActive] = useState(false);
+  const [inputValue, setInputValue] = useState(value);
+  const inputContainerRef = useRef(null);
+
+  const handleOutSide = e => {
     if (
-      this.inputContainerRef &&
-      this.inputContainerRef.current &&
-      this.inputContainerRef.current.contains(e.target)
+      inputContainerRef &&
+      inputContainerRef.current &&
+      inputContainerRef.current.contains(e.target)
     ) {
       return;
     }
     if (isInputActive) {
-      this.onSave();
+      handleSave();
     }
   };
 
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleOutSide);
-    document.addEventListener('touchstart', this.handleOutSide);
-  }
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutSide);
+    document.addEventListener('touchstart', handleOutSide);
 
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleOutSide);
-    document.removeEventListener('touchstart', this.handleOutSide);
-  }
+    return () => {
+      document.removeEventListener('mousedown', handleOutSide);
+      document.removeEventListener('touchstart', handleOutSide);
+    };
+  }, []);
 
-  onSave = () => {
-    const { inputValue } = this.state;
-    const { onSave } = this.props;
+  const handleSave = () => {
     onSave(inputValue);
-    this.setState({
-      isInputActive: false,
-    });
+    setIsInputActive(false);
+  }
+
+  const onCancel = () => {
+    setInputValue(value);
+    setIsInputActive(false);
   };
 
-  onCancel = () => {
-    const { value } = this.props;
-    this.setState({
-      inputValue: value,
-      isInputActive: false,
-    });
-  };
-
-  handleKeyDown = e => {
+  const handleKeyDown = e => {
     if (e.keyCode === ESC_KEY_CODE) {
-      this.onCancel();
+      onCancel();
     }
   };
 
-  handleOnChange = e => {
-    this.setState({
-      inputValue: e.target.value,
-    });
+  const handleOnChange = e => {
+    setInputValue(e.target.value);
   };
 
-  handleDoubleClick = () => {
-    this.setState({
-      isInputActive: true,
-    });
+  const handleDoubleClick = () => {
+    setIsInputActive(true);
   };
 
-  saveIcon = () => (
+  const saveIcon = () => (
     <Button type="link">
       <FontAwesomeIcon
         icon={faCheck}
-        onClick={this.onSave}
+        onClick={handleSave}
         data-testid={TEST_IDS.SAVE_BUTTON}
         title={TEST_IDS.SAVE_BUTTON}
       />
     </Button>
   );
 
-  cancelIcon = () => (
+  const cancelIcon = () => (
     <Button type="link">
       <FontAwesomeIcon
         icon={faTimes}
-        onClick={this.onCancel}
+        onClick={onCancel}
         data-testid={TEST_IDS.CANCEL_BUTTON}
         title={TEST_IDS.CANCEL_BUTTON}
       />
     </Button>
   );
 
-  addonAfterView = () => (
+  const addonAfterView = () => (
     <span>
-      {this.saveIcon()}
-      {this.cancelIcon()}
+      {saveIcon()}
+      {cancelIcon()}
     </span>
   );
 
-  getValue = () => {
-    const { value, placeholder } = this.props;
+  const getValue = () => {
     if (value.length > 0) {
       return value;
     }
     return <span className="placeHolderView">{placeholder}</span>;
   };
 
-  render() {
-    const { inputValue, isInputActive } = this.state;
-    const { placeholder } = this.props;
-    return (
-      <StyledInlineInput ref={this.inputContainerRef}>
-        {!isInputActive ? (
-          <div
-            data-testid={TEST_IDS.INPUT_VALUE}
-            onDoubleClick={this.handleDoubleClick}
-            className="inputValue"
-          >
-            {this.getValue()}
-          </div>
-        ) : (
-          <Input
-            placeholder={placeholder}
-            suffix={this.addonAfterView()}
-            value={inputValue}
-            onChange={this.handleOnChange}
-            allowClear
-            onPressEnter={this.onSave}
-            onKeyDown={this.handleKeyDown}
-            data-testid={TEST_IDS.INPUT_EDIT}
-          />
-        )}
-      </StyledInlineInput>
-    );
-  }
+  return (
+    <StyledInlineInput ref={inputContainerRef}>
+      {!isInputActive ? (
+        <div
+          data-testid={TEST_IDS.INPUT_VALUE}
+          onDoubleClick={handleDoubleClick}
+          className="inputValue"
+        >
+          {getValue()}
+        </div>
+      ) : (
+        <Input
+          placeholder={placeholder}
+          suffix={addonAfterView()}
+          value={inputValue}
+          onChange={handleOnChange}
+          allowClear
+          onPressEnter={handleSave}
+          onKeyDown={handleKeyDown}
+          data-testid={TEST_IDS.INPUT_EDIT}
+        />
+      )}
+    </StyledInlineInput>
+  );
+  
 }
 
 InlineEdit.propTypes = {

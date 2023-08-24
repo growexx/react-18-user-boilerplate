@@ -20,8 +20,8 @@ import { Helmet } from 'react-helmet';
 import * as formValidations from 'utils/formValidations';
 import { Controller, useForm, Form } from 'react-hook-form';
 import { compose } from 'redux';
-import useInjectSaga from 'utils/injectSaga';
-import useInjectReducer from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
 import * as actions from './actions';
 import reducer from './reducer';
 import saga from './saga';
@@ -33,6 +33,12 @@ const FormItem = antForm.Item;
 const FORM_KEY = 'sampleHookForm';
 
 const ReactHookForm = props => {
+  useInjectSaga({ key: FORM_KEY, saga });
+  useInjectReducer({
+    key: FORM_KEY,
+    reducer,
+  });
+
   const {
     handleSubmit,
     control,
@@ -247,13 +253,6 @@ ReactHookForm.propTypes = {
   submitData: PropTypes.func.isRequired,
 };
 
-const withReducer = useInjectReducer({
-  key: FORM_KEY,
-  reducer,
-});
-
-const withSaga = useInjectSaga({ key: FORM_KEY, saga });
-
 function mapDispatchToProps(dispatch) {
   return {
     submitData: body => dispatch(actions.submitData(body)),
@@ -262,7 +261,5 @@ function mapDispatchToProps(dispatch) {
 const withConnect = connect(undefined, mapDispatchToProps); // prettier-ignore
 
 export default compose(
-  withReducer,
-  withSaga,
   withConnect,
 )(ReactHookForm);

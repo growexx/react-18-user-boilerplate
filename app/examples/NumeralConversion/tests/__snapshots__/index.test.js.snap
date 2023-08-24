@@ -20,19 +20,16 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 8px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid;
 }
 
 .c2 p:first-child {
   font-weight: 700;
-  margin-top: 8px;
   font-size: 22px;
 }
 
 .c2 p:nth-child(2) {
   font-weight: 500;
-  color: rgba(0,0,0,0.85);
 }
 
 .c3 {
@@ -44,19 +41,16 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 8px;
 }
 
 .c3 p:first-child {
   font-weight: 700;
-  margin-top: 8px;
   font-size: 22px;
 }
 
 .c3 p:nth-child(2) {
   margin-top: 0px;
   font-weight: 500;
-  color: rgba(0,0,0,0.85);
 }
 
 @media screen and (max-width:400px) {
@@ -87,13 +81,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
     class="c1"
   >
     <span
-      class="ant-input-group-wrapper ant-input-search ant-input-search-with-button"
+      class="ant-input-group-wrapper ant-input-search ant-input-search-with-button css-dev-only-do-not-override-byeoj0"
     >
       <span
-        class="ant-input-wrapper ant-input-group"
+        class="ant-input-wrapper ant-input-group css-dev-only-do-not-override-byeoj0"
       >
         <input
-          class="ant-input"
+          class="ant-input css-dev-only-do-not-override-byeoj0"
           placeholder="Enter number to convert"
           type="text"
           value="0"
@@ -102,7 +96,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
           class="ant-input-group-addon"
         >
           <button
-            class="ant-btn ant-btn-primary ant-input-search-button"
+            class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-primary ant-input-search-button"
             type="button"
           >
             <span>
@@ -123,10 +117,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Create an instance of a numeral. Numeral takes numbers or strings that it trys to convert into a number.
     </p>
     <div
-      class="ant-table-wrapper"
+      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
     >
       <div
-        class="ant-spin-nested-loading"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
       >
         <div
           class="ant-spin-container"
@@ -158,11 +152,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Input
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Value
                       </th>
@@ -236,10 +232,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Numbers
     </p>
     <div
-      class="ant-table-wrapper"
+      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
     >
       <div
-        class="ant-spin-nested-loading"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
       >
         <div
           class="ant-spin-container"
@@ -274,16 +270,19 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Number
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Format
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         String
                       </th>
@@ -721,10 +720,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Currency
     </p>
     <div
-      class="ant-table-wrapper"
+      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
     >
       <div
-        class="ant-spin-nested-loading"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
       >
         <div
           class="ant-spin-container"
@@ -759,16 +758,19 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Number
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Format
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         String
                       </th>
@@ -946,10 +948,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Bytes
     </p>
     <div
-      class="ant-table-wrapper"
+      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
     >
       <div
-        class="ant-spin-nested-loading"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
       >
         <div
           class="ant-spin-container"
@@ -984,16 +986,19 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Number
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Format
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         String
                       </th>
@@ -1191,10 +1196,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Percentages
     </p>
     <div
-      class="ant-table-wrapper"
+      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
     >
       <div
-        class="ant-spin-nested-loading"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
       >
         <div
           class="ant-spin-container"
@@ -1229,16 +1234,19 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Number
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Format
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         String
                       </th>
@@ -1376,10 +1384,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Time
     </p>
     <div
-      class="ant-table-wrapper"
+      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
     >
       <div
-        class="ant-spin-nested-loading"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
       >
         <div
           class="ant-spin-container"
@@ -1414,16 +1422,19 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Number
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Format
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         String
                       </th>
@@ -1541,10 +1552,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Exponential
     </p>
     <div
-      class="ant-table-wrapper"
+      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
     >
       <div
-        class="ant-spin-nested-loading"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
       >
         <div
           class="ant-spin-container"
@@ -1579,16 +1590,19 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
                     <tr>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Number
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         Format
                       </th>
                       <th
                         class="ant-table-cell"
+                        scope="col"
                       >
                         String
                       </th>

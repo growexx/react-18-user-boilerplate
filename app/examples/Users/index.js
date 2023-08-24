@@ -10,7 +10,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { change } from 'redux-form';
 import { Field, reduxForm } from 'redux-form/immutable';
-import injectReducer from 'utils/injectReducer';
+import { useInjectReducer } from 'utils/injectReducer';
 import * as formValidations from 'utils/formValidations';
 import {
   API_URL,
@@ -76,6 +76,10 @@ export const Users = ({
   invalid,
   updateField,
   handleSubmit}) => {
+  useInjectReducer({
+    key: USERS_KEY,
+    reducer,
+  });
   // User Data
   const [userList, setUserList] = useState([])
   const [isListLoading, setIsListLoading] = useState(true)
@@ -625,11 +629,6 @@ Users.defaultProps = {
   demo: true,
 };
 
-const withReducer = injectReducer({
-  key: USERS_KEY,
-  reducer,
-});
-
 const mapStateToProps = createStructuredSelector({
   userStoreData: makeSelectUser(),
 });
@@ -643,7 +642,6 @@ export const mapDispatchToProps = dispatch => ({
 const withConnect = connect(mapStateToProps, mapDispatchToProps); // prettier-ignore
 
 export default compose(
-  withReducer,
   withConnect,
   reduxForm({
     form: USERS_KEY,

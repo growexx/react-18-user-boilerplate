@@ -14,8 +14,8 @@ import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import * as formValidations from 'utils/formValidations';
 import { APassword } from 'utils/Fields';
-import useInjectSaga from 'utils/injectSaga';
-import useInjectReducer from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
 import {
   makeSelectConfirmNewPassword,
   makeSelectCurrentPassword,
@@ -42,6 +42,11 @@ export const ChangePassword = ({
   updateField,
   submitData,
 }) => {
+  useInjectSaga({ key: FORM_KEY, saga });
+  useInjectReducer({
+    key: FORM_KEY,
+    reducer,
+  });
 
   return (
     <div>
@@ -135,17 +140,8 @@ const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
 );
-
-const withReducer = useInjectReducer({
-  key: FORM_KEY,
-  reducer,
-});
-
-const withSaga = useInjectSaga({ key: FORM_KEY, saga });
-
+  
 export default compose(
-  withReducer,
-  withSaga,
   withConnect,
   reduxForm({
     form: FORM_KEY,

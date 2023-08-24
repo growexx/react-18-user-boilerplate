@@ -4,32 +4,25 @@
  *
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import { StyledEditor } from './StyledEditor';
 
-class RichTextEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.setEditor = editor => {
-      this.editor = editor;
-    };
-  }
+function RichTextEditor({ value, onChange }) {
+  const editorRef = useRef(null);
 
-  render() {
-    return (
-      <StyledEditor>
-        <Editor
-          ref={this.setEditor}
-          editorState={this.props.value}
-          onEditorStateChange={this.props.onChange}
-        />
-      </StyledEditor>
-    );
-  }
+  return (
+    <StyledEditor>
+      <Editor
+        ref={editorRef}
+        editorState={value}
+        onEditorStateChange={onChange}
+      />
+    </StyledEditor>
+  );
 }
 
 RichTextEditor.propTypes = {

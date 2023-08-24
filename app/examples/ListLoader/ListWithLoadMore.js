@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { List, Avatar, Button, Skeleton } from 'antd';
 import { connect } from 'react-redux';
@@ -15,100 +15,82 @@ import { loadApp } from 'containers/App/actions';
 
 const count = 3;
 
-class ListWithLoadMore extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      initLoading: true,
-      loading: false,
-      data: [],
-      list: [],
-    };
-  }
+function ListWithLoadMore ({ onChangeAppLoading }) {
+  const [initLoading, setInitLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [list, setList] = useState([]);
 
-  componentDidMount() {
-    this.getData(res => {
-      this.setState({
-        initLoading: false,
-        data: res.results,
-        list: res.results,
-      });
+  useEffect(() => {
+    getData(res => {
+      setInitLoading(false);
+      setData(res.results);
+      setList(res.results);
     });
-  }
+  }, []);
 
-  getData = callback => {
-    this.props.onChangeAppLoading(true);
+  const getData = callback => {
+    onChangeAppLoading(true);
     request(API_ENDPOINTS.LIST, {
       method: 'GET',
     }).then(res => {
-      this.props.onChangeAppLoading(false);
+      onChangeAppLoading(false);
       callback(res);
     });
   };
 
-  onLoadMore = () => {
-    const { data } = this.state;
-    this.setState({
-      loading: true,
-      list: data.concat(
-        [...new Array(count)].map(() => ({ loading: true, name: {} })),
-      ),
-    });
-    this.getData(res => {
-      const listData = data.concat(res.results);
-      this.setState(
-        {
-          data: listData,
-          list: listData,
-          loading: false,
-        },
-        () => {
-          // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
-          // In real scene, you can using public method of react-virtualized:
-          // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
-          window.dispatchEvent(new Event('resize'));
-        },
-      );
+  const onLoadMore = () => {
+    setLoading(true);
+    setList(data.concat(
+      [...new Array(count)].map(() => ({ loading: true, name: {} })),
+    ));
+    getData(res => {
+      const listData = list.concat(res.results);
+      setData(listData);
+      setList(listData);
+      setLoading(false);
+      // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
+      // In real scene, you can using public method of react-virtualized:
+      // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
+      window.dispatchEvent(new Event('resize'));
     });
   };
 
-  render() {
-    const { initLoading, loading, list } = this.state;
-    const loadMore =
-      !initLoading && !loading ? (
-        <div
-          style={{
-            textAlign: 'center',
-            marginTop: 12,
-            height: 32,
-            lineHeight: '32px',
-          }}
-        >
-          <Button onClick={this.onLoadMore}>loading more</Button>
-        </div>
-      ) : null;
+  const loadMore =
+    !initLoading && !loading ? (
+      <div
+        style={{
+          textAlign: 'center',
+          marginTop: 12,
+          height: 32,
+          lineHeight: '32px',
+        }}
+      >
+        <Button onClick={onLoadMore}>loading more</Button>
+      </div>
+    ) : null;
 
-    return (
-      <List
-        className="demo-loadmore-list"
-        itemLayout="horizontal"
-        loadMore={loadMore}
-        dataSource={list}
-        renderItem={item => (
-          <List.Item>
-            <Skeleton avatar title={false} loading={item.loading} active>
-              <List.Item.Meta
-                avatar={<Avatar src={API_ENDPOINTS.LIST_AVATAR} />}
-                title={item.name.last}
-                description={item.email}
-              />
-            </Skeleton>
-          </List.Item>
-        )}
-      />
-    );
-  }
+  return (
+    <List
+      className="demo-loadmore-list"
+      itemLayout="horizontal"
+      loadMore={loadMore}
+      dataSource={list}
+      renderItem={item => (
+        <List.Item>
+          <Skeleton avatar title={false} loading={item.loading} active>
+            <List.Item.Meta
+              avatar={<Avatar src={API_ENDPOINTS.LIST_AVATAR} />}
+              title={item.name.last}
+              description={item.email}
+            />
+          </Skeleton>
+        </List.Item>
+      )}
+    />
+  );
 }
+
 ListWithLoadMore.propTypes = {
   onChangeAppLoading: PropTypes.func,
 };

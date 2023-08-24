@@ -13,8 +13,8 @@ import { Field, reduxForm } from 'redux-form';
 import { compose } from 'redux';
 import * as formValidations from 'utils/formValidations';
 import { Form, Radio, Button, Select } from 'antd';
-import useInjectSaga from 'utils/injectSaga';
-import useInjectReducer from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
 import {
   AInput,
   ARangePicker,
@@ -38,6 +38,11 @@ export const SampleForm = ({handleSubmit,
   submitting,
   updateField,
   submitData})=> {
+  useInjectSaga({ key: FORM_KEY, saga });
+  useInjectReducer({
+    key: FORM_KEY,
+    reducer,
+  });
 
   const handleFormSubmit = () => {
     submitData();
@@ -151,13 +156,6 @@ SampleForm.propTypes = {
   submitting: PropTypes.bool,
 };
 
-const withReducer = useInjectReducer({
-  key: FORM_KEY,
-  reducer,
-});
-
-const withSaga = useInjectSaga({ key: FORM_KEY, saga });
-
 const mapStateToProps = createStructuredSelector({
   sampleForm: makeSelectSampleForm(),
 });
@@ -172,8 +170,6 @@ function mapDispatchToProps(dispatch) {
 const withConnect = connect(mapStateToProps, mapDispatchToProps); // prettier-ignore
 
 export default compose(
-  withReducer,
-  withSaga,
   withConnect,
   reduxForm({
     form: FORM_KEY,

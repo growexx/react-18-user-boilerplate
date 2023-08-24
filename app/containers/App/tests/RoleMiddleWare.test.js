@@ -9,7 +9,7 @@ import StorageService from 'utils/StorageService';
 import Login from 'containers/Auth/Login/Loadable';
 import request from 'utils/request';
 import configureStore from '../../../configureStore';
-import RoleMiddleWare from '../RoleMiddleWare';
+import RoleMiddleWare, { getDerivedStateFromProps } from '../RoleMiddleWare';
 import { ROLES, ROUTES } from '../../constants';
 
 jest.mock('utils/request');
@@ -117,5 +117,50 @@ describe('<RoleMiddleWare />', () => {
     props.showError = false;
     const { container } = componentWrapper();
     expect(container).toBeTruthy();
+  });
+
+  it('getDerivedStateFromProps: when there is no userData', () => {
+    const testProps = {
+      path: ROUTES.TEST_ADMIN_PAGE,
+    };
+    const testState = {};
+    const response = {
+      isRestrictedRoute: true,
+      loader: true,
+    };
+    expect(getDerivedStateFromProps(testProps, testState)).toStrictEqual(
+      response,
+    );
+  });
+
+  it('getDerivedStateFromProps: when there is userData but empty', () => {
+    const testProps = {
+      path: ROUTES.TEST_ADMIN_PAGE,
+    };
+    const testState = {
+      userData: {},
+    };
+    const response = {
+      userData: {},
+      isRestrictedRoute: true,
+      loader: true,
+    };
+    expect(getDerivedStateFromProps(testProps, testState)).toStrictEqual(
+      response,
+    );
+  });
+
+  it('getDerivedStateFromProps: when there is userData', () => {
+    const testProps = {
+      path: ROUTES.TEST_ADMIN_PAGE,
+    };
+    const testState = {
+      userData: {
+        role: 1,
+      },
+    };
+    expect(getDerivedStateFromProps(testProps, testState)).toStrictEqual(
+      testState,
+    );
   });
 });

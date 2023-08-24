@@ -132,7 +132,7 @@ function Layouts({ layoutVariant, collapsed, toggle, user }) {
             <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
+              onClick={toggle}
               style={{
                 fontSize: '16px',
                 width: 64,
