@@ -2,15 +2,17 @@
  * Homepage selectors
  */
 
-import { createSelector } from 'reselect';
-import { initialState } from './reducer';
+import { createSelector } from '@reduxjs/toolkit';
 
-const selectHome = state => state.home || initialState;
+const selectReposQueries = (state) => state.repos.queries;
 
-const makeSelectUsername = () =>
+const makeSelectGetReposData = () =>
   createSelector(
-    selectHome,
-    homeState => homeState.username,
+    [selectReposQueries, (_, username) => username], // Pass username as a parameter
+    (queries, username) => {
+      const queryKey = `getRepos("${username}")`;
+      return queries[queryKey]?.data || [];
+    },
   );
 
-export { selectHome, makeSelectUsername };
+export { makeSelectGetReposData };

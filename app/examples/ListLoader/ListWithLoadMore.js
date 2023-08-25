@@ -9,9 +9,10 @@ import PropTypes from 'prop-types';
 import { List, Avatar, Button, Skeleton } from 'antd';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+
 import request from 'utils/request';
 import { API_ENDPOINTS } from 'containers/constants';
-import { loadApp } from 'containers/App/actions';
+import { loadApp } from '../../containers/App/slice';
 
 const count = 3;
 

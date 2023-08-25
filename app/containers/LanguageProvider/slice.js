@@ -5,7 +5,7 @@ export const initialState = {
   locale: DEFAULT_LOCALE,
 };
 
-const themeSlice = createSlice({
+const languageSlice = createSlice({
   name: 'language',
   initialState,
   reducers: {
@@ -18,5 +18,5 @@ const themeSlice = createSlice({
   },
 });
 
-export const { changeLocale } = themeSlice.actions;
-export default themeSlice.reducer;
+export const { changeLocale } = languageSlice.actions;
+export default languageSlice.reducer;

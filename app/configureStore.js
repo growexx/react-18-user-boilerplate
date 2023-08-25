@@ -1,18 +1,29 @@
-import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory } from 'history';
+import { createReduxHistoryContext } from 'redux-first-history';
+
+import { repoApi } from './containers/HomePage/reposApiSlice';
+import { appSlice } from './containers/App/slice';
 import languageSlice from './containers/LanguageProvider/slice';
+import { apiSlice } from './apiSlice';
 
 const { createReduxHistory, routerMiddleware, routerReducer } =
   createReduxHistoryContext({ history: createBrowserHistory() });
 
 const store = configureStore({
-  reducer: combineReducers({
+  reducer: {
     router: routerReducer,
+    app: appSlice,
     language: languageSlice,
-  }),
-  middleware: [routerMiddleware],
+    repos: repoApi.reducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
+  },
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware(),
+    apiSlice.middleware,
+    routerMiddleware,
+  ],
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 const history = createReduxHistory(store);

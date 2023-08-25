@@ -8,3 +8,4 @@ export const EMITTER_EVENTS = {
   LOG_OUT: 'USER_LOGGED_OUT',
 };
 export const GA_CATEGORY_MENU_CLICKS = 'Menu_Clicks';
+export const BASE_URL = 'https://api.github.com';

@@ -2,48 +2,43 @@
  * The global state selectors
  */
 
-import { createSelector } from 'reselect';
-import { initialState } from './reducer';
+// TODO: no need of this file
+import { createSelector } from '@reduxjs/toolkit';
 
-const selectGlobal = state => state.global || initialState;
+export const initialState = {
+  loading: false,
+  error: false,
+  currentUser: false,
+  userData: {
+    repositories: false,
+  },
+  appLoading: false,
+};
 
-const selectRouter = state => state.router;
+const selectGlobal = (state) => state.global || initialState;
+
+const selectRouter = (state) => state.router;
 
 const makeSelectCurrentUser = () =>
-  createSelector(
-    selectGlobal,
-    globalState => globalState.currentUser,
-  );
+  createSelector(selectGlobal, (globalState) => globalState.currentUser);
 
 const makeSelectLoading = () =>
-  createSelector(
-    selectGlobal,
-    globalState => globalState.loading,
-  );
+  createSelector(selectGlobal, (globalState) => globalState.loading);
 
 const makeSelectError = () =>
-  createSelector(
-    selectGlobal,
-    globalState => globalState.error,
-  );
+  createSelector(selectGlobal, (globalState) => globalState.error);
 
 const makeSelectRepos = () =>
   createSelector(
     selectGlobal,
-    globalState => globalState.userData.repositories,
+    (globalState) => globalState.userData.repositories,
   );
 
 const makeSelectLocation = () =>
-  createSelector(
-    selectRouter,
-    routerState => routerState.location,
-  );
+  createSelector(selectRouter, (routerState) => routerState.location);
 
 const makeSelectAppLoading = () =>
-  createSelector(
-    selectGlobal,
-    globalState => globalState.appLoading,
-  );
+  createSelector(selectGlobal, (globalState) => globalState.appLoading);
 
 export {
   selectGlobal,

@@ -46,7 +46,7 @@ export function RepoListItem(props) {
 
 RepoListItem.propTypes = {
   item: PropTypes.object,
-  currentUser: PropTypes.string,
+  currentUser: PropTypes.bool,
 };
 
 export default connect(

@@ -12,8 +12,9 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+
 import { API_ENDPOINTS } from 'containers/constants';
-import { loadApp } from 'containers/App/actions';
+import { loadApp } from '../../containers/App/slice';
 import request from 'utils/request';
 import { ListWithInfiniteLoader as StyledList } from './StyledList';
 import messages from './messages';
