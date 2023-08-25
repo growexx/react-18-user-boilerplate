@@ -21,6 +21,7 @@ export const StyledMainLayout = styled.div`
     .ant-menu-item-selected {
     background-color: @primary-color;
     color: @white;
+    border-radius: 0px;
   }
   .ant-menu-dark .ant-menu-item,
   .ant-menu-dark .ant-menu-item-group-title,

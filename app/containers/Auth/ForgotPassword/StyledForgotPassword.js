@@ -34,7 +34,6 @@ export const StyledForgotPassword = styled.div`
   button {
     color: @white;
     background: @primary-color;
-    border: 2px solid @white;
     border-radius: 50px;
     text-align: center;
     text-align: center;
@@ -44,9 +43,8 @@ export const StyledForgotPassword = styled.div`
     width: 160px;
     margin-top: 31px;
   }
-  button:hover {
+  button:hover:not([disabled]) {
     background: @primary-color;
-    border: 2px solid @white;
     color: @white;
   }
 `;

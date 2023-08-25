@@ -11,6 +11,7 @@ import '@babel/polyfill';
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { ConfigProvider } from 'antd';
 import FontFaceObserver from 'fontfaceobserver';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
@@ -35,6 +36,7 @@ import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './configureStore';
+import { themeConfig } from './utils/constants';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -59,7 +61,11 @@ const renderMessage = message =>
     <Provider store={store}>
       <LanguageProvider messages={message}>
         <Router history={history}>
-          <MainLayout />
+          <ConfigProvider
+            theme={themeConfig}
+          >
+            <MainLayout />
+          </ConfigProvider>
         </Router>
       </LanguageProvider>
     </Provider>,

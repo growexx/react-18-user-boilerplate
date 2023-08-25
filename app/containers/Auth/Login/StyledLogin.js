@@ -71,7 +71,7 @@ export const StyledLogin = styled.div`
   button:hover {
     background: @primary-color;
     border: 2px solid @white;
-    color: @white;
+    color: @white !important;
   }
   button {
     color: @white;
