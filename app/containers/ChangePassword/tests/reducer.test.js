@@ -1,16 +1,13 @@
 import * as types from '../constants';
 import reducer, { initialState } from '../reducer';
 const value = 'test value';
-const getFormJsStateInstance = config =>
-  Object.assign(
-    {
-      currentPassword: '',
-      newPassword: '',
-      confirmNewPassword: '',
-      loading: false,
-    },
-    config,
-  );
+const getFormJsStateInstance = config => ({
+  currentPassword: '',
+  newPassword: '',
+  confirmNewPassword: '',
+  loading: false,
+  ...config,
+});
 describe('ChangePassword reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState);

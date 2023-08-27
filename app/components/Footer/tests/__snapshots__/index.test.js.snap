@@ -56,21 +56,9 @@ exports[`<Footer /> should render and match the snapshot 1`] = `
   className="c0"
 >
   <section>
-    <span
-      dangerouslySetInnerHTML={
-        {
-          "__html": "&copy; 2023 React Boilerplate",
-        }
-      }
-    />
+    &copy; 2023 React Boilerplate
     <section>
-      <span
-        dangerouslySetInnerHTML={
-          {
-            "__html": "Get started with your next react application in seconds.",
-          }
-        }
-      />
+      Get started with your next react application in seconds.
     </section>
   </section>
   <section>

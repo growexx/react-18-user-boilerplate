@@ -54,7 +54,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
 
 <div>
   <div
-    class="ant-card ant-card-bordered"
+    class="ant-card ant-card-bordered css-dev-only-do-not-override-byeoj0"
   >
     <div
       class="ant-card-body"
@@ -106,7 +106,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner"
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-card-head"
@@ -126,13 +126,11 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
                     class="c2"
                   >
                     <button
-                      class="ant-btn ant-btn-default"
+                      class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-default"
                       data-testid="About_Edit"
                       type="button"
                     >
-                      <span>
-                        Edit
-                      </span>
+                      Edit
                     </button>
                   </div>
                 </div>
@@ -146,7 +144,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
           </div>
           <br />
           <div
-            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner"
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-card-head"
@@ -166,13 +164,11 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
                     class="c2"
                   >
                     <button
-                      class="ant-btn ant-btn-default"
+                      class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-default"
                       data-testid="Experience_Edit"
                       type="button"
                     >
-                      <span>
-                        Edit
-                      </span>
+                      Edit
                     </button>
                   </div>
                 </div>
@@ -186,7 +182,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
           </div>
           <br />
           <div
-            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner"
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-card-head"
@@ -206,13 +202,11 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
                     class="c2"
                   >
                     <button
-                      class="ant-btn ant-btn-default"
+                      class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-default"
                       data-testid="Education_Edit"
                       type="button"
                     >
-                      <span>
-                        Edit
-                      </span>
+                      Edit
                     </button>
                   </div>
                 </div>
@@ -226,7 +220,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
           </div>
           <br />
           <div
-            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner"
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-card-head"
@@ -246,13 +240,11 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
                     class="c2"
                   >
                     <button
-                      class="ant-btn ant-btn-default"
+                      class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-default"
                       data-testid="LicensesAndCertifications_edit"
                       type="button"
                     >
-                      <span>
-                        Edit
-                      </span>
+                      Edit
                     </button>
                   </div>
                 </div>
@@ -266,7 +258,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
           </div>
           <br />
           <div
-            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner"
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-card-head"

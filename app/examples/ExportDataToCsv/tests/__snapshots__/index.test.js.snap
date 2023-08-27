@@ -11,6 +11,10 @@ exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
   flex-direction: column;
 }
 
+.c0 button {
+  margin-bottom: 12px;
+}
+
 .c1 {
   -webkit-align-self: flex-end;
   -ms-flex-item-align: end;

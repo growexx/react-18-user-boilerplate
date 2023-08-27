@@ -100,7 +100,8 @@ export function getGoogleSignIn() {
 
   signInWithGoogle();
   //  *SUCCESS AND FAILURE CHANGES IN FOLLOWING FUNCTION
-  auth.onAuthStateChanged(function*() {});
+  // eslint-disable-next-line func-names
+  auth.onAuthStateChanged(function* () {});
 }
 /**
  * user login request/response handler with facebook
@@ -119,7 +120,8 @@ export function getFacebookSignIn() {
   // ----------------Demo--------------------  });
   signInWithFacebook();
   // SUCCESS AND FAILURE CHANGES IN FOLLOWING FUNCTION
-  auth.onAuthStateChanged(function*() {});
+  // eslint-disable-next-line func-names
+  auth.onAuthStateChanged(function* () {});
 }
 
 /**

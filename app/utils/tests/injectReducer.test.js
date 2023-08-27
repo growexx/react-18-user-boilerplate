@@ -22,10 +22,12 @@ describe('useInjectReducer hook', () => {
     injectors = {
       injectReducer: jest.fn(),
     };
+    // eslint-disable-next-line no-import-assign
     reducerInjectors.default = jest.fn().mockImplementation(() => injectors);
     const { store } = configureStore({}, memoryHistory);
     globalStore = store;
-    ComponentWithReducer = () => {
+    // eslint-disable-next-line func-names
+    ComponentWithReducer = function () {
       useInjectReducer({ key: 'test', reducer });
       return null;
     };

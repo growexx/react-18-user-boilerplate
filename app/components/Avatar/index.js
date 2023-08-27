@@ -21,15 +21,17 @@ export const getNewMenu = MenuItems =>
     label: <Link to={menuItem.to}>{menuItem.tabName}</Link>,
   }));
 
-const Avatar = props => (
-  <AvatarWrapper>
-    <Dropdown menu={returnItems(props.menu)} placement="bottom">
-      <Button type="primary" shape="circle">
-        <UserOutlined />
-      </Button>
-    </Dropdown>
-  </AvatarWrapper>
-);
+function Avatar(props) {
+  return (
+    <AvatarWrapper>
+      <Dropdown menu={returnItems(props.menu)} placement="bottom">
+        <Button type="primary" shape="circle">
+          <UserOutlined />
+        </Button>
+      </Dropdown>
+    </AvatarWrapper>
+  );
+}
 
 export default Avatar;
 

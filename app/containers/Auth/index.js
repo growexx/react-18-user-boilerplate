@@ -39,13 +39,15 @@ const getRegisterSideContent = () => (
     </Link>
   </div>
 );
-const AuthSideContainer = props => (
-  <div className="sideContainer">
-    {props.authType === AUTH_TYPE[0]
-      ? getLoginSideContent()
-      : getRegisterSideContent()}
-  </div>
-);
+function AuthSideContainer(props) {
+  return (
+    <div className="sideContainer">
+      {props.authType === AUTH_TYPE[0]
+        ? getLoginSideContent()
+        : getRegisterSideContent()}
+    </div>
+  );
+}
 
 export default AuthSideContainer;
 

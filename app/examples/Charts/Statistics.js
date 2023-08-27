@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-indent-props */
 import React, { useState, useEffect } from 'react';
 import { Row, Statistic, Skeleton, Space, Col, Popover, Tag } from 'antd';
@@ -24,31 +25,14 @@ const SpaceContainer = styled(Space)`
 
 function Statistics() {
   const [isLoading, setIsLoading] = useState(true);
-  const [users, setUsers] = useState(
-    new Date()
-      .getTime()
-      .toString()
-      .slice(5)
-  );
+  const [users, setUsers] = useState(new Date().getTime().toString().slice(5));
   const [earning, setEarning] = useState(
-    new Date()
-      .getTime()
-      .toString()
-      .slice(5)
+    new Date().getTime().toString().slice(5),
   );
   const [payouts, setPayouts] = useState({
-    paid: new Date()
-      .getTime()
-      .toString()
-      .slice(5),
-    total: new Date()
-      .getTime()
-      .toString()
-      .slice(5),
-    pending: new Date()
-      .getTime()
-      .toString()
-      .slice(5),
+    paid: new Date().getTime().toString().slice(5),
+    total: new Date().getTime().toString().slice(5),
+    pending: new Date().getTime().toString().slice(5),
   });
 
   useEffect(() => {
@@ -65,11 +49,15 @@ function Statistics() {
               <Row>
                 <Col>
                   <Space className="m-2">Pending:</Space>
-                  <Tag color="default">${parseFloat(payouts.pending).toFixed(2)}</Tag>
+                  <Tag color="default">
+                    ${parseFloat(payouts.pending).toFixed(2)}
+                  </Tag>
                 </Col>
                 <Col>
                   <Space className="m-2">Paid:</Space>
-                  <Tag color="success">${parseFloat(payouts.paid).toFixed(2)}</Tag>
+                  <Tag color="success">
+                    ${parseFloat(payouts.paid).toFixed(2)}
+                  </Tag>
                 </Col>
               </Row>
             }
@@ -91,9 +79,21 @@ function Statistics() {
         </SpaceContainer>
       ) : (
         <SpaceContainer className="d-flex justify-content-around flex-row w-100">
-          <Skeleton.Input style={{ width: 250 }} active={isLoading} size="large" />
-          <Skeleton.Input style={{ width: 250 }} active={isLoading} size="large" />
-          <Skeleton.Input style={{ width: 250 }} active={isLoading} size="large" />
+          <Skeleton.Input
+            style={{ width: 250 }}
+            active={isLoading}
+            size="large"
+          />
+          <Skeleton.Input
+            style={{ width: 250 }}
+            active={isLoading}
+            size="large"
+          />
+          <Skeleton.Input
+            style={{ width: 250 }}
+            active={isLoading}
+            size="large"
+          />
         </SpaceContainer>
       )}
     </Row>

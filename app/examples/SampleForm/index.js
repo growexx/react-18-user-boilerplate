@@ -11,8 +11,8 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { Field, reduxForm } from 'redux-form';
 import { compose } from 'redux';
-import * as formValidations from 'utils/formValidations';
 import { Form, Radio, Button, Select } from 'antd';
+import * as formValidations from 'utils/formValidations';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import {
@@ -32,12 +32,14 @@ const FormItem = Form.Item;
 const FORM_KEY = 'sampleForm';
 const { Option } = Select;
 
-export const SampleForm = ({handleSubmit,
+export function SampleForm({
+  handleSubmit,
   pristine,
   reset,
   submitting,
   updateField,
-  submitData})=> {
+  submitData,
+}) {
   useInjectSaga({ key: FORM_KEY, saga });
   useInjectReducer({
     key: FORM_KEY,

@@ -22,14 +22,14 @@ function ExportDataToCsv() {
   const [selectedRows, setSelectedRows] = useState([]);
 
   const rowSelection = {
-    onChange: (selectedRowKeys, selectedRows) => {
+    onChange: (selectedRowKeys, currentSelectedRows) => {
       // eslint-disable-next-line no-console
       console.log(
         `selectedRowKeys: ${selectedRowKeys}`,
         'selectedRows: ',
-        selectedRows,
+        currentSelectedRows,
       );
-      setSelectedRows(selectedRows);
+      setSelectedRows(currentSelectedRows);
     },
   };
 

@@ -21,6 +21,7 @@ export function* getPasswordChange() {
   yield put(updateField('loading', false));
   const newPassword = yield select(makeSelectNewPassword());
   const confirmNewPassword = yield select(makeSelectConfirmNewPassword());
+  // eslint-disable-next-line no-console
   console.log(currentPassword, newPassword, confirmNewPassword);
   // eslint-disable-next-line no-console
   showNotification('Change Password Error', 'error');

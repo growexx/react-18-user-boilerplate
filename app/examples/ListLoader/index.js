@@ -14,13 +14,9 @@ import { StyledList } from './StyledList';
 
 function Loader() {
   const { TabPane } = Tabs;
-  function callback(key) {
-    // eslint-disable-next-line no-console
-    console.log(key);
-  }
   return (
     <StyledList>
-      <Tabs defaultActiveKey="1" onChange={callback} data-testid="ListTab">
+      <Tabs defaultActiveKey="1" data-testid="ListTab">
         <TabPane tab={TABS.TITLE.TAB_ONE} key="1">
           <ListWithInfiniteLoader />
         </TabPane>

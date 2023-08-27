@@ -12,7 +12,9 @@ export default {
   title: 'Components/RichTextEditor',
   component: RichTextEditor,
 };
-const Template = args => <RichTextEditor {...args} />;
+function Template(args) {
+  return <RichTextEditor {...args} />;
+}
 
 export const RichTextEditorComponent = Template.bind({});
 RichTextEditorComponent.args = {

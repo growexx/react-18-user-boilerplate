@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-shadow */
 /* eslint-disable indent */
 /* eslint-disable react/jsx-indent-props */
 import React, { useEffect, useState } from 'react';
@@ -10,17 +12,6 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { change } from 'redux-form';
 import { Field, reduxForm } from 'redux-form/immutable';
-import { useInjectReducer } from 'utils/injectReducer';
-import * as formValidations from 'utils/formValidations';
-import {
-  API_URL,
-  API_ENDPOINTS,
-  SORTING,
-  GET_SORT_ORDER,
-  GET_DEFAULT_PAGINATION,
-  FULL_GENERIC_MOMENT_DATE_FORMAT,
-} from 'containers/constants';
-import request from 'utils/request';
 import {
   Space,
   Button,
@@ -37,6 +28,17 @@ import debounce from 'lodash/debounce';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import request from 'utils/request';
+import {
+  API_URL,
+  API_ENDPOINTS,
+  SORTING,
+  GET_SORT_ORDER,
+  GET_DEFAULT_PAGINATION,
+  FULL_GENERIC_MOMENT_DATE_FORMAT,
+} from 'containers/constants';
+import * as formValidations from 'utils/formValidations';
+import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import { AInput } from '../../utils/Fields';
 import * as actions from './actions';
@@ -65,7 +67,7 @@ const logsTableProps = {
 };
 
 // export class Users extends Component {
-export const Users = ({
+export function Users({
   demo,
   fillFields,
   dispatch,
@@ -75,157 +77,152 @@ export const Users = ({
   submitting,
   invalid,
   updateField,
-  handleSubmit}) => {
+  handleSubmit,
+}) {
   useInjectReducer({
     key: USERS_KEY,
     reducer,
   });
   // User Data
-  const [userList, setUserList] = useState([])
-  const [isListLoading, setIsListLoading] = useState(true)
+  const [userList, setUserList] = useState([]);
+  const [isListLoading, setIsListLoading] = useState(true);
   // Table Pagination
-  const [pagination, setPagination] = useState(GET_DEFAULT_PAGINATION())
-  const [sortType, setSortType] = useState(SORTING.ASC)
-  const [sortKey, setSortKey] = useState('id')
-  const [search, setSearch] = useState('')
+  const [pagination, setPagination] = useState(GET_DEFAULT_PAGINATION());
+  const [sortType, setSortType] = useState(SORTING.ASC);
+  const [sortKey, setSortKey] = useState('id');
+  const [search, setSearch] = useState('');
   // Popup
-  const [isPopUpVisible, setIsPopUpVisible] = useState(false)
-  const [popUpAction, setPopUpAction] = useState('')
-  const [isPopUpLoading, setIsPopUpLoading] = useState(false)
-  const [userId, setUserId] = useState('')
-  const [status, setStatus] = useState('')
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+  const [popUpAction, setPopUpAction] = useState('');
+  const [isPopUpLoading, setIsPopUpLoading] = useState(false);
+  const [userId, setUserId] = useState('');
+  const [status, setStatus] = useState('');
   // Modal
-  const [showUserModal, setShowUserModal] = useState(false)
+  const [showUserModal, setShowUserModal] = useState(false);
 
   useEffect(() => {
-    loadUserDetails({pagination})
-  }, [])
+    loadUserDetails({ pagination });
+  }, []);
 
   const debouncedLoadUserDetails = debounce(d => loadUserDetails(d), 300);
 
-  const getColumnProps = () => {
-    return [
-      {
-        title: 'User Id',
-        dataIndex: 'id',
-        key: 'id',
-        width: '10%',
-        sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-      },
-      {
-        title: 'Name',
-        dataIndex: 'firstName',
-        key: 'firstName',
-        width: '20%',
-        sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-        render: (_action, data) => `${data.firstName} ${data.lastName}`,
-      },
-      {
-        title: 'Email',
-        dataIndex: 'email',
-        key: 'email',
-        width: '20%',
-        sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-      },
-      {
-        title: 'Status',
-        dataIndex: 'status',
-        key: 'status',
-        width: '15%',
-        sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-        render: (_action, data) => (
-          <Switch
-            data-testid={TEST_IDS.STATUS_TOGGLE}
-            checkedChildren="Active"
-            unCheckedChildren="Suspend"
-            defaultChecked={data.status === ACCOUNT_STATUS.ACTIVE}
-            loading={isPopUpLoading && userId === data.id}
-            disabled={isPopUpLoading}
-            onChange={active => {
-              setUserId(data.id)
-              setIsPopUpLoading(true)
-              handlePopupOk({
-                status: active
-                  ? ACCOUNT_STATUS.ACTIVE
-                  : ACCOUNT_STATUS.SUSPENDED,
-              });
+  const getColumnProps = () => [
+    {
+      title: 'User Id',
+      dataIndex: 'id',
+      key: 'id',
+      width: '10%',
+      sorter: true,
+      sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
+      title: 'Name',
+      dataIndex: 'firstName',
+      key: 'firstName',
+      width: '20%',
+      sorter: true,
+      sortDirections: ['descend', 'ascend', 'descend'],
+      render: (_action, data) => `${data.firstName} ${data.lastName}`,
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+      width: '20%',
+      sorter: true,
+      sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      width: '15%',
+      sorter: true,
+      sortDirections: ['descend', 'ascend', 'descend'],
+      render: (_action, data) => (
+        <Switch
+          data-testid={TEST_IDS.STATUS_TOGGLE}
+          checkedChildren="Active"
+          unCheckedChildren="Suspend"
+          defaultChecked={data.status === ACCOUNT_STATUS.ACTIVE}
+          loading={isPopUpLoading && userId === data.id}
+          disabled={isPopUpLoading}
+          onChange={active => {
+            setUserId(data.id);
+            setIsPopUpLoading(true);
+            handlePopupOk({
+              status: active ? ACCOUNT_STATUS.ACTIVE : ACCOUNT_STATUS.SUSPENDED,
+            });
+          }}
+        />
+      ),
+    },
+    {
+      title: 'Last Access Date',
+      dataIndex: 'lastAccessDate',
+      key: 'lastAccessDate',
+      width: '15%',
+      render: v => (
+        <Space size="middle">
+          {moment(v).format(FULL_GENERIC_MOMENT_DATE_FORMAT)}
+        </Space>
+      ),
+    },
+    {
+      title: 'Actions',
+      dataIndex: 'action',
+      key: 'action',
+      width: '20%',
+      render: (action, data) => (
+        <Space size="middle">
+          <Button
+            data-testid={TEST_IDS.EDIT_BUTTON}
+            type="secondary"
+            htmlType="submit"
+            onClick={() => editUser(data.id)}
+            title={userId ? 'Edit User' : 'Add User'}
+          >
+            <FontAwesomeIcon icon={faEdit} />
+          </Button>
+          <Popconfirm
+            title={MESSAGES.DELETE}
+            open={
+              isPopUpVisible &&
+              popUpAction === POPUP_ACTION.DELETE &&
+              userId === data.id
+            }
+            onConfirm={() => handlePopupOk({ isDeleted: true })}
+            okButtonProps={{
+              loading: isPopUpLoading,
+              'data-testid': TEST_IDS.DELETE_BUTTON_CONFIRMED,
             }}
-          />
-        ),
-      },
-      {
-        title: 'Last Access Date',
-        dataIndex: 'lastAccessDate',
-        key: 'lastAccessDate',
-        width: '15%',
-        render: v => (
-          <Space size="middle">
-            {moment(v).format(FULL_GENERIC_MOMENT_DATE_FORMAT)}
-          </Space>
-        ),
-      },
-      {
-        title: 'Actions',
-        dataIndex: 'action',
-        key: 'action',
-        width: '20%',
-        render: (action, data) => (
-          <Space size="middle">
+            cancelButtonProps={{
+              'data-testid': TEST_IDS.DELETE_CONFIRMATION_CANCEL,
+            }}
+            onCancel={handlePopupCancel}
+          >
             <Button
-              data-testid={TEST_IDS.EDIT_BUTTON}
+              data-testid={TEST_IDS.DELETE_BUTTON}
               type="secondary"
               htmlType="submit"
-              onClick={() => editUser(data.id)}
-              title={userId ? 'Edit User' : 'Add User'}
+              onClick={() => showPopConfirm(POPUP_ACTION.DELETE, data.id)}
+              title={MESSAGES.TITLE.DELETE}
             >
-              <FontAwesomeIcon icon={faEdit} />
+              <FontAwesomeIcon icon={faTrash} />
             </Button>
-            <Popconfirm
-              title={MESSAGES.DELETE}
-              open={
-                isPopUpVisible &&
-                popUpAction === POPUP_ACTION.DELETE &&
-                userId === data.id
-              }
-              onConfirm={() => handlePopupOk({ isDeleted: true })}
-              okButtonProps={{
-                loading: isPopUpLoading,
-                'data-testid': TEST_IDS.DELETE_BUTTON_CONFIRMED,
-              }}
-              cancelButtonProps={{
-                'data-testid': TEST_IDS.DELETE_CONFIRMATION_CANCEL,
-              }}
-              onCancel={handlePopupCancel}
-            >
-              <Button
-                data-testid={TEST_IDS.DELETE_BUTTON}
-                type="secondary"
-                htmlType="submit"
-                onClick={() =>
-                  showPopConfirm(POPUP_ACTION.DELETE, data.id)
-                }
-                title={MESSAGES.TITLE.DELETE}
-              >
-                <FontAwesomeIcon icon={faTrash} />
-              </Button>
-            </Popconfirm>
-          </Space>
-        ),
-      },
-    ];
-  };
+          </Popconfirm>
+        </Space>
+      ),
+    },
+  ];
 
   /**
    * Individual row Action Popup handler
    */
   const handlePopupCancel = () => {
-    setUserId('')
-    setPopUpAction('')
-    setIsPopUpVisible(false)
+    setUserId('');
+    setPopUpAction('');
+    setIsPopUpVisible(false);
   };
 
   /**
@@ -234,16 +231,16 @@ export const Users = ({
    * @param {*} userId
    */
   const showPopConfirm = (action, userId) => {
-    setUserId(userId)
-    setPopUpAction(action)
-    setIsPopUpVisible(true)
+    setUserId(userId);
+    setPopUpAction(action);
+    setIsPopUpVisible(true);
   };
 
-  const showError = (error) => {
+  const showError = error => {
     error.response
       .json()
       .then(err => notification.error({ message: err.message }));
-  }
+  };
 
   /**
    * Handles Popup Ok Action
@@ -251,16 +248,16 @@ export const Users = ({
    */
   const handlePopupOk = payload => {
     const resetAction = () => {
-      setIsPopUpLoading(false)
-      setIsPopUpVisible(false)
-      setUserId('')
-      setPopUpAction('')
+      setIsPopUpLoading(false);
+      setIsPopUpVisible(false);
+      setUserId('');
+      setPopUpAction('');
     };
 
     const currentUser = userList.find(u => u.id === userId);
     const isDelete = popUpAction === POPUP_ACTION.DELETE;
 
-    setIsPopUpLoading(true)
+    setIsPopUpLoading(true);
 
     if (isDelete) {
       (demo
@@ -301,9 +298,8 @@ export const Users = ({
     }
   };
 
-  const getLatestValue = (newValue, oldValue) => {
-    return newValue === '' ? newValue : newValue || oldValue;
-  }
+  const getLatestValue = (newValue, oldValue) =>
+    newValue === '' ? newValue : newValue || oldValue;
 
   const getUpdatedPagination = ({ status: newStatus, pagination }) => {
     if (status !== newStatus) {
@@ -311,7 +307,7 @@ export const Users = ({
     }
 
     return pagination;
-  }
+  };
 
   const loadUserDetails = ({
     pagination: newPagination,
@@ -321,10 +317,10 @@ export const Users = ({
     status: newStatus,
   } = {}) => {
     let paginationData = newPagination || pagination;
-    let sortTypeData = newSortType || sortType;
-    let sortKeyData = newSortKey || sortKey;
-    let searchData = getLatestValue(newSearch, search);
-    let statusData = getLatestValue(newStatus, status);
+    const sortTypeData = newSortType || sortType;
+    const sortKeyData = newSortKey || sortKey;
+    const searchData = getLatestValue(newSearch, search);
+    const statusData = getLatestValue(newStatus, status);
     paginationData = getUpdatedPagination({
       pagination: paginationData,
       status: statusData,
@@ -368,10 +364,10 @@ export const Users = ({
 
   const setUserDetails = (response, { pagination, status }) => {
     if (get(response, 'status')) {
-      setUserList(get(response, 'data', []))
-      setPagination(get(response, 'pagination', pagination))
-      setIsListLoading(false)
-      setStatus(status)
+      setUserList(get(response, 'data', []));
+      setPagination(get(response, 'pagination', pagination));
+      setIsListLoading(false);
+      setStatus(status);
     } else {
       notification.error({ message: get(response, 'message') });
     }
@@ -393,8 +389,8 @@ export const Users = ({
 
   const onSearchUser = e => {
     const { value } = e.target;
-    setSearch(value)
-    setPagination(GET_DEFAULT_PAGINATION())
+    setSearch(value);
+    setPagination(GET_DEFAULT_PAGINATION());
     debouncedLoadUserDetails({ search: value });
   };
 
@@ -431,9 +427,9 @@ export const Users = ({
         dispatch(change(USERS_KEY, key, storeData[key]));
         fillFields(key, storeData[key]);
       });
-      setUserId(userId)
-      setShowUserModal(true)
-      setIsPopUpVisible(false)
+      setUserId(userId);
+      setShowUserModal(true);
+      setIsPopUpVisible(false);
     }
   };
 
@@ -441,7 +437,7 @@ export const Users = ({
    * This modal handler verified data and submits to the backend
    */
   const updateUser = () => {
-    setIsListLoading(true)
+    setIsListLoading(true);
     const isUpdate = !!userId;
     const payload = {
       method: isUpdate ? 'PUT' : 'POST',
@@ -463,9 +459,9 @@ export const Users = ({
       : request(URL, payload)
     )
       .then(res => {
-        setIsListLoading(false)
-        setShowUserModal(!showUserModal)
-        setUserId('')
+        setIsListLoading(false);
+        setShowUserModal(!showUserModal);
+        setUserId('');
 
         loadUserDetails();
         notification.success({ message: res.message });
@@ -473,7 +469,7 @@ export const Users = ({
       })
       .catch(error => {
         showError(error);
-        setIsListLoading(false)
+        setIsListLoading(false);
       });
   };
 
@@ -482,8 +478,8 @@ export const Users = ({
    */
   const toggleModals = () => {
     reset();
-    setShowUserModal(!showUserModal)
-    setUserId(showUserModal ? '' : userId)
+    setShowUserModal(!showUserModal);
+    setUserId(showUserModal ? '' : userId);
   };
 
   /**
@@ -541,7 +537,7 @@ export const Users = ({
       </Modal>
     );
   };
-  
+
   const options = Object.keys(ACCOUNT_STATUS).map(key => ({
     value: ACCOUNT_STATUS[key],
     label: ACCOUNT_STATUS[key],

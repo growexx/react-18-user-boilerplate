@@ -17,9 +17,9 @@ import {
   DatePicker,
 } from 'antd';
 import { Helmet } from 'react-helmet';
-import * as formValidations from 'utils/formValidations';
 import { Controller, useForm, Form } from 'react-hook-form';
 import { compose } from 'redux';
+import * as formValidations from 'utils/formValidations';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import * as actions from './actions';
@@ -32,7 +32,7 @@ const FormItem = antForm.Item;
 
 const FORM_KEY = 'sampleHookForm';
 
-const ReactHookForm = props => {
+function ReactHookForm(props) {
   useInjectSaga({ key: FORM_KEY, saga });
   useInjectReducer({
     key: FORM_KEY,
@@ -223,31 +223,29 @@ const ReactHookForm = props => {
             />
           </FormItem>
 
-          <>
-            <center>
-              <Button
-                type="primary"
-                htmlType="submit"
-                style={{ marginRight: '10px' }}
-              >
-                Submit
-              </Button>
-              <Button
-                onClick={() => {
-                  reset({});
-                  setValue('rangePicker', null);
-                  setDateRange(null);
-                }}
-              >
-                Clear Values
-              </Button>
-            </center>
-          </>
+          <center>
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{ marginRight: '10px' }}
+            >
+              Submit
+            </Button>
+            <Button
+              onClick={() => {
+                reset({});
+                setValue('rangePicker', null);
+                setDateRange(null);
+              }}
+            >
+              Clear Values
+            </Button>
+          </center>
         </Form>
       </StyledItem>
     </div>
   );
-};
+}
 
 ReactHookForm.propTypes = {
   submitData: PropTypes.func.isRequired,
@@ -260,6 +258,4 @@ function mapDispatchToProps(dispatch) {
 }
 const withConnect = connect(undefined, mapDispatchToProps); // prettier-ignore
 
-export default compose(
-  withConnect,
-)(ReactHookForm);
+export default compose(withConnect)(ReactHookForm);

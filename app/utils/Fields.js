@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+/* eslint-disable react/function-component-definition */
 /* eslint-disable react/prop-types */
 /**
  * Redux-form Fields
@@ -21,29 +23,24 @@ const formItemLayout = {
   },
 };
 
-const makeField = Component => ({
-  input,
-  meta,
-  children,
-  hasFeedback,
-  label,
-  ...rest
-}) => {
-  const hasError = meta.touched && meta.invalid;
-  return (
-    <FormItem
-      {...formItemLayout}
-      label={label}
-      validateStatus={hasError ? 'error' : 'success'}
-      hasFeedback={hasFeedback && hasError}
-      help={hasError && meta.error}
-    >
-      <Component {...input} {...rest}>
-        {children}
-      </Component>
-    </FormItem>
-  );
-};
+const makeField =
+  Component =>
+  ({ input, meta, children, hasFeedback, label, ...rest }) => {
+    const hasError = meta.touched && meta.invalid;
+    return (
+      <FormItem
+        {...formItemLayout}
+        label={label}
+        validateStatus={hasError ? 'error' : 'success'}
+        hasFeedback={hasFeedback && hasError}
+        help={hasError && meta.error}
+      >
+        <Component {...input} {...rest}>
+          {children}
+        </Component>
+      </FormItem>
+    );
+  };
 
 export const AInput = makeField(Input);
 export const APassword = makeField(Input.Password);

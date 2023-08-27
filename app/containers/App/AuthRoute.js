@@ -4,7 +4,8 @@ import { Outlet, Navigate } from 'react-router';
 import { userExists } from 'utils/Helper';
 import { ROUTES } from '../constants';
 
-const AuthRoute = () =>
-  !userExists() ? <Outlet /> : <Navigate to={ROUTES.HOME} />;
+function AuthRoute() {
+  return !userExists() ? <Outlet /> : <Navigate to={ROUTES.HOME} />;
+}
 
 export default AuthRoute;

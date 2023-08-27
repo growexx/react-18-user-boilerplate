@@ -22,10 +22,7 @@ const makeSelectCurrentPassword = () =>
   );
 
 const makeSelectNewPassword = () =>
-  createSelector(
-    selectChangePasswordDomain,
-    substate => substate.newPassword,
-  );
+  createSelector(selectChangePasswordDomain, substate => substate.newPassword);
 
 const makeSelectConfirmNewPassword = () =>
   createSelector(
@@ -34,10 +31,7 @@ const makeSelectConfirmNewPassword = () =>
   );
 
 const makeSelectLoading = () =>
-  createSelector(
-    selectChangePasswordDomain,
-    substate => substate.loading,
-  );
+  createSelector(selectChangePasswordDomain, substate => substate.loading);
 
 export {
   selectChangePasswordDomain,

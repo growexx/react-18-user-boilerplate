@@ -30,7 +30,7 @@ import { fireSubmit, updateField as updateAction } from './actions';
 
 const FormItem = Form.Item;
 
-export const ChangePassword = ({
+export function ChangePassword({
   invalid,
   loading,
   currentPassword,
@@ -41,7 +41,7 @@ export const ChangePassword = ({
   submitting,
   updateField,
   submitData,
-}) => {
+}) {
   useInjectSaga({ key: FORM_KEY, saga });
   useInjectReducer({
     key: FORM_KEY,
@@ -136,11 +136,8 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-  
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
 export default compose(
   withConnect,
   reduxForm({

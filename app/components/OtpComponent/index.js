@@ -8,11 +8,11 @@ import OtpInput from 'react-otp-input';
 import PropTypes from 'prop-types';
 import { StyledOtpComponent } from './StyledOtpComponent';
 
-const OtpComponent = props => {
+function OtpComponent(props) {
   return (
     <StyledOtpComponent>
       <OtpInput
-        renderInput={props => <input {...props} />}
+        renderInput={newProps => <input {...newProps} />}
         value={props.value}
         onChange={props.onChange}
         numInputs={props.numInputs}

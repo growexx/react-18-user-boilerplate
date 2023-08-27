@@ -9,13 +9,15 @@ import configureStore from '../../configureStore';
 const initialState = {};
 const { store, history } = configureStore(initialState);
 
-const WrapperStory = props => (
-  <Provider store={store}>
-    <IntlProvider locale="en">
-      <Router history={history}>{props.children}</Router>
-    </IntlProvider>
-  </Provider>
-);
+function WrapperStory(props) {
+  return (
+    <Provider store={store}>
+      <IntlProvider locale="en">
+        <Router history={history}>{props.children}</Router>
+      </IntlProvider>
+    </Provider>
+  );
+}
 
 export default WrapperStory;
 

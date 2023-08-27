@@ -13,7 +13,9 @@ import { IntlProvider } from 'react-intl';
 import ImageUpload from '../index';
 import { DEFAULT_LOCALE } from '../../../i18n';
 jest.mock('antd-img-crop', () => {
-  const ComponentToMock = Children => <div>{Children.children}</div>;
+  function ComponentToMock(Children) {
+    return <div>{Children.children}</div>;
+  }
   return ComponentToMock;
 });
 describe('<ImageUpload />', () => {

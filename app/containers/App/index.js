@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-array-index-key */
 /**
  *
@@ -46,6 +47,10 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
+function AdminPage() {
+  return <div>This is Admin Role Page</div>;
+}
+
 export default function App() {
   useEffect(() => {
     // google analytics init
@@ -76,7 +81,7 @@ export default function App() {
       </Helmet>
       <Routes>
         {/* Private Routes */}
-          <Route element={<PrivateRoute />}>
+        <Route element={<PrivateRoute />}>
           <Route exact path={ROUTES.HOME} element={<FeaturePage />} />
           <Route path={ROUTES.GITHUB_SEARCH} element={<HomePage />} />
           <Route path={ROUTES.PROFILE} element={<Profile />} />
@@ -102,13 +107,13 @@ export default function App() {
         <Route element={<RoleMiddleWare />}>
           <Route
             path={ROUTES.TEST_ADMIN_PAGE}
-            element={() => <div>This is Admin Role Page</div>}
+            element={AdminPage}
             // ShowError redirects to 403
             // showError
           />
         </Route>
         {/* Auth Routes */}
-          <Route element={<AuthRoute />}>
+        <Route element={<AuthRoute />}>
           <Route exact path={ROUTES.LOGIN} element={<Login />} />
           <Route
             exact

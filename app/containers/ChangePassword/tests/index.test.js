@@ -10,8 +10,8 @@ import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import history from 'utils/history';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
+import history from 'utils/history';
 import ChangePassword, { mapDispatchToProps } from '../index';
 import Lodable from '../Loadable';
 import configureStore from '../../../configureStore';
@@ -76,9 +76,8 @@ describe('<ChangePassword />', () => {
     expect(firstChild).toMatchSnapshot();
   });
   test('Should Click Button', async () => {
-    const { container, getByPlaceholderText } = componentWrapper(
-      ChangePassword,
-    );
+    const { container, getByPlaceholderText } =
+      componentWrapper(ChangePassword);
     fireEvent.change(getByPlaceholderText('Current Password'), {
       target: {
         name: 'currentPassword',

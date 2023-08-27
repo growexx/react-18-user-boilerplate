@@ -61,9 +61,7 @@ const renderMessage = message =>
     <Provider store={store}>
       <LanguageProvider messages={message}>
         <Router history={history}>
-          <ConfigProvider
-            theme={themeConfig}
-          >
+          <ConfigProvider theme={themeConfig}>
             <MainLayout />
           </ConfigProvider>
         </Router>
@@ -76,7 +74,8 @@ if (module.hot) {
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
   module.hot.accept(['./i18n', 'containers/App'], () => {
-    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+    // ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+    MOUNT_NODE.unmount();
     renderMessage(translationMessages);
   });
 }

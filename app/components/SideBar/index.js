@@ -17,7 +17,7 @@ import { GA_CATEGORY_MENU_CLICKS } from '../../utils/constants';
 
 const { Sider } = Layout;
 
-const SideBar = props => {
+function SideBar(props) {
   const location = useLocation();
 
   const Logo = !props.collapsed ? (
@@ -33,7 +33,6 @@ const SideBar = props => {
       collapsed={props.collapsed}
       id="components-layout-demo-custom-trigger"
     >
-      
       {showLogoInSideBar(props.layoutVariant) ? (
         <div className="logo">
           <Link to={ROUTES.HOME}>{Logo}</Link>
@@ -63,7 +62,7 @@ const SideBar = props => {
       </Menu>
     </Sider>
   );
-};
+}
 
 export default SideBar;
 

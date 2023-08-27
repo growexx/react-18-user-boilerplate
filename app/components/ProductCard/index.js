@@ -22,7 +22,7 @@ import { addToCart } from '../../examples/Products/utils';
 const { Meta } = Card;
 const { Text, Title } = Typography;
 
-const ProductCard = ({ data }) => {
+function ProductCard({ data }) {
   const { id, title, description, imageUrl, price = 0, qty = 0 } = data || {};
   const [counter, setCounter] = useState(qty);
   const incrementCounter = () => setCounter(counter + 1);
@@ -126,7 +126,7 @@ const ProductCard = ({ data }) => {
       </Row>
     </Card>
   );
-};
+}
 ProductCard.propTypes = {
   data: PropTypes.object,
 };

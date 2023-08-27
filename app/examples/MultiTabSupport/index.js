@@ -50,7 +50,7 @@ function MultiTabSupport() {
       date: new Date().getTime(),
     });
   };
-  
+
   const broadcastListener = event => {
     setMessages(prevMessages => [...prevMessages, event.data.date]);
   };
@@ -80,7 +80,9 @@ function MultiTabSupport() {
           <MessageContainer>
             {messages.map(message => (
               <Space key={message}>
-                {dayjs(new Date(message)).format(FULL_GENERIC_MOMENT_DATE_FORMAT)}
+                {dayjs(new Date(message)).format(
+                  FULL_GENERIC_MOMENT_DATE_FORMAT,
+                )}
               </Space>
             ))}
           </MessageContainer>
@@ -89,7 +91,9 @@ function MultiTabSupport() {
           <MessageContainer>
             {localStorageMessages.map(message => (
               <Space key={message}>
-                {dayjs(new Date(message)).format(FULL_GENERIC_MOMENT_DATE_FORMAT)}
+                {dayjs(new Date(message)).format(
+                  FULL_GENERIC_MOMENT_DATE_FORMAT,
+                )}
               </Space>
             ))}
           </MessageContainer>

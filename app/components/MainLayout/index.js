@@ -13,29 +13,30 @@ import { LAYOUT_CONFIG } from '../constants';
 import { StyledMainLayout } from './StyledMainLayout';
 import Layouts from './Layout';
 
-const MainLayout = (props) => {
+function MainLayout(props) {
   const urlParams = new URLSearchParams(props.location.search);
-  const [collapsed, setCollapsed] = useState(![LAYOUT_CONFIG.VERTICAL_OPTION_2].includes(layoutVariant))
-  const [layoutVariant, setLayoutVariant] = useState(props.defaultLayout)
+  const [collapsed, setCollapsed] = useState(
+    ![LAYOUT_CONFIG.VERTICAL_OPTION_2].includes(layoutVariant),
+  );
+  const [layoutVariant, setLayoutVariant] = useState(props.defaultLayout);
 
   useEffect(() => {
     const variant = urlParams.get('layout')
       ? +urlParams.get('layout')
       : props.defaultLayout;
-    setLayoutVariant(variant)
+    setLayoutVariant(variant);
 
     Emitter.on(EMITTER_EVENTS.LOG_IN, () => {});
     Emitter.on(EMITTER_EVENTS.LOG_OUT, () => {});
-  
+
     return () => {
       Emitter.off(EMITTER_EVENTS.LOG_IN);
       Emitter.off(EMITTER_EVENTS.LOG_OUT);
-    }
-  }, [])
-  
+    };
+  }, []);
 
   const toggle = () => {
-    setCollapsed(!collapsed)
+    setCollapsed(!collapsed);
   };
 
   if (userExists()) {
@@ -43,9 +44,7 @@ const MainLayout = (props) => {
       <Spin spinning={props.appLoading} size="default">
         <StyledMainLayout
           data-environment={
-            process.env.NODE_ENV !== 'production'
-              ? process.env.NODE_ENV
-              : null
+            process.env.NODE_ENV !== 'production' ? process.env.NODE_ENV : null
           }
           className="main-layout"
         >
@@ -80,10 +79,10 @@ const withConnect = connect(mapStateToProps);
 
 const MainLayoutWithConnect = withConnect(MainLayout);
 
-const MainLayoutWrapper = () => {
+function MainLayoutWrapper() {
   const location = useLocation();
 
   return <MainLayoutWithConnect location={location} />;
-};
+}
 
 export default MainLayoutWrapper;

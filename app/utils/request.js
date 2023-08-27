@@ -60,7 +60,5 @@ export default function request(url, options) {
   if (userExists()) {
     option.headers.Authorization = `${StorageService.get(TOKEN_KEY)}`;
   }
-  return fetch(url, option)
-    .then(checkStatus)
-    .then(parseJSON);
+  return fetch(url, option).then(checkStatus).then(parseJSON);
 }

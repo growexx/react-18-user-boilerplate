@@ -3,7 +3,7 @@
 exports[`<Unauthorized /> Should render and match the snapshot 1`] = `
 <article>
   <div
-    class="ant-result ant-result-403"
+    class="ant-result ant-result-403 css-dev-only-do-not-override-byeoj0"
   >
     <div
       class="ant-result-icon ant-result-image"

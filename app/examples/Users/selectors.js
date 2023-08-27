@@ -11,11 +11,7 @@ const selectUser = state => state && state[USERS_KEY];
  * Default selector used by user
  */
 
-const makeSelectUser = () =>
-  createSelector(
-    selectUser,
-    subState => subState,
-  );
+const makeSelectUser = () => createSelector(selectUser, subState => subState);
 
 export default makeSelectUser;
 export { makeSelectUser };

@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import React, { lazy, Suspense } from 'react';
 
 const loadable = (importFunc, { fallback = null } = { fallback: null }) => {

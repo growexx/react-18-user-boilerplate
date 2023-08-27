@@ -15,7 +15,7 @@ import { loadApp } from 'containers/App/actions';
 
 const count = 3;
 
-function ListWithLoadMore ({ onChangeAppLoading }) {
+function ListWithLoadMore({ onChangeAppLoading }) {
   const [initLoading, setInitLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -41,9 +41,11 @@ function ListWithLoadMore ({ onChangeAppLoading }) {
 
   const onLoadMore = () => {
     setLoading(true);
-    setList(data.concat(
-      [...new Array(count)].map(() => ({ loading: true, name: {} })),
-    ));
+    setList(
+      data.concat(
+        [...new Array(count)].map(() => ({ loading: true, name: {} })),
+      ),
+    );
     getData(res => {
       const listData = list.concat(res.results);
       setData(listData);
@@ -101,9 +103,6 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  undefined,
-  mapDispatchToProps,
-);
+const withConnect = connect(undefined, mapDispatchToProps);
 
 export default compose(withConnect)(ListWithLoadMore);

@@ -42,9 +42,9 @@ function ListWithInfiniteLoader({ onChangeAppLoading }) {
 
   const handleInfiniteOnLoad = () => {
     setLoading(true);
-    setList(data.concat(
-      [...new Array(3)].map(() => ({ loading: true, name: {} })),
-    ));
+    setList(
+      data.concat([...new Array(3)].map(() => ({ loading: true, name: {} }))),
+    );
 
     if (data.length > 14) {
       message.warning(<FormattedMessage {...messages.listLoaded} />);
@@ -102,9 +102,6 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  undefined,
-  mapDispatchToProps,
-);
+const withConnect = connect(undefined, mapDispatchToProps);
 
 export default compose(withConnect)(ListWithInfiniteLoader);

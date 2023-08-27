@@ -8,8 +8,8 @@ import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserOutlined } from '@ant-design/icons';
 import { FormattedMessage } from 'react-intl';
-import request from 'utils/request';
 import { notification, Form, Input, Button } from 'antd';
+import request from 'utils/request';
 import { TEST_IDS } from './stub/test.stub';
 import { StyledAuthContainer } from '../StyledAuthContainer';
 import messages from './messages';
@@ -19,12 +19,12 @@ import AuthSideContainer from '../index';
 import { AUTH_TYPE } from '../constants';
 import { StyledForgotPassword } from './StyledForgotPassword';
 
-const ForgotPassword = () => {
-  const [loading, setLoading] = useState(false)
-  const formRef = useRef()
+function ForgotPassword() {
+  const [loading, setLoading] = useState(false);
+  const formRef = useRef();
 
   const onFinish = values => {
-    setLoading(true)
+    setLoading(true);
     // API Call
     request(`${API_ENDPOINTS.FORGOT_PASSWORD}`, {
       method: 'POST',
@@ -34,10 +34,10 @@ const ForgotPassword = () => {
         notification.success({
           description: res.message,
         });
-        setLoading(false)
+        setLoading(false);
       })
       .catch(async err => {
-        setLoading(false)
+        setLoading(false);
         notification.error({
           description: (await err.response.json()).message,
         });
@@ -51,11 +51,7 @@ const ForgotPassword = () => {
         <p className="forgotPassword">Reset Password</p>
         <div className="LoginSubContainer">
           <div className="accountData">
-            <Form
-              ref={formRef}
-              onFinish={onFinish}
-              name="control-ref"
-            >
+            <Form ref={formRef} onFinish={onFinish} name="control-ref">
               <Form.Item
                 name="email"
                 rules={[

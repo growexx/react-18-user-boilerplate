@@ -21,6 +21,7 @@ describe('useInjectSaga hook', () => {
   let ComponentWithSaga;
 
   beforeAll(() => {
+    // eslint-disable-next-line no-import-assign
     sagaInjectors.default = jest.fn().mockImplementation(() => injectors);
   });
 
@@ -31,7 +32,8 @@ describe('useInjectSaga hook', () => {
       injectSaga: jest.fn(),
       ejectSaga: jest.fn(),
     };
-    ComponentWithSaga = () => {
+    // eslint-disable-next-line func-names
+    ComponentWithSaga = function () {
       useInjectSaga({
         key: 'test',
         saga: testSaga,
