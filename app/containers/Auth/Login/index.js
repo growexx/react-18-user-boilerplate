@@ -38,7 +38,7 @@ export function Login({ loading, error }) {
   const [password, setPassword] = useState('');
 
   // use this if you are using login API and manage the loading error status accordingly
-  // const [loginUser, { isLoading, error }] = useLoginUserMutation();
+  // const [loginUser, { isLoading, isError }] = useLoginUserMutation();
 
   const onSignIn = () => {
     // call loginUser mutation if you are calling login API and set Tokens accordingly
@@ -137,7 +137,8 @@ export function Login({ loading, error }) {
             <FormattedMessage {...messages.forgotPassword} />
           </Link>
         </StyledLogin>
-        {error === true && showNotification()}
+        {/* handle error stats */}
+        {/* {isError && showNotification()} */}
       </StyledAuthContainer>
     </Form>
   );

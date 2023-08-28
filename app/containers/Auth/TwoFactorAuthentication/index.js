@@ -6,35 +6,36 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import OTPInput from 'react-otp-input';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import { makeSelectValue } from './selectors';
-import reducer from './reducer';
-import saga from './saga';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import { StyledTwoFactorAuthentication } from './StyledTwoFactorAuthentication';
 import messages from './messages';
-import { FORM_KEY, OTP_LENGTH } from './constants';
+import { OTP_LENGTH } from './constants';
 import AuthSideContainer from '../index';
 import { AUTH_TYPE } from '../constants';
 import { StyledAuthContainer } from '../StyledAuthContainer';
-import { changeValue, fireSubmit } from './actions';
+import { twoFactorFormSubmit } from './slice';
+import { ROUTES } from '../../constants';
 
-export function TwoFactorAuthentication(props) {
+export function TwoFactorAuthentication() {
   const [otp, setOtp] = useState('');
-  useInjectReducer({ key: FORM_KEY, reducer });
-  useInjectSaga({ key: FORM_KEY, saga });
-  const { onChangeValue } = props;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const changeOptValue = currValue => {
+  const changeOptValue = (currValue) => {
+    console.log('changeOptValue ~ currValue:', currValue);
     setOtp(currValue);
-    onChangeValue(currValue);
+    if (currValue.length === OTP_LENGTH) {
+      dispatch(twoFactorFormSubmit());
+      // handle route navigation
+      navigate(ROUTES.HOME);
+    }
   };
+
   return (
     <div>
       <Helmet>
@@ -63,7 +64,7 @@ export function TwoFactorAuthentication(props) {
               fontWeight: 'bold',
               fontSize: '18px',
             }}
-            renderInput={currentProps => <input {...currentProps} />}
+            renderInput={(currentProps) => <input {...currentProps} />}
           />
         </StyledTwoFactorAuthentication>
       </StyledAuthContainer>
@@ -76,24 +77,4 @@ TwoFactorAuthentication.propTypes = {
   onChangeValue: PropTypes.func,
 };
 
-const mapStateToProps = createStructuredSelector({
-  value: makeSelectValue(),
-});
-
-export function mapDispatchToProps(dispatch) {
-  return {
-    onChangeValue: value => {
-      dispatch(changeValue(value));
-      if (value.length === OTP_LENGTH) {
-        dispatch(fireSubmit());
-      }
-    },
-  };
-}
-
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-export default compose(withConnect)(TwoFactorAuthentication);
+export default TwoFactorAuthentication;
