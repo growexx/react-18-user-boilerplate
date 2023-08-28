@@ -6,7 +6,7 @@
 
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { Form, Input, Button, notification } from 'antd';
 import {
@@ -16,23 +16,8 @@ import {
 } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createStructuredSelector } from 'reselect';
-import {
-  makeSelectEmail,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectPassword,
-  makeSelectSuccess,
-} from 'containers/Auth/Login/selectors';
 import messages from './messages';
 import { StyledLogin } from './StyledLogin';
-import {
-  changeEmail,
-  changePassword,
-  fireLogin,
-  fireFacebookLogin,
-  fireGoogleLogin,
-} from './actions';
 import { StyledAuthContainer } from '../StyledAuthContainer';
 import AuthSideContainer from '../index';
 import { AUTH_TYPE } from '../constants';
@@ -48,11 +33,19 @@ const showNotification = () => {
 };
 export function Login({ loading, error }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // use this if you are using login API and manage the loading error status accordingly
+  // const [loginUser, { isLoading, error }] = useLoginUserMutation();
+
   const onSignIn = () => {
+    // call loginUser mutation if you are calling login API and set Tokens accordingly
+    // loginUser()
     dispatch(login());
+    // do navigation based on condition
+    navigate(ROUTES.HOME);
   };
 
   const onGoogleSignIn = () => {
@@ -155,32 +148,5 @@ Login.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
-
-// const mapStateToProps = createStructuredSelector({
-//   email: makeSelectEmail(),
-//   password: makeSelectPassword(),
-//   loading: makeSelectLoading(),
-//   error: makeSelectError(),
-//   success: makeSelectSuccess(),
-// });
-
-// export function mapDispatchToProps(dispatch) {
-//   return {
-//     // onChangeEmail: (evt) => dispatch(changeEmail(evt.target.value)),
-//     // onChangePassword: (evt) => dispatch(changePassword(evt.target.value)),
-//     onSignIn: (evt) => {
-//       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-//       dispatch(fireLogin());
-//     },
-//     onGoogleSignIn: () => {
-//       dispatch(fireGoogleLogin());
-//     },
-//     onFacebookSignIn: () => {
-//       dispatch(fireFacebookLogin());
-//     },
-//   };
-// }
-
-// const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default Login;

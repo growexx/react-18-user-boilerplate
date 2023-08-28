@@ -48,7 +48,6 @@ const loginSlice = createSlice({
     login: (state, action) => {
       StorageService.set(TOKEN_KEY, loginSuccessResponse.data.token);
       StorageService.set(USER_DATA_KEY, loginSuccessResponse.data);
-      push(ROUTES.HOME);
       Emitter.emit(EMITTER_EVENTS.LOG_IN);
     },
     googleLogin: (state, action) => {
