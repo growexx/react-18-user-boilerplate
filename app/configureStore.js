@@ -9,6 +9,8 @@ import languageSlice from './containers/LanguageProvider/slice';
 import loginSlice from './containers/Auth/Login/slice';
 import { authApi } from './containers/Auth/Login/authApiSlice';
 import twoFactorAuthSlice from './containers/Auth/TwoFactorAuthentication/slice';
+import changePasswordSlice from './containers/ChangePassword/slice';
+import { changePasswordApi } from './containers/ChangePassword/apiSlice';
 
 const { createReduxHistory, routerMiddleware, routerReducer } =
   createReduxHistoryContext({ history: createBrowserHistory() });
@@ -20,8 +22,10 @@ const store = configureStore({
     language: languageSlice,
     login: loginSlice,
     twoFactorAuth: twoFactorAuthSlice,
+    changePassword: changePasswordSlice,
     repos: repoApi.reducer,
     auth: authApi.reducer,
+    changePasswordApi: changePasswordApi.reducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => [
