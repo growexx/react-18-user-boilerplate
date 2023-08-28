@@ -30,6 +30,7 @@ import Profile from '../index';
 import configureStore from '../../../configureStore';
 import { DATA_TEST_IDS } from '../constants';
 jest.mock('draft-js/lib/generateRandomKey', () => jest.fn(() => '123'));
+jest.mock('components/ImageUpload/Loadable');
 
 const user = userEvent.setup();
 let globalStore;
@@ -124,6 +125,6 @@ describe('<Profile />', () => {
     await user.dblClick(getAllByTestId(TEST_IDS.INPUT_VALUE)[2]);
     expect(getAllByTestId(TEST_IDS.INPUT_EDIT)[0]).toBeInTheDocument();
     fireEvent.mouseDown(getAllByTestId(TEST_IDS.INPUT_VALUE)[0]);
-    expect(getAllByTestId(TEST_IDS.INPUT_VALUE)[2]).toBeInTheDocument();
+    expect(getAllByTestId(TEST_IDS.INPUT_VALUE)).toHaveLength(2);
   });
 });

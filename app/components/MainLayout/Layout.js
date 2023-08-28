@@ -135,6 +135,7 @@ function Layouts({ layoutVariant, collapsed, toggle, user }) {
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                 onClick={toggle}
+                data-testid="ToggleIcon"
                 style={{
                   fontSize: '16px',
                   width: 64,

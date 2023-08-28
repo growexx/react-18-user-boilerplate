@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import ProductCard from '../index';
 import products from '../../../examples/Products/stub/product.json';
 
@@ -19,12 +19,14 @@ describe('<ProductCard />', () => {
     fireEvent.click(decrementButton);
     expect(decrementButton).toBeTruthy();
   });
-  test('display should click the button', () => {
+  test('display should click the button', async () => {
     localStorage.products = JSON.stringify(dummyData);
     window.setCount = () => {};
     const { getByTestId } = render(<ProductCard data={dummyData[0]} />);
     const cartButton = getByTestId('cart-add');
     fireEvent.click(cartButton);
-    expect(cartButton).toBeTruthy();
+    await waitFor(() => {
+      expect(cartButton).toBeTruthy();
+    });
   });
 });

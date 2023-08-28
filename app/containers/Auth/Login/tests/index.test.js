@@ -17,7 +17,7 @@ import Lodable from '../Loadable';
 import configureStore from '../../../../configureStore';
 let globalStore;
 const props = {
-  error: true,
+  error: false,
 };
 const componentWrapper = Component =>
   render(

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import CartDrawer from '../index';
 import products from '../../../../examples/Products/stub/product.json';
 
@@ -26,6 +26,8 @@ describe('<CartDrawer />', () => {
     );
     fireEvent.click(getAllByTestId('product-delete')[0]);
     fireEvent.click(getAllByRole('img')[0]);
-    expect(getByText('Product Deleted Successfully from cart')).toBeTruthy();
+    await waitFor(() => {
+      expect(getByText('Product Deleted Successfully from cart')).toBeTruthy();
+    });
   });
 });
