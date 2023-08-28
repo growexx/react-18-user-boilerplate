@@ -30,7 +30,7 @@ export function HomePage() {
   }, []);
 
   const [trigger, result] = useLazyGetReposQuery(username);
-  const { isLoading, isError, data: repos, isUninitialized } = result;
+  const { isError, data: repos, isUninitialized, isFetching } = result;
 
   const onSubmitForm = (e) => {
     if (e?.preventDefault) e.preventDefault();
@@ -69,7 +69,12 @@ export function HomePage() {
             </label>
           </Form>
           {!isUninitialized && (
-            <ReposList loading={isLoading} error={isError} repos={repos} />
+            <ReposList
+              loading={isFetching}
+              error={isError}
+              repos={repos}
+              currentUser={username}
+            />
           )}
         </Section>
       </div>

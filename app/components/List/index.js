@@ -10,8 +10,12 @@ function List(props) {
 
   // If we have items, render them
   if (props.items) {
-    content = props.items.map(item => (
-      <ComponentToRender key={`item-${item.id}`} item={item} />
+    content = props.items.map((item) => (
+      <ComponentToRender
+        key={`item-${item.id}`}
+        item={item}
+        currentUser={props.currentUser}
+      />
     ));
   } else {
     // Otherwise render a single component
@@ -28,6 +32,7 @@ function List(props) {
 List.propTypes = {
   component: PropTypes.elementType.isRequired,
   items: PropTypes.array,
+  currentUser: PropTypes.string,
 };
 
 export default List;
