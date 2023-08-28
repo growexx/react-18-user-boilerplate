@@ -25,7 +25,6 @@ import ExportDataToCsv from 'examples/ExportDataToCsv/Loadable';
 import Users from 'examples/Users/Loadable';
 import Charts from 'examples/Charts/Loadable';
 import Products from 'examples/Products/Loadable';
-import SampleForm from 'examples/SampleForm/Loadable';
 import ChangePassword from 'containers/ChangePassword/Loadable';
 import MultiTabSupport from 'examples/MultiTabSupport/Loadable';
 import ForgotPassword from 'containers/Auth/ForgotPassword/Loadable';
@@ -91,7 +90,6 @@ export default function App() {
             element={<MultiTabSupport />}
           />
           <Route path={ROUTES.CHANGE_PASSWORD} element={<ChangePassword />} />
-          <Route path={ROUTES.SAMPLE_FORM} element={<SampleForm />} />
           <Route
             path={ROUTES.NUMERAL_CONVERTER}
             element={<NumeralConversion />}
