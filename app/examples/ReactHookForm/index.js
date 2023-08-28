@@ -5,8 +5,6 @@
  */
 
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import {
   Form as antForm,
   Button,
@@ -19,26 +17,13 @@ import {
 import { Helmet } from 'react-helmet';
 import * as formValidations from 'utils/formValidations';
 import { Controller, useForm, Form } from 'react-hook-form';
-import { compose } from 'redux';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import * as actions from './actions';
-import reducer from './reducer';
-import saga from './saga';
 import { StyledItem } from './StyledForm';
+
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const FormItem = antForm.Item;
 
-const FORM_KEY = 'sampleHookForm';
-
-const ReactHookForm = props => {
-  useInjectSaga({ key: FORM_KEY, saga });
-  useInjectReducer({
-    key: FORM_KEY,
-    reducer,
-  });
-
+const ReactHookForm = (props) => {
   const {
     handleSubmit,
     control,
@@ -48,11 +33,9 @@ const ReactHookForm = props => {
   } = useForm();
   const [dateRange, setDateRange] = useState();
 
-  const onSubmit = data => {
-    const { submitData } = props;
+  const onSubmit = (data) => {
     const requestBody = { ...data, rangePicker: dateRange };
     // Note: Add API Call
-    submitData(requestBody);
   };
 
   return (
@@ -116,7 +99,7 @@ const ReactHookForm = props => {
               name="email"
               rules={{
                 required: formValidations.VALIDATION_MESSAGES.REQUIRED,
-                validate: v => formValidations.validEmail(v) || true,
+                validate: (v) => formValidations.validEmail(v) || true,
               }}
               render={({ field }) => (
                 <Input
@@ -142,7 +125,7 @@ const ReactHookForm = props => {
                 <Radio.Group
                   id="sex"
                   value={value}
-                  onChange={e => onChange(e.target.value)}
+                  onChange={(e) => onChange(e.target.value)}
                 >
                   <Radio value="male">Male</Radio>
                   <Radio value="female">Female</Radio>
@@ -177,7 +160,7 @@ const ReactHookForm = props => {
                   id="employed"
                   type="checkbox"
                   checked={value}
-                  onChange={e => {
+                  onChange={(e) => {
                     onChange(e.target.checked);
                   }}
                 />
@@ -197,8 +180,8 @@ const ReactHookForm = props => {
                   name="rangePicker"
                   placeholder={['From', 'To']}
                   format="YYYY-MM-DD"
-                  onFocus={e => e.preventDefault()}
-                  onBlur={e => e.preventDefault()}
+                  onFocus={(e) => e.preventDefault()}
+                  onBlur={(e) => e.preventDefault()}
                   onChange={(e, formatRange) => {
                     setDateRange(formatRange);
                   }}
@@ -249,17 +232,4 @@ const ReactHookForm = props => {
   );
 };
 
-ReactHookForm.propTypes = {
-  submitData: PropTypes.func.isRequired,
-};
-
-function mapDispatchToProps(dispatch) {
-  return {
-    submitData: body => dispatch(actions.submitData(body)),
-  };
-}
-const withConnect = connect(undefined, mapDispatchToProps); // prettier-ignore
-
-export default compose(
-  withConnect,
-)(ReactHookForm);
+export default ReactHookForm;
