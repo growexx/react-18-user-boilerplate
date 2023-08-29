@@ -27,7 +27,10 @@ function MainLayout(props) {
     setLayoutVariant(variant);
 
     Emitter.on(EMITTER_EVENTS.LOG_IN, () => {});
-    Emitter.on(EMITTER_EVENTS.LOG_OUT, () => {});
+    Emitter.on(EMITTER_EVENTS.LOG_OUT, () => {
+      setCollapsed();
+      setLayoutVariant();
+    });
 
     return () => {
       Emitter.off(EMITTER_EVENTS.LOG_IN);
