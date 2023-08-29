@@ -2,12 +2,7 @@
 
 exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
@@ -16,8 +11,6 @@ exports[`<ExportDataToCsv /> Should render and match the snapshot 1`] = `
 }
 
 .c1 {
-  -webkit-align-self: flex-end;
-  -ms-flex-item-align: end;
   align-self: flex-end;
 }
 

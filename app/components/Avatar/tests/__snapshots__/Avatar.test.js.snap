@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Avatar /> should render a div 1`] = `
-.c0 .ant-btn-group > .ant-btn:first-child {
+.c0 .ant-btn-group>.ant-btn:first-child {
   display: none;
 }
 
 .c0 .ant-dropdown-trigger,
 .c0 .ant-dropdown-trigger:hover {
-  border-radius: 50% !important;
+  border-radius: 50%!important;
   background-color: #4d186e;
   color: #fff;
 }

@@ -1,4 +1,4 @@
-// import produce from 'immer';
+// import { produce } from 'immer';
 import { UPDATE_FIELD } from '../constants';
 import sampleFormReducer from '../reducer';
 // import { someAction } from '../actions';

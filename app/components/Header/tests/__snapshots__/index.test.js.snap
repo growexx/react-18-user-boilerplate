@@ -6,12 +6,7 @@ exports[`<Header /> should render a div 1`] = `
 }
 
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   line-height: 0;
 }
@@ -19,17 +14,9 @@ exports[`<Header /> should render a div 1`] = `
 .c1 {
   margin-left: auto;
   margin-right: 16px;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
   align-self: center;
   cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -37,13 +24,13 @@ exports[`<Header /> should render a div 1`] = `
   font-size: 18px;
 }
 
-.c3 .ant-btn-group > .ant-btn:first-child {
+.c3 .ant-btn-group>.ant-btn:first-child {
   display: none;
 }
 
 .c3 .ant-dropdown-trigger,
 .c3 .ant-dropdown-trigger:hover {
-  border-radius: 50% !important;
+  border-radius: 50%!important;
   background-color: #4d186e;
   color: #fff;
 }
@@ -163,12 +150,7 @@ exports[`<Header /> should render a div 1`] = `
 
 exports[`<Header /> should render a div with props 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   line-height: 0;
 }
@@ -180,12 +162,7 @@ exports[`<Header /> should render a div with props 1`] = `
 
 exports[`<Header /> should render a div with props 2`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   line-height: 0;
 }

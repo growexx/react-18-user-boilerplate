@@ -13,12 +13,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
 
 .c2 {
   margin: 31px 18px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   padding: 8px;
   border: 1px solid #d9d9d9;
@@ -32,17 +27,12 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
 
 .c2 p:nth-child(2) {
   font-weight: 500;
-  color: rgba(0,0,0,0.85);
+  color: rgba(0, 0, 0, 0.85);
 }
 
 .c3 {
   margin: 31px 18px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   padding: 8px;
 }
@@ -56,7 +46,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
 .c3 p:nth-child(2) {
   margin-top: 0px;
   font-weight: 500;
-  color: rgba(0,0,0,0.85);
+  color: rgba(0, 0, 0, 0.85);
 }
 
 @media screen and (max-width:400px) {

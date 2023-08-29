@@ -7,7 +7,7 @@
  *
  */
 
-import produce from 'immer';
+import { produce } from 'immer';
 import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,

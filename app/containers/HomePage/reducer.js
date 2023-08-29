@@ -7,7 +7,7 @@
  *
  */
 
-import produce from 'immer';
+import { produce } from 'immer';
 import { CHANGE_USERNAME } from './constants';
 
 // The initial state of the App

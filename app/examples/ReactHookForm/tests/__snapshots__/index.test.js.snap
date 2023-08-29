@@ -2,9 +2,6 @@
 
 exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   margin: 0 auto;
 }
@@ -14,9 +11,6 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
 }
 
 .c0 form .ant-form-item-control-input-content {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 

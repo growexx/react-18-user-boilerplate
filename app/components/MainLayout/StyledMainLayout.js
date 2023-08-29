@@ -64,7 +64,7 @@ export const StyledMainLayout = styled.div`
     &:before {
       content: attr(data-environment);
       background: #ff8c1e;
-      height: 20px;
+      height: 25px;
       position: fixed;
       top: 0;
       right: 0;
@@ -73,7 +73,6 @@ export const StyledMainLayout = styled.div`
       color: #fff;
       text-align: center;
       text-transform: uppercase;
-      padding-top: 5px;
     }
 
     > .ant-layout {

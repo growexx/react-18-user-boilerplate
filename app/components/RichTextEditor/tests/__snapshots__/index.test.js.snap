@@ -14,17 +14,8 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
   height: 20px;
   border-radius: 2px;
   margin: 0 4px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
   background: white;
@@ -94,15 +85,9 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-dropdown-selectedtext {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   position: relative;
   height: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   padding: 0 5px;
 }
@@ -127,13 +112,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 
 .c0 .rdw-dropdownoption-default {
   min-height: 25px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   padding: 0 5px;
 }
@@ -152,17 +131,9 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-inline-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -172,28 +143,14 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 
 .c0 .rdw-inline-dropdownoption {
   height: 40px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .c0 .rdw-block-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -202,17 +159,9 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-fontsize-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -221,28 +170,14 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-fontsize-option {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .c0 .rdw-fontfamily-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -262,17 +197,9 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-list-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -283,28 +210,14 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 
 .c0 .rdw-list-dropdownOption {
   height: 40px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .c0 .rdw-text-align-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -315,13 +228,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 
 .c0 .rdw-text-align-dropdownOption {
   height: 40px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -330,46 +237,38 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-left-aligned-block {
-  text-align: left !important;
+  text-align: left!important;
 }
 
 .c0 .rdw-center-aligned-block {
-  text-align: center !important;
+  text-align: center!important;
 }
 
 .c0 .rdw-justify-aligned-block {
-  text-align: justify !important;
+  text-align: justify!important;
 }
 
-.c0 .rdw-right-aligned-block > div {
+.c0 .rdw-right-aligned-block>div {
   display: inline-block;
 }
 
-.c0 .rdw-left-aligned-block > div {
+.c0 .rdw-left-aligned-block>div {
   display: inline-block;
 }
 
-.c0 .rdw-center-aligned-block > div {
+.c0 .rdw-center-aligned-block>div {
   display: inline-block;
 }
 
-.c0 .rdw-justify-aligned-block > div {
+.c0 .rdw-justify-aligned-block>div {
   display: inline-block;
 }
 
 .c0 .rdw-colorpicker-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
   position: relative;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -377,12 +276,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
   position: absolute;
   top: 35px;
   left: 5px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   width: 175px;
   height: 175px;
@@ -395,9 +289,6 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-colorpicker-modal-header {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   padding-bottom: 5px;
 }
@@ -416,14 +307,9 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 
 .c0 .rdw-colorpicker-modal-options {
   margin: 5px auto;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 100%;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   overflow: scroll;
 }
@@ -458,18 +344,10 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-link-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
   position: relative;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -479,13 +357,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 
 .c0 .rdw-link-dropdownOption {
   height: 40px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -497,12 +369,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
   position: absolute;
   top: 35px;
   left: 5px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   width: 235px;
   height: 205px;
@@ -539,7 +406,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
   margin-bottom: 20px;
 }
 
-.c0 .rdw-link-modal-target-option > span {
+.c0 .rdw-link-modal-target-option>span {
   margin-left: 5px;
 }
 
@@ -563,7 +430,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-link-modal-btn:focus {
-  outline: none !important;
+  outline: none!important;
 }
 
 .c0 .rdw-link-modal-btn:disabled {
@@ -572,13 +439,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 
 .c0 .rdw-link-dropdownoption {
   height: 40px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -587,18 +448,10 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-embedded-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
   position: relative;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -606,12 +459,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
   position: absolute;
   top: 35px;
   left: 5px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   width: 235px;
   height: 180px;
@@ -620,38 +468,21 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
   border-radius: 2px;
   z-index: 100;
   background: white;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
   box-shadow: 3px 3px 5px #bfbdbd;
 }
 
 .c0 .rdw-embedded-modal-header {
   font-size: 15px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .c0 .rdw-embedded-modal-header-option {
   width: 50%;
   cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
@@ -664,12 +495,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-embedded-modal-link-section {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
@@ -684,13 +510,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-embedded-modal-link-input-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -699,13 +519,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-embedded-modal-btn-section {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -729,7 +543,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-embedded-modal-btn:focus {
-  outline: none !important;
+  outline: none!important;
 }
 
 .c0 .rdw-embedded-modal-btn:disabled {
@@ -737,18 +551,9 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-embedded-modal-size {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   margin: 8px 0;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -765,18 +570,10 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-emoji-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
   position: relative;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -785,12 +582,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
   position: absolute;
   top: 35px;
   left: 5px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 235px;
   height: 180px;
@@ -808,73 +600,44 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
   width: 24px;
   cursor: pointer;
   font-size: 22px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
 .c0 .rdw-spinner {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   height: 100%;
   width: 100%;
 }
 
-.c0 .rdw-spinner > div {
+.c0 .rdw-spinner>div {
   width: 12px;
   height: 12px;
   background-color: #333;
   border-radius: 100%;
   display: inline-block;
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
   animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 }
 
 .c0 .rdw-spinner .rdw-bounce1 {
-  -webkit-animation-delay: -0.32s;
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
 
 .c0 .rdw-spinner .rdw-bounce2 {
   -webkit-animation-delay: -0.16s;
-  -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }
 
 .c0 .rdw-image-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
   position: relative;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -882,12 +645,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
   position: absolute;
   top: 35px;
   left: 5px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   width: 235px;
   border: 1px solid #f1f1f1;
@@ -901,29 +659,15 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 .c0 .rdw-image-modal-header {
   font-size: 15px;
   margin: 10px 0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .c0 .rdw-image-modal-header-option {
   width: 50%;
   cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
@@ -943,19 +687,10 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
   width: 100%;
   color: gray;
   cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   border: none;
   font-size: 15px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   background-color: #f1f1f1;
   outline: 2px dashed gray;
@@ -972,17 +707,8 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
   cursor: pointer;
   height: 100%;
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   padding: 15px;
 }
@@ -1006,13 +732,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-image-modal-url-section {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -1054,7 +774,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-image-modal-btn:focus {
-  outline: none !important;
+  outline: none!important;
 }
 
 .c0 .rdw-image-modal-btn:disabled {
@@ -1088,18 +808,9 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-image-modal-size {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   margin: 8px 0;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -1122,45 +833,23 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-remove-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
   position: relative;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
 .c0 .rdw-history-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 6px;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
 .c0 .rdw-history-dropdownoption {
   height: 40px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -1181,7 +870,6 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-mention-link {
-  -webkit-text-decoration: none;
   text-decoration: none;
   color: #1236ff;
   background-color: #f0fbff;
@@ -1195,12 +883,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 
 .c0 .rdw-suggestion-dropdown {
   position: absolute;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   border: 1px solid #f1f1f1;
   min-width: 100px;
@@ -1220,7 +903,6 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-hashtag-link {
-  -webkit-text-decoration: none;
   text-decoration: none;
   color: #1236ff;
   background-color: #f0fbff;
@@ -1231,9 +913,6 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 .c0 .rdw-image-alignment-options-popup {
   position: absolute;
   background: white;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   padding: 5px 2px;
   border-radius: 2px;
@@ -1244,9 +923,6 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-alignment-option-left {
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
 }
 
@@ -1265,31 +941,16 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .rdw-image-center {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .c0 .rdw-image-left {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .c0 .rdw-image-right {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
   justify-content: flex-end;
 }
 
@@ -1307,23 +968,12 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
   padding: 6px 5px 0;
   border-radius: 2px;
   border: 1px solid #f1f1f1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
   background: white;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   font-size: 15px;
   margin-bottom: 5px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -1366,7 +1016,7 @@ exports[`<RichTextEditor /> Should render and match the snapshot 1`] = `
 }
 
 .c0 .DraftEditor-editorContainer {
-  background-color: rgba(255,255,255,0);
+  background-color: rgba(255, 255, 255, 0);
   border-left: 0.1px solid transparent;
   position: relative;
   z-index: 1;

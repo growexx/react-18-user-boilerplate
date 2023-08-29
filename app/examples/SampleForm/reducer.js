@@ -3,7 +3,7 @@
  * SampleForm reducer
  *
  */
-import produce from 'immer';
+import { produce } from 'immer';
 import { UPDATE_FIELD } from './constants';
 
 export const initialState = {};

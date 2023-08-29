@@ -3,7 +3,7 @@
  * ChangePassword reducer
  *
  */
-import produce from 'immer';
+import { produce } from 'immer';
 import {
   CHANGE_NEW_PASSWORD,
   CHANGE_CURRENT_PASSWORD,

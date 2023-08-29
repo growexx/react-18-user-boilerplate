@@ -5,7 +5,7 @@
  * TwoFactorAuthentication reducer
  *
  */
-import produce from 'immer';
+import { produce } from 'immer';
 import { CHANGE_VALUE } from './constants';
 
 // The initial state of the App
