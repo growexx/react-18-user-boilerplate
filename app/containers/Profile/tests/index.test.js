@@ -20,7 +20,7 @@ import userEvent from '@testing-library/user-event';
  * Custom jest matchers to test the state of the DOM
  * https://github.com/testing-library/jest-dom
  */
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';

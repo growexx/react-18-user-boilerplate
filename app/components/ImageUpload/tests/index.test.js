@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { render, fireEvent, act, waitFor } from '@testing-library/react';
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { IntlProvider } from 'react-intl';
 import ImageUpload from '../index';
 import { DEFAULT_LOCALE } from '../../../i18n';

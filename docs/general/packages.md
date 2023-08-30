@@ -48,7 +48,7 @@ Following are the packages used in the boilerplate
 | rimraf                  | Directory cleanup                               |
 | compare-versions        | Library to maintain sem versioning              |
 | numeral                 | Library to numbers to different formats         |
-| json2csv                | Library to convert json to csv                  |
+| json2csv/plainjs        | Library to convert json to csv                  |
 | react-infinite-scroller | Library for infinite scrolling                  |
 | less-vars-to-js         | Library to use less variables into js files     |
 | antd-img-crop           | Library to crop images while upload by antd     |

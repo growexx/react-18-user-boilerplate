@@ -9,7 +9,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
