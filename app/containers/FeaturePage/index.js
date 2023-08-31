@@ -10,7 +10,5 @@ import features from '../../../docs/general/features.md';
 import { StyledFeaturePage } from './StyledFeatures';
 
 export default function FeaturePage() {
-  return (
-    <StyledFeaturePage>{parse(`${features}`)}</StyledFeaturePage>
-  );
+  return <StyledFeaturePage>{parse(`${features}`)}</StyledFeaturePage>;
 }

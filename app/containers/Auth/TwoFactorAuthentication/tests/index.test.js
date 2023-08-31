@@ -7,14 +7,13 @@
  */
 
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import history from 'utils/history';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
-import { TwoFactorAuthentication, mapDispatchToProps } from '../index';
-import Lodable from '../Loadable';
-import { TEST_OTP_VALUE, TEST_OTP_VALUE_WITHOUT_LENGTH } from '../constants';
+import history from 'utils/history';
+import { TwoFactorAuthentication } from '../index';
+import Loadable from '../Loadable';
 import configureStore from '../../../../configureStore';
 let globalStore;
 const componentWrapper = Component =>
@@ -38,19 +37,10 @@ describe('<TwoFactorAuthentication />', () => {
     } = componentWrapper(TwoFactorAuthentication);
     expect(firstChild).toMatchSnapshot();
   });
-  it('mapDispatch to props', () => {
-    const mockFn = jest.fn();
-    const returnValue = mapDispatchToProps(mockFn);
-    // when otp length is achieved
-    returnValue.onChangeValue(TEST_OTP_VALUE.toString());
-    // when otp length is not achieved
-    returnValue.onChangeValue(TEST_OTP_VALUE_WITHOUT_LENGTH.toString());
-    expect(mockFn).toBeCalled();
-  });
   it('Should render and match the snapshot Loadable', () => {
     const {
       container: { firstChild },
-    } = componentWrapper(Lodable);
+    } = componentWrapper(Loadable);
     expect(firstChild).toMatchSnapshot();
   });
 });

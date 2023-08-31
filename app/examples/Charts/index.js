@@ -12,7 +12,6 @@ function Dashboard() {
   const [period, setPeriod] = useState('currentMonth');
   const [isStatsLoading] = useState(false);
 
-
   const onPeriodChange = selectedPeriod => {
     // Update Period which will trigger individual comp api calls
     setPeriod(selectedPeriod);

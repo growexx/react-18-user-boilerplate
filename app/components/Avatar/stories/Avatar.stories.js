@@ -10,7 +10,9 @@ export default {
   },
 };
 
-const Template = args => <Avatar {...args} />;
+function Template(args) {
+  return <Avatar {...args} />;
+}
 
 export const AvatarComponent = Template.bind({});
 AvatarComponent.args = {

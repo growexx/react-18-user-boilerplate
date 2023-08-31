@@ -26,7 +26,7 @@ export function TwoFactorAuthentication() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const changeOptValue = (currValue) => {
+  const changeOptValue = currValue => {
     console.log('changeOptValue ~ currValue:', currValue);
     setOtp(currValue);
     if (currValue.length === OTP_LENGTH) {
@@ -64,7 +64,7 @@ export function TwoFactorAuthentication() {
               fontWeight: 'bold',
               fontSize: '18px',
             }}
-            renderInput={(currentProps) => <input {...currentProps} />}
+            renderInput={currentProps => <input {...currentProps} />}
           />
         </StyledTwoFactorAuthentication>
       </StyledAuthContainer>

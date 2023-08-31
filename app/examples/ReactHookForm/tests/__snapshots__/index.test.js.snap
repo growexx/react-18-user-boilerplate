@@ -2,9 +2,6 @@
 
 exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   margin: 0 auto;
 }
@@ -14,9 +11,6 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
 }
 
 .c0 form .ant-form-item-control-input-content {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -46,13 +40,13 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
       novalidate=""
     >
       <div
-        class="ant-form-item"
+        class="ant-form-item css-dev-only-do-not-override-byeoj0"
       >
         <div
-          class="ant-row ant-form-item-row"
+          class="ant-row ant-form-item-row css-dev-only-do-not-override-byeoj0"
         >
           <div
-            class="ant-col ant-form-item-control"
+            class="ant-col ant-form-item-control css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-form-item-control-input"
@@ -66,7 +60,7 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
                   First Name: 
                 </label>
                 <input
-                  class="ant-input"
+                  class="ant-input css-dev-only-do-not-override-byeoj0"
                   id="firstName"
                   name="firstName"
                   placeholder="Please Enter First Name"
@@ -79,13 +73,13 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
         </div>
       </div>
       <div
-        class="ant-form-item"
+        class="ant-form-item css-dev-only-do-not-override-byeoj0"
       >
         <div
-          class="ant-row ant-form-item-row"
+          class="ant-row ant-form-item-row css-dev-only-do-not-override-byeoj0"
         >
           <div
-            class="ant-col ant-form-item-control"
+            class="ant-col ant-form-item-control css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-form-item-control-input"
@@ -99,7 +93,7 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
                   Last Name: 
                 </label>
                 <input
-                  class="ant-input"
+                  class="ant-input css-dev-only-do-not-override-byeoj0"
                   id="lastName"
                   name="lastName"
                   placeholder="Please Enter Last Name"
@@ -112,13 +106,13 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
         </div>
       </div>
       <div
-        class="ant-form-item"
+        class="ant-form-item css-dev-only-do-not-override-byeoj0"
       >
         <div
-          class="ant-row ant-form-item-row"
+          class="ant-row ant-form-item-row css-dev-only-do-not-override-byeoj0"
         >
           <div
-            class="ant-col ant-form-item-control"
+            class="ant-col ant-form-item-control css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-form-item-control-input"
@@ -132,7 +126,7 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
                   Email: 
                 </label>
                 <input
-                  class="ant-input"
+                  class="ant-input css-dev-only-do-not-override-byeoj0"
                   id="email"
                   name="email"
                   placeholder="Please Enter Email"
@@ -145,13 +139,13 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
         </div>
       </div>
       <div
-        class="ant-form-item"
+        class="ant-form-item css-dev-only-do-not-override-byeoj0"
       >
         <div
-          class="ant-row ant-form-item-row"
+          class="ant-row ant-form-item-row css-dev-only-do-not-override-byeoj0"
         >
           <div
-            class="ant-col ant-form-item-control"
+            class="ant-col ant-form-item-control css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-form-item-control-input"
@@ -165,14 +159,14 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
                   Sex: 
                 </label>
                 <div
-                  class="ant-radio-group ant-radio-group-outline"
+                  class="ant-radio-group ant-radio-group-outline css-dev-only-do-not-override-byeoj0"
                   id="sex"
                 >
                   <label
-                    class="ant-radio-wrapper ant-radio-wrapper-in-form-item"
+                    class="ant-radio-wrapper ant-radio-wrapper-in-form-item css-dev-only-do-not-override-byeoj0"
                   >
                     <span
-                      class="ant-radio"
+                      class="ant-radio ant-wave-target"
                     >
                       <input
                         class="ant-radio-input"
@@ -188,10 +182,10 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
                     </span>
                   </label>
                   <label
-                    class="ant-radio-wrapper ant-radio-wrapper-in-form-item"
+                    class="ant-radio-wrapper ant-radio-wrapper-in-form-item css-dev-only-do-not-override-byeoj0"
                   >
                     <span
-                      class="ant-radio"
+                      class="ant-radio ant-wave-target"
                     >
                       <input
                         class="ant-radio-input"
@@ -213,13 +207,13 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
         </div>
       </div>
       <div
-        class="ant-form-item"
+        class="ant-form-item css-dev-only-do-not-override-byeoj0"
       >
         <div
-          class="ant-row ant-form-item-row"
+          class="ant-row ant-form-item-row css-dev-only-do-not-override-byeoj0"
         >
           <div
-            class="ant-col ant-form-item-control"
+            class="ant-col ant-form-item-control css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-form-item-control-input"
@@ -233,7 +227,7 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
                   Favorite Color: 
                 </label>
                 <div
-                  class="ant-select ant-select-in-form-item ant-select-single ant-select-show-arrow"
+                  class="ant-select ant-select-in-form-item css-dev-only-do-not-override-byeoj0 ant-select-single ant-select-show-arrow"
                   name="favoriteColor"
                 >
                   <div
@@ -243,10 +237,11 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
                       class="ant-select-selection-search"
                     >
                       <input
-                        aria-activedescendant="favoriteColor_list_0"
                         aria-autocomplete="list"
                         aria-controls="favoriteColor_list"
+                        aria-expanded="false"
                         aria-haspopup="listbox"
+                        aria-label="Search"
                         aria-owns="favoriteColor_list"
                         autocomplete="off"
                         class="ant-select-selection-search-input"
@@ -296,13 +291,13 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
         </div>
       </div>
       <div
-        class="ant-form-item"
+        class="ant-form-item css-dev-only-do-not-override-byeoj0"
       >
         <div
-          class="ant-row ant-form-item-row"
+          class="ant-row ant-form-item-row css-dev-only-do-not-override-byeoj0"
         >
           <div
-            class="ant-col ant-form-item-control"
+            class="ant-col ant-form-item-control css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-form-item-control-input"
@@ -316,10 +311,10 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
                   Employed: 
                 </label>
                 <label
-                  class="ant-checkbox-wrapper ant-checkbox-wrapper-in-form-item"
+                  class="ant-checkbox-wrapper ant-checkbox-wrapper-in-form-item css-dev-only-do-not-override-byeoj0"
                 >
                   <span
-                    class="ant-checkbox"
+                    class="ant-checkbox ant-wave-target css-dev-only-do-not-override-byeoj0"
                   >
                     <input
                       class="ant-checkbox-input"
@@ -337,13 +332,13 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
         </div>
       </div>
       <div
-        class="ant-form-item"
+        class="ant-form-item css-dev-only-do-not-override-byeoj0"
       >
         <div
-          class="ant-row ant-form-item-row"
+          class="ant-row ant-form-item-row css-dev-only-do-not-override-byeoj0"
         >
           <div
-            class="ant-col ant-form-item-control"
+            class="ant-col ant-form-item-control css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-form-item-control-input"
@@ -357,8 +352,7 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
                   Filter dates: 
                 </label>
                 <div
-                  class="ant-picker ant-picker-range"
-                  name="rangePicker"
+                  class="ant-picker ant-picker-range css-dev-only-do-not-override-byeoj0"
                 >
                   <div
                     class="ant-picker-input ant-picker-input-active"
@@ -444,13 +438,13 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
         </div>
       </div>
       <div
-        class="ant-form-item"
+        class="ant-form-item css-dev-only-do-not-override-byeoj0"
       >
         <div
-          class="ant-row ant-form-item-row"
+          class="ant-row ant-form-item-row css-dev-only-do-not-override-byeoj0"
         >
           <div
-            class="ant-col ant-form-item-control"
+            class="ant-col ant-form-item-control css-dev-only-do-not-override-byeoj0"
           >
             <div
               class="ant-form-item-control-input"
@@ -464,7 +458,7 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
                   Notes: 
                 </label>
                 <textarea
-                  class="ant-input"
+                  class="ant-input css-dev-only-do-not-override-byeoj0"
                   data-testid="Notes"
                   name="notes"
                   placeholder="Please Enter Notes"
@@ -476,7 +470,7 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
       </div>
       <center>
         <button
-          class="ant-btn ant-btn-primary"
+          class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-primary"
           style="margin-right: 10px;"
           type="submit"
         >
@@ -485,7 +479,7 @@ exports[`ReactHookForm Component Should render and match the snapshot 1`] = `
           </span>
         </button>
         <button
-          class="ant-btn ant-btn-default"
+          class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-default"
           type="button"
         >
           <span>

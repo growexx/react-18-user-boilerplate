@@ -6,7 +6,9 @@ export default {
   component: Footer,
 };
 
-const Template = args => <Footer {...args} />;
+function Template(args) {
+  return <Footer {...args} />;
+}
 
 export const FooterComponent = Template.bind({});
 FooterComponent.args = {};

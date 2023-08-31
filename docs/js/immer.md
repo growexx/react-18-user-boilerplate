@@ -18,7 +18,7 @@ Immer will produce the nextState based on the mutations to the draft state. (See
 The Immer package exposes the `produce` function which we use in the following way inside our reducers:
 
 ```JS
-import produce from 'immer';
+import { produce } from 'immer';
 import { SOME_ACTION, SOME_OTHER_ACTION } from './actions';
 
 // […]

@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { Input, Table } from 'antd';
@@ -80,7 +80,8 @@ function NumeralConversion() {
       format: number,
       string: numeral(value).format(number),
     }));
-  const onSearch = value => setValue(value);
+
+  const onSearch = searchValue => setValue(searchValue);
 
   return (
     <div>

@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 import { DollarCircleOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
-const CartDrawer = ({ visible, setVisible }) => {
+function CartDrawer({ visible, setVisible }) {
   const [productsData, setProductsData] = useState(window.product || []);
   useEffect(() => {
     setProductsData(window.product || []);
@@ -48,7 +48,7 @@ const CartDrawer = ({ visible, setVisible }) => {
     .map(product => product.price)
     .reduce((a, b) => a + b, 0);
   return (
-    (<Drawer
+    <Drawer
       title="Product Cart"
       placement="right"
       closable
@@ -65,10 +65,10 @@ const CartDrawer = ({ visible, setVisible }) => {
             <List.Item.Meta
               avatar={<Avatar src={product.imageUrl} />}
               title={
-                <div rootClassName="u-d-flex u-align-items-center u-justify-content-between">
+                <div className="u-d-flex u-align-items-center u-justify-content-between">
                   {product.title}
-                  <div rootClassName="u-d-flex u-align-items-center">
-                    <DollarCircleOutlined rootClassName="u-mr-1" />
+                  <div className="u-d-flex u-align-items-center">
+                    <DollarCircleOutlined className="u-mr-1" />
                     {product.price}
                   </div>
                 </div>
@@ -78,13 +78,13 @@ const CartDrawer = ({ visible, setVisible }) => {
             <Row>
               <Col span={4} />
               <Col span={20}>
-                <div rootClassName="u-d-flex u-justify-content-between">
+                <div className="u-d-flex u-justify-content-between">
                   <Text type="secondary">Product Qty:</Text>
                   <Text>{product.qty}</Text>
                 </div>
               </Col>
-              <Col span={4} rootClassName="u-mt-2" />
-              <Col span={20} rootClassName="u-mt-2">
+              <Col span={4} className="u-mt-2" />
+              <Col span={20} className="u-mt-2">
                 <Button
                   size="small"
                   onClick={() => onDeleteClick(product.id)}
@@ -101,18 +101,18 @@ const CartDrawer = ({ visible, setVisible }) => {
         <div>
           <Divider />
 
-          <div rootClassName="u-d-flex u-justify-content-between">
+          <div className="u-d-flex u-justify-content-between">
             <Text>Total Payable Amount:</Text>
-            <Text rootClassName="u-d-flex u-align-items-center">
-              <DollarCircleOutlined rootClassName="u-mr-2" />
+            <Text className="u-d-flex u-align-items-center">
+              <DollarCircleOutlined className="u-mr-2" />
               {total}
             </Text>
           </div>
         </div>
       </Affix>
-    </Drawer>)
+    </Drawer>
   );
-};
+}
 
 CartDrawer.propTypes = {
   visible: PropTypes.bool,

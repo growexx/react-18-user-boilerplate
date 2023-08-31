@@ -21,9 +21,10 @@ import {
   Input,
 } from 'antd';
 import debounce from 'lodash/debounce';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
 import request from 'utils/request';
 import {
   API_URL,
@@ -45,7 +46,6 @@ import {
   SearchWrapper,
 } from './styled';
 import { makeSelectUser } from './selectors';
-import { useDispatch } from 'react-redux';
 import { updateUserFormField } from './slice';
 
 const logsTableProps = {
@@ -76,7 +76,7 @@ export function Users({ demo }) {
     loadUserDetails({ pagination });
   }, []);
 
-  const debouncedLoadUserDetails = debounce((d) => loadUserDetails(d), 300);
+  const debouncedLoadUserDetails = debounce(d => loadUserDetails(d), 300);
 
   const fillFields = (key, value) => {
     dispatch(updateUserFormField(key, value));
@@ -123,7 +123,7 @@ export function Users({ demo }) {
           defaultChecked={data.status === ACCOUNT_STATUS.ACTIVE}
           loading={isPopUpLoading && userId === data.id}
           disabled={isPopUpLoading}
-          onChange={(active) => {
+          onChange={active => {
             setUserId(data.id);
             setIsPopUpLoading(true);
             handlePopupOk({
@@ -138,9 +138,9 @@ export function Users({ demo }) {
       dataIndex: 'lastAccessDate',
       key: 'lastAccessDate',
       width: '15%',
-      render: (v) => (
+      render: v => (
         <Space size="middle">
-          {moment(v).format(FULL_GENERIC_MOMENT_DATE_FORMAT)}
+          {dayjs(v).format(FULL_GENERIC_MOMENT_DATE_FORMAT)}
         </Space>
       ),
     },
@@ -212,17 +212,17 @@ export function Users({ demo }) {
     setIsPopUpVisible(true);
   };
 
-  const showError = (error) => {
+  const showError = error => {
     error.response
       .json()
-      .then((err) => notification.error({ message: err.message }));
+      .then(err => notification.error({ message: err.message }));
   };
 
   /**
    * Handles Popup Ok Action
    * Used for Delete, Toggle Status
    */
-  const handlePopupOk = (payload) => {
+  const handlePopupOk = payload => {
     const resetAction = () => {
       setIsPopUpLoading(false);
       setIsPopUpVisible(false);
@@ -230,7 +230,7 @@ export function Users({ demo }) {
       setPopUpAction('');
     };
 
-    const currentUser = userList.find((u) => u.id === userId);
+    const currentUser = userList.find(u => u.id === userId);
     const isDelete = popUpAction === POPUP_ACTION.DELETE;
 
     setIsPopUpLoading(true);
@@ -240,14 +240,14 @@ export function Users({ demo }) {
         ? deleteUserAPIMock(userId)
         : request(`${API_URL}?id=${userId}`, { method: 'DELETE' })
       )
-        .then((response) => {
+        .then(response => {
           resetAction();
           notification.success({
             message: response && response.message,
           });
           loadUserDetails();
         })
-        .catch((error) => {
+        .catch(error => {
           showError(error);
           resetAction();
         });
@@ -267,7 +267,7 @@ export function Users({ demo }) {
           notification.success({ message: 'Updated User' });
           loadUserDetails();
         })
-        .catch((error) => {
+        .catch(error => {
           showError(error);
           resetAction();
         });
@@ -324,14 +324,14 @@ export function Users({ demo }) {
         })
       : request(requestURL, data)
     )
-      .then((response) =>
+      .then(response =>
         setUserDetails(response, {
           pagination: paginationData,
           search: searchData,
           status: statusData,
         }),
       )
-      .catch((error) => {
+      .catch(error => {
         notification.error({
           message: error && error.message,
         });
@@ -363,14 +363,14 @@ export function Users({ demo }) {
     });
   };
 
-  const onSearchUser = (e) => {
+  const onSearchUser = e => {
     const { value } = e.target;
     setSearch(value);
     setPagination(GET_DEFAULT_PAGINATION());
     debouncedLoadUserDetails({ search: value });
   };
 
-  const onStatusSelectChange = (status) => {
+  const onStatusSelectChange = status => {
     loadUserDetails({ status });
   };
 
@@ -379,7 +379,7 @@ export function Users({ demo }) {
    * @param {*} record
    * @returns
    */
-  const expandableRowRender = (record) => (
+  const expandableRowRender = record => (
     <Row gutter={5} className="p-2">
       <Col span={6}>
         <Image src={record.profileUrl} width={100} height={100} />
@@ -392,13 +392,13 @@ export function Users({ demo }) {
    * Edit existing User
    * @param {string} userId
    */
-  const editUser = (userId) => {
-    const user = userList.find((item) => item.id === userId);
+  const editUser = userId => {
+    const user = userList.find(item => item.id === userId);
     if (user) {
       const storeData = {
         ...user,
       };
-      Object.keys(storeData).forEach((key) => {
+      Object.keys(storeData).forEach(key => {
         fillFields(key, storeData[key]);
       });
       setUserId(userId);
@@ -432,7 +432,7 @@ export function Users({ demo }) {
         )
       : request(URL, payload)
     )
-      .then((res) => {
+      .then(res => {
         setIsListLoading(false);
         setShowUserModal(!showUserModal);
         setUserId('');
@@ -441,7 +441,7 @@ export function Users({ demo }) {
         notification.success({ message: res.message });
         reset();
       })
-      .catch((error) => {
+      .catch(error => {
         showError(error);
         setIsListLoading(false);
       });
@@ -493,7 +493,7 @@ export function Users({ demo }) {
                 placeholder="john.doe@growexx.com"
                 disabled={!!userId}
                 {...field}
-                onChange={(e) => {
+                onChange={e => {
                   field.onChange(e);
                 }}
                 value={userStoreData && userStoreData.email}
@@ -511,7 +511,7 @@ export function Users({ demo }) {
                 id="firstName"
                 placeholder="John"
                 {...field}
-                onChange={(e) => {
+                onChange={e => {
                   field.onChange(e);
                 }}
                 value={userStoreData && userStoreData.firstName}
@@ -529,7 +529,7 @@ export function Users({ demo }) {
                 id="lastName"
                 placeholder="Doe"
                 {...field}
-                onChange={(e) => {
+                onChange={e => {
                   field.onChange(e);
                 }}
                 value={userStoreData && userStoreData.lastName}
@@ -541,7 +541,7 @@ export function Users({ demo }) {
     </Modal>
   );
 
-  const options = Object.keys(ACCOUNT_STATUS).map((key) => ({
+  const options = Object.keys(ACCOUNT_STATUS).map(key => ({
     value: ACCOUNT_STATUS[key],
     label: ACCOUNT_STATUS[key],
   }));
@@ -572,7 +572,7 @@ export function Users({ demo }) {
                   placeholder="Search User"
                   value={search}
                   onChange={onSearchUser}
-                  onSearch={(value) => loadUserDetails({ search: value })}
+                  onSearch={value => loadUserDetails({ search: value })}
                 />
               </Tooltip>
             </FilterItems>
@@ -592,7 +592,7 @@ export function Users({ demo }) {
         <DataTableWrapper
           {...logsTableProps}
           expandedRowRender={expandableRowRender}
-          rowKey={(record) => record.id}
+          rowKey={record => record.id}
           pagination={pagination}
           loading={isListLoading}
           columns={getColumnProps()}

@@ -21,18 +21,28 @@ import { options } from './helper';
 import messages from './messages';
 import RichTextEditor from '../../components/RichTextEditor';
 
-const ProfileForm = () => {
-  const [nameContent, setNameContent] = useState('John Doe')
-  const [designationContent, setDesignationContent] = useState('Software Engineer at GrowExx')
-  const [locationContent, setLocationContent] = useState('Ahmedabad, India')
-  const [aboutContent, setAboutContent] = useState(EditorState.createEmpty())
-  const [experienceContent, setExperienceContent] = useState(EditorState.createEmpty())
-  const [educationContent, setEducationContent] = useState(EditorState.createEmpty())
-  const [licensesAndCertificationsContent, setLicensesAndCertificationsContent] = useState(EditorState.createEmpty())
-  const [editAbout, setEditAbout] = useState(false)
-  const [editExperience, setEditExperience] = useState(false)
-  const [editEducation, setEditEducation] = useState(false)
-  const [editLicensesAndCertifications, setEditLicensesAndCertifications] = useState(false)
+function ProfileForm() {
+  const [nameContent, setNameContent] = useState('John Doe');
+  const [designationContent, setDesignationContent] = useState(
+    'Software Engineer at GrowExx',
+  );
+  const [locationContent, setLocationContent] = useState('Ahmedabad, India');
+  const [aboutContent, setAboutContent] = useState(EditorState.createEmpty());
+  const [experienceContent, setExperienceContent] = useState(
+    EditorState.createEmpty(),
+  );
+  const [educationContent, setEducationContent] = useState(
+    EditorState.createEmpty(),
+  );
+  const [
+    licensesAndCertificationsContent,
+    setLicensesAndCertificationsContent,
+  ] = useState(EditorState.createEmpty());
+  const [editAbout, setEditAbout] = useState(false);
+  const [editExperience, setEditExperience] = useState(false);
+  const [editEducation, setEditEducation] = useState(false);
+  const [editLicensesAndCertifications, setEditLicensesAndCertifications] =
+    useState(false);
 
   const isContentEdited = state =>
     state.getCurrentContent().getPlainText('\u0001').length > 0
@@ -99,7 +109,7 @@ const ProfileForm = () => {
             testId={DATA_TEST_IDS.ABOUT_EDITOR}
             value={aboutContent}
             onChange={value => {
-              setAboutContent(value)
+              setAboutContent(value);
             }}
           />
         ) : (
@@ -139,7 +149,7 @@ const ProfileForm = () => {
           <RichTextEditor
             value={experienceContent}
             onChange={value => {
-              setExperienceContent(value)
+              setExperienceContent(value);
             }}
           />
         ) : (
@@ -179,7 +189,7 @@ const ProfileForm = () => {
           <RichTextEditor
             value={educationContent}
             onChange={value => {
-              setEducationContent(value)
+              setEducationContent(value);
             }}
           />
         ) : (
@@ -219,13 +229,11 @@ const ProfileForm = () => {
           <RichTextEditor
             value={licensesAndCertificationsContent}
             onChange={value => {
-              setLicensesAndCertificationsContent(value)
+              setLicensesAndCertificationsContent(value);
             }}
           />
         ) : (
-          parse(
-            `${isContentEdited(licensesAndCertificationsContent)}`,
-          )
+          parse(`${isContentEdited(licensesAndCertificationsContent)}`)
         )}
       </Card>
       <br />

@@ -9,12 +9,10 @@ const languageSlice = createSlice({
   name: 'language',
   initialState,
   reducers: {
-    changeLocale: (state, action) => {
-      return {
-        ...state,
-        locale: action.payload,
-      };
-    },
+    changeLocale: (state, action) => ({
+      ...state,
+      locale: action.payload,
+    }),
   },
 });
 

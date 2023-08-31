@@ -4,7 +4,7 @@
 
 import { createSelector } from '@reduxjs/toolkit';
 
-const selectReposQueries = (state) => state.repos.queries;
+const selectReposQueries = state => state.repos.queries;
 
 const makeSelectGetReposData = () =>
   createSelector(

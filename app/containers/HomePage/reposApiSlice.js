@@ -1,9 +1,9 @@
-import { apiSlice } from "../../apiSlice";
+import { apiSlice } from '../../apiSlice';
 
 export const repoApi = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getRepos: builder.query({
-      query: (username) => ({
+      query: username => ({
         url: `users/${username}/repos?type=all&sort=updated`,
         method: 'GET',
       }),

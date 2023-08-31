@@ -27,7 +27,6 @@ Following are the packages used in the boilerplate
 | react-helmet            | Library to handle document Head changes         |
 | react-intl              | Internationalization and localization for react |
 | react-redux             | State bindings for react                        |
-| redux-form              | Form Control with react-redux and saga          |
 | reselect                | Selector library for redux                      |
 | sanitize.css            | Library for consistent cross-browser styling    |
 | sha255                  | Library to compute SHA256 of strings or bytes   |
@@ -41,14 +40,14 @@ Following are the packages used in the boilerplate
 | react-testing-library   | Javascript testing solution                     |
 | corejs                  | To generate code documentation                  |
 | ngrok                   | Tunneling                                       |
-| plop                    | Micro-generator Framework                        |
+| plop                    | Micro-generator Framework                       |
 | pre-commit              | Git pre-commit hook                             |
 | prettier                | Code Formatting                                 |
 | react-test-renderer     | Javascript testing solution                     |
 | rimraf                  | Directory cleanup                               |
 | compare-versions        | Library to maintain sem versioning              |
 | numeral                 | Library to numbers to different formats         |
-| json2csv                | Library to convert json to csv                  |
+| json2csv/plainjs        | Library to convert json to csv                  |
 | react-infinite-scroller | Library for infinite scrolling                  |
 | less-vars-to-js         | Library to use less variables into js files     |
 | antd-img-crop           | Library to crop images while upload by antd     |
@@ -62,4 +61,3 @@ Following are the packages used in the boilerplate
 | react-waypoint          | Skeleton loader                                 |
 | jest-styled-components  | Jest utilities for Styled Components            |
 | react-hook-form         | Form Control with react-hook-from               |
-

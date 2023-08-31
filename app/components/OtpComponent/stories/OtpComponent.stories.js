@@ -10,7 +10,9 @@ export default {
   title: 'Components/Otp',
   component: Otp,
 };
-const Template = args => <Otp {...args} />;
+function Template(args) {
+  return <Otp {...args} />;
+}
 
 export const OtpComponent = Template.bind({});
 OtpComponent.args = {};

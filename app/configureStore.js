@@ -30,7 +30,7 @@ const store = configureStore({
     changePasswordApi: changePasswordApi.reducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
-  middleware: (getDefaultMiddleware) => [
+  middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware(),
     apiSlice.middleware,
     routerMiddleware,

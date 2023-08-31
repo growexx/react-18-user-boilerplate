@@ -6,15 +6,14 @@ import React from 'react';
 import { Layout, Menu, Button, theme } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
+import { Link, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 import App from 'containers/App';
 import Footer from 'components/Footer';
 import AppHeader from 'components/Header';
 import SideBar from 'components/SideBar';
 import { getUserData } from 'utils/Helper';
 import { ROUTES } from 'containers/constants';
-import { Link, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import { ToggleBreadCrumb } from './StyledMainLayout';
 import GrowExxTriangleLogo from '../../images/Growexx-Triangle-White.png';
 import GrowExxLogo from '../../images/GrowExx_Group_Logo.png';
 import { GET_FILTERED_MENU_ITEM } from '../SideBar/constants';
@@ -43,7 +42,7 @@ const HeaderMenuItem = styled(Menu.Item)`
 function Layouts({ layoutVariant, collapsed, toggle, user }) {
   const location = useLocation();
   const {
-    token: { colorBgContainer }
+    token: { colorBgContainer },
   } = theme.useToken();
 
   // eslint-disable-next-line default-case
@@ -128,17 +127,21 @@ function Layouts({ layoutVariant, collapsed, toggle, user }) {
             layoutVariant={layoutVariant}
           />
           <Layout className="site-layout">
-            <Header className="headerLayout"  style={{ padding: 0, background: colorBgContainer }}>
-            <Button
-              type="text"
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={toggle}
-              style={{
-                fontSize: '16px',
-                width: 64,
-                height: 64,
-              }}
-            />
+            <Header
+              className="headerLayout"
+              style={{ padding: 0, background: colorBgContainer }}
+            >
+              <Button
+                type="text"
+                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                onClick={toggle}
+                data-testid="ToggleIcon"
+                style={{
+                  fontSize: '16px',
+                  width: 64,
+                  height: 64,
+                }}
+              />
               <AppHeader />
             </Header>
             <Content

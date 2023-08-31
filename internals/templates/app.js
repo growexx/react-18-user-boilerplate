@@ -6,7 +6,7 @@
  */
 
 // Needed for redux-saga es6 generator support
-import '@babel/polyfill';
+import 'core-js/stable';
 
 // Import all the third party stuff
 import React from 'react';
@@ -53,6 +53,7 @@ if (module.hot) {
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
   module.hot.accept(['./i18n', 'containers/App'], () => {
+    // eslint-disable-next-line react/no-deprecated
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     renderMessage(translationMessages);
   });

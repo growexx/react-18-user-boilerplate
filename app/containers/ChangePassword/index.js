@@ -5,30 +5,56 @@
  */
 
 import React from 'react';
-import { Form, Button } from 'antd';
+import { Form as antForm, Button, Input } from 'antd';
 import { Helmet } from 'react-helmet';
-import { Field, reduxForm } from 'redux-form';
+import { Controller, useForm, Form } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-
-import { APassword } from 'utils/Fields';
-import { changePasswordSubmit } from './slice';
-import { FORM_KEY, passwordsMustMatch } from './constants';
-import { compose } from 'redux';
 import * as formValidations from 'utils/formValidations';
+import { passwordsMustMatch } from './constants';
+import { changePasswordSubmit } from './slice';
 
-const FormItem = Form.Item;
-
-// TODO: add react hook form
-export const ChangePassword = () => {
+const FormItem = antForm.Item;
+export function ChangePassword() {
   const dispatch = useDispatch();
   // use this if you are using login API and manage the loading error status accordingly
   // const [changePassword, { isLoading, isError }] = useChangePasswordQuery();
 
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+    trigger,
+    getValues,
+  } = useForm();
+
+  const onSubmit = () => {
+    submitData();
+    reset({});
+  };
+
   const submitData = () => {
     dispatch(changePasswordSubmit());
-
     // use this if you are using change password API and manage the loading error status accordingly
     // changePassword();
+  };
+
+  const handleConfirmPasswordChange = async () => {
+    await trigger('confirmNewPassword');
+  };
+
+  const isBtnDisabled = () => {
+    if (Object.keys(errors).length > 0) {
+      return true;
+    }
+    if (
+      !getValues('currentPassword') ||
+      !getValues('newPassword') ||
+      !getValues('confirmNewPassword')
+    ) {
+      return true;
+    }
+    return false;
   };
 
   return (
@@ -37,41 +63,96 @@ export const ChangePassword = () => {
         <title>Change Password</title>
         <meta name="description" content="Description of ChangePassword" />
       </Helmet>
-      <Form
-        onFinish={() => {
-          submitData();
-        }}
-      >
-        <Field
-          label="Current Password"
-          name="currentPassword"
-          component={APassword}
-          placeholder="Current Password"
-          // onChange={updateField}
-          hasFeedback
-          // value={currentPassword}
-        />
+      <Form control={control} onSubmit={handleSubmit(onSubmit)}>
+        <FormItem>
+          <label htmlFor="currentPassword">Current Password: </label>
+          <Controller
+            control={control}
+            name="currentPassword"
+            rules={{
+              required: formValidations.VALIDATION_MESSAGES.REQUIRED,
+            }}
+            render={({ field }) => (
+              <Input.Password
+                id="currentPassword"
+                style={{
+                  borderColor: `${errors.currentPassword ? 'red' : ''}`,
+                }}
+                placeholder="Current Password"
+                {...field}
+                onChange={e => {
+                  field.onChange(e);
+                }}
+              />
+            )}
+          />
+          {errors.currentPassword && (
+            <p style={{ color: 'red' }}>{errors.currentPassword.message}</p>
+          )}
+        </FormItem>
 
-        <Field
-          label="New Password"
-          name="newPassword"
-          component={APassword}
-          placeholder="New Password"
-          // onChange={updateField}
-          // value={newPassword}
-        />
+        <FormItem>
+          <label htmlFor="newPassword">New Password: </label>
+          <Controller
+            control={control}
+            name="newPassword"
+            rules={{
+              required: formValidations.VALIDATION_MESSAGES.REQUIRED,
+            }}
+            render={({ field }) => (
+              <Input.Password
+                id="newPassword"
+                style={{
+                  borderColor: `${errors.newPassword ? 'red' : ''}`,
+                }}
+                placeholder="New Password"
+                {...field}
+                onChange={e => {
+                  field.onChange(e);
+                  if (getValues('confirmNewPassword')) {
+                    handleConfirmPasswordChange();
+                  }
+                }}
+              />
+            )}
+          />
+          {errors.newPassword && (
+            <p style={{ color: 'red' }}>{errors.newPassword.message}</p>
+          )}
+        </FormItem>
 
-        <Field
-          label="Confirm Password"
-          name="confirmNewPassword"
-          component={APassword}
-          placeholder="Confirm Password"
-          // onChange={updateField}
-          // value={confirmNewPassword}
-        />
+        <FormItem>
+          <label htmlFor="confirmNewPassword">Confirm Password: </label>
+          <Controller
+            control={control}
+            name="confirmNewPassword"
+            rules={{
+              required: formValidations.VALIDATION_MESSAGES.REQUIRED,
+              validate: passwordsMustMatch,
+            }}
+            render={({ field }) => (
+              <Input.Password
+                id="confirmNewPassword"
+                style={{
+                  borderColor: `${errors.confirmNewPassword ? 'red' : ''}`,
+                }}
+                placeholder="Confirm Password"
+                {...field}
+                onChange={e => {
+                  field.onChange(e);
+                  handleConfirmPasswordChange();
+                }}
+              />
+            )}
+          />
+          {errors.confirmNewPassword && (
+            <p style={{ color: 'red' }}>{errors.confirmNewPassword.message}</p>
+          )}
+        </FormItem>
+
         <FormItem>
           <center>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" disabled={isBtnDisabled()} htmlType="submit">
               Submit
             </Button>
           </center>
@@ -79,17 +160,6 @@ export const ChangePassword = () => {
       </Form>
     </div>
   );
-};
+}
 
-export default compose(
-  reduxForm({
-    form: FORM_KEY,
-    fields: ['currentPassword', 'newPassword', 'confirmNewPassword'],
-    validate: formValidations.createValidator({
-      currentPassword: [formValidations.required],
-      newPassword: [formValidations.required],
-      confirmNewPassword: [formValidations.required, passwordsMustMatch],
-    }),
-    touchOnChange: true,
-  }),
-)(ChangePassword);
+export default ChangePassword;

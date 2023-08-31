@@ -6,7 +6,7 @@ const changePasswordSlice = createSlice({
   name: 'changePassword',
   initialState,
   reducers: {
-    changePasswordSubmit: (state, action) => {
+    changePasswordSubmit: () => {
       // add change password logic here
     },
   },

@@ -1,9 +1,10 @@
+/* eslint-disable prefer-object-spread */
 /**
  * COMMON WEBPACK CONFIGURATION
  */
 
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 
 const lessToJs = require('less-vars-to-js');
 const themeVariables = lessToJs(

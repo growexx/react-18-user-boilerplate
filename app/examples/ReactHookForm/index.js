@@ -15,15 +15,15 @@ import {
   DatePicker,
 } from 'antd';
 import { Helmet } from 'react-helmet';
-import * as formValidations from 'utils/formValidations';
 import { Controller, useForm, Form } from 'react-hook-form';
+import * as formValidations from 'utils/formValidations';
 import { StyledItem } from './StyledForm';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const FormItem = antForm.Item;
 
-const ReactHookForm = (props) => {
+function ReactHookForm() {
   const {
     handleSubmit,
     control,
@@ -33,8 +33,9 @@ const ReactHookForm = (props) => {
   } = useForm();
   const [dateRange, setDateRange] = useState();
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     const requestBody = { ...data, rangePicker: dateRange };
+    console.log(requestBody);
     // Note: Add API Call
   };
 
@@ -99,7 +100,7 @@ const ReactHookForm = (props) => {
               name="email"
               rules={{
                 required: formValidations.VALIDATION_MESSAGES.REQUIRED,
-                validate: (v) => formValidations.validEmail(v) || true,
+                validate: v => formValidations.validEmail(v) || true,
               }}
               render={({ field }) => (
                 <Input
@@ -125,7 +126,7 @@ const ReactHookForm = (props) => {
                 <Radio.Group
                   id="sex"
                   value={value}
-                  onChange={(e) => onChange(e.target.value)}
+                  onChange={e => onChange(e.target.value)}
                 >
                   <Radio value="male">Male</Radio>
                   <Radio value="female">Female</Radio>
@@ -160,7 +161,7 @@ const ReactHookForm = (props) => {
                   id="employed"
                   type="checkbox"
                   checked={value}
-                  onChange={(e) => {
+                  onChange={e => {
                     onChange(e.target.checked);
                   }}
                 />
@@ -180,8 +181,8 @@ const ReactHookForm = (props) => {
                   name="rangePicker"
                   placeholder={['From', 'To']}
                   format="YYYY-MM-DD"
-                  onFocus={(e) => e.preventDefault()}
-                  onBlur={(e) => e.preventDefault()}
+                  onFocus={e => e.preventDefault()}
+                  onBlur={e => e.preventDefault()}
                   onChange={(e, formatRange) => {
                     setDateRange(formatRange);
                   }}
@@ -206,30 +207,28 @@ const ReactHookForm = (props) => {
             />
           </FormItem>
 
-          <>
-            <center>
-              <Button
-                type="primary"
-                htmlType="submit"
-                style={{ marginRight: '10px' }}
-              >
-                Submit
-              </Button>
-              <Button
-                onClick={() => {
-                  reset({});
-                  setValue('rangePicker', null);
-                  setDateRange(null);
-                }}
-              >
-                Clear Values
-              </Button>
-            </center>
-          </>
+          <center>
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{ marginRight: '10px' }}
+            >
+              Submit
+            </Button>
+            <Button
+              onClick={() => {
+                reset({});
+                setValue('rangePicker', null);
+                setDateRange(null);
+              }}
+            >
+              Clear Values
+            </Button>
+          </center>
         </Form>
       </StyledItem>
     </div>
   );
-};
+}
 
 export default ReactHookForm;

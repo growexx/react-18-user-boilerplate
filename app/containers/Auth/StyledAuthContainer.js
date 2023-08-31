@@ -39,6 +39,7 @@ export const StyledAuthContainer = styled.div`
       }
       button:hover {
         color: @white;
+        border-color: @white;
       }
       color: @white;
     }

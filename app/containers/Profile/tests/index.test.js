@@ -20,7 +20,7 @@ import userEvent from '@testing-library/user-event';
  * Custom jest matchers to test the state of the DOM
  * https://github.com/testing-library/jest-dom
  */
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
@@ -30,6 +30,7 @@ import Profile from '../index';
 import configureStore from '../../../configureStore';
 import { DATA_TEST_IDS } from '../constants';
 jest.mock('draft-js/lib/generateRandomKey', () => jest.fn(() => '123'));
+jest.mock('components/ImageUpload/Loadable');
 
 const user = userEvent.setup();
 let globalStore;
@@ -124,6 +125,6 @@ describe('<Profile />', () => {
     await user.dblClick(getAllByTestId(TEST_IDS.INPUT_VALUE)[2]);
     expect(getAllByTestId(TEST_IDS.INPUT_EDIT)[0]).toBeInTheDocument();
     fireEvent.mouseDown(getAllByTestId(TEST_IDS.INPUT_VALUE)[0]);
-    expect(getAllByTestId(TEST_IDS.INPUT_VALUE)[2]).toBeInTheDocument();
+    expect(getAllByTestId(TEST_IDS.INPUT_VALUE)).toHaveLength(2);
   });
 });

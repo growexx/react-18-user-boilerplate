@@ -8,6 +8,7 @@ import { TOKEN_KEY, EMITTER_EVENTS } from 'utils/constants';
 import StorageService from 'utils/StorageService';
 import MainLayout from '../index';
 import configureStore from '../../../configureStore';
+import Layouts from '../Layout';
 
 const { store, history } = configureStore({});
 const tokenValue = 'test token';
@@ -45,7 +46,7 @@ describe('<MainLayout />', () => {
     const { getByTestId } = componentWrapper();
     const element = getByTestId('ToggleIcon');
     fireEvent.click(element);
-    expect(element.tagName).toEqual('SPAN');
+    expect(element.tagName).toEqual('BUTTON');
   });
   it('renders routes file without login', () => {
     logout();
@@ -58,5 +59,56 @@ describe('<MainLayout />', () => {
     Emitter.emit(EMITTER_EVENTS.LOG_IN);
     Emitter.emit(EMITTER_EVENTS.LOG_OUT);
     expect(container.firstChild.tagName).toEqual('DIV');
+  });
+});
+
+describe('<Layout />', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('layout variant default, sidebar collapsed', () => {
+    render(
+      <Provider store={store}>
+        <IntlProvider locale="en">
+          <Router history={history}>
+            <Layouts collapsed={false} />
+          </Router>
+        </IntlProvider>
+      </Provider>,
+    );
+  });
+  it('layout variant 2, sidebar collapsed', () => {
+    render(
+      <Provider store={store}>
+        <IntlProvider locale="en">
+          <Router history={history}>
+            <Layouts layoutVariant={2} collapsed />
+          </Router>
+        </IntlProvider>
+      </Provider>,
+    );
+  });
+  it('layout variant 2, sidebar not collapsed', () => {
+    render(
+      <Provider store={store}>
+        <IntlProvider locale="en">
+          <Router history={history}>
+            <Layouts layoutVariant={2} collapsed={false} />
+          </Router>
+        </IntlProvider>
+      </Provider>,
+    );
+  });
+  it('layout variant 3, sidebar collapsed', () => {
+    render(
+      <Provider store={store}>
+        <IntlProvider locale="en">
+          <Router history={history}>
+            <Layouts layoutVariant={3} collapsed />
+          </Router>
+        </IntlProvider>
+      </Provider>,
+    );
   });
 });

@@ -6,11 +6,12 @@
  */
 
 // Needed for redux-saga es6 generator support
-import '@babel/polyfill';
+import 'core-js/stable';
 
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { ConfigProvider } from 'antd';
 import FontFaceObserver from 'fontfaceobserver';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
@@ -35,6 +36,7 @@ import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import { store, history } from './configureStore';
+import { themeConfig } from './utils/constants';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -49,15 +51,16 @@ const openSansObserver = new FontFaceObserver('Open Sans', {});
 openSansObserver.load().then(() => {
   document.body.classList.add('fontLoaded');
 });
-// Create redux store with history
-const initialState = {};
+
 const MOUNT_NODE = ReactDOM.createRoot(document.getElementById('app'));
-const renderMessage = (message) =>
+const renderMessage = message =>
   MOUNT_NODE.render(
     <Provider store={store}>
       <LanguageProvider messages={message}>
         <Router history={history}>
-          <MainLayout />
+          <ConfigProvider theme={themeConfig}>
+            <MainLayout />
+          </ConfigProvider>
         </Router>
       </LanguageProvider>
     </Provider>,
@@ -68,14 +71,15 @@ if (module.hot) {
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
   module.hot.accept(['./i18n', 'containers/App'], () => {
-    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+    // ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+    MOUNT_NODE.unmount();
     renderMessage(translationMessages);
   });
 }
 
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {
-  new Promise((resolve) => {
+  new Promise(resolve => {
     resolve(import('intl'));
   })
     .then(() =>
@@ -86,7 +90,7 @@ if (!window.Intl) {
       ]),
     ) // eslint-disable-line prettier/prettier
     .then(() => renderMessage(translationMessages))
-    .catch((err) => {
+    .catch(err => {
       throw err;
     });
 } else {

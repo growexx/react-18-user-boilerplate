@@ -10,11 +10,10 @@ import { List, message, Avatar, Skeleton } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
-
-import { API_ENDPOINTS } from 'containers/constants';
-import { loadApp } from '../../containers/App/slice';
 import request from 'utils/request';
+import { API_ENDPOINTS } from 'containers/constants';
 import { ListWithInfiniteLoader as StyledList } from './StyledList';
+import { loadApp } from '../../containers/App/slice';
 import messages from './messages';
 
 function ListWithInfiniteLoader() {
@@ -26,7 +25,7 @@ function ListWithInfiniteLoader() {
 
   useEffect(() => {
     onChangeAppLoading(true);
-    fetchData((res) => {
+    fetchData(res => {
       setData(res.results);
       setList(res.results);
       setLoading(false);
@@ -34,14 +33,14 @@ function ListWithInfiniteLoader() {
     });
   }, []);
 
-  const onChangeAppLoading = (loading) => {
-    dispatch(loadApp(loading));
+  const onChangeAppLoading = value => {
+    dispatch(loadApp(value));
   };
 
-  const fetchData = (callback) => {
+  const fetchData = callback => {
     request(API_ENDPOINTS.LIST, {
       method: 'GET',
-    }).then((res) => callback(res));
+    }).then(res => callback(res));
   };
 
   const handleInfiniteOnLoad = () => {
@@ -58,7 +57,7 @@ function ListWithInfiniteLoader() {
       return;
     }
 
-    fetchData((res) => {
+    fetchData(res => {
       const listData = data.concat(res.results);
       setData(listData);
       setList(listData);
@@ -78,7 +77,7 @@ function ListWithInfiniteLoader() {
         >
           <List
             dataSource={list}
-            renderItem={(item) => (
+            renderItem={item => (
               <List.Item key={item.id}>
                 <Skeleton avatar title={false} loading={item.loading} active>
                   <List.Item.Meta

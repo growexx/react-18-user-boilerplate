@@ -31,11 +31,6 @@ export const MenuItems = [
     icon: <SmileOutlined />,
   },
   {
-    to: ROUTES.SAMPLE_FORM,
-    tabName: 'Redux-Saga Form',
-    icon: <FormOutlined />,
-  },
-  {
     to: ROUTES.LOADER,
     tabName: 'Loader Demo',
     icon: <LoadingOutlined />,

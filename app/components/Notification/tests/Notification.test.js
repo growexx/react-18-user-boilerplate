@@ -5,7 +5,7 @@ import { IntlProvider } from 'react-intl';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import { createMemoryHistory } from 'history';
 import configureStore from 'configureStore';
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import {
   TEST_IDS,
   getNotificationsSuccessMock,

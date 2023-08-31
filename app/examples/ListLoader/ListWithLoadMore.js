@@ -22,22 +22,22 @@ function ListWithLoadMore() {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    getData((res) => {
+    getData(res => {
       setInitLoading(false);
       setData(res.results);
       setList(res.results);
     });
   }, []);
 
-  const onChangeAppLoading = (loading) => {
-    dispatch(loadApp(loading));
+  const onChangeAppLoading = value => {
+    dispatch(loadApp(value));
   };
 
-  const getData = (callback) => {
+  const getData = callback => {
     onChangeAppLoading(true);
     request(API_ENDPOINTS.LIST, {
       method: 'GET',
-    }).then((res) => {
+    }).then(res => {
       onChangeAppLoading(false);
       callback(res);
     });
@@ -50,7 +50,7 @@ function ListWithLoadMore() {
         [...new Array(count)].map(() => ({ loading: true, name: {} })),
       ),
     );
-    getData((res) => {
+    getData(res => {
       const listData = list.concat(res.results);
       setData(listData);
       setList(listData);
@@ -82,7 +82,7 @@ function ListWithLoadMore() {
       itemLayout="horizontal"
       loadMore={loadMore}
       dataSource={list}
-      renderItem={(item) => (
+      renderItem={item => (
         <List.Item>
           <Skeleton avatar title={false} loading={item.loading} active>
             <List.Item.Meta

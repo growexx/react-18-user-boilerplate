@@ -15,10 +15,10 @@ import {
 import '@testing-library/jest-dom';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
 import request from 'utils/request';
-import { HistoryRouter as Router } from 'redux-first-history/rr6';
-import Users, { mapDispatchToProps } from '../index';
+import Users from '../index';
 import configureStore from '../../../configureStore';
 import {
   addNewUserFailure,
@@ -86,17 +86,6 @@ describe('Check component:<Users /> is rendering properly', () => {
     expect(firstChild).toMatchSnapshot();
   });
 
-  it('mapDispatch to props', () => {
-    const mockFn = jest.fn();
-    const returnValue = mapDispatchToProps(mockFn);
-    returnValue.updateField(
-      { target: { name: 'email' } },
-      { target: { value: USER_DATA.EMAIL } },
-    );
-
-    expect(mockFn).toBeCalled();
-  });
-
   it('Click: New User Modal should show modal', async () => {
     componentWrapper();
 
@@ -123,12 +112,8 @@ describe('Check component:<Users /> is rendering properly', () => {
   });
 
   it('Click Delete: Show Confirmation Modal and click confirm', async () => {
-    const {
-      getAllByTestId,
-      getAllByText,
-      getByText,
-      findByTestId,
-    } = componentWrapper();
+    const { getAllByTestId, getAllByText, getByText, findByTestId } =
+      componentWrapper();
     await waitFor(() => getAllByText('Active')[0]);
 
     // Click Delete Button
@@ -216,12 +201,8 @@ describe('Check listing of users is rendering properly', () => {
   it('Click Delete: Show Confirmation Modal and click confirm', async () => {
     request.mockImplementation(() => Promise.resolve(successResponse()));
 
-    const {
-      getByTestId,
-      getByText,
-      getAllByText,
-      getAllByTestId,
-    } = componentWrapper();
+    const { getByTestId, getByText, getAllByText, getAllByTestId } =
+      componentWrapper();
     await waitFor(() => getAllByText('Active')[0]);
 
     // Click Delete Button
@@ -235,12 +216,8 @@ describe('Check listing of users is rendering properly', () => {
   it('Click Delete: Show Confirmation Modal and click confirm', async () => {
     request.mockImplementation(() => Promise.resolve(failedResponse()));
 
-    const {
-      getByText,
-      getAllByText,
-      getAllByTestId,
-      queryAllByTestId,
-    } = componentWrapper();
+    const { getByText, getAllByText, getAllByTestId, queryAllByTestId } =
+      componentWrapper();
     await waitFor(() => getAllByText('Active'));
 
     // Click Delete Button
@@ -446,14 +423,10 @@ describe('Update User', () => {
   it('Update user with cancel', async () => {
     request.mockImplementationOnce(() => Promise.resolve(responseWithList()));
 
-    const {
-      queryByTestId,
-      getByText,
-      getAllByText,
-      queryAllByTestId,
-    } = componentWrapper({
-      demo: false,
-    });
+    const { queryByTestId, getByText, getAllByText, queryAllByTestId } =
+      componentWrapper({
+        demo: false,
+      });
     expect(request).toHaveBeenCalledTimes(1);
     await waitFor(() => getAllByText('Active')[0]);
 
@@ -472,14 +445,10 @@ describe('Update User', () => {
       .mockImplementationOnce(() => Promise.resolve(responseWithList()))
       .mockImplementationOnce(() => Promise.resolve(addNewUserFailure()));
 
-    const {
-      getByText,
-      getByPlaceholderText,
-      getAllByText,
-      queryAllByTestId,
-    } = componentWrapper({
-      demo: false,
-    });
+    const { getByText, getByPlaceholderText, getAllByText, queryAllByTestId } =
+      componentWrapper({
+        demo: false,
+      });
     expect(request).toHaveBeenCalledTimes(1);
     await waitFor(
       () => getAllByText('Active')[0] || getAllByText('Suspended')[0],

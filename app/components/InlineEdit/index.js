@@ -13,7 +13,7 @@ import { ESC_KEY_CODE } from 'components/InlineEdit/constants';
 import { StyledInlineInput } from 'components/InlineEdit/StyledInlineInput';
 import { TEST_IDS } from 'components/InlineEdit/stub';
 
-function InlineEdit ({ value, onSave, placeholder }) {
+function InlineEdit({ value, onSave, placeholder }) {
   const [isInputActive, setIsInputActive] = useState(false);
   const [inputValue, setInputValue] = useState(value);
   const inputContainerRef = useRef(null);
@@ -44,7 +44,7 @@ function InlineEdit ({ value, onSave, placeholder }) {
   const handleSave = () => {
     onSave(inputValue);
     setIsInputActive(false);
-  }
+  };
 
   const onCancel = () => {
     setInputValue(value);
@@ -125,7 +125,6 @@ function InlineEdit ({ value, onSave, placeholder }) {
       )}
     </StyledInlineInput>
   );
-  
 }
 
 InlineEdit.propTypes = {

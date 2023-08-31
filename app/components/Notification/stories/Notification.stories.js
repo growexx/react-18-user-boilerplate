@@ -6,6 +6,8 @@ export default {
   component: Notification,
 };
 
-export const NotificationComponent = () => <Notification />;
+export function NotificationComponent() {
+  return <Notification />;
+}
 
 NotificationComponent.storyName = 'Notifications';

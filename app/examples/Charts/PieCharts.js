@@ -37,7 +37,7 @@ function PieCharts({ period, title }) {
     });
   };
 
-  const getPieChart = (data, colorGenerator) => (
+  const getPieChart = (pieData, pieColorGenerator) => (
     <ResponsiveContainer width="100%" height={500}>
       <PieChart>
         <Pie
@@ -49,8 +49,11 @@ function PieCharts({ period, title }) {
           fill="#8884d8"
           dataKey="count"
         >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={colorGenerator[index]} />
+          {pieData.map((entry, index) => (
+            <Cell
+              key={`cell-${index.toString()}`}
+              fill={pieColorGenerator[index]}
+            />
           ))}
         </Pie>
         <Tooltip />

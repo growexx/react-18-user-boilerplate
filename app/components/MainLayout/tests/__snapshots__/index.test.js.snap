@@ -1,27 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<MainLayout /> should render and match the snapshot 1`] = `
-.c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c5 {
   display: flex;
   min-height: 100vh;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
 .c0 .ant-layout-sider {
-  -webkit-transition: none;
   transition: none;
   background: #190426;
+  left: -8px;
+  top: 0;
 }
 
 .c0 .ant-menu .ant-menu-item,
 .c0 .ant-menu-submenu-title,
 .c0 .ant-menu {
-  -webkit-transition: none;
   transition: none;
 }
 
@@ -29,22 +24,24 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
 .c0 .ant-menu-dark .ant-menu-sub,
 .c0 .ant-menu.ant-menu-dark .ant-menu-sub {
   background-color: #190426;
+  color: rgba(0, 0, 0, 0.65);
 }
 
 .c0 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
   background-color: #4d186e;
   color: #fff;
+  border-radius: 0px;
 }
 
 .c0 .ant-menu-dark .ant-menu-item,
 .c0 .ant-menu-dark .ant-menu-item-group-title,
-.c0 .ant-menu-dark .ant-menu-item > a,
-.c0 .ant-menu-dark .ant-menu-item > span > a {
+.c0 .ant-menu-dark .ant-menu-item>a,
+.c0 .ant-menu-dark .ant-menu-item>span>a {
   color: #fff;
 }
 
-.c0 .ant-menu-item-selected > span > a {
-  color: #fff !important;
+.c0 .ant-menu-item-selected>span>a {
+  color: #fff!important;
 }
 
 .c0 .sideBarTrigger {
@@ -52,7 +49,6 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
   font-size: 18px;
   line-height: 64px;
   cursor: pointer;
-  -webkit-transition: color 0.3s;
   transition: color 0.3s;
   outline: none;
 }
@@ -62,17 +58,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
 }
 
 .c0 #components-layout-demo-custom-trigger .logo {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
+  padding: 25px;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -85,9 +73,6 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
 }
 
 .c0 .headerLayout {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   padding: 0;
   background-color: #fff;
@@ -107,48 +92,30 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
   text-transform: uppercase;
 }
 
-.c0[data-environment] > .ant-layout {
+.c0[data-environment]>.ant-layout {
   position: relative;
-  top: 25px;
+  top: 15px;
 }
 
 .c0[data-environment='development']:before {
   background: #b6c5cd;
 }
 
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c9 {
+.c8 {
   line-height: 1em;
   background-color: transparent;
   border-style: none;
 }
 
-.c8 {
+.c7 {
   padding: 2px;
 }
 
-.c7 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c6 {
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   background: #fff;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   font-size: 14px;
   color: #000;
@@ -156,73 +123,60 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
   font-weight: 700;
 }
 
-.c7 > section:first-child {
+.c6 >section:first-child {
   margin-left: 8px;
 }
 
-.c7 > section:nth-child(2) {
+.c6 >section:nth-child(2) {
   margin-right: 8px;
 }
 
-.c7 > section:nth-child(2) option {
+.c6 >section:nth-child(2) option {
   color: #000;
 }
 
-.c4 {
+.c3 {
   margin-right: 10px;
 }
 
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c1 {
   display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   line-height: 0;
 }
 
-.c3 {
+.c2 {
   margin-left: auto;
   margin-right: 16px;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
   align-self: center;
   cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
-.c3 .anticon-shopping-cart {
+.c2 .anticon-shopping-cart {
   font-size: 18px;
 }
 
-.c5 .ant-btn-group > .ant-btn:first-child {
+.c4 .ant-btn-group>.ant-btn:first-child {
   display: none;
 }
 
-.c5 .ant-dropdown-trigger,
-.c5 .ant-dropdown-trigger:hover {
-  border-radius: 50% !important;
+.c4 .ant-dropdown-trigger,
+.c4 .ant-dropdown-trigger:hover {
+  border-radius: 50%!important;
   background-color: #4d186e;
   color: #fff;
 }
 
 @media only screen and (max-width:767px) {
-  .c7 > section:nth-child(2) {
+  .c6 >section:nth-child(2) {
     margin-top: 12px;
   }
 }
 
 <div
-  class="ant-spin-nested-loading"
+  class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
 >
   <div
     class="ant-spin-container"
@@ -231,8 +185,8 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
       class="c0 main-layout"
       data-environment="test"
     >
-      <section
-        class="ant-layout ant-layout-has-sider"
+      <div
+        class="ant-layout ant-layout-has-sider css-dev-only-do-not-override-byeoj0"
       >
         <aside
           class="ant-layout-sider ant-layout-sider-dark ant-layout-sider-collapsed"
@@ -255,7 +209,7 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
               </a>
             </div>
             <ul
-              class="ant-menu ant-menu-root ant-menu-vertical ant-menu-dark ant-menu-inline-collapsed"
+              class="ant-menu ant-menu-root ant-menu-vertical ant-menu-dark ant-menu-inline-collapsed css-dev-only-do-not-override-byeoj0"
               data-menu-list="true"
               role="menu"
               tabindex="0"
@@ -292,44 +246,6 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     href="/"
                   >
                     Home
-                  </a>
-                </span>
-              </li>
-              <li
-                class="ant-menu-item"
-                data-menu-id="rc-menu-uuid-test-/sample-form"
-                role="menuitem"
-                tabindex="-1"
-              >
-                <span
-                  aria-label="form"
-                  class="anticon anticon-form ant-menu-item-icon"
-                  role="img"
-                >
-                  <svg
-                    aria-hidden="true"
-                    data-icon="form"
-                    fill="currentColor"
-                    focusable="false"
-                    height="1em"
-                    viewBox="64 64 896 896"
-                    width="1em"
-                  >
-                    <path
-                      d="M904 512h-56c-4.4 0-8 3.6-8 8v320H184V184h320c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V520c0-4.4-3.6-8-8-8z"
-                    />
-                    <path
-                      d="M355.9 534.9L354 653.8c-.1 8.9 7.1 16.2 16 16.2h.4l118-2.9c2-.1 4-.9 5.4-2.3l415.9-415c3.1-3.1 3.1-8.2 0-11.3L785.4 114.3c-1.6-1.6-3.6-2.3-5.7-2.3s-4.1.8-5.7 2.3l-415.8 415a8.3 8.3 0 00-2.3 5.6zm63.5 23.6L779.7 199l45.2 45.1-360.5 359.7-45.7 1.1.7-46.4z"
-                    />
-                  </svg>
-                </span>
-                <span
-                  class="ant-menu-title-content"
-                >
-                  <a
-                    href="/sample-form"
-                  >
-                    Redux-Saga Form
                   </a>
                 </span>
               </li>
@@ -383,13 +299,14 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     aria-hidden="true"
                     data-icon="export"
                     fill="currentColor"
+                    fill-rule="evenodd"
                     focusable="false"
                     height="1em"
                     viewBox="64 64 896 896"
                     width="1em"
                   >
                     <path
-                      d="M888.3 757.4h-53.8c-4.2 0-7.7 3.5-7.7 7.7v61.8H197.1V197.1h629.8v61.8c0 4.2 3.5 7.7 7.7 7.7h53.8c4.2 0 7.7-3.4 7.7-7.7V158.7c0-17-13.7-30.7-30.7-30.7H158.7c-17 0-30.7 13.7-30.7 30.7v706.6c0 17 13.7 30.7 30.7 30.7h706.6c17 0 30.7-13.7 30.7-30.7V765.1c0-4.3-3.5-7.7-7.7-7.7zm18.6-251.7L765 393.7c-5.3-4.2-13-.4-13 6.3v76H438c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h314v76c0 6.7 7.8 10.5 13 6.3l141.9-112a8 8 0 000-12.6z"
+                      d="M880 912H144c-17.7 0-32-14.3-32-32V144c0-17.7 14.3-32 32-32h360c4.4 0 8 3.6 8 8v56c0 4.4-3.6 8-8 8H184v656h656V520c0-4.4 3.6-8 8-8h56c4.4 0 8 3.6 8 8v360c0 17.7-14.3 32-32 32zM770.87 199.13l-52.2-52.2a8.01 8.01 0 014.7-13.6l179.4-21c5.1-.6 9.5 3.7 8.9 8.9l-21 179.4c-.8 6.6-8.9 9.4-13.6 4.7l-52.4-52.4-256.2 256.2a8.03 8.03 0 01-11.3 0l-42.4-42.4a8.03 8.03 0 010-11.3l256.1-256.3z"
                     />
                   </svg>
                 </span>
@@ -658,21 +575,21 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
             />
           </div>
         </aside>
-        <section
-          class="ant-layout site-layout"
+        <div
+          class="ant-layout site-layout css-dev-only-do-not-override-byeoj0"
         >
           <header
-            class="ant-layout-header headerLayout"
+            class="ant-layout-header headerLayout css-dev-only-do-not-override-byeoj0"
+            style="padding: 0px; background: rgb(255, 255, 255);"
           >
-            <div
-              class="c1"
+            <button
+              class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-text ant-btn-icon-only"
+              data-testid="ToggleIcon"
+              style="font-size: 16px; width: 64px; height: 64px;"
+              type="button"
             >
               <span
-                aria-label="Navigation Toggle"
-                class="sideBarTrigger"
-                data-testid="ToggleIcon"
-                role="button"
-                tabindex="0"
+                class="ant-btn-icon"
               >
                 <span
                   aria-label="menu-unfold"
@@ -694,23 +611,23 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                   </svg>
                 </span>
               </span>
-            </div>
+            </button>
             <div
-              class="c2"
+              class="c1"
             >
               <div
-                class="c3"
+                class="c2"
               >
                 <div
                   class="u-mr-1 u-d-inline-block"
                 >
                   <button
-                    class="ant-btn ant-btn-text btn-hover-none p-4"
+                    class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-text btn-hover-none p-4"
                     data-testid="badge-Cart"
                     type="button"
                   >
                     <span
-                      class="ant-badge"
+                      class="ant-badge css-dev-only-do-not-override-byeoj0"
                     >
                       <span
                         aria-label="shopping-cart"
@@ -739,18 +656,18 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                   data-visible="false"
                 />
                 <div
-                  class="c4"
+                  class="c3"
                 >
                   <div
                     class="u-mr-1 u-d-inline-block"
                   >
                     <button
-                      class="ant-btn ant-btn-text btn-hover-none p-4"
+                      class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-text btn-hover-none p-4"
                       data-testid="badge-Cart"
                       type="button"
                     >
                       <span
-                        class="ant-badge "
+                        class="ant-badge css-dev-only-do-not-override-byeoj0"
                       >
                         <span
                           aria-label="bell"
@@ -777,10 +694,10 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c5"
+                  class="c4"
                 >
                   <button
-                    class="ant-btn ant-btn-circle ant-btn-primary ant-dropdown-trigger"
+                    class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-circle ant-btn-primary ant-dropdown-trigger"
                     type="button"
                   >
                     <span
@@ -808,36 +725,32 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
             </div>
           </header>
           <main
-            class="ant-layout-content site-layout-background"
+            class="ant-layout-content site-layout-background css-dev-only-do-not-override-byeoj0"
             style="margin: 24px 16px; padding: 24px; min-height: 280px;"
           >
             <div
-              class="c6"
+              class="c5"
               data-testid="AppRoutes"
             />
           </main>
-          <section
-            class="ant-layout site-layout"
+          <div
+            class="ant-layout site-layout css-dev-only-do-not-override-byeoj0"
           >
             <footer
-              class="c7"
+              class="c6"
             >
               <section>
-                <span>
-                  © 2023 React Boilerplate
-                </span>
+                © 2023 React Boilerplate
                 <section>
-                  <span>
-                    Get started with your next react application in seconds.
-                  </span>
+                  Get started with your next react application in seconds.
                 </section>
               </section>
               <section>
                 <div
-                  class="c8"
+                  class="c7"
                 >
                   <select
-                    class="c9"
+                    class="c8"
                   >
                     <option
                       value="en"
@@ -853,9 +766,9 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                 </div>
               </section>
             </footer>
-          </section>
-        </section>
-      </section>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

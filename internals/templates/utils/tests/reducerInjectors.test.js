@@ -2,7 +2,7 @@
  * Test injectors
  */
 
-import produce from 'immer';
+import { produce } from 'immer';
 import identity from 'lodash/identity';
 
 import configureStore from '../../configureStore';

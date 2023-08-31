@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-catch */
+/* eslint-disable import/extensions */
 /**
  * generator/index.js
  *
@@ -5,8 +7,8 @@
  */
 
 const fs = require('fs');
-const path = require('path');
 const { execSync } = require('child_process');
+const path = require('path');
 const componentGenerator = require('./component/index.js');
 const containerGenerator = require('./container/index.js');
 const languageGenerator = require('./language/index.js');

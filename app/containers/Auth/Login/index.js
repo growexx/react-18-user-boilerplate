@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import { Form, Input, Button, notification } from 'antd';
+import { Form, Input, Button } from 'antd';
 import {
   FacebookFilled,
   GoogleOutlined,
@@ -24,18 +24,17 @@ import { AUTH_TYPE } from '../constants';
 import { ROUTES } from '../../constants';
 import { facebookLogin, googleLogin, login } from './slice';
 
-const key = 'login';
-
-const showNotification = () => {
-  notification.open({
-    message: <FormattedMessage {...messages.notificationToast} />,
-  });
-};
-export function Login({ loading, error }) {
+// const showNotification = () => {
+//   notification.open({
+//     message: <FormattedMessage {...messages.notificationToast} />,
+//   });
+// };
+export function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // use this if you are using login API and manage the loading error status accordingly
   // const [loginUser, { isLoading, isError }] = useLoginUserMutation();
@@ -43,7 +42,10 @@ export function Login({ loading, error }) {
   const onSignIn = () => {
     // call loginUser mutation if you are calling login API and set Tokens accordingly
     // loginUser()
+
+    setLoading(true);
     dispatch(login());
+    setLoading(false);
     // do navigation based on condition
     navigate(ROUTES.HOME);
   };
@@ -56,11 +58,11 @@ export function Login({ loading, error }) {
     dispatch(facebookLogin());
   };
 
-  const onChangeEmail = (e) => {
+  const onChangeEmail = e => {
     setEmail(e.target.value);
   };
 
-  const onChangePassword = (e) => {
+  const onChangePassword = e => {
     setPassword(e.target.value);
   };
 
@@ -147,7 +149,6 @@ export function Login({ loading, error }) {
 Login.propTypes = {
   history: PropTypes.object,
   loading: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default Login;

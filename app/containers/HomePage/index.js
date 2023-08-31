@@ -32,12 +32,12 @@ export function HomePage() {
   const [trigger, result] = useLazyGetReposQuery(username);
   const { isError, data: repos, isUninitialized, isFetching } = result;
 
-  const onSubmitForm = (e) => {
+  const onSubmitForm = e => {
     if (e?.preventDefault) e.preventDefault();
     trigger(username);
   };
 
-  const onChangeUsername = (e) => setUsername(e.target.value);
+  const onChangeUsername = e => setUsername(e.target.value);
 
   return (
     <article>

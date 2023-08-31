@@ -8,12 +8,10 @@ export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    loadApp: (state, action) => {
-      return {
-        ...state,
-        appLoading: action.payload,
-      };
-    },
+    loadApp: (state, action) => ({
+      ...state,
+      appLoading: action.payload,
+    }),
   },
 });
 

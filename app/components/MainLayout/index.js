@@ -13,8 +13,8 @@ import { LAYOUT_CONFIG } from '../constants';
 import { StyledMainLayout } from './StyledMainLayout';
 import Layouts from './Layout';
 
-const MainLayout = (props) => {
-  const appLoading = useSelector((state) => state.app.appLoading);
+function MainLayout(props) {
+  const appLoading = useSelector(state => state.app.appLoading);
   const urlParams = new URLSearchParams(props.location.search);
   const [collapsed, setCollapsed] = useState(
     ![LAYOUT_CONFIG.VERTICAL_OPTION_2].includes(layoutVariant),
@@ -28,7 +28,10 @@ const MainLayout = (props) => {
     setLayoutVariant(variant);
 
     Emitter.on(EMITTER_EVENTS.LOG_IN, () => {});
-    Emitter.on(EMITTER_EVENTS.LOG_OUT, () => {});
+    Emitter.on(EMITTER_EVENTS.LOG_OUT, () => {
+      setCollapsed();
+      setLayoutVariant();
+    });
 
     return () => {
       Emitter.off(EMITTER_EVENTS.LOG_IN);
@@ -60,10 +63,9 @@ const MainLayout = (props) => {
   }
 
   return <App />;
-};
+}
 
 MainLayout.propTypes = {
-  appLoading: PropTypes.bool,
   defaultLayout: PropTypes.number,
   location: PropTypes.object,
 };
@@ -80,10 +82,10 @@ const withConnect = connect(mapStateToProps);
 
 const MainLayoutWithConnect = withConnect(MainLayout);
 
-const MainLayoutWrapper = () => {
+function MainLayoutWrapper() {
   const location = useLocation();
 
   return <MainLayoutWithConnect location={location} />;
-};
+}
 
 export default MainLayoutWrapper;

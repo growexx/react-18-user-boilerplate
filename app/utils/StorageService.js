@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 /* eslint-disable no-plusplus */
 /* eslint-disable indent */
 import base from 'base-64';
