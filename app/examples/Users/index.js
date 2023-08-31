@@ -1,26 +1,11 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-shadow */
 /* eslint-disable indent */
-/* eslint-disable react/jsx-indent-props */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-
 import { Helmet } from 'react-helmet';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
-import { change } from 'redux-form';
-import { Field, reduxForm } from 'redux-form/immutable';
-import { useInjectReducer } from 'utils/injectReducer';
-import * as formValidations from 'utils/formValidations';
-import {
-  API_URL,
-  API_ENDPOINTS,
-  SORTING,
-  GET_SORT_ORDER,
-  GET_DEFAULT_PAGINATION,
-  FULL_GENERIC_MOMENT_DATE_FORMAT,
-} from 'containers/constants';
-import request from 'utils/request';
+import { Controller, Form, useForm } from 'react-hook-form';
 import {
   Space,
   Button,
@@ -30,25 +15,25 @@ import {
   Row,
   Col,
   Image,
+  Form as antForm,
   Tooltip,
   notification,
+  Input,
 } from 'antd';
 import debounce from 'lodash/debounce';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
-import reducer from './reducer';
-import { AInput } from '../../utils/Fields';
-import * as actions from './actions';
-import { makeSelectUser } from './selectors';
-
+import request from 'utils/request';
 import {
-  ACCOUNT_STATUS,
-  POPUP_ACTION,
-  USERS_KEY,
-  MESSAGES,
-  TEST_IDS,
-} from './constants';
+  API_URL,
+  API_ENDPOINTS,
+  SORTING,
+  GET_SORT_ORDER,
+  GET_DEFAULT_PAGINATION,
+  FULL_GENERIC_MOMENT_DATE_FORMAT,
+} from 'containers/constants';
+import { ACCOUNT_STATUS, POPUP_ACTION, MESSAGES, TEST_IDS } from './constants';
 import { deleteUserAPIMock, getUsersAPIMock, updateUserAPIMock } from './stub';
 import {
   AccountStatusDropDown,
@@ -59,173 +44,161 @@ import {
   PageHeaderWrapper,
   SearchWrapper,
 } from './styled';
+import { makeSelectUser } from './selectors';
+import { useDispatch } from 'react-redux';
+import { updateUserFormField } from './slice';
 
 const logsTableProps = {
   showHeader: true,
 };
 
-// export class Users extends Component {
-export const Users = ({
-  demo,
-  fillFields,
-  dispatch,
-  userStoreData,
-  reset,
-  pristine,
-  submitting,
-  invalid,
-  updateField,
-  handleSubmit}) => {
-  useInjectReducer({
-    key: USERS_KEY,
-    reducer,
-  });
-  // User Data
-  const [userList, setUserList] = useState([])
-  const [isListLoading, setIsListLoading] = useState(true)
-  // Table Pagination
-  const [pagination, setPagination] = useState(GET_DEFAULT_PAGINATION())
-  const [sortType, setSortType] = useState(SORTING.ASC)
-  const [sortKey, setSortKey] = useState('id')
-  const [search, setSearch] = useState('')
-  // Popup
-  const [isPopUpVisible, setIsPopUpVisible] = useState(false)
-  const [popUpAction, setPopUpAction] = useState('')
-  const [isPopUpLoading, setIsPopUpLoading] = useState(false)
-  const [userId, setUserId] = useState('')
-  const [status, setStatus] = useState('')
-  // Modal
-  const [showUserModal, setShowUserModal] = useState(false)
+const FormItem = antForm.Item;
+
+export function Users({ demo }) {
+  const [userList, setUserList] = useState([]);
+  const [isListLoading, setIsListLoading] = useState(true);
+  const [pagination, setPagination] = useState(GET_DEFAULT_PAGINATION());
+  const [sortType, setSortType] = useState(SORTING.ASC);
+  const [sortKey, setSortKey] = useState('id');
+  const [search, setSearch] = useState('');
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+  const [popUpAction, setPopUpAction] = useState('');
+  const [isPopUpLoading, setIsPopUpLoading] = useState(false);
+  const [userId, setUserId] = useState('');
+  const [status, setStatus] = useState('');
+  const [showUserModal, setShowUserModal] = useState(false);
+
+  const dispatch = useDispatch();
+  const userStoreData = makeSelectUser();
+  const { handleSubmit, control, reset } = useForm();
 
   useEffect(() => {
-    loadUserDetails({pagination})
-  }, [])
+    loadUserDetails({ pagination });
+  }, []);
 
-  const debouncedLoadUserDetails = debounce(d => loadUserDetails(d), 300);
+  const debouncedLoadUserDetails = debounce((d) => loadUserDetails(d), 300);
 
-  const getColumnProps = () => {
-    return [
-      {
-        title: 'User Id',
-        dataIndex: 'id',
-        key: 'id',
-        width: '10%',
-        sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-      },
-      {
-        title: 'Name',
-        dataIndex: 'firstName',
-        key: 'firstName',
-        width: '20%',
-        sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-        render: (_action, data) => `${data.firstName} ${data.lastName}`,
-      },
-      {
-        title: 'Email',
-        dataIndex: 'email',
-        key: 'email',
-        width: '20%',
-        sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-      },
-      {
-        title: 'Status',
-        dataIndex: 'status',
-        key: 'status',
-        width: '15%',
-        sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-        render: (_action, data) => (
-          <Switch
-            data-testid={TEST_IDS.STATUS_TOGGLE}
-            checkedChildren="Active"
-            unCheckedChildren="Suspend"
-            defaultChecked={data.status === ACCOUNT_STATUS.ACTIVE}
-            loading={isPopUpLoading && userId === data.id}
-            disabled={isPopUpLoading}
-            onChange={active => {
-              setUserId(data.id)
-              setIsPopUpLoading(true)
-              handlePopupOk({
-                status: active
-                  ? ACCOUNT_STATUS.ACTIVE
-                  : ACCOUNT_STATUS.SUSPENDED,
-              });
+  const fillFields = (key, value) => {
+    dispatch(updateUserFormField(key, value));
+  };
+
+  const getColumnProps = () => [
+    {
+      title: 'User Id',
+      dataIndex: 'id',
+      key: 'id',
+      width: '10%',
+      sorter: true,
+      sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
+      title: 'Name',
+      dataIndex: 'firstName',
+      key: 'firstName',
+      width: '20%',
+      sorter: true,
+      sortDirections: ['descend', 'ascend', 'descend'],
+      render: (_action, data) => `${data.firstName} ${data.lastName}`,
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+      width: '20%',
+      sorter: true,
+      sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      width: '15%',
+      sorter: true,
+      sortDirections: ['descend', 'ascend', 'descend'],
+      render: (_action, data) => (
+        <Switch
+          data-testid={TEST_IDS.STATUS_TOGGLE}
+          checkedChildren="Active"
+          unCheckedChildren="Suspend"
+          defaultChecked={data.status === ACCOUNT_STATUS.ACTIVE}
+          loading={isPopUpLoading && userId === data.id}
+          disabled={isPopUpLoading}
+          onChange={(active) => {
+            setUserId(data.id);
+            setIsPopUpLoading(true);
+            handlePopupOk({
+              status: active ? ACCOUNT_STATUS.ACTIVE : ACCOUNT_STATUS.SUSPENDED,
+            });
+          }}
+        />
+      ),
+    },
+    {
+      title: 'Last Access Date',
+      dataIndex: 'lastAccessDate',
+      key: 'lastAccessDate',
+      width: '15%',
+      render: (v) => (
+        <Space size="middle">
+          {moment(v).format(FULL_GENERIC_MOMENT_DATE_FORMAT)}
+        </Space>
+      ),
+    },
+    {
+      title: 'Actions',
+      dataIndex: 'action',
+      key: 'action',
+      width: '20%',
+      render: (action, data) => (
+        <Space size="middle">
+          <Button
+            data-testid={TEST_IDS.EDIT_BUTTON}
+            type="secondary"
+            htmlType="submit"
+            onClick={() => editUser(data.id)}
+            title={userId ? 'Edit User' : 'Add User'}
+          >
+            <FontAwesomeIcon icon={faEdit} />
+          </Button>
+          <Popconfirm
+            title={MESSAGES.DELETE}
+            open={
+              isPopUpVisible &&
+              popUpAction === POPUP_ACTION.DELETE &&
+              userId === data.id
+            }
+            onConfirm={() => handlePopupOk({ isDeleted: true })}
+            okButtonProps={{
+              loading: isPopUpLoading,
+              'data-testid': TEST_IDS.DELETE_BUTTON_CONFIRMED,
             }}
-          />
-        ),
-      },
-      {
-        title: 'Last Access Date',
-        dataIndex: 'lastAccessDate',
-        key: 'lastAccessDate',
-        width: '15%',
-        render: v => (
-          <Space size="middle">
-            {moment(v).format(FULL_GENERIC_MOMENT_DATE_FORMAT)}
-          </Space>
-        ),
-      },
-      {
-        title: 'Actions',
-        dataIndex: 'action',
-        key: 'action',
-        width: '20%',
-        render: (action, data) => (
-          <Space size="middle">
+            cancelButtonProps={{
+              'data-testid': TEST_IDS.DELETE_CONFIRMATION_CANCEL,
+            }}
+            onCancel={handlePopupCancel}
+          >
             <Button
-              data-testid={TEST_IDS.EDIT_BUTTON}
+              data-testid={TEST_IDS.DELETE_BUTTON}
               type="secondary"
               htmlType="submit"
-              onClick={() => editUser(data.id)}
-              title={userId ? 'Edit User' : 'Add User'}
+              onClick={() => showPopConfirm(POPUP_ACTION.DELETE, data.id)}
+              title={MESSAGES.TITLE.DELETE}
             >
-              <FontAwesomeIcon icon={faEdit} />
+              <FontAwesomeIcon icon={faTrash} />
             </Button>
-            <Popconfirm
-              title={MESSAGES.DELETE}
-              open={
-                isPopUpVisible &&
-                popUpAction === POPUP_ACTION.DELETE &&
-                userId === data.id
-              }
-              onConfirm={() => handlePopupOk({ isDeleted: true })}
-              okButtonProps={{
-                loading: isPopUpLoading,
-                'data-testid': TEST_IDS.DELETE_BUTTON_CONFIRMED,
-              }}
-              cancelButtonProps={{
-                'data-testid': TEST_IDS.DELETE_CONFIRMATION_CANCEL,
-              }}
-              onCancel={handlePopupCancel}
-            >
-              <Button
-                data-testid={TEST_IDS.DELETE_BUTTON}
-                type="secondary"
-                htmlType="submit"
-                onClick={() =>
-                  showPopConfirm(POPUP_ACTION.DELETE, data.id)
-                }
-                title={MESSAGES.TITLE.DELETE}
-              >
-                <FontAwesomeIcon icon={faTrash} />
-              </Button>
-            </Popconfirm>
-          </Space>
-        ),
-      },
-    ];
-  };
+          </Popconfirm>
+        </Space>
+      ),
+    },
+  ];
 
   /**
    * Individual row Action Popup handler
    */
   const handlePopupCancel = () => {
-    setUserId('')
-    setPopUpAction('')
-    setIsPopUpVisible(false)
+    setUserId('');
+    setPopUpAction('');
+    setIsPopUpVisible(false);
   };
 
   /**
@@ -234,47 +207,47 @@ export const Users = ({
    * @param {*} userId
    */
   const showPopConfirm = (action, userId) => {
-    setUserId(userId)
-    setPopUpAction(action)
-    setIsPopUpVisible(true)
+    setUserId(userId);
+    setPopUpAction(action);
+    setIsPopUpVisible(true);
   };
 
   const showError = (error) => {
     error.response
       .json()
-      .then(err => notification.error({ message: err.message }));
-  }
+      .then((err) => notification.error({ message: err.message }));
+  };
 
   /**
    * Handles Popup Ok Action
    * Used for Delete, Toggle Status
    */
-  const handlePopupOk = payload => {
+  const handlePopupOk = (payload) => {
     const resetAction = () => {
-      setIsPopUpLoading(false)
-      setIsPopUpVisible(false)
-      setUserId('')
-      setPopUpAction('')
+      setIsPopUpLoading(false);
+      setIsPopUpVisible(false);
+      setUserId('');
+      setPopUpAction('');
     };
 
-    const currentUser = userList.find(u => u.id === userId);
+    const currentUser = userList.find((u) => u.id === userId);
     const isDelete = popUpAction === POPUP_ACTION.DELETE;
 
-    setIsPopUpLoading(true)
+    setIsPopUpLoading(true);
 
     if (isDelete) {
       (demo
         ? deleteUserAPIMock(userId)
         : request(`${API_URL}?id=${userId}`, { method: 'DELETE' })
       )
-        .then(response => {
+        .then((response) => {
           resetAction();
           notification.success({
             message: response && response.message,
           });
           loadUserDetails();
         })
-        .catch(error => {
+        .catch((error) => {
           showError(error);
           resetAction();
         });
@@ -294,16 +267,15 @@ export const Users = ({
           notification.success({ message: 'Updated User' });
           loadUserDetails();
         })
-        .catch(error => {
+        .catch((error) => {
           showError(error);
           resetAction();
         });
     }
   };
 
-  const getLatestValue = (newValue, oldValue) => {
-    return newValue === '' ? newValue : newValue || oldValue;
-  }
+  const getLatestValue = (newValue, oldValue) =>
+    newValue === '' ? newValue : newValue || oldValue;
 
   const getUpdatedPagination = ({ status: newStatus, pagination }) => {
     if (status !== newStatus) {
@@ -311,7 +283,7 @@ export const Users = ({
     }
 
     return pagination;
-  }
+  };
 
   const loadUserDetails = ({
     pagination: newPagination,
@@ -321,10 +293,10 @@ export const Users = ({
     status: newStatus,
   } = {}) => {
     let paginationData = newPagination || pagination;
-    let sortTypeData = newSortType || sortType;
-    let sortKeyData = newSortKey || sortKey;
-    let searchData = getLatestValue(newSearch, search);
-    let statusData = getLatestValue(newStatus, status);
+    const sortTypeData = newSortType || sortType;
+    const sortKeyData = newSortKey || sortKey;
+    const searchData = getLatestValue(newSearch, search);
+    const statusData = getLatestValue(newStatus, status);
     paginationData = getUpdatedPagination({
       pagination: paginationData,
       status: statusData,
@@ -352,14 +324,14 @@ export const Users = ({
         })
       : request(requestURL, data)
     )
-      .then(response =>
+      .then((response) =>
         setUserDetails(response, {
           pagination: paginationData,
           search: searchData,
           status: statusData,
         }),
       )
-      .catch(error => {
+      .catch((error) => {
         notification.error({
           message: error && error.message,
         });
@@ -368,10 +340,10 @@ export const Users = ({
 
   const setUserDetails = (response, { pagination, status }) => {
     if (get(response, 'status')) {
-      setUserList(get(response, 'data', []))
-      setPagination(get(response, 'pagination', pagination))
-      setIsListLoading(false)
-      setStatus(status)
+      setUserList(get(response, 'data', []));
+      setPagination(get(response, 'pagination', pagination));
+      setIsListLoading(false);
+      setStatus(status);
     } else {
       notification.error({ message: get(response, 'message') });
     }
@@ -391,14 +363,14 @@ export const Users = ({
     });
   };
 
-  const onSearchUser = e => {
+  const onSearchUser = (e) => {
     const { value } = e.target;
-    setSearch(value)
-    setPagination(GET_DEFAULT_PAGINATION())
+    setSearch(value);
+    setPagination(GET_DEFAULT_PAGINATION());
     debouncedLoadUserDetails({ search: value });
   };
 
-  const onStatusSelectChange = status => {
+  const onStatusSelectChange = (status) => {
     loadUserDetails({ status });
   };
 
@@ -407,7 +379,7 @@ export const Users = ({
    * @param {*} record
    * @returns
    */
-  const expandableRowRender = record => (
+  const expandableRowRender = (record) => (
     <Row gutter={5} className="p-2">
       <Col span={6}>
         <Image src={record.profileUrl} width={100} height={100} />
@@ -420,20 +392,18 @@ export const Users = ({
    * Edit existing User
    * @param {string} userId
    */
-  const editUser = userId => {
-    // eslint-disable-next-line no-underscore-dangle
-    const user = userList.find(item => item.id === userId);
+  const editUser = (userId) => {
+    const user = userList.find((item) => item.id === userId);
     if (user) {
       const storeData = {
         ...user,
       };
-      Object.keys(storeData).forEach(key => {
-        dispatch(change(USERS_KEY, key, storeData[key]));
+      Object.keys(storeData).forEach((key) => {
         fillFields(key, storeData[key]);
       });
-      setUserId(userId)
-      setShowUserModal(true)
-      setIsPopUpVisible(false)
+      setUserId(userId);
+      setShowUserModal(true);
+      setIsPopUpVisible(false);
     }
   };
 
@@ -441,7 +411,7 @@ export const Users = ({
    * This modal handler verified data and submits to the backend
    */
   const updateUser = () => {
-    setIsListLoading(true)
+    setIsListLoading(true);
     const isUpdate = !!userId;
     const payload = {
       method: isUpdate ? 'PUT' : 'POST',
@@ -462,18 +432,18 @@ export const Users = ({
         )
       : request(URL, payload)
     )
-      .then(res => {
-        setIsListLoading(false)
-        setShowUserModal(!showUserModal)
-        setUserId('')
+      .then((res) => {
+        setIsListLoading(false);
+        setShowUserModal(!showUserModal);
+        setUserId('');
 
         loadUserDetails();
         notification.success({ message: res.message });
         reset();
       })
-      .catch(error => {
+      .catch((error) => {
         showError(error);
-        setIsListLoading(false)
+        setIsListLoading(false);
       });
   };
 
@@ -482,67 +452,96 @@ export const Users = ({
    */
   const toggleModals = () => {
     reset();
-    setShowUserModal(!showUserModal)
-    setUserId(showUserModal ? '' : userId)
+    setShowUserModal(!showUserModal);
+    setUserId(showUserModal ? '' : userId);
   };
 
   /**
    * Modal
    * @returns {Modal} Form
    */
-  const userModal = () => {
-    const performingAction = pristine || submitting || invalid || isListLoading;
-    const cancelDisabled = submitting || isListLoading;
-
-    return (
-      <Modal
-        title={userId ? 'Edit User' : 'Add User'}
-        open={showUserModal}
-        onOk={handleSubmit(updateUser)}
-        confirmLoading={isListLoading}
-        onCancel={() => toggleModals()}
-        okButtonProps={{
-          disabled: performingAction,
-          'data-testid': TEST_IDS.USER_MODAL_OK,
-        }}
-        okText={userId ? 'Update' : 'Add'}
-        cancelButtonProps={{
-          disabled: cancelDisabled,
-          'data-testid': TEST_IDS.USER_MODAL_CANCEL,
-        }}
+  const userModal = () => (
+    <Modal
+      title={userId ? 'Edit User' : 'Add User'}
+      open={showUserModal}
+      onOk={handleSubmit(updateUser)}
+      confirmLoading={isListLoading}
+      onCancel={() => toggleModals()}
+      okButtonProps={{
+        disabled: isListLoading,
+        'data-testid': TEST_IDS.USER_MODAL_OK,
+      }}
+      okText={userId ? 'Update' : 'Add'}
+      cancelButtonProps={{
+        disabled: isListLoading,
+        'data-testid': TEST_IDS.USER_MODAL_CANCEL,
+      }}
+    >
+      <Form
+        control={control}
+        onSubmit={handleSubmit(updateUser)}
+        className="mb-3"
       >
-        <form onSubmit={updateUser} className="mb-3">
-          <Field
+        <FormItem>
+          <label htmlFor="email">Email *</label>
+          <Controller
+            control={control}
             name="email"
-            disabled={!!userId}
-            component={AInput}
-            label="Email *"
-            placeholder="john.doe@growexx.com"
-            onChange={updateField}
-            defaultValue={userStoreData && userStoreData.email}
+            render={({ field }) => (
+              <Input
+                id="email"
+                placeholder="john.doe@growexx.com"
+                disabled={!!userId}
+                {...field}
+                onChange={(e) => {
+                  field.onChange(e);
+                }}
+                value={userStoreData && userStoreData.email}
+              />
+            )}
           />
-          <Field
+        </FormItem>
+        <FormItem>
+          <label htmlFor="firstName">First Name *</label>
+          <Controller
+            control={control}
             name="firstName"
-            component={AInput}
-            label="First Name *"
-            placeholder="John"
-            onChange={updateField}
-            defaultValue={userStoreData && userStoreData.firstName}
+            render={({ field }) => (
+              <Input
+                id="firstName"
+                placeholder="John"
+                {...field}
+                onChange={(e) => {
+                  field.onChange(e);
+                }}
+                value={userStoreData && userStoreData.firstName}
+              />
+            )}
           />
-          <Field
+        </FormItem>
+        <FormItem>
+          <label htmlFor="lastName">Last Name *</label>
+          <Controller
+            control={control}
             name="lastName"
-            component={AInput}
-            label="Last Name *"
-            placeholder="Doe"
-            onChange={updateField}
-            defaultValue={userStoreData && userStoreData.lastName}
+            render={({ field }) => (
+              <Input
+                id="lastName"
+                placeholder="Doe"
+                {...field}
+                onChange={(e) => {
+                  field.onChange(e);
+                }}
+                value={userStoreData && userStoreData.lastName}
+              />
+            )}
           />
-        </form>
-      </Modal>
-    );
-  };
-  
-  const options = Object.keys(ACCOUNT_STATUS).map(key => ({
+        </FormItem>
+      </Form>
+    </Modal>
+  );
+
+  const options = Object.keys(ACCOUNT_STATUS).map((key) => ({
     value: ACCOUNT_STATUS[key],
     label: ACCOUNT_STATUS[key],
   }));
@@ -556,7 +555,7 @@ export const Users = ({
       <PageHeaderWrapper
         title="Users"
         extra={[
-          <FiltersWrapper>
+          <FiltersWrapper key="users">
             <FilterItems>
               <AccountStatusDropDown
                 placeholder="User Status"
@@ -573,7 +572,7 @@ export const Users = ({
                   placeholder="Search User"
                   value={search}
                   onChange={onSearchUser}
-                  onSearch={value => loadUserDetails({ search: value })}
+                  onSearch={(value) => loadUserDetails({ search: value })}
                 />
               </Tooltip>
             </FilterItems>
@@ -593,7 +592,7 @@ export const Users = ({
         <DataTableWrapper
           {...logsTableProps}
           expandedRowRender={expandableRowRender}
-          rowKey={record => record.id}
+          rowKey={(record) => record.id}
           pagination={pagination}
           loading={isListLoading}
           columns={getColumnProps()}
@@ -607,49 +606,11 @@ export const Users = ({
 }
 
 Users.propTypes = {
-  // Redux-form
-  handleSubmit: PropTypes.func.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired,
-  pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
-  invalid: PropTypes.bool,
-
-  // Mocks API response
   demo: PropTypes.bool,
-  // Action
-  updateField: PropTypes.func.isRequired,
-  fillFields: PropTypes.func.isRequired,
-  // Store
-  userStoreData: PropTypes.object,
 };
 
-// Mocks API Response
 Users.defaultProps = {
   demo: true,
 };
 
-const mapStateToProps = createStructuredSelector({
-  userStoreData: makeSelectUser(),
-});
-
-export const mapDispatchToProps = dispatch => ({
-  updateField: e =>
-    dispatch(actions.updateField(e.target.name, e.target.value)),
-  fillFields: (key, value) => dispatch(actions.updateField(key, value)),
-});
-
-const withConnect = connect(mapStateToProps, mapDispatchToProps); // prettier-ignore
-
-export default compose(
-  withConnect,
-  reduxForm({
-    form: USERS_KEY,
-    fields: ['firstName', 'lastName', 'email'],
-    validate: formValidations.createValidator({
-      firstName: [formValidations.required],
-      lastName: [formValidations.required],
-      email: [formValidations.required, formValidations.validEmail],
-    }),
-  }),
-)(Users);
+export default Users;
