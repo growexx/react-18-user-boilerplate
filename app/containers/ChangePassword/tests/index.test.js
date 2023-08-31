@@ -11,6 +11,7 @@ import { fireEvent, render, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
+import '@testing-library/jest-dom';
 import history from 'utils/history';
 import ChangePassword, { mapDispatchToProps } from '../index';
 import Lodable from '../Loadable';
@@ -75,7 +76,7 @@ describe('<ChangePassword />', () => {
     } = componentWrapper(Lodable);
     expect(firstChild).toMatchSnapshot();
   });
-  test('Should Click Button', async () => {
+  test('Should Click Button and show error for passwords not same', async () => {
     const { container, getByPlaceholderText } =
       componentWrapper(ChangePassword);
     fireEvent.change(getByPlaceholderText('Current Password'), {
@@ -85,10 +86,10 @@ describe('<ChangePassword />', () => {
       },
     });
     fireEvent.change(getByPlaceholderText('New Password'), {
-      target: { name: 'newPassword', value: 'PassWord$' },
+      target: { name: 'newPassword', value: 'password123' },
     });
     fireEvent.change(getByPlaceholderText('Confirm Password'), {
-      target: { name: 'newPassword', value: 'PassWord$' },
+      target: { name: 'newPassword', value: 'password456' },
     });
     const preventDefault = jest.fn();
     const button = container.querySelector('button');

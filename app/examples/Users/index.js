@@ -1,17 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
 /* eslint-disable indent */
-/* eslint-disable react/jsx-indent-props */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { change } from 'redux-form';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Controller, Form, useForm } from 'react-hook-form';
 import {
   Space,
   Button,
@@ -21,8 +18,10 @@ import {
   Row,
   Col,
   Image,
+  Form as antForm,
   Tooltip,
   notification,
+  Input,
 } from 'antd';
 import debounce from 'lodash/debounce';
 import moment from 'moment';
@@ -37,10 +36,8 @@ import {
   GET_DEFAULT_PAGINATION,
   FULL_GENERIC_MOMENT_DATE_FORMAT,
 } from 'containers/constants';
-import * as formValidations from 'utils/formValidations';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
-import { AInput } from '../../utils/Fields';
 import * as actions from './actions';
 import { makeSelectUser } from './selectors';
 
@@ -66,19 +63,10 @@ const logsTableProps = {
   showHeader: true,
 };
 
+const FormItem = antForm.Item;
+
 // export class Users extends Component {
-export function Users({
-  demo,
-  fillFields,
-  dispatch,
-  userStoreData,
-  reset,
-  pristine,
-  submitting,
-  invalid,
-  updateField,
-  handleSubmit,
-}) {
+export function Users({ demo, fillFields, userStoreData, updateField }) {
   useInjectReducer({
     key: USERS_KEY,
     reducer,
@@ -99,6 +87,8 @@ export function Users({
   const [status, setStatus] = useState('');
   // Modal
   const [showUserModal, setShowUserModal] = useState(false);
+
+  const { handleSubmit, control, reset } = useForm();
 
   useEffect(() => {
     loadUserDetails({ pagination });
@@ -424,7 +414,6 @@ export function Users({
         ...user,
       };
       Object.keys(storeData).forEach(key => {
-        dispatch(change(USERS_KEY, key, storeData[key]));
         fillFields(key, storeData[key]);
       });
       setUserId(userId);
@@ -486,57 +475,89 @@ export function Users({
    * Modal
    * @returns {Modal} Form
    */
-  const userModal = () => {
-    const performingAction = pristine || submitting || invalid || isListLoading;
-    const cancelDisabled = submitting || isListLoading;
-
-    return (
-      <Modal
-        title={userId ? 'Edit User' : 'Add User'}
-        open={showUserModal}
-        onOk={handleSubmit(updateUser)}
-        confirmLoading={isListLoading}
-        onCancel={() => toggleModals()}
-        okButtonProps={{
-          disabled: performingAction,
-          'data-testid': TEST_IDS.USER_MODAL_OK,
-        }}
-        okText={userId ? 'Update' : 'Add'}
-        cancelButtonProps={{
-          disabled: cancelDisabled,
-          'data-testid': TEST_IDS.USER_MODAL_CANCEL,
-        }}
+  const userModal = () => (
+    <Modal
+      title={userId ? 'Edit User' : 'Add User'}
+      open={showUserModal}
+      onOk={handleSubmit(updateUser)}
+      confirmLoading={isListLoading}
+      onCancel={() => toggleModals()}
+      okButtonProps={{
+        disabled: isListLoading,
+        'data-testid': TEST_IDS.USER_MODAL_OK,
+      }}
+      okText={userId ? 'Update' : 'Add'}
+      cancelButtonProps={{
+        disabled: isListLoading,
+        'data-testid': TEST_IDS.USER_MODAL_CANCEL,
+      }}
+    >
+      <Form
+        control={control}
+        onSubmit={handleSubmit(updateUser)}
+        className="mb-3"
       >
-        <form onSubmit={updateUser} className="mb-3">
-          <Field
+        <FormItem>
+          <label htmlFor="email">Email *</label>
+          <Controller
+            control={control}
             name="email"
-            disabled={!!userId}
-            component={AInput}
-            label="Email *"
-            placeholder="john.doe@growexx.com"
-            onChange={updateField}
-            defaultValue={userStoreData && userStoreData.email}
+            render={({ field }) => (
+              <Input
+                id="email"
+                placeholder="john.doe@growexx.com"
+                disabled={!!userId}
+                {...field}
+                onChange={e => {
+                  field.onChange(e);
+                  updateField(e);
+                }}
+                value={userStoreData && userStoreData.email}
+              />
+            )}
           />
-          <Field
+        </FormItem>
+        <FormItem>
+          <label htmlFor="firstName">First Name *</label>
+          <Controller
+            control={control}
             name="firstName"
-            component={AInput}
-            label="First Name *"
-            placeholder="John"
-            onChange={updateField}
-            defaultValue={userStoreData && userStoreData.firstName}
+            render={({ field }) => (
+              <Input
+                id="firstName"
+                placeholder="John"
+                {...field}
+                onChange={e => {
+                  field.onChange(e);
+                  updateField(e);
+                }}
+                value={userStoreData && userStoreData.firstName}
+              />
+            )}
           />
-          <Field
+        </FormItem>
+        <FormItem>
+          <label htmlFor="lastName">Last Name *</label>
+          <Controller
+            control={control}
             name="lastName"
-            component={AInput}
-            label="Last Name *"
-            placeholder="Doe"
-            onChange={updateField}
-            defaultValue={userStoreData && userStoreData.lastName}
+            render={({ field }) => (
+              <Input
+                id="lastName"
+                placeholder="Doe"
+                {...field}
+                onChange={e => {
+                  field.onChange(e);
+                  updateField(e);
+                }}
+                value={userStoreData && userStoreData.lastName}
+              />
+            )}
           />
-        </form>
-      </Modal>
-    );
-  };
+        </FormItem>
+      </Form>
+    </Modal>
+  );
 
   const options = Object.keys(ACCOUNT_STATUS).map(key => ({
     value: ACCOUNT_STATUS[key],
@@ -603,14 +624,6 @@ export function Users({
 }
 
 Users.propTypes = {
-  // Redux-form
-  handleSubmit: PropTypes.func.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired,
-  pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
-  invalid: PropTypes.bool,
-
   // Mocks API response
   demo: PropTypes.bool,
   // Action
@@ -637,15 +650,4 @@ export const mapDispatchToProps = dispatch => ({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps); // prettier-ignore
 
-export default compose(
-  withConnect,
-  reduxForm({
-    form: USERS_KEY,
-    fields: ['firstName', 'lastName', 'email'],
-    validate: formValidations.createValidator({
-      firstName: [formValidations.required],
-      lastName: [formValidations.required],
-      email: [formValidations.required, formValidations.validEmail],
-    }),
-  }),
-)(Users);
+export default compose(withConnect)(Users);

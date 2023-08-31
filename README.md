@@ -51,12 +51,6 @@ For easy use and development of stories in our boilerplate, follow these [instru
   
   More about access control can be found [here](docs/general/roleMiddleware.md).
   </dd>
-  <dt>Redux-Form Support</dt>
-  <dd>Boilerplate supports Redux-Form. It has demo and setup added out of the box for Redux-Form.
-
-More about Redux-Form can be found [here](docs/third-party-integrations/redux-form.md).
-
-  </dd>
   <dt>Google Analytics</dt>
   <dd>Google Analytics support is given in the boilerplate. This feature is optional and is based on requirement, so not merged in main branch.
   <br/>

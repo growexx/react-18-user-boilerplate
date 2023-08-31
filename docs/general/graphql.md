@@ -8,6 +8,6 @@
 
 4. Demo for graphql basic query, mutation and subscription is added into the example/GraphQL directory.
 
-5. ChangePassword container contains demo of react final form with graphql. Instead of redux-form react-final-form can be used in such cases.
+5. ChangePassword container contains demo of react final form with graphql.
 
 6. Test case example is also added. It uses ApiMocks folder.

@@ -451,37 +451,36 @@ describe('Update User', () => {
     fireEvent.click(queryByTestId(TEST_IDS.USER_MODAL_CANCEL));
   });
 
-  // Redux Form Testcase
-  // it('User Update failure', async () => {
-  //   request
-  //     .mockImplementationOnce(() => Promise.resolve(responseWithList()))
-  //     .mockImplementationOnce(() => Promise.resolve(addNewUserFailure()));
+  it('User Update failure', async () => {
+    request
+      .mockImplementationOnce(() => Promise.resolve(responseWithList()))
+      .mockImplementationOnce(() => Promise.resolve(addNewUserFailure()));
 
-  //   const { getByText, getByPlaceholderText, getAllByText, queryAllByTestId } =
-  //     componentWrapper({
-  //       demo: false,
-  //     });
-  //   expect(request).toHaveBeenCalledTimes(1);
-  //   await waitFor(
-  //     () => getAllByText('Active')[0] || getAllByText('Suspended')[0],
-  //   );
+    const { getByText, getByPlaceholderText, getAllByText, queryAllByTestId } =
+      componentWrapper({
+        demo: false,
+      });
+    expect(request).toHaveBeenCalledTimes(1);
+    await waitFor(
+      () => getAllByText('Active')[0] || getAllByText('Suspended')[0],
+    );
 
-  //   // Fire Event
-  //   await act(async () =>
-  //     fireEvent.click(queryAllByTestId(TEST_IDS.EDIT_BUTTON)[0]),
-  //   );
-  //   // Update Fields
-  //   fieldUpdateViaPlaceHolder.forEach(d => {
-  //     fireEvent.change(getByPlaceholderText(d.key), {
-  //       target: { value: d.value },
-  //     });
-  //   });
+    // Fire Event
+    await act(async () =>
+      fireEvent.click(queryAllByTestId(TEST_IDS.EDIT_BUTTON)[0]),
+    );
+    // Update Fields
+    fieldUpdateViaPlaceHolder.forEach(d => {
+      fireEvent.change(getByPlaceholderText(d.key), {
+        target: { value: d.value },
+      });
+    });
 
-  //   // Check Elements are showing
-  //   expect(getByText('Update')).toBeTruthy();
-  //   fireEvent.click(getByText('Update'));
-  //   await act(async () => fireEvent.click(getByText('Update')));
-  // });
+    // Check Elements are showing
+    expect(getByText('Update')).toBeTruthy();
+    fireEvent.click(getByText('Update'));
+    await act(async () => fireEvent.click(getByText('Update')));
+  });
 });
 
 describe('Status Filter', () => {
