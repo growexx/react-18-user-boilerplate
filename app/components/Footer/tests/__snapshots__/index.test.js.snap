@@ -45,7 +45,7 @@ exports[`<Footer /> should render and match the snapshot 1`] = `
   className="c0"
 >
   <section>
-    &copy; 2023 React Boilerplate
+    © 2023 React Boilerplate
     <section>
       Get started with your next react application in seconds.
     </section>
