@@ -3,7 +3,7 @@ import { createBrowserHistory } from 'history';
 import { createReduxHistoryContext } from 'redux-first-history';
 
 import { repoApi } from './containers/HomePage/reposApiSlice';
-import { appSlice } from './containers/App/slice';
+import appSlice from './containers/App/slice';
 import { apiSlice } from './apiSlice';
 import languageSlice from './containers/LanguageProvider/slice';
 import loginSlice from './containers/Auth/Login/slice';
@@ -11,7 +11,7 @@ import { authApi } from './containers/Auth/Login/authApiSlice';
 import twoFactorAuthSlice from './containers/Auth/TwoFactorAuthentication/slice';
 import changePasswordSlice from './containers/ChangePassword/slice';
 import { changePasswordApi } from './containers/ChangePassword/apiSlice';
-import { usersExampleSlice } from './examples/Users/slice';
+import usersExampleSlice from './examples/Users/slice';
 
 const { createReduxHistory, routerMiddleware, routerReducer } =
   createReduxHistoryContext({ history: createBrowserHistory() });

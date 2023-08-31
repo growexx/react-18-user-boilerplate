@@ -8,10 +8,8 @@
 import React, { useState, useEffect } from 'react';
 import { List, message, Avatar, Skeleton } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
-import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { useDispatch } from 'react-redux';
 
 import { API_ENDPOINTS } from 'containers/constants';
 import { loadApp } from '../../containers/App/slice';
@@ -19,7 +17,8 @@ import request from 'utils/request';
 import { ListWithInfiniteLoader as StyledList } from './StyledList';
 import messages from './messages';
 
-function ListWithInfiniteLoader({ onChangeAppLoading }) {
+function ListWithInfiniteLoader() {
+  const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -27,7 +26,7 @@ function ListWithInfiniteLoader({ onChangeAppLoading }) {
 
   useEffect(() => {
     onChangeAppLoading(true);
-    fetchData(res => {
+    fetchData((res) => {
       setData(res.results);
       setList(res.results);
       setLoading(false);
@@ -35,17 +34,21 @@ function ListWithInfiniteLoader({ onChangeAppLoading }) {
     });
   }, []);
 
-  const fetchData = callback => {
+  const onChangeAppLoading = (loading) => {
+    dispatch(loadApp(loading));
+  };
+
+  const fetchData = (callback) => {
     request(API_ENDPOINTS.LIST, {
       method: 'GET',
-    }).then(res => callback(res));
+    }).then((res) => callback(res));
   };
 
   const handleInfiniteOnLoad = () => {
     setLoading(true);
-    setList(data.concat(
-      [...new Array(3)].map(() => ({ loading: true, name: {} })),
-    ));
+    setList(
+      data.concat([...new Array(3)].map(() => ({ loading: true, name: {} }))),
+    );
 
     if (data.length > 14) {
       message.warning(<FormattedMessage {...messages.listLoaded} />);
@@ -55,7 +58,7 @@ function ListWithInfiniteLoader({ onChangeAppLoading }) {
       return;
     }
 
-    fetchData(res => {
+    fetchData((res) => {
       const listData = data.concat(res.results);
       setData(listData);
       setList(listData);
@@ -75,7 +78,7 @@ function ListWithInfiniteLoader({ onChangeAppLoading }) {
         >
           <List
             dataSource={list}
-            renderItem={item => (
+            renderItem={(item) => (
               <List.Item key={item.id}>
                 <Skeleton avatar title={false} loading={item.loading} active>
                   <List.Item.Meta
@@ -93,19 +96,4 @@ function ListWithInfiniteLoader({ onChangeAppLoading }) {
   );
 }
 
-ListWithInfiniteLoader.propTypes = {
-  onChangeAppLoading: PropTypes.func,
-};
-
-export function mapDispatchToProps(dispatch) {
-  return {
-    onChangeAppLoading: loading => dispatch(loadApp(loading)),
-  };
-}
-
-const withConnect = connect(
-  undefined,
-  mapDispatchToProps,
-);
-
-export default compose(withConnect)(ListWithInfiniteLoader);
+export default ListWithInfiniteLoader;

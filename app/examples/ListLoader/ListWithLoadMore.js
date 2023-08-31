@@ -5,10 +5,8 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { List, Avatar, Button, Skeleton } from 'antd';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { useDispatch } from 'react-redux';
 
 import request from 'utils/request';
 import { API_ENDPOINTS } from 'containers/constants';
@@ -16,25 +14,30 @@ import { loadApp } from '../../containers/App/slice';
 
 const count = 3;
 
-function ListWithLoadMore ({ onChangeAppLoading }) {
+function ListWithLoadMore() {
+  const dispatch = useDispatch();
   const [initLoading, setInitLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    getData(res => {
+    getData((res) => {
       setInitLoading(false);
       setData(res.results);
       setList(res.results);
     });
   }, []);
 
-  const getData = callback => {
+  const onChangeAppLoading = (loading) => {
+    dispatch(loadApp(loading));
+  };
+
+  const getData = (callback) => {
     onChangeAppLoading(true);
     request(API_ENDPOINTS.LIST, {
       method: 'GET',
-    }).then(res => {
+    }).then((res) => {
       onChangeAppLoading(false);
       callback(res);
     });
@@ -42,10 +45,12 @@ function ListWithLoadMore ({ onChangeAppLoading }) {
 
   const onLoadMore = () => {
     setLoading(true);
-    setList(data.concat(
-      [...new Array(count)].map(() => ({ loading: true, name: {} })),
-    ));
-    getData(res => {
+    setList(
+      data.concat(
+        [...new Array(count)].map(() => ({ loading: true, name: {} })),
+      ),
+    );
+    getData((res) => {
       const listData = list.concat(res.results);
       setData(listData);
       setList(listData);
@@ -77,7 +82,7 @@ function ListWithLoadMore ({ onChangeAppLoading }) {
       itemLayout="horizontal"
       loadMore={loadMore}
       dataSource={list}
-      renderItem={item => (
+      renderItem={(item) => (
         <List.Item>
           <Skeleton avatar title={false} loading={item.loading} active>
             <List.Item.Meta
@@ -92,19 +97,4 @@ function ListWithLoadMore ({ onChangeAppLoading }) {
   );
 }
 
-ListWithLoadMore.propTypes = {
-  onChangeAppLoading: PropTypes.func,
-};
-
-export function mapDispatchToProps(dispatch) {
-  return {
-    onChangeAppLoading: loading => dispatch(loadApp(loading)),
-  };
-}
-
-const withConnect = connect(
-  undefined,
-  mapDispatchToProps,
-);
-
-export default compose(withConnect)(ListWithLoadMore);
+export default ListWithLoadMore;
