@@ -43,27 +43,13 @@ export function ChangePassword() {
     await trigger('confirmNewPassword');
   };
 
-  const isBtnDisabled = () => {
-    if (Object.keys(errors).length > 0) {
-      return true;
-    }
-    if (
-      !getValues('currentPassword') ||
-      !getValues('newPassword') ||
-      !getValues('confirmNewPassword')
-    ) {
-      return true;
-    }
-    return false;
-  };
-
   return (
     <div>
       <Helmet>
         <title>Change Password</title>
         <meta name="description" content="Description of ChangePassword" />
       </Helmet>
-      <Form control={control} onSubmit={handleSubmit(onSubmit)}>
+      <Form control={control} onSubmit={handleSubmit(onSubmit)} role="form">
         <FormItem>
           <label htmlFor="currentPassword">Current Password: </label>
           <Controller
@@ -152,7 +138,7 @@ export function ChangePassword() {
 
         <FormItem>
           <center>
-            <Button type="primary" disabled={isBtnDisabled()} htmlType="submit">
+            <Button type="primary" htmlType="submit">
               Submit
             </Button>
           </center>

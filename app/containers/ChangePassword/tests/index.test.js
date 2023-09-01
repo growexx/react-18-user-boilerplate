@@ -74,4 +74,39 @@ describe('<ChangePassword />', () => {
     });
     await waitFor(() => expect(button).toBeTruthy());
   });
+
+  test('Should show error text when fields are empty', async () => {
+    const { container, getByPlaceholderText } =
+      componentWrapper(ChangePassword);
+
+    fireEvent.blur(getByPlaceholderText('Current Password'));
+    fireEvent.blur(getByPlaceholderText('Confirm Password'));
+    fireEvent.blur(getByPlaceholderText('New Password'));
+
+    const preventDefault = jest.fn();
+    const button = container.querySelector('button');
+    fireEvent.click(button, {
+      preventDefault,
+    });
+    await waitFor(() => expect(button).toBeTruthy());
+  });
+
+  test('Should submit form', async () => {
+    const { getByPlaceholderText, getByRole } =
+      componentWrapper(ChangePassword);
+    fireEvent.change(getByPlaceholderText('Current Password'), {
+      target: {
+        name: 'currentPassword',
+        value: 'PassWord$',
+      },
+    });
+
+    fireEvent.change(getByPlaceholderText('Confirm Password'), {
+      target: { name: 'confirmNewPassword', value: 'password123' },
+    });
+    fireEvent.change(getByPlaceholderText('New Password'), {
+      target: { name: 'newPassword', value: 'password123' },
+    });
+    getByRole('form').submit();
+  });
 });

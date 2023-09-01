@@ -5,6 +5,7 @@ exports[`<ChangePassword /> Should render and match the snapshot 1`] = `
   <form
     method="post"
     novalidate=""
+    role="form"
   >
     <div
       class="ant-form-item css-dev-only-do-not-override-190m0jy"
@@ -216,7 +217,6 @@ exports[`<ChangePassword /> Should render and match the snapshot 1`] = `
               <center>
                 <button
                   class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-primary"
-                  disabled=""
                   type="submit"
                 >
                   <span>
