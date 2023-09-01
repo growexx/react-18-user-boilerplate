@@ -1,28 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ImageUpload /> Should render and match the snapshot 1`] = `
-<span
-  class="ant-upload-wrapper css-dev-only-do-not-override-byeoj0 ant-upload-picture-card-wrapper"
->
-  <div
-    class="ant-upload-list ant-upload-list-picture-card"
+<div>
+  <span
+    class="ant-upload-wrapper css-dev-only-do-not-override-190m0jy ant-upload-picture-card-wrapper"
   >
     <div
-      class="ant-upload ant-upload-select"
+      class="ant-upload-list ant-upload-list-picture-card"
     >
-      <span
-        class="ant-upload"
-        role="button"
-        tabindex="0"
+      <div
+        class="ant-upload ant-upload-select"
       >
-        <input
-          accept="image/*"
-          style="display: none;"
-          type="file"
-        />
-        + Upload
-      </span>
+        <span
+          class="ant-upload"
+          role="button"
+          tabindex="0"
+        >
+          <input
+            accept=""
+            style="display: none;"
+            type="file"
+          />
+          + Upload
+        </span>
+      </div>
     </div>
-  </div>
-</span>
+  </span>
+</div>
 `;

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Spin } from 'antd';
 import PropTypes from 'prop-types';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { createStructuredSelector } from 'reselect';
-import { makeSelectAppLoading } from 'containers/App/selectors';
 import App from 'containers/App';
 import Emitter from 'utils/events';
 import { userExists } from 'utils/Helper';
@@ -74,18 +72,10 @@ MainLayout.defaultProps = {
   defaultLayout: 1,
 };
 
-const mapStateToProps = createStructuredSelector({
-  appLoading: makeSelectAppLoading(),
-});
-
-const withConnect = connect(mapStateToProps);
-
-const MainLayoutWithConnect = withConnect(MainLayout);
-
 function MainLayoutWrapper() {
   const location = useLocation();
 
-  return <MainLayoutWithConnect location={location} />;
+  return <MainLayout location={location} />;
 }
 
 export default MainLayoutWrapper;
