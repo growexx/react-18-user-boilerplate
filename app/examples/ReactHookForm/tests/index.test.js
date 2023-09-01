@@ -1,5 +1,11 @@
 import React from 'react';
-import { render, fireEvent, queryByAttribute } from '@testing-library/react';
+import {
+  render,
+  fireEvent,
+  queryByAttribute,
+  waitFor,
+} from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
@@ -27,7 +33,7 @@ describe('ReactHookForm Component', () => {
     expect(firstChild).toMatchSnapshot();
   });
 
-  it('renders ReactHookForm component', () => {
+  it('renders ReactHookForm component and shows error for required fields when form is submitted', async () => {
     const screen = componentWrapper();
 
     expect(screen.getByLabelText(/First Name:/i)).toBeTruthy();
@@ -36,6 +42,12 @@ describe('ReactHookForm Component', () => {
     expect(screen.getByLabelText(/Favorite color:/i)).toBeTruthy();
 
     expect(screen.getByText(/Submit/i)).toBeTruthy();
+
+    fireEvent.click(screen.getByText(/Submit/i));
+
+    await waitFor(() => {
+      expect(screen.getAllByText(/required!/i)[0]).toBeInTheDocument();
+    });
   });
 
   it('submits the form', () => {
@@ -65,7 +77,7 @@ describe('ReactHookForm Component', () => {
 
     fireEvent.click(getById(screen.container, 'employed'), eventObject);
     fireEvent.mouseDown(screen.getByRole('combobox'));
-
+    fireEvent.click(screen.getByText('Male'));
     fireEvent.change(screen.getByRole('combobox'), {
       target: {
         value: 'ff0000',
@@ -97,5 +109,17 @@ describe('ReactHookForm Component', () => {
     fireEvent.click(screen.getByText(/Submit/i));
     const button = screen.getByText('Submit');
     fireEvent.click(button);
+  });
+
+  it('clear the form', () => {
+    const screen = componentWrapper();
+
+    fireEvent.change(screen.getByLabelText(/First Name:/i), {
+      target: { value: 'John' },
+    });
+
+    fireEvent.click(screen.getByText(/clear values/i));
+
+    expect(screen.queryByText('John')).not.toBeInTheDocument();
   });
 });
