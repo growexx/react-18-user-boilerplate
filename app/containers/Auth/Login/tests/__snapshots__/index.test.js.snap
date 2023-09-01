@@ -218,6 +218,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
           <span
             aria-label="facebook"
             class="anticon anticon-facebook"
+            data-testid="facebook-btn"
             role="img"
             tabindex="-1"
           >
@@ -238,6 +239,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
           <span
             aria-label="google"
             class="anticon anticon-google"
+            data-testid="google-btn"
             role="img"
             tabindex="-1"
           >

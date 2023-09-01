@@ -29,13 +29,9 @@ const loginSlice = createSlice({
     },
     googleLogin: () => {
       signInWithGoogle();
-      // SUCCESS AND FAILURE CHANGES IN FOLLOWING FUNCTION
-      auth.onAuthStateChanged(function* () {});
     },
     facebookLogin: () => {
       signInWithFacebook();
-      // SUCCESS AND FAILURE CHANGES IN FOLLOWING FUNCTION
-      auth.onAuthStateChanged(function* () {});
     },
   },
 });

@@ -39,7 +39,7 @@ function ForgotPassword() {
       .catch(async err => {
         setLoading(false);
         notification.error({
-          description: (await err.response.json()).message,
+          description: err.message,
         });
       });
   };

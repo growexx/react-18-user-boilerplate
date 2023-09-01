@@ -37,7 +37,7 @@ export function Login() {
   const [loading, setLoading] = useState(false);
 
   // use this if you are using login API and manage the loading error status accordingly
-  // const [loginUser, { isLoading, isError }] = useLoginUserMutation();
+  // const [loginUser, { isLoading, isError }] = useLoginMutation();
 
   const onSignIn = () => {
     // call loginUser mutation if you are calling login API and set Tokens accordingly
@@ -80,8 +80,14 @@ export function Login() {
           </p>
           <div className="LoginSubContainer">
             <div className="socialIcons">
-              <FacebookFilled onClick={onFacebookSignIn} />
-              <GoogleOutlined onClick={onGoogleSignIn} />
+              <FacebookFilled
+                onClick={onFacebookSignIn}
+                data-testid="facebook-btn"
+              />
+              <GoogleOutlined
+                onClick={onGoogleSignIn}
+                data-testid="google-btn"
+              />
               <WindowsFilled />
             </div>
             <p className="emailLogin">
