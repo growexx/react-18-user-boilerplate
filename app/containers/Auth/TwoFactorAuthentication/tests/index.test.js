@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
@@ -41,5 +41,19 @@ describe('<TwoFactorAuthentication />', () => {
       container: { firstChild },
     } = componentWrapper(Loadable);
     expect(firstChild).toMatchSnapshot();
+  });
+
+  it('updates OTP value when typing', async () => {
+    const { getAllByRole } = componentWrapper(TwoFactorAuthentication);
+    const otpInputFields = getAllByRole('textbox');
+
+    otpInputFields.forEach(input => {
+      fireEvent.change(input, { target: { value: '1' } });
+      expect(input.value).toBe('1');
+    });
+
+    await waitFor(() => {
+      expect(window.location.pathname).toBe('/');
+    });
   });
 });
