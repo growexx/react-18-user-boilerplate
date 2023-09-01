@@ -35,6 +35,7 @@ function ReactHookForm() {
 
   const onSubmit = data => {
     const requestBody = { ...data, rangePicker: dateRange };
+    // eslint-disable-next-line no-console
     console.log(requestBody);
     // Note: Add API Call
   };

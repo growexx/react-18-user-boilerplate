@@ -70,13 +70,11 @@ More about google analytics can be found [here](docs/general/googleAnalytics.md)
   Support for graphql can be found in <b>feature/11-GraphQL-Support</b> branch.
 
 More about graphql setup can be found [here](docs/general/graphql.md).
-
-  </dd>
   <dt>React-Hook-Form Support</dt>
-  <dd>Boilerplate supports React-Hook-Form. It has demo and setup added out of the box for React-Hook-Form. This feature is optional and is based on requirement, so not merged in main branch.
+  <dd>Boilerplate supports React-Hook-Form. All forms in boilerplate are redux-hook-form.
   <br/>
-  Support for React-Hook-Form can be found in <b>feature/react-hook-form</b> branch.
-  </dd>
+
+You can check out the guide to get you started with react-hook-form from [here](docs/general/reacthookform.md).
   <dt>Social Login with firebase</dt>
   <dd>Boilerplate supports social login using firebase. It has demo and setup added out of the box for firebase and it's authentication functions. This feature is optional and is based on requirement, so not merged in main branch.
   <br/>

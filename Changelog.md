@@ -43,7 +43,6 @@ We hope you enjoy this release and welcome any feedback, bug reports or feature 
 - Many dependency updates including: (**@julienben**)
   - react and react-dom (`16.8.6` to `18.2.0`)
   - react-redux (`7` to `8`) (**@bumi001**, **@jwinn**)
-  - connected-react-router (`4` to `6`)
   - react-router-dom (`4` to `5`)
   - redux-saga (`0.16` to `1`)
   - sanitize.css (`8` to `13`)
@@ -98,7 +97,6 @@ Next steps will include re-thinking immutability in the store (RFC @ #2092), re-
 
 ### Other Updates
 
-- Migration from deprecated react-router-redux to connected-react-router (@julienben)
 - Migration from deprecated connected-react-router to redux-first-history (@julienben)
 - Migration from react-loadable to loadable-components (@julienben)
 - Quick start - Clone to a named directory (@spawnia)

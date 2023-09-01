@@ -22,6 +22,10 @@ const GlobalStyle = createGlobalStyle`
     min-width: 100%;
   }
 
+  svg {
+    vertical-align: baseline;
+  }
+
   /**
   * display utility class
   */

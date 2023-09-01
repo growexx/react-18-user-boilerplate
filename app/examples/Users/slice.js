@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialUserState = {};
+
 export const usersExampleSlice = createSlice({
   name: 'usersExample',
-  initialState: {},
+  initialState: initialUserState,
   reducers: {
     updateUserFormField: (state, action) => {
-      const { key, payload } = action;
+      const { key, value } = action.payload;
       return {
         ...state,
-        [key]: payload,
+        [key]: value,
       };
     },
   },

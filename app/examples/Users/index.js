@@ -24,8 +24,9 @@ import debounce from 'lodash/debounce';
 import dayjs from 'dayjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import request from 'utils/request';
+import * as formValidations from 'utils/formValidations';
 import {
   API_URL,
   API_ENDPOINTS,
@@ -45,7 +46,6 @@ import {
   PageHeaderWrapper,
   SearchWrapper,
 } from './styled';
-import { makeSelectUser } from './selectors';
 import { updateUserFormField } from './slice';
 
 const logsTableProps = {
@@ -67,19 +67,29 @@ export function Users({ demo }) {
   const [userId, setUserId] = useState('');
   const [status, setStatus] = useState('');
   const [showUserModal, setShowUserModal] = useState(false);
+  const [initialValues, setInitialValues] = useState({});
 
   const dispatch = useDispatch();
-  const userStoreData = makeSelectUser();
-  const { handleSubmit, control, reset } = useForm();
+  const userStoreData = useSelector(state => state.usersExample);
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm({ defaultValues: initialValues });
 
   useEffect(() => {
     loadUserDetails({ pagination });
   }, []);
 
+  useEffect(() => {
+    reset(initialValues);
+  }, [initialValues]);
+
   const debouncedLoadUserDetails = debounce(d => loadUserDetails(d), 300);
 
   const fillFields = (key, value) => {
-    dispatch(updateUserFormField(key, value));
+    dispatch(updateUserFormField({ key, value }));
   };
 
   const getColumnProps = () => [
@@ -197,6 +207,7 @@ export function Users({ demo }) {
    */
   const handlePopupCancel = () => {
     setUserId('');
+    setInitialValues({});
     setPopUpAction('');
     setIsPopUpVisible(false);
   };
@@ -227,6 +238,7 @@ export function Users({ demo }) {
       setIsPopUpLoading(false);
       setIsPopUpVisible(false);
       setUserId('');
+      setInitialValues({});
       setPopUpAction('');
     };
 
@@ -399,8 +411,9 @@ export function Users({ demo }) {
         ...user,
       };
       Object.keys(storeData).forEach(key => {
-        fillFields(key, storeData[key]);
+        fillFields(key, storeData[key].toString());
       });
+      setInitialValues(storeData);
       setUserId(userId);
       setShowUserModal(true);
       setIsPopUpVisible(false);
@@ -436,6 +449,7 @@ export function Users({ demo }) {
         setIsListLoading(false);
         setShowUserModal(!showUserModal);
         setUserId('');
+        setInitialValues({});
 
         loadUserDetails();
         notification.success({ message: res.message });
@@ -453,7 +467,10 @@ export function Users({ demo }) {
   const toggleModals = () => {
     reset();
     setShowUserModal(!showUserModal);
-    setUserId(showUserModal ? '' : userId);
+    if (showUserModal) {
+      setUserId('');
+      setInitialValues({});
+    }
   };
 
   /**
@@ -487,6 +504,9 @@ export function Users({ demo }) {
           <Controller
             control={control}
             name="email"
+            rules={{
+              required: formValidations.VALIDATION_MESSAGES.REQUIRED,
+            }}
             render={({ field }) => (
               <Input
                 id="email"
@@ -495,17 +515,23 @@ export function Users({ demo }) {
                 {...field}
                 onChange={e => {
                   field.onChange(e);
+                  fillFields('email', e.target.value);
                 }}
-                value={userStoreData && userStoreData.email}
               />
             )}
           />
+          {errors.email && (
+            <div style={{ color: 'red' }}>{errors.email.message}</div>
+          )}
         </FormItem>
         <FormItem>
           <label htmlFor="firstName">First Name *</label>
           <Controller
             control={control}
             name="firstName"
+            rules={{
+              required: formValidations.VALIDATION_MESSAGES.REQUIRED,
+            }}
             render={({ field }) => (
               <Input
                 id="firstName"
@@ -513,17 +539,23 @@ export function Users({ demo }) {
                 {...field}
                 onChange={e => {
                   field.onChange(e);
+                  fillFields('firstName', e.target.value);
                 }}
-                value={userStoreData && userStoreData.firstName}
               />
             )}
           />
+          {errors.firstName && (
+            <div style={{ color: 'red' }}>{errors.firstName.message}</div>
+          )}
         </FormItem>
         <FormItem>
           <label htmlFor="lastName">Last Name *</label>
           <Controller
             control={control}
             name="lastName"
+            rules={{
+              required: formValidations.VALIDATION_MESSAGES.REQUIRED,
+            }}
             render={({ field }) => (
               <Input
                 id="lastName"
@@ -531,11 +563,14 @@ export function Users({ demo }) {
                 {...field}
                 onChange={e => {
                   field.onChange(e);
+                  fillFields('lastName', e.target.value);
                 }}
-                value={userStoreData && userStoreData.lastName}
               />
             )}
           />
+          {errors.lastName && (
+            <div style={{ color: 'red' }}>{errors.lastName.message}</div>
+          )}
         </FormItem>
       </Form>
     </Modal>

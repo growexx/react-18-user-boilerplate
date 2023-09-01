@@ -145,7 +145,6 @@ import TestPage from 'containers/TestPage/Loadable';
  redux-saga                                       0.14.8  →                 0.15.3
  babel-cli                                        6.22.2  →                 6.24.1
  babel-core                                       6.22.1  →                 6.24.1
- babel-eslint                                      7.1.1  →                  7.2.3
  babel-loader                                     6.2.10  →                  6.4.1
  babel-plugin-transform-es2015-modules-commonjs   6.22.0  →                 6.24.1
  babel-plugin-transform-react-constant-elements   6.22.0  →                 6.23.0
@@ -207,6 +206,14 @@ import TestPage from 'containers/TestPage/Loadable';
 ```
 react-test-renderer                                     15.5.4
 ```
+
+**[6] REMOVED DEPENDENCIES**
+
+```
+babel-eslint
+
+```
+
 
 ## Errors Encountered
 

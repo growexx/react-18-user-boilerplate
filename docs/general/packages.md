@@ -9,7 +9,6 @@ Following are the packages used in the boilerplate
 | base-64                 | Base-64 encoder/decoder                         |
 | chalk                   | Library to style terminal string                |
 | compression             | Library to compress the response bodies         |
-| connected-react-router  | Library to synchronize router with redux-store  |
 | dotenv-webpack          | Utility to write env variables                  |
 | eventemitter3           | EventEmitter library                            |
 | express                 | Router library for nodejs                       |
@@ -37,7 +36,7 @@ Following are the packages used in the boilerplate
 | babel                   | Javascript transpiler                           |
 | jest                    | Javascript testing solution                     |
 | shelljs                 | Typescript support                              |
-| react-testing-library   | Javascript testing solution                     |
+| @testing-library/react   | Javascript testing solution                     |
 | corejs                  | To generate code documentation                  |
 | ngrok                   | Tunneling                                       |
 | plop                    | Micro-generator Framework                       |

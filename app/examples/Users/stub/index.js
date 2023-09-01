@@ -597,7 +597,7 @@ export const updateUserAPIMock = (payload, newRecord) => {
   } else {
     USERS = USERS.map(user => {
       let updatedUser = user;
-      if (updatedUser.id === payload.id) {
+      if (updatedUser.id.toString() === payload.id.toString()) {
         updatedUser = { ...user, ...payload };
       }
 
