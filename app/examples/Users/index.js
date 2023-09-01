@@ -223,12 +223,6 @@ export function Users({ demo }) {
     setIsPopUpVisible(true);
   };
 
-  const showError = error => {
-    error.response
-      .json()
-      .then(err => notification.error({ message: err.message }));
-  };
-
   /**
    * Handles Popup Ok Action
    * Used for Delete, Toggle Status
@@ -260,7 +254,7 @@ export function Users({ demo }) {
           loadUserDetails();
         })
         .catch(error => {
-          showError(error);
+          notification.error({ message: error.message });
           resetAction();
         });
     } else {
@@ -280,7 +274,7 @@ export function Users({ demo }) {
           loadUserDetails();
         })
         .catch(error => {
-          showError(error);
+          notification.error({ message: error.message });
           resetAction();
         });
     }
@@ -456,7 +450,7 @@ export function Users({ demo }) {
         reset();
       })
       .catch(error => {
-        showError(error);
+        notification.error({ message: error.message });
         setIsListLoading(false);
       });
   };

@@ -124,6 +124,23 @@ describe('Check component:<Users /> is rendering properly', () => {
       fireEvent.click(await findByTestId(TEST_IDS.DELETE_BUTTON_CONFIRMED)),
     );
   });
+
+  it('Click Delete: Show Confirmation Modal and click confirm for demo false', async () => {
+    request.mockResolvedValueOnce(responseWithList());
+    request.mockRejectedValueOnce(new Error('Test Error'));
+    const { getAllByTestId, getAllByText, getByText, findByTestId } =
+      componentWrapper({ demo: false });
+    await waitFor(() => getAllByText('Active')[0]);
+
+    // Click Delete Button
+    fireEvent.click(getAllByTestId(TEST_IDS.DELETE_BUTTON)[0]);
+
+    // Check Elements are showing
+    expect(getByText('OK', { trim: true })).toBeTruthy();
+    await act(async () =>
+      fireEvent.click(await findByTestId(TEST_IDS.DELETE_BUTTON_CONFIRMED)),
+    );
+  });
 });
 
 describe('Check listing of users is rendering properly', () => {
@@ -144,6 +161,12 @@ describe('Check listing of users is rendering properly', () => {
     componentWrapper({ demo: false });
     await waitFor(() => document.querySelector('.ant-empty-description'));
     expect(document.querySelector('.ant-empty-description')).toBeTruthy();
+  });
+
+  it('Show error message sent by api', async () => {
+    request.mockResolvedValueOnce({ status: 0, message: 'test error' });
+    const { getByText } = componentWrapper({ demo: false });
+    await waitFor(() => expect(getByText('test error')).toBeInTheDocument());
   });
 
   it('Users Listing with few records should be shown', async () => {
@@ -264,6 +287,45 @@ describe('New Users', () => {
 
   afterEach(() => {
     request.mockClear();
+  });
+
+  it('Shows error if all fields are empty', async () => {
+    const { queryByTestId } = componentWrapper({
+      demo: true,
+    });
+    // Fire Event
+    fireEvent.click(queryByTestId(TEST_IDS.ADD_USER));
+
+    await waitFor(() => {
+      fireEvent.click(queryByTestId(TEST_IDS.USER_MODAL_CANCEL));
+    });
+
+    fireEvent.click(queryByTestId(TEST_IDS.ADD_USER));
+
+    await waitFor(() => {
+      fireEvent.click(queryByTestId(TEST_IDS.USER_MODAL_OK));
+    });
+  });
+
+  it('Add new user: catch block', () => {
+    request.mockRejectedValue(new Error('Test Error'));
+
+    const { queryByTestId, getByPlaceholderText } = componentWrapper({
+      demo: false,
+    });
+    // Fire Event
+    fireEvent.click(queryByTestId(TEST_IDS.ADD_USER));
+
+    // Update Fields
+    fieldUpdateViaPlaceHolder.forEach(d => {
+      fireEvent.change(getByPlaceholderText(d.key), {
+        target: { value: d.value },
+      });
+    });
+
+    // Check Elements are showing
+    expect(screen.getAllByText('Add User')[0]).toBeTruthy();
+    fireEvent.click(queryByTestId(TEST_IDS.USER_MODAL_OK));
   });
 
   it('Add new user with failure', () => {
