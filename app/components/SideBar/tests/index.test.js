@@ -5,9 +5,10 @@ import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
 import * as gaHelper from 'utils/googleAnalytics';
+import { store } from 'configureStore';
 import { MenuItems } from '../constants';
 import SideBar from '../index';
-import configureStore from '../../../configureStore';
+
 let globalStore;
 const props = {
   user: {
@@ -28,7 +29,6 @@ const componentWrapper = () =>
 
 describe('<SideBar />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 

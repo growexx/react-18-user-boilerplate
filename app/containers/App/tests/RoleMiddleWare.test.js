@@ -8,7 +8,7 @@ import { TOKEN_KEY } from 'utils/constants';
 import StorageService from 'utils/StorageService';
 import Login from 'containers/Auth/Login/Loadable';
 import request from 'utils/request';
-import configureStore from '../../../configureStore';
+import { store } from 'configureStore';
 import RoleMiddleWare, { getDerivedStateFromProps } from '../RoleMiddleWare';
 import { ROLES, ROUTES } from '../../constants';
 
@@ -49,7 +49,6 @@ const login = () => StorageService.set(TOKEN_KEY, tokenValue);
 
 describe('<RoleMiddleWare />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
     login();
   });

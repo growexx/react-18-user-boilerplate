@@ -6,16 +6,14 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
 
+import { store } from 'configureStore';
 import { HomePage } from '../index';
-import configureStore from '../../../configureStore';
 
 describe('<HomePage />', () => {
   let globalStore;
 
   beforeAll(() => {
-    const { store } = configureStore({}, browserHistory);
     globalStore = store;
   });
 

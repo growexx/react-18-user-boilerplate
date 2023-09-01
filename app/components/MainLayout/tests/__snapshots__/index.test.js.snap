@@ -176,7 +176,7 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
 }
 
 <div
-  class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
+  class="ant-spin-nested-loading css-dev-only-do-not-override-190m0jy"
 >
   <div
     class="ant-spin-container"
@@ -186,7 +186,7 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
       data-environment="test"
     >
       <div
-        class="ant-layout ant-layout-has-sider css-dev-only-do-not-override-byeoj0"
+        class="ant-layout ant-layout-has-sider css-dev-only-do-not-override-190m0jy"
       >
         <aside
           class="ant-layout-sider ant-layout-sider-dark ant-layout-sider-collapsed"
@@ -209,7 +209,7 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
               </a>
             </div>
             <ul
-              class="ant-menu ant-menu-root ant-menu-vertical ant-menu-dark ant-menu-inline-collapsed css-dev-only-do-not-override-byeoj0"
+              class="ant-menu ant-menu-root ant-menu-vertical ant-menu-dark ant-menu-inline-collapsed css-dev-only-do-not-override-190m0jy"
               data-menu-list="true"
               role="menu"
               tabindex="0"
@@ -576,14 +576,14 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
           </div>
         </aside>
         <div
-          class="ant-layout site-layout css-dev-only-do-not-override-byeoj0"
+          class="ant-layout site-layout css-dev-only-do-not-override-190m0jy"
         >
           <header
-            class="ant-layout-header headerLayout css-dev-only-do-not-override-byeoj0"
+            class="ant-layout-header headerLayout css-dev-only-do-not-override-190m0jy"
             style="padding: 0px; background: rgb(255, 255, 255);"
           >
             <button
-              class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-text ant-btn-icon-only"
+              class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-text ant-btn-icon-only"
               data-testid="ToggleIcon"
               style="font-size: 16px; width: 64px; height: 64px;"
               type="button"
@@ -622,12 +622,12 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                   class="u-mr-1 u-d-inline-block"
                 >
                   <button
-                    class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-text btn-hover-none p-4"
+                    class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-text btn-hover-none p-4"
                     data-testid="badge-Cart"
                     type="button"
                   >
                     <span
-                      class="ant-badge css-dev-only-do-not-override-byeoj0"
+                      class="ant-badge css-dev-only-do-not-override-190m0jy"
                     >
                       <span
                         aria-label="shopping-cart"
@@ -662,12 +662,12 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                     class="u-mr-1 u-d-inline-block"
                   >
                     <button
-                      class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-text btn-hover-none p-4"
+                      class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-text btn-hover-none p-4"
                       data-testid="badge-Cart"
                       type="button"
                     >
                       <span
-                        class="ant-badge css-dev-only-do-not-override-byeoj0"
+                        class="ant-badge css-dev-only-do-not-override-190m0jy"
                       >
                         <span
                           aria-label="bell"
@@ -697,7 +697,7 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
                   class="c4"
                 >
                   <button
-                    class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-circle ant-btn-primary ant-dropdown-trigger"
+                    class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-circle ant-btn-primary ant-dropdown-trigger"
                     type="button"
                   >
                     <span
@@ -725,7 +725,7 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
             </div>
           </header>
           <main
-            class="ant-layout-content site-layout-background css-dev-only-do-not-override-byeoj0"
+            class="ant-layout-content site-layout-background css-dev-only-do-not-override-190m0jy"
             style="margin: 24px 16px; padding: 24px; min-height: 280px;"
           >
             <div
@@ -734,7 +734,7 @@ exports[`<MainLayout /> should render and match the snapshot 1`] = `
             />
           </main>
           <div
-            class="ant-layout site-layout css-dev-only-do-not-override-byeoj0"
+            class="ant-layout site-layout css-dev-only-do-not-override-190m0jy"
           >
             <footer
               class="c6"

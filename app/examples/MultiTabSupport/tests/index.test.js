@@ -4,7 +4,7 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
-import configureStore from '../../../configureStore';
+import { store } from 'configureStore';
 import MultiTabSupport from '../index';
 import { TEST_IDS } from '../constants';
 let globalStore;
@@ -41,7 +41,6 @@ const componentWrapper = () =>
   );
 describe('<MultiTabSupport />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -55,7 +54,6 @@ describe('<MultiTabSupport />', () => {
 
 describe('<MultiTabSupport /> Test add message and clear local storage', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 

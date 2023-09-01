@@ -18,8 +18,8 @@ import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
 import request from 'utils/request';
+import { store } from 'configureStore';
 import Users from '../index';
-import configureStore from '../../../configureStore';
 import {
   addNewUserFailure,
   addNewUserSuccess,
@@ -67,7 +67,6 @@ const componentWrapper = updatedProps =>
 
 describe('Check component:<Users /> is rendering properly', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -129,7 +128,6 @@ describe('Check component:<Users /> is rendering properly', () => {
 
 describe('Check listing of users is rendering properly', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -257,7 +255,6 @@ describe('Check listing of users is rendering properly', () => {
 
 describe('New Users', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -343,7 +340,6 @@ describe('New Users', () => {
 
 describe('Update User', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -474,7 +470,6 @@ describe('Update User', () => {
 
 describe('Status Filter', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -514,7 +509,6 @@ describe('Status Filter', () => {
 
 describe('Search & Sorting user list', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 

@@ -77,13 +77,13 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
     class="c1"
   >
     <span
-      class="ant-input-group-wrapper ant-input-search ant-input-search-with-button css-dev-only-do-not-override-byeoj0"
+      class="ant-input-group-wrapper ant-input-search ant-input-search-with-button css-dev-only-do-not-override-190m0jy"
     >
       <span
-        class="ant-input-wrapper ant-input-group css-dev-only-do-not-override-byeoj0"
+        class="ant-input-wrapper ant-input-group css-dev-only-do-not-override-190m0jy"
       >
         <input
-          class="ant-input css-dev-only-do-not-override-byeoj0"
+          class="ant-input css-dev-only-do-not-override-190m0jy"
           placeholder="Enter number to convert"
           type="text"
           value="0"
@@ -92,7 +92,7 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
           class="ant-input-group-addon"
         >
           <button
-            class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-primary ant-input-search-button"
+            class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-primary ant-input-search-button"
             type="button"
           >
             <span>
@@ -113,10 +113,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Create an instance of a numeral. Numeral takes numbers or strings that it trys to convert into a number.
     </p>
     <div
-      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
+      class="ant-table-wrapper css-dev-only-do-not-override-190m0jy"
     >
       <div
-        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-190m0jy"
       >
         <div
           class="ant-spin-container"
@@ -228,10 +228,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Numbers
     </p>
     <div
-      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
+      class="ant-table-wrapper css-dev-only-do-not-override-190m0jy"
     >
       <div
-        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-190m0jy"
       >
         <div
           class="ant-spin-container"
@@ -716,10 +716,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Currency
     </p>
     <div
-      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
+      class="ant-table-wrapper css-dev-only-do-not-override-190m0jy"
     >
       <div
-        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-190m0jy"
       >
         <div
           class="ant-spin-container"
@@ -944,10 +944,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Bytes
     </p>
     <div
-      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
+      class="ant-table-wrapper css-dev-only-do-not-override-190m0jy"
     >
       <div
-        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-190m0jy"
       >
         <div
           class="ant-spin-container"
@@ -1192,10 +1192,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Percentages
     </p>
     <div
-      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
+      class="ant-table-wrapper css-dev-only-do-not-override-190m0jy"
     >
       <div
-        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-190m0jy"
       >
         <div
           class="ant-spin-container"
@@ -1380,10 +1380,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Time
     </p>
     <div
-      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
+      class="ant-table-wrapper css-dev-only-do-not-override-190m0jy"
     >
       <div
-        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-190m0jy"
       >
         <div
           class="ant-spin-container"
@@ -1548,10 +1548,10 @@ exports[`<NumeralConversion /> Should render and match the snapshot 1`] = `
       Exponential
     </p>
     <div
-      class="ant-table-wrapper css-dev-only-do-not-override-byeoj0"
+      class="ant-table-wrapper css-dev-only-do-not-override-190m0jy"
     >
       <div
-        class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-190m0jy"
       >
         <div
           class="ant-spin-container"

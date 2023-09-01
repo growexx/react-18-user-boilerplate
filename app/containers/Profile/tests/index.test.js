@@ -26,8 +26,8 @@ import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import { TEST_IDS } from 'components/InlineEdit/stub';
 import history from 'utils/history';
+import { store } from 'configureStore';
 import Profile from '../index';
-import configureStore from '../../../configureStore';
 import { DATA_TEST_IDS } from '../constants';
 jest.mock('draft-js/lib/generateRandomKey', () => jest.fn(() => '123'));
 jest.mock('components/ImageUpload/Loadable');
@@ -48,7 +48,6 @@ const componentWrapper = () =>
 
 describe('<Profile />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
   it('Should render and match the snapshot', () => {

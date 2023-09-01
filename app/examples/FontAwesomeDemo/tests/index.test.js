@@ -12,8 +12,8 @@ import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
+import { store } from 'configureStore';
 import { FontAwesomeDemo } from '../index';
-import configureStore from '../../../configureStore';
 let globalStore;
 const componentWrapper = () =>
   render(
@@ -28,7 +28,6 @@ const componentWrapper = () =>
 
 describe('<FontAwesomeDemo />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
   it('Should render and match the snapshot', () => {

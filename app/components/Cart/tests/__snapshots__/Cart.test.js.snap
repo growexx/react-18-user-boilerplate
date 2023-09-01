@@ -5,12 +5,12 @@ exports[`<Cart /> should render a div 1`] = `
   class="u-mr-1 u-d-inline-block"
 >
   <button
-    class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-text btn-hover-none p-4"
+    class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-text btn-hover-none p-4"
     data-testid="badge-Cart"
     type="button"
   >
     <span
-      class="ant-badge css-dev-only-do-not-override-byeoj0"
+      class="ant-badge css-dev-only-do-not-override-190m0jy"
     >
       <span
         aria-label="shopping-cart"

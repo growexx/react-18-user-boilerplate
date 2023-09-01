@@ -27,7 +27,6 @@ export function TwoFactorAuthentication() {
   const dispatch = useDispatch();
 
   const changeOptValue = currValue => {
-    console.log('changeOptValue ~ currValue:', currValue);
     setOtp(currValue);
     if (currValue.length === OTP_LENGTH) {
       dispatch(twoFactorFormSubmit());

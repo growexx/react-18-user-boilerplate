@@ -50,7 +50,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
 .c1 .accountData .ant-input:focus,
 .c1 .accountData .ant-input:focused,
 .c1 .accountData .ant-input:hover {
-  border-color: #3E1358;
+  border-color: #3e1358;
 }
 
 .c1 .accountData>span:hover,
@@ -164,7 +164,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
 }
 
 <form
-  class="ant-form ant-form-horizontal css-dev-only-do-not-override-byeoj0"
+  class="ant-form ant-form-horizontal css-dev-only-do-not-override-190m0jy"
 >
   <div
     class="c0"
@@ -192,7 +192,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
             href="/register"
           >
             <button
-              class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-default"
+              class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-default"
               type="button"
             >
               SIGN UP
@@ -219,6 +219,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
             aria-label="facebook"
             class="anticon anticon-facebook"
             role="img"
+            tabindex="-1"
           >
             <svg
               aria-hidden="true"
@@ -238,6 +239,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
             aria-label="google"
             class="anticon anticon-google"
             role="img"
+            tabindex="-1"
           >
             <svg
               aria-hidden="true"
@@ -282,13 +284,13 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
           class="accountData"
         >
           <div
-            class="ant-form-item css-dev-only-do-not-override-byeoj0"
+            class="ant-form-item css-dev-only-do-not-override-190m0jy"
           >
             <div
-              class="ant-row ant-form-item-row css-dev-only-do-not-override-byeoj0"
+              class="ant-row ant-form-item-row css-dev-only-do-not-override-190m0jy"
             >
               <div
-                class="ant-col ant-form-item-control css-dev-only-do-not-override-byeoj0"
+                class="ant-col ant-form-item-control css-dev-only-do-not-override-190m0jy"
               >
                 <div
                   class="ant-form-item-control-input"
@@ -298,7 +300,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
                   >
                     <input
                       aria-required="true"
-                      class="ant-input css-dev-only-do-not-override-byeoj0"
+                      class="ant-input css-dev-only-do-not-override-190m0jy"
                       id="email"
                       placeholder="Email"
                       type="email"
@@ -310,13 +312,13 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="ant-form-item css-dev-only-do-not-override-byeoj0"
+            class="ant-form-item css-dev-only-do-not-override-190m0jy"
           >
             <div
-              class="ant-row ant-form-item-row css-dev-only-do-not-override-byeoj0"
+              class="ant-row ant-form-item-row css-dev-only-do-not-override-190m0jy"
             >
               <div
-                class="ant-col ant-form-item-control css-dev-only-do-not-override-byeoj0"
+                class="ant-col ant-form-item-control css-dev-only-do-not-override-190m0jy"
               >
                 <div
                   class="ant-form-item-control-input"
@@ -325,11 +327,11 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
                     class="ant-form-item-control-input-content"
                   >
                     <span
-                      class="ant-input-affix-wrapper ant-input-password css-dev-only-do-not-override-byeoj0"
+                      class="ant-input-affix-wrapper ant-input-password css-dev-only-do-not-override-190m0jy"
                     >
                       <input
                         aria-required="true"
-                        class="ant-input css-dev-only-do-not-override-byeoj0"
+                        class="ant-input css-dev-only-do-not-override-190m0jy"
                         id="password"
                         placeholder="Password"
                         type="password"
@@ -370,13 +372,13 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
           </div>
         </div>
         <div
-          class="ant-form-item css-dev-only-do-not-override-byeoj0"
+          class="ant-form-item css-dev-only-do-not-override-190m0jy"
         >
           <div
-            class="ant-row ant-form-item-row css-dev-only-do-not-override-byeoj0"
+            class="ant-row ant-form-item-row css-dev-only-do-not-override-190m0jy"
           >
             <div
-              class="ant-col ant-form-item-control css-dev-only-do-not-override-byeoj0"
+              class="ant-col ant-form-item-control css-dev-only-do-not-override-190m0jy"
             >
               <div
                 class="ant-form-item-control-input"
@@ -385,7 +387,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
                   class="ant-form-item-control-input-content"
                 >
                   <button
-                    class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-default"
+                    class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-default"
                     type="submit"
                   >
                     SIGN IN

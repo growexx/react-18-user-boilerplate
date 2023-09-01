@@ -2,10 +2,10 @@
 
 exports[`<FileUpload /> Should render and match the snapshot 1`] = `
 <span
-  class="ant-upload-wrapper css-dev-only-do-not-override-byeoj0"
+  class="ant-upload-wrapper css-dev-only-do-not-override-190m0jy"
 >
   <div
-    class="css-dev-only-do-not-override-byeoj0 ant-upload ant-upload-drag"
+    class="css-dev-only-do-not-override-190m0jy ant-upload ant-upload-drag"
   >
     <span
       class="ant-upload ant-upload-btn"

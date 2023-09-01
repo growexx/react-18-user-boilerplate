@@ -45,12 +45,12 @@ exports[`<Header /> should render a div 1`] = `
       class="u-mr-1 u-d-inline-block"
     >
       <button
-        class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-text btn-hover-none p-4"
+        class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-text btn-hover-none p-4"
         data-testid="badge-Cart"
         type="button"
       >
         <span
-          class="ant-badge css-dev-only-do-not-override-byeoj0"
+          class="ant-badge css-dev-only-do-not-override-190m0jy"
         >
           <span
             aria-label="shopping-cart"
@@ -85,12 +85,12 @@ exports[`<Header /> should render a div 1`] = `
         class="u-mr-1 u-d-inline-block"
       >
         <button
-          class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-text btn-hover-none p-4"
+          class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-text btn-hover-none p-4"
           data-testid="badge-Cart"
           type="button"
         >
           <span
-            class="ant-badge css-dev-only-do-not-override-byeoj0"
+            class="ant-badge css-dev-only-do-not-override-190m0jy"
           >
             <span
               aria-label="bell"
@@ -120,7 +120,7 @@ exports[`<Header /> should render a div 1`] = `
       class="c3"
     >
       <button
-        class="ant-btn css-dev-only-do-not-override-byeoj0 ant-btn-circle ant-btn-primary ant-dropdown-trigger"
+        class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-circle ant-btn-primary ant-dropdown-trigger"
         type="button"
       >
         <span

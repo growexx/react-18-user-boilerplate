@@ -6,11 +6,10 @@ import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import Emitter from 'utils/events';
 import { TOKEN_KEY, EMITTER_EVENTS } from 'utils/constants';
 import StorageService from 'utils/StorageService';
+import { store, history } from 'configureStore';
 import MainLayout from '../index';
-import configureStore from '../../../configureStore';
 import Layouts from '../Layout';
 
-const { store, history } = configureStore({});
 const tokenValue = 'test token';
 const componentWrapper = props =>
   render(

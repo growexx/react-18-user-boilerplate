@@ -3,7 +3,7 @@
 exports[`<NotFound /> Should render and match the snapshot 1`] = `
 <article>
   <div
-    class="ant-result ant-result-404 css-dev-only-do-not-override-byeoj0"
+    class="ant-result ant-result-404 css-dev-only-do-not-override-190m0jy"
   >
     <div
       class="ant-result-icon ant-result-image"

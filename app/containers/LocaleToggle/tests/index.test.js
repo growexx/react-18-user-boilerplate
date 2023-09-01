@@ -2,16 +2,15 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 
+import { store } from 'configureStore';
 import LocaleToggle from '../index';
 import LanguageProvider from '../../LanguageProvider';
-import configureStore from '../../../configureStore';
 import { translationMessages } from '../../../i18n';
 
 describe('<LocaleToggle />', () => {
   let globalStore;
 
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 

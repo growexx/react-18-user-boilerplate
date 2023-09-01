@@ -11,8 +11,8 @@ import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
 import request from 'utils/request';
+import { store } from 'configureStore';
 import ForgotPassword from '../Loadable';
-import configureStore from '../../../../configureStore';
 import { TEST_IDS } from '../stub/test.stub';
 jest.mock('utils/request');
 let globalStore;
@@ -30,7 +30,6 @@ const componentWrapper = () =>
 
 describe('<ForgotPassword />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -64,7 +63,6 @@ describe('<ForgotPassword />', () => {
 
 describe('Forgot Password Request', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 

@@ -12,9 +12,9 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
+import { store } from 'configureStore';
 import { TwoFactorAuthentication } from '../index';
 import Loadable from '../Loadable';
-import configureStore from '../../../../configureStore';
 let globalStore;
 const componentWrapper = Component =>
   render(
@@ -28,7 +28,6 @@ const componentWrapper = Component =>
   );
 describe('<TwoFactorAuthentication />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
   it('Should render and match the snapshot', () => {

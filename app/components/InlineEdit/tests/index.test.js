@@ -13,9 +13,10 @@ import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
-import configureStore from 'configureStore';
 import InlineEdit from 'components/InlineEdit/index';
 import { TEST_IDS } from 'components/InlineEdit/stub';
+import { store } from 'configureStore';
+
 let globalStore;
 const props = {
   onSave: jest.fn(),
@@ -35,7 +36,6 @@ const componentWrapper = () =>
 
 describe('<InlineEdit />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
   it('Should render and match the snapshot', () => {

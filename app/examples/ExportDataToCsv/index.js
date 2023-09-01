@@ -24,11 +24,6 @@ function ExportDataToCsv() {
   const rowSelection = {
     onChange: (selectedRowKeys, currentSelectedRows) => {
       // eslint-disable-next-line no-console
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        'selectedRows: ',
-        currentSelectedRows,
-      );
       setSelectedRows(currentSelectedRows);
     },
   };

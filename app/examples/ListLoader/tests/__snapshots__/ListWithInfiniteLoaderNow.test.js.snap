@@ -21,10 +21,10 @@ exports[`<ListWithInfiniteLoader /> should render and match the snapshot 1`] = `
   >
     <div>
       <div
-        class="ant-list ant-list-split css-dev-only-do-not-override-byeoj0"
+        class="ant-list ant-list-split css-dev-only-do-not-override-190m0jy"
       >
         <div
-          class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
+          class="ant-spin-nested-loading css-dev-only-do-not-override-190m0jy"
         >
           <div
             class="ant-spin-container"
@@ -33,7 +33,7 @@ exports[`<ListWithInfiniteLoader /> should render and match the snapshot 1`] = `
               class="ant-list-empty-text"
             >
               <div
-                class="css-dev-only-do-not-override-byeoj0 ant-empty ant-empty-normal"
+                class="css-dev-only-do-not-override-190m0jy ant-empty ant-empty-normal"
               >
                 <div
                   class="ant-empty-image"
@@ -107,10 +107,10 @@ exports[`<ListWithInfiniteLoader /> should render and match the snapshot 2`] = `
   >
     <div>
       <div
-        class="ant-list ant-list-split css-dev-only-do-not-override-byeoj0"
+        class="ant-list ant-list-split css-dev-only-do-not-override-190m0jy"
       >
         <div
-          class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
+          class="ant-spin-nested-loading css-dev-only-do-not-override-190m0jy"
         >
           <div
             class="ant-spin-container"
@@ -128,7 +128,7 @@ exports[`<ListWithInfiniteLoader /> should render and match the snapshot 2`] = `
                     class="ant-list-item-meta-avatar"
                   >
                     <span
-                      class="ant-avatar ant-avatar-circle ant-avatar-image css-dev-only-do-not-override-byeoj0"
+                      class="ant-avatar ant-avatar-circle ant-avatar-image css-dev-only-do-not-override-190m0jy"
                     >
                       <img
                         src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"

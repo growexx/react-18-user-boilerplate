@@ -2,13 +2,13 @@
 
 exports[`<ListWithLoadMore /> should render and match the snapshot 1`] = `
 <div
-  class="ant-list ant-list-vertical ant-list-lg ant-list-split ant-list-something-after-last-item css-dev-only-do-not-override-byeoj0"
+  class="ant-list ant-list-vertical ant-list-lg ant-list-split ant-list-something-after-last-item css-dev-only-do-not-override-190m0jy"
 >
   <div
     class="ant-list-pagination ant-list-pagination-align-end"
   >
     <ul
-      class="ant-pagination ant-pagination-mini css-dev-only-do-not-override-byeoj0"
+      class="ant-pagination ant-pagination-mini css-dev-only-do-not-override-190m0jy"
     >
       <li
         aria-disabled="true"
@@ -181,7 +181,7 @@ exports[`<ListWithLoadMore /> should render and match the snapshot 1`] = `
     </ul>
   </div>
   <div
-    class="ant-spin-nested-loading css-dev-only-do-not-override-byeoj0"
+    class="ant-spin-nested-loading css-dev-only-do-not-override-190m0jy"
   >
     <div
       class="ant-spin-container"

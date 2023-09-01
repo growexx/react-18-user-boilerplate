@@ -3,7 +3,7 @@ import { render, fireEvent, queryByAttribute } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
-import configureStore from '../../../configureStore';
+import { store } from 'configureStore';
 import ReactHookForm from '../index';
 let globalStore;
 const componentWrapper = () =>
@@ -17,7 +17,6 @@ const componentWrapper = () =>
 
 describe('ReactHookForm Component', () => {
   beforeEach(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 

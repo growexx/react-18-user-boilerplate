@@ -8,7 +8,7 @@ import { TOKEN_KEY } from 'utils/constants';
 import { userExists } from 'utils/Helper';
 import StorageService from 'utils/StorageService';
 import Login from 'containers/Auth/Login/Loadable';
-import configureStore from '../../../configureStore';
+import { store } from 'configureStore';
 import PrivateRoute from '../PrivateRoute';
 
 jest.mock('utils/Helper');
@@ -39,7 +39,6 @@ const login = () => StorageService.set(TOKEN_KEY, tokenValue);
 
 describe('<PrivateRoute />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
     login();
   });
@@ -58,7 +57,6 @@ describe('<PrivateRoute />', () => {
 
 describe('<PrivateRoute />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
     userExists.mockImplementation(() => true);
   });

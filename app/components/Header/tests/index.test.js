@@ -3,13 +3,11 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
+import { store, history } from 'configureStore';
 import Header from '../index';
 import { StyledAppHeader } from '../StyledAppHeader';
-import configureStore from '../../../configureStore';
 
 describe('<Header />', () => {
-  const { store, history } = configureStore({}, history);
-
   it('should render a div', () => {
     const { container } = render(
       <Provider store={store}>

@@ -13,9 +13,9 @@ import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import '@testing-library/jest-dom';
 import history from 'utils/history';
+import { store } from 'configureStore';
 import ChangePassword from '../index';
-import Lodable from '../Loadable';
-import configureStore from '../../../configureStore';
+import Loadable from '../Loadable';
 let globalStore;
 const props = {
   error: {
@@ -37,7 +37,6 @@ const componentWrapper = Component =>
   );
 describe('<ChangePassword />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -50,7 +49,7 @@ describe('<ChangePassword />', () => {
   test('Should render and match the snapshot Loadable', async () => {
     const {
       container: { firstChild },
-    } = componentWrapper(Lodable);
+    } = componentWrapper(Loadable);
     expect(firstChild).toMatchSnapshot();
   });
   test('Should Click Button and show error for passwords not same', async () => {

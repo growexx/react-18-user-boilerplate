@@ -12,7 +12,7 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
-import configureStore from '../../../../configureStore';
+import { store } from 'configureStore';
 import { Registration } from '../index';
 import Lodable from '../Loadable';
 
@@ -30,7 +30,6 @@ const componentWrapper = Component =>
 
 describe('<Registration />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 

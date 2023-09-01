@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import { createMemoryHistory } from 'history';
+import { store } from 'configureStore';
 import Avatar from '../index';
-import configureStore from '../../../configureStore';
 
 describe('<Avatar />', () => {
   const stubProps = {
@@ -18,7 +18,6 @@ describe('<Avatar />', () => {
     ],
   };
   const history = createMemoryHistory();
-  const { store } = configureStore({});
 
   it('should render a div', () => {
     const { container } = render(
