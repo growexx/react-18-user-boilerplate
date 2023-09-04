@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/jsx-indent-props */
 import React, { useState, useEffect } from 'react';
 import { Row, Statistic, Skeleton, Space, Col, Popover, Tag } from 'antd';
 import styled from 'styled-components';
@@ -25,11 +23,9 @@ const SpaceContainer = styled(Space)`
 
 function Statistics() {
   const [isLoading, setIsLoading] = useState(true);
-  const [users, setUsers] = useState(new Date().getTime().toString().slice(5));
-  const [earning, setEarning] = useState(
-    new Date().getTime().toString().slice(5),
-  );
-  const [payouts, setPayouts] = useState({
+  const [users] = useState(new Date().getTime().toString().slice(5));
+  const [earning] = useState(new Date().getTime().toString().slice(5));
+  const [payouts] = useState({
     paid: new Date().getTime().toString().slice(5),
     total: new Date().getTime().toString().slice(5),
     pending: new Date().getTime().toString().slice(5),

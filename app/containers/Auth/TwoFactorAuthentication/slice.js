@@ -12,8 +12,8 @@ import { loginSuccessResponse } from '../Login/stub/login.stub';
 export const initialState = {};
 
 const twoFactorAuthSlice = createSlice({
-  name: 'twoFactorAuth',
   initialState,
+  name: 'twoFactorAuth',
   reducers: {
     twoFactorFormSubmit: () => {
       StorageService.set(TOKEN_KEY, loginSuccessResponse.data.token);

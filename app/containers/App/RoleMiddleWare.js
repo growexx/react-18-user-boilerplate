@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Outlet } from 'react-router-dom';
@@ -33,9 +32,9 @@ function RoleMiddleWare(props) {
   /**
    * NOTE: for actual implementation of the component, remove comments with following note  "ACTUAL API INTEGRATION CODE" and remove demo code
    */
-  const [loader, setLoader] = useState(true);
+  const [, setLoader] = useState(true);
   const [userData, setUserData] = useState({});
-  const [isRestrictedRoute, setIsRestrictedRoute] = useState(true);
+  // const [isRestrictedRoute, setIsRestrictedRoute] = useState(true);
   const { component: Component, ...rest } = props;
 
   // Get role routes

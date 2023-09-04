@@ -5,8 +5,8 @@ const initialState = {
 };
 
 export const appSlice = createSlice({
-  name: 'app',
   initialState,
+  name: 'app',
   reducers: {
     loadApp: (state, action) => ({
       ...state,

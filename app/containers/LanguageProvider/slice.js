@@ -6,8 +6,8 @@ export const initialState = {
 };
 
 const languageSlice = createSlice({
-  name: 'language',
   initialState,
+  name: 'language',
   reducers: {
     changeLocale: (state, action) => ({
       ...state,

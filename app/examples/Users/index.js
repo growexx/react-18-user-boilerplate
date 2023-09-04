@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-shadow */
 /* eslint-disable indent */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -58,8 +56,8 @@ export function Users({ demo }) {
   const [userList, setUserList] = useState([]);
   const [isListLoading, setIsListLoading] = useState(true);
   const [pagination, setPagination] = useState(GET_DEFAULT_PAGINATION());
-  const [sortType, setSortType] = useState(SORTING.ASC);
-  const [sortKey, setSortKey] = useState('id');
+  const [sortType] = useState(SORTING.ASC);
+  const [sortKey] = useState('id');
   const [search, setSearch] = useState('');
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
   const [popUpAction, setPopUpAction] = useState('');

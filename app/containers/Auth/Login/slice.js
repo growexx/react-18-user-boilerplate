@@ -1,6 +1,5 @@
-/* eslint-disable no-empty-function */
 import { createSlice } from '@reduxjs/toolkit';
-import { signInWithGoogle, signInWithFacebook, auth } from 'utils/firebase';
+import { signInWithGoogle, signInWithFacebook } from 'utils/firebase';
 import Emitter from 'utils/events';
 import StorageService from '../../../utils/StorageService';
 import { loginSuccessResponse } from './stub/login.stub';
@@ -19,8 +18,8 @@ const initialState = {
 };
 
 const loginSlice = createSlice({
-  name: 'login',
   initialState,
+  name: 'login',
   reducers: {
     login: () => {
       StorageService.set(TOKEN_KEY, loginSuccessResponse.data.token);
