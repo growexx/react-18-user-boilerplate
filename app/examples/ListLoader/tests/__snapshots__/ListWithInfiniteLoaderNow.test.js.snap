@@ -19,7 +19,9 @@ exports[`<ListWithInfiniteLoader /> should render and match the snapshot 1`] = `
   <div
     class="demo-infinite-container"
   >
-    <div>
+    <div
+      data-testid="infinite-scroll"
+    >
       <div
         class="ant-list ant-list-split css-dev-only-do-not-override-190m0jy"
       >
@@ -81,6 +83,12 @@ exports[`<ListWithInfiniteLoader /> should render and match the snapshot 1`] = `
           </div>
         </div>
       </div>
+      <button
+        data-testid="load-more-button"
+        type="submit"
+      >
+        Load More
+      </button>
     </div>
   </div>
 </div>
@@ -105,7 +113,9 @@ exports[`<ListWithInfiniteLoader /> should render and match the snapshot 2`] = `
   <div
     class="demo-infinite-container"
   >
-    <div>
+    <div
+      data-testid="infinite-scroll"
+    >
       <div
         class="ant-list ant-list-split css-dev-only-do-not-override-190m0jy"
       >
@@ -150,6 +160,12 @@ exports[`<ListWithInfiniteLoader /> should render and match the snapshot 2`] = `
           </div>
         </div>
       </div>
+      <button
+        data-testid="load-more-button"
+        type="submit"
+      >
+        Load More
+      </button>
     </div>
   </div>
 </div>
