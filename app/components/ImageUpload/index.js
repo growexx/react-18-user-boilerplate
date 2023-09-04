@@ -7,8 +7,6 @@
 import React, { useState } from 'react';
 import { Upload } from 'antd';
 import ImgCrop from 'antd-img-crop';
-import 'antd/es/modal/style';
-import 'antd/es/slider/style';
 import { API_ENDPOINTS } from 'containers/constants';
 
 function ImageUpload() {
