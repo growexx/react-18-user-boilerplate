@@ -20,13 +20,13 @@ global.BroadcastChannel = jest.fn(() => ({
   postMessage: jest.fn(),
 }));
 
-global.window = Object.assign(global.window, {
-  addEventListener: jest.fn((name, func) => {
+global.window.addEventListener = jest.fn((name, func) => {
+  if (name === 'storage') {
     func({
       key: 'message',
-      newValue: [],
+      newValue: JSON.stringify([new Date().getTime()]),
     });
-  }),
+  }
 });
 
 const componentWrapper = () =>
