@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Form as antForm,
   Button,
@@ -28,15 +28,12 @@ function ReactHookForm() {
     handleSubmit,
     control,
     reset,
-    setValue,
     formState: { errors },
   } = useForm();
-  const [dateRange, setDateRange] = useState();
 
   const onSubmit = data => {
-    const requestBody = { ...data, rangePicker: dateRange };
     // eslint-disable-next-line no-console
-    console.log(requestBody);
+    console.log(data);
     // Note: Add API Call
   };
 
@@ -123,12 +120,8 @@ function ReactHookForm() {
             <Controller
               control={control}
               name="sex"
-              render={({ field: { onChange, value } }) => (
-                <Radio.Group
-                  id="sex"
-                  value={value}
-                  onChange={e => onChange(e.target.value)}
-                >
+              render={({ field }) => (
+                <Radio.Group {...field} id="sex">
                   <Radio value="male">Male</Radio>
                   <Radio value="female">Female</Radio>
                 </Radio.Group>
@@ -157,14 +150,12 @@ function ReactHookForm() {
             <Controller
               control={control}
               name="employed"
-              render={({ field: { value, onChange } }) => (
+              render={({ field }) => (
                 <Checkbox
+                  {...field}
                   id="employed"
                   type="checkbox"
-                  checked={value}
-                  onChange={e => {
-                    onChange(e.target.checked);
-                  }}
+                  checked={field.value}
                 />
               )}
             />
@@ -182,11 +173,6 @@ function ReactHookForm() {
                   name="rangePicker"
                   placeholder={['From', 'To']}
                   format="YYYY-MM-DD"
-                  onFocus={e => e.preventDefault()}
-                  onBlur={e => e.preventDefault()}
-                  onChange={(e, formatRange) => {
-                    setDateRange(formatRange);
-                  }}
                 />
               )}
             />
@@ -219,8 +205,6 @@ function ReactHookForm() {
             <Button
               onClick={() => {
                 reset({});
-                setValue('rangePicker', null);
-                setDateRange(null);
               }}
             >
               Clear Values

@@ -17,10 +17,10 @@ import messages from './messages';
 import { useLazyGetReposQuery } from './reposApiSlice';
 
 export function HomePage() {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('mxstbr');
 
   // Example for getting data from store
-  // const reposData = useSelector((state) =>
+  // const reposData = useSelector(state =>
   //   makeSelectGetReposData()(state, username),
   // );
 
@@ -32,8 +32,8 @@ export function HomePage() {
   const [trigger, result] = useLazyGetReposQuery(username);
   const { isError, data: repos, isUninitialized, isFetching } = result;
 
-  const onSubmitForm = e => {
-    if (e?.preventDefault) e.preventDefault();
+  const onSubmitForm = (e = { preventDefault: () => {} }) => {
+    e.preventDefault();
     trigger(username);
   };
 
@@ -53,7 +53,7 @@ export function HomePage() {
           <h2>
             <FormattedMessage {...messages.trymeHeader} />
           </h2>
-          <Form onSubmit={onSubmitForm}>
+          <Form onSubmit={onSubmitForm} role="form">
             <label htmlFor="username">
               <FormattedMessage {...messages.trymeMessage} />
               <AtPrefix>

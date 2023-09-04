@@ -3,15 +3,20 @@
  */
 
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
+import { configureStore } from '@reduxjs/toolkit';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-
 import { store } from 'configureStore';
 import { HomePage } from '../index';
+import { repoApi } from '../reposApiSlice';
 
 describe('<HomePage />', () => {
-  let globalStore;
+  let globalStore = configureStore({
+    reducer: {
+      repos: repoApi.reducer,
+    },
+  });
 
   beforeAll(() => {
     globalStore = store;
@@ -23,54 +28,26 @@ describe('<HomePage />', () => {
     } = render(
       <Provider store={globalStore}>
         <IntlProvider locale="en">
-          <HomePage loading={false} error={false} repos={[]} />
+          <HomePage />
         </IntlProvider>
       </Provider>,
     );
     expect(firstChild).toMatchSnapshot();
   });
 
-  it('should fetch the repos on mount if a username exists', () => {
-    const submitSpy = jest.fn();
-    render(
+  it('should submit and show repositories', () => {
+    const { getByRole, getByPlaceholderText } = render(
       <Provider store={globalStore}>
         <IntlProvider locale="en">
-          <HomePage
-            username="Not Empty"
-            onChangeUsername={() => {}}
-            onSubmitForm={submitSpy}
-          />
+          <HomePage />
         </IntlProvider>
       </Provider>,
     );
-    expect(submitSpy).toHaveBeenCalledTimes(1);
-  });
 
-  it('should not call onSubmitForm if username is an empty string', () => {
-    const submitSpy = jest.fn();
-    render(
-      <Provider store={globalStore}>
-        <IntlProvider locale="en">
-          <HomePage onChangeUsername={() => {}} onSubmitForm={submitSpy} />
-        </IntlProvider>
-      </Provider>,
-    );
-    expect(submitSpy).not.toHaveBeenCalled();
-  });
+    fireEvent.change(getByPlaceholderText('mxstbr'), {
+      target: { value: 'test' },
+    });
 
-  it('should not call onSubmitForm if username is null', () => {
-    const submitSpy = jest.fn();
-    render(
-      <Provider store={globalStore}>
-        <IntlProvider locale="en">
-          <HomePage
-            username=""
-            onChangeUsername={() => {}}
-            onSubmitForm={submitSpy}
-          />
-        </IntlProvider>
-      </Provider>,
-    );
-    expect(submitSpy).not.toHaveBeenCalled();
+    fireEvent.submit(getByRole('form'));
   });
 });
