@@ -30,7 +30,6 @@ describe('<Cart />', () => {
 describe('<Cart />', () => {
   test('display should update Carts', () => {
     window.product = dummyData;
-    window.localStorage = {};
     window.localStorage.setItem = (key, value) => {
       window.localStorage[key] = value;
     };

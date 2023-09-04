@@ -8,7 +8,6 @@ const dummyData = products.products.slice(0, 2);
 describe('<CartDrawer />', () => {
   test('display should delete product', async () => {
     window.product = dummyData;
-    window.localStorage = {};
     window.setCount = mockFunction;
     window.localStorage.setItem = (key, value) => {
       window.localStorage[key] = value;
