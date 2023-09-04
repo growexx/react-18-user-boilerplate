@@ -31,11 +31,9 @@ const facebookProvider = new FacebookAuthProvider();
 export const signInWithGoogle = () => {
   signInWithPopup(auth, googleProvider)
     .then(res => {
-      // eslint-disable-next-line no-console
       console.log(res.user);
     })
     .catch(error => {
-      // eslint-disable-next-line no-console
       console.log(error.message);
     });
 };
@@ -47,11 +45,9 @@ export const signInWithGoogle = () => {
 export const signInWithFacebook = () => {
   signInWithPopup(auth, facebookProvider)
     .then(res => {
-      // eslint-disable-next-line no-console
       console.log(res.user);
     })
     .catch(error => {
-      // eslint-disable-next-line no-console
       console.log(error.message);
     });
 };
