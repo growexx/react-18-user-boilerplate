@@ -1,25 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
-import { Card, Space, Button } from 'antd';
-import styled from 'styled-components';
+import { Card, Space } from 'antd';
 import {
   CHANNEL_NAME,
   FULL_GENERIC_MOMENT_DATE_FORMAT,
 } from '../../containers/constants';
 import { TEST_IDS } from './constants';
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-`;
-const MessageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const ActionButton = styled(Button)`
-  width: 200px;
-`;
+import { Container, MessageContainer, ActionButton } from './styled';
 
 function MultiTabSupport() {
   const [messages, setMessages] = useState([]);
