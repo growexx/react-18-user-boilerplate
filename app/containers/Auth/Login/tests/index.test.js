@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /**
  *
  * Tests for Login
@@ -17,7 +16,6 @@ import { store } from 'configureStore';
 import { signInWithGoogle, signInWithFacebook } from 'utils/firebase';
 import { Login } from '../index';
 import Loadable from '../Loadable';
-import { googleLogin } from '../slice';
 
 jest.mock('utils/firebase', () => ({
   signInWithGoogle: jest.fn(),

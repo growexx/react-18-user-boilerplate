@@ -112,7 +112,6 @@ import TestPage from 'containers/TestPage/Loadable';
  react-router                            3.0.2  →    3.0.5
  react-router-redux                      4.0.7  →    4.0.8
  react-router-scroll                     0.4.1  →    0.4.2
- redux-saga                             0.14.3  →   0.14.8
  whatwg-fetch                            2.0.2  →    2.0.3
  babel-plugin-dynamic-import-node        1.0.0  →    1.0.2
  coveralls                             2.11.15  →  2.11.16
@@ -142,7 +141,6 @@ import TestPage from 'containers/TestPage/Loadable';
  react-dom                                        15.4.2  →                 15.5.4
  react-intl                                        2.2.3  →                  2.3.0
  redux-immutable                                  3.0.11  →                  3.1.0
- redux-saga                                       0.14.8  →                 0.15.3
  babel-cli                                        6.22.2  →                 6.24.1
  babel-core                                       6.22.1  →                 6.24.1
  babel-loader                                     6.2.10  →                  6.4.1

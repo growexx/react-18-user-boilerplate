@@ -5,7 +5,6 @@
  * code.
  */
 
-// Needed for redux-saga es6 generator support
 import 'core-js/stable';
 
 // Import all the third party stuff
@@ -30,7 +29,6 @@ import MainLayout from 'components/MainLayout';
 import LanguageProvider from 'containers/LanguageProvider';
 
 // Load the favicon and the .htaccess file
-/* eslint-disable import/no-unresolved, import/extensions */
 import '!file-loader?name=[name].[ext]!./images/favicons/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */

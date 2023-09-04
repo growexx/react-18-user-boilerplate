@@ -14,7 +14,6 @@ Following are the packages used in the boilerplate
 | express                 | Router library for nodejs                       |
 | history                 | Library to manage session history               |
 | hoist-non-react-statics | Utility for Object.assign                       |
-| immer                   | Immutable State Library                         |
 | intl                    | Internationalization and localization           |
 | invariant               | Utility to provide descriptive errors           |
 | ip                      | IP address utilities for nodejs                 |

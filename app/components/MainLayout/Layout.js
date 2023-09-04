@@ -45,7 +45,6 @@ function Layouts({ layoutVariant, collapsed, toggle, user }) {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  // eslint-disable-next-line default-case
   switch (layoutVariant) {
     case 2:
       return (

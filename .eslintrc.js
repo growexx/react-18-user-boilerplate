@@ -80,6 +80,7 @@ module.exports = {
     'react/sort-comp': 0,
     'require-yield': 0,
     'no-shadow': 0,
+    'react/no-array-index-key': 0,
   },
   settings: {
     'import/resolver': {

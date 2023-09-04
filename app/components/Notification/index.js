@@ -122,7 +122,6 @@ function Notification() {
           <Empty data-testid={TEST_IDS.EMPTY_CONTAINER} />
         ) : (
           notificationList.map((item, index) => (
-            // eslint-disable-next-line react/no-array-index-key
             <List.Item
               // eslint-disable-next-line react/no-array-index-key
               key={`${index}_${item}`}
