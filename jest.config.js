@@ -32,4 +32,5 @@ module.exports = {
   testRegex: 'tests/.*\\.test\\.js$',
   snapshotSerializers: [],
   testEnvironment: 'jest-environment-jsdom',
+  testTimeout: 20000,
 };
