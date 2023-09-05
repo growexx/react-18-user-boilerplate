@@ -52,6 +52,12 @@ module.exports = {
       default: false,
       message: 'Do you want to create the storybook file for the component',
     },
+    {
+      type: 'confirm',
+      name: 'wantSliceFile',
+      default: true,
+      message: 'Do you want to create the slice file for the component',
+    },
   ],
   actions: data => {
     // Generate index.js and index.test.js
@@ -76,6 +82,15 @@ module.exports = {
         type: 'add',
         path: '../../app/containers/{{properCase name}}/messages.js',
         templateFile: './container/messages.js.hbs',
+        abortOnFail: true,
+      });
+    }
+
+    if (data.wantSliceFile) {
+      actions.push({
+        type: 'add',
+        path: '../../app/containers/{{properCase name}}/slice.js',
+        templateFile: './container/slice.js.hbs',
         abortOnFail: true,
       });
     }
