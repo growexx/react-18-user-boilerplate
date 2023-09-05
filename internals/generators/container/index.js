@@ -30,6 +30,18 @@ module.exports = {
     },
     {
       type: 'confirm',
+      name: 'wantApiSliceFile',
+      default: true,
+      message: 'Do you want to create the apiSlice file for the component',
+    },
+    {
+      type: 'confirm',
+      name: 'wantSliceFile',
+      default: false,
+      message: 'Do you want to create the slice file for the component',
+    },
+    {
+      type: 'confirm',
       name: 'wantHeaders',
       default: false,
       message: 'Do you want headers?',
@@ -52,12 +64,7 @@ module.exports = {
       default: false,
       message: 'Do you want to create the storybook file for the component',
     },
-    {
-      type: 'confirm',
-      name: 'wantSliceFile',
-      default: true,
-      message: 'Do you want to create the slice file for the component',
-    },
+
   ],
   actions: data => {
     // Generate index.js and index.test.js
@@ -91,6 +98,15 @@ module.exports = {
         type: 'add',
         path: '../../app/containers/{{properCase name}}/slice.js',
         templateFile: './container/slice.js.hbs',
+        abortOnFail: true,
+      });
+    }
+
+    if (data.wantApiSliceFile) {
+      actions.push({
+        type: 'add',
+        path: '../../app/containers/{{properCase name}}/apiSlice.js',
+        templateFile: './container/apiSlice.js.hbs',
         abortOnFail: true,
       });
     }

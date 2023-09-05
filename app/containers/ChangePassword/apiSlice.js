@@ -13,4 +13,4 @@ export const changePasswordApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useChangePasswordQuery } = changePasswordApi;
+export const { useChangePasswordMutation } = changePasswordApi;

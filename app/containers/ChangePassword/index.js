@@ -17,7 +17,7 @@ const FormItem = antForm.Item;
 export function ChangePassword() {
   const dispatch = useDispatch();
   // use this if you are using login API and manage the loading error status accordingly
-  // const [changePassword, { isLoading, isError }] = useChangePasswordQuery();
+  // const [changePassword, { isLoading, isError }] = useChangePasswordMutation();
 
   const {
     handleSubmit,
