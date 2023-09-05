@@ -19,23 +19,6 @@ import { DEFAULT_LOCALE } from '../../../i18n';
 {{/if}}
 
 describe('<{{ properCase name }} />', () => {
-  it('Expect to not log errors in console', () => {
-    const spy = jest.spyOn(global.console, 'error');
-{{#if wantMessages}}
-    render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <{{ properCase name }} />
-      </IntlProvider>,
-    );
-{{else}}
-    render(<{{ properCase name }} />);
-{{/if}}
-    expect(spy).not.toHaveBeenCalled();
-  });
-
-  it('Expect to have additional unit tests specified', () => {
-    expect(true).toEqual(false);
-  });
 
   /**
    * Unskip this test to use it
