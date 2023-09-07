@@ -9,7 +9,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 import { IntlProvider } from 'react-intl';
 
 import { makeSelectLocale } from './selectors';
@@ -32,11 +32,8 @@ LanguageProvider.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-const mapStateToProps = createSelector(
-  makeSelectLocale(),
-  locale => ({
-    locale,
-  }),
-);
+const mapStateToProps = createSelector(makeSelectLocale(), locale => ({
+  locale,
+}));
 
 export default connect(mapStateToProps)(LanguageProvider);

@@ -1,11 +1,11 @@
 import React from 'react';
+
 import { render } from '@testing-library/react';
 import { FormattedMessage, defineMessages } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
 
+import { store } from 'configureStore';
 import ConnectedLanguageProvider, { LanguageProvider } from '../index';
-import configureStore from '../../../configureStore';
 
 import { translationMessages } from '../../../i18n';
 
@@ -33,7 +33,6 @@ describe('<ConnectedLanguageProvider />', () => {
   let globalState;
 
   beforeAll(() => {
-    const { store } = configureStore({}, browserHistory);
     globalState = store;
   });
 

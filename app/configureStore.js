@@ -1,68 +1,43 @@
-/**
- * Create the store with dynamic reducers
- */
-
-import { createStore, applyMiddleware, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import { createReduxHistoryContext } from 'redux-first-history';
+import { configureStore } from '@reduxjs/toolkit';
 import { createBrowserHistory } from 'history';
-import createReducer from './reducers';
+import { createReduxHistoryContext } from 'redux-first-history';
 
-const { createReduxHistory, routerMiddleware } = createReduxHistoryContext({
-  history: createBrowserHistory(),
+import { repoApi } from './containers/HomePage/reposApiSlice';
+import appSlice from './containers/App/slice';
+import { apiSlice } from './apiSlice';
+import languageSlice from './containers/LanguageProvider/slice';
+import loginSlice from './containers/Auth/Login/slice';
+import { authApi } from './containers/Auth/Login/authApiSlice';
+import twoFactorAuthSlice from './containers/Auth/TwoFactorAuthentication/slice';
+import changePasswordSlice from './containers/ChangePassword/slice';
+import { changePasswordApi } from './containers/ChangePassword/apiSlice';
+import usersExampleSlice from './examples/Users/slice';
+
+const { createReduxHistory, routerMiddleware, routerReducer } =
+  createReduxHistoryContext({ history: createBrowserHistory() });
+
+const store = configureStore({
+  reducer: {
+    router: routerReducer,
+    app: appSlice,
+    language: languageSlice,
+    login: loginSlice,
+    twoFactorAuth: twoFactorAuthSlice,
+    changePassword: changePasswordSlice,
+    usersExample: usersExampleSlice,
+    repos: repoApi.reducer,
+    auth: authApi.reducer,
+    changePasswordApi: changePasswordApi.reducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
+  },
+  middleware: getDefaultMiddleware => [
+    ...getDefaultMiddleware(),
+    apiSlice.middleware,
+    routerMiddleware,
+  ],
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
-export default function configureStore(initialState = {}) {
-  let composeEnhancers = compose;
-  const reduxSagaMonitorOptions = {};
+const history = createReduxHistory(store);
 
-  // If Redux Dev Tools and Saga Dev Tools Extensions are installed, enable them
-  /* istanbul ignore next */
-  if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
-    /* eslint-disable no-underscore-dangle */
-    if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
-      composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});
-
-    // NOTE: Uncomment the code below to restore support for Redux Saga
-    // Dev Tools once it supports redux-saga version 1.x.x
-    // if (window.__SAGA_MONITOR_EXTENSION__)
-    //   reduxSagaMonitorOptions = {
-    //     sagaMonitor: window.__SAGA_MONITOR_EXTENSION__,
-    //   };
-    /* eslint-enable */
-  }
-
-  const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
-
-  // Create the store with two middlewares
-  // 1. sagaMiddleware: Makes redux-sagas work
-  // 2. routerMiddleware: Syncs the location/URL path to the state
-  const middlewares = [sagaMiddleware, routerMiddleware];
-
-  const enhancers = [applyMiddleware(...middlewares)];
-
-  const store = createStore(
-    createReducer(),
-    initialState,
-    composeEnhancers(...enhancers),
-  );
-
-  store.runSaga = sagaMiddleware.run;
-  store.injectedReducers = {};
-  store.injectedSagas = {};
-
-  // Make reducers hot reloadable, see http://mxs.is/googmo
-  /* istanbul ignore next */
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      store.replaceReducer(createReducer(store.injectedReducers));
-    });
-  }
-
-  const history = createReduxHistory(store);
-
-  return {
-    store,
-    history,
-  };
-}
+export { store, history };

@@ -8,10 +8,10 @@ import React from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import history from 'utils/history';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
+import history from 'utils/history';
+import { store } from 'configureStore';
 import Charts from '../index';
-import configureStore from '../../../configureStore';
 import { GET_COLORS } from '../constants';
 
 const resizeObserverMock = jest.fn(() => ({
@@ -38,7 +38,6 @@ const componentWrapper = updatedProps =>
 
 describe('Check component:<Charts /> is rendering properly', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
     jest.useFakeTimers();
   });

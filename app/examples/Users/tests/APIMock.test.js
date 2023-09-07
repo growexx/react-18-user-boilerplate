@@ -38,14 +38,16 @@ describe('API Mock Service Tests', () => {
 
   it('Get API Call, Status Filter', async () => {
     expect(
-      (await stub.updateUserAPIMock(
-        {
-          firstName: 'john',
-          lastName: 'doe',
-          email: 'john.doe@growexx.com',
-        },
-        true,
-      )).status,
+      (
+        await stub.updateUserAPIMock(
+          {
+            firstName: 'john',
+            lastName: 'doe',
+            email: 'john.doe@growexx.com',
+          },
+          true,
+        )
+      ).status,
     ).toEqual(1);
   });
 });

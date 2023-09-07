@@ -3,33 +3,18 @@
 exports[`<Login /> Should render and match the snapshot 1`] = `
 .c1 {
   font-family: 'Montserrat',sans-serif;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   height: 100vh;
 }
 
 .c1 .emailLogin {
   margin-top: 31px;
-  color: rgba(0,0,0,0.85);
+  color: rgba(0, 0, 0, 0.85);
   font-weight: 400;
   font-size: 14px;
   text-align: center;
@@ -37,19 +22,9 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
 
 .c1 .LoginSubContainer {
   width: 40%;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -61,7 +36,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
   color: #4d186e;
 }
 
-.c1 .socialIcons > span {
+.c1 .socialIcons>span {
   border: 1px solid #d9d9d9;
   padding: 10px;
   border-radius: 50%;
@@ -69,24 +44,21 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
 }
 
 .c1 .socialIcons {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .c1 .accountData .ant-input:focus,
 .c1 .accountData .ant-input:focused,
 .c1 .accountData .ant-input:hover {
-  border-color: #3E1358;
+  border-color: #3e1358;
 }
 
-.c1 .accountData > span:hover,
-.c1 .accountData > span:focus > span:visited {
+.c1 .accountData>span:hover,
+.c1 .accountData>span:focus>span:visited {
   border-color: #d9d9d9;
 }
 
-.c1 .accountData > div:nth-child(2) {
+.c1 .accountData>div:nth-child(2) {
   margin-top: 10px;
 }
 
@@ -94,7 +66,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
   background-color: #f5f5f5;
 }
 
-.c1 .accountData > input:first-child {
+.c1 .accountData>input:first-child {
   margin-top: 10px;
 }
 
@@ -103,14 +75,14 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
 }
 
 .c1 .accountData input[value] {
-  color: rgba(0,0,0,0.45);
+  color: rgba(0, 0, 0, 0.45);
   font-size: 15px;
 }
 
 .c1 button:hover {
   background: #4d186e;
   border: 2px solid #fff;
-  color: #fff;
+  color: #fff!important;
 }
 
 .c1 button {
@@ -134,12 +106,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
 
 .c0 {
   font-family: 'Montserrat',sans-serif;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -147,35 +114,16 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
   max-width: 513px;
   width: 100%;
   background: #4d186e;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   padding: 32px;
 }
 
 .c0 .sideContainer .registrationSideContainer {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   color: #fff;
 }
@@ -206,6 +154,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
 
 .c0 .sideContainer .registrationSideContainer button:hover {
   color: #fff;
+  border-color: #fff;
 }
 
 @media only screen and (max-width:767px) {
@@ -215,7 +164,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
 }
 
 <form
-  class="ant-form ant-form-horizontal"
+  class="ant-form ant-form-horizontal css-dev-only-do-not-override-190m0jy"
 >
   <div
     class="c0"
@@ -243,7 +192,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
             href="/register"
           >
             <button
-              class="ant-btn ant-btn-default"
+              class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-default"
               type="button"
             >
               SIGN UP
@@ -269,7 +218,9 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
           <span
             aria-label="facebook"
             class="anticon anticon-facebook"
+            data-testid="facebook-btn"
             role="img"
+            tabindex="-1"
           >
             <svg
               aria-hidden="true"
@@ -288,7 +239,9 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
           <span
             aria-label="google"
             class="anticon anticon-google"
+            data-testid="google-btn"
             role="img"
+            tabindex="-1"
           >
             <svg
               aria-hidden="true"
@@ -333,13 +286,13 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
           class="accountData"
         >
           <div
-            class="ant-form-item"
+            class="ant-form-item css-dev-only-do-not-override-190m0jy"
           >
             <div
-              class="ant-row ant-form-item-row"
+              class="ant-row ant-form-item-row css-dev-only-do-not-override-190m0jy"
             >
               <div
-                class="ant-col ant-form-item-control"
+                class="ant-col ant-form-item-control css-dev-only-do-not-override-190m0jy"
               >
                 <div
                   class="ant-form-item-control-input"
@@ -349,7 +302,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
                   >
                     <input
                       aria-required="true"
-                      class="ant-input"
+                      class="ant-input css-dev-only-do-not-override-190m0jy"
                       id="email"
                       placeholder="Email"
                       type="email"
@@ -361,13 +314,13 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="ant-form-item"
+            class="ant-form-item css-dev-only-do-not-override-190m0jy"
           >
             <div
-              class="ant-row ant-form-item-row"
+              class="ant-row ant-form-item-row css-dev-only-do-not-override-190m0jy"
             >
               <div
-                class="ant-col ant-form-item-control"
+                class="ant-col ant-form-item-control css-dev-only-do-not-override-190m0jy"
               >
                 <div
                   class="ant-form-item-control-input"
@@ -376,11 +329,11 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
                     class="ant-form-item-control-input-content"
                   >
                     <span
-                      class="ant-input-affix-wrapper ant-input-password"
+                      class="ant-input-affix-wrapper ant-input-password css-dev-only-do-not-override-190m0jy"
                     >
                       <input
                         aria-required="true"
-                        class="ant-input"
+                        class="ant-input css-dev-only-do-not-override-190m0jy"
                         id="password"
                         placeholder="Password"
                         type="password"
@@ -421,13 +374,13 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
           </div>
         </div>
         <div
-          class="ant-form-item"
+          class="ant-form-item css-dev-only-do-not-override-190m0jy"
         >
           <div
-            class="ant-row ant-form-item-row"
+            class="ant-row ant-form-item-row css-dev-only-do-not-override-190m0jy"
           >
             <div
-              class="ant-col ant-form-item-control"
+              class="ant-col ant-form-item-control css-dev-only-do-not-override-190m0jy"
             >
               <div
                 class="ant-form-item-control-input"
@@ -436,7 +389,7 @@ exports[`<Login /> Should render and match the snapshot 1`] = `
                   class="ant-form-item-control-input-content"
                 >
                   <button
-                    class="ant-btn ant-btn-default"
+                    class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-default"
                     type="submit"
                   >
                     SIGN IN

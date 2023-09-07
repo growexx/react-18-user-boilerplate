@@ -1,4 +1,4 @@
-import { Parser } from 'json2csv';
+import { Parser } from '@json2csv/plainjs';
 
 /**
  * @description Export Json data as CSV, on function call it'll convert

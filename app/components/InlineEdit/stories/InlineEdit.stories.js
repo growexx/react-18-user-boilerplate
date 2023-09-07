@@ -10,7 +10,9 @@ export default {
   title: 'Components/InlineEdit',
   component: InlineEdit,
 };
-const Template = args => <InlineEdit {...args} />;
+function Template(args) {
+  return <InlineEdit {...args} />;
+}
 
 export const InlineEditComponent = Template.bind({});
 InlineEditComponent.args = {

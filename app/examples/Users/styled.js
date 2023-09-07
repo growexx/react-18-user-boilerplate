@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { PageHeader, Select, Space, Table, Input } from 'antd';
+import { Select, Space, Table, Input } from 'antd';
+import { PageHeader } from '@ant-design/pro-layout';
 const { Search } = Input;
 
 export const AccountStatusDropDown = styled(Select)`

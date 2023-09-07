@@ -1,0 +1,27 @@
+/**
+ *
+ * {{properCase name }} Slice
+ *
+ */
+
+
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = {
+  appLoading: false,
+};
+
+export const {{ properCase name }}Slice = createSlice({
+  initialState,
+  name: '{{ properCase name }}',
+  reducers: {
+    loadApp: (state, action) => ({
+      ...state,
+      appLoading: action.payload,
+    }),
+  },
+});
+
+export const { loadApp } = {{ properCase name }}Slice.actions;
+
+export default {{ properCase name }}Slice.reducer;

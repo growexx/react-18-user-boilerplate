@@ -2,14 +2,14 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import history from 'utils/history';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
+import history from 'utils/history';
 import { TOKEN_KEY } from 'utils/constants';
 import StorageService from 'utils/StorageService';
 import Login from 'containers/Auth/Login/Loadable';
 import request from 'utils/request';
-import configureStore from '../../../configureStore';
-import RoleMiddleWare from '../RoleMiddleWare';
+import { store } from 'configureStore';
+import RoleMiddleWare, { getDerivedStateFromProps } from '../RoleMiddleWare';
 import { ROLES, ROUTES } from '../../constants';
 
 jest.mock('utils/request');
@@ -49,7 +49,6 @@ const login = () => StorageService.set(TOKEN_KEY, tokenValue);
 
 describe('<RoleMiddleWare />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
     login();
   });
@@ -117,5 +116,50 @@ describe('<RoleMiddleWare />', () => {
     props.showError = false;
     const { container } = componentWrapper();
     expect(container).toBeTruthy();
+  });
+
+  it('getDerivedStateFromProps: when there is no userData', () => {
+    const testProps = {
+      path: ROUTES.TEST_ADMIN_PAGE,
+    };
+    const testState = {};
+    const response = {
+      isRestrictedRoute: true,
+      loader: true,
+    };
+    expect(getDerivedStateFromProps(testProps, testState)).toStrictEqual(
+      response,
+    );
+  });
+
+  it('getDerivedStateFromProps: when there is userData but empty', () => {
+    const testProps = {
+      path: ROUTES.TEST_ADMIN_PAGE,
+    };
+    const testState = {
+      userData: {},
+    };
+    const response = {
+      userData: {},
+      isRestrictedRoute: true,
+      loader: true,
+    };
+    expect(getDerivedStateFromProps(testProps, testState)).toStrictEqual(
+      response,
+    );
+  });
+
+  it('getDerivedStateFromProps: when there is userData', () => {
+    const testProps = {
+      path: ROUTES.TEST_ADMIN_PAGE,
+    };
+    const testState = {
+      userData: {
+        role: 1,
+      },
+    };
+    expect(getDerivedStateFromProps(testProps, testState)).toStrictEqual(
+      testState,
+    );
   });
 });

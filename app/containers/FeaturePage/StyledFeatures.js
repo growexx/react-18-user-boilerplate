@@ -23,6 +23,7 @@ export const StyledFeaturePage = styled.div`
   table {
     margin: 10px;
     overflow: hidden;
+    border-collapse: collapse;
     th {
       font-size: @font-size-lg;
       color: @primary-color;

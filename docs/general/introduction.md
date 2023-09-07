@@ -19,13 +19,12 @@ Here's a curated list of packages that you should be at least familiar with befo
 - [ ] [Redux](http://redux.js.org/)
 - [ ] [Redux Saga](https://redux-saga.github.io/redux-saga/)
 - [ ] [Reselect](https://github.com/reactjs/reselect)
-- [ ] [Immer](https://github.com/mweststrate/immer)
 - [ ] [Styled Components](https://github.com/styled-components/styled-components)
 
 ### Unit Testing
 
 - [ ] [Jest](http://facebook.github.io/jest/)
-- [ ] [react-testing-library](https://github.com/kentcdodds/react-testing-library)
+- [ ] [@testing-library/react](https://github.com/testing-library/react-testing-library#readme)
 
 ### Linting
 
@@ -96,7 +95,7 @@ Webpack requires an entry point to your application. Think of it as a door to yo
 
 `app/app.js` is one of the biggest files of the boilerplate. It contains all the global setup to make sure your app runs smoothly. Let's break its contents down:
 
-- `@babel/polyfill` is imported. This enables cool stuff like generator functions, `Promise`s, etc.
+- `core-js/stable` is imported. This enables cool stuff like generator functions, `Promise`s, etc.
 - A `history` object is created, which remembers all the browsing history for your app. This is used by the ConnectedRouter to know which pages your users visit. (Very useful for analytics, by the way.)
 - A redux `store` is instantiated.
 - `ReactDOM.render()` not only renders the [root react component](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<LanguageProvider />` and `<ConnectedRouter />`.

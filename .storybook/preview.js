@@ -1,10 +1,10 @@
 import React from 'react';
 import WrapperStory from '../app/stories/decorators/WrapperStory';
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
-}
+  actions: { argTypesRegex: '^on[A-Z].*' },
+};
 export const decorators = [
-  (Story) => (
+  Story => (
     <WrapperStory>
       <Story />
     </WrapperStory>

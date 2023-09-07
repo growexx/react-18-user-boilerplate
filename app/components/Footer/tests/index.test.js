@@ -2,14 +2,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
+import { store } from 'configureStore';
 import Footer from '../index';
-import configureStore from '../../../configureStore';
 
 describe('<Footer />', () => {
   let globalStore;
 
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 

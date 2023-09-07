@@ -3,21 +3,22 @@
  */
 
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
+import { configureStore } from '@reduxjs/toolkit';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
-
-import { HomePage, mapDispatchToProps } from '../index';
-import { changeUsername } from '../actions';
-import { loadRepos } from '../../App/actions';
-import configureStore from '../../../configureStore';
+import { store } from 'configureStore';
+import { HomePage } from '../index';
+import { repoApi } from '../reposApiSlice';
 
 describe('<HomePage />', () => {
-  let globalStore;
+  let globalStore = configureStore({
+    reducer: {
+      repos: repoApi.reducer,
+    },
+  });
 
   beforeAll(() => {
-    const { store } = configureStore({}, browserHistory);
     globalStore = store;
   });
 
@@ -27,95 +28,26 @@ describe('<HomePage />', () => {
     } = render(
       <Provider store={globalStore}>
         <IntlProvider locale="en">
-          <HomePage loading={false} error={false} repos={[]} />
+          <HomePage />
         </IntlProvider>
       </Provider>,
     );
     expect(firstChild).toMatchSnapshot();
   });
 
-  it('should fetch the repos on mount if a username exists', () => {
-    const submitSpy = jest.fn();
-    render(
+  it('should submit and show repositories', () => {
+    const { getByRole, getByPlaceholderText } = render(
       <Provider store={globalStore}>
         <IntlProvider locale="en">
-          <HomePage
-            username="Not Empty"
-            onChangeUsername={() => {}}
-            onSubmitForm={submitSpy}
-          />
+          <HomePage />
         </IntlProvider>
       </Provider>,
     );
-    expect(submitSpy).toHaveBeenCalledTimes(1);
-  });
 
-  it('should not call onSubmitForm if username is an empty string', () => {
-    const submitSpy = jest.fn();
-    render(
-      <Provider store={globalStore}>
-        <IntlProvider locale="en">
-          <HomePage onChangeUsername={() => {}} onSubmitForm={submitSpy} />
-        </IntlProvider>
-      </Provider>,
-    );
-    expect(submitSpy).not.toHaveBeenCalled();
-  });
-
-  it('should not call onSubmitForm if username is null', () => {
-    const submitSpy = jest.fn();
-    render(
-      <Provider store={globalStore}>
-        <IntlProvider locale="en">
-          <HomePage
-            username=""
-            onChangeUsername={() => {}}
-            onSubmitForm={submitSpy}
-          />
-        </IntlProvider>
-      </Provider>,
-    );
-    expect(submitSpy).not.toHaveBeenCalled();
-  });
-
-  describe('mapDispatchToProps', () => {
-    describe('onChangeUsername', () => {
-      it('should be injected', () => {
-        const dispatch = jest.fn();
-        const result = mapDispatchToProps(dispatch);
-        expect(result.onChangeUsername).toBeDefined();
-      });
-
-      it('should dispatch changeUsername when called', () => {
-        const dispatch = jest.fn();
-        const result = mapDispatchToProps(dispatch);
-        const username = 'mxstbr';
-        result.onChangeUsername({ target: { value: username } });
-        expect(dispatch).toHaveBeenCalledWith(changeUsername(username));
-      });
+    fireEvent.change(getByPlaceholderText('mxstbr'), {
+      target: { value: 'test' },
     });
 
-    describe('onSubmitForm', () => {
-      it('should be injected', () => {
-        const dispatch = jest.fn();
-        const result = mapDispatchToProps(dispatch);
-        expect(result.onSubmitForm).toBeDefined();
-      });
-
-      it('should dispatch loadRepos when called', () => {
-        const dispatch = jest.fn();
-        const result = mapDispatchToProps(dispatch);
-        result.onSubmitForm();
-        expect(dispatch).toHaveBeenCalledWith(loadRepos());
-      });
-
-      it('should preventDefault if called with event', () => {
-        const preventDefault = jest.fn();
-        const result = mapDispatchToProps(() => {});
-        const evt = { preventDefault };
-        result.onSubmitForm(evt);
-        expect(preventDefault).toHaveBeenCalledWith();
-      });
-    });
+    fireEvent.submit(getByRole('form'));
   });
 });

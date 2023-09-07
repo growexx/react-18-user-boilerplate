@@ -4,65 +4,68 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import { Form, Input, Button, notification } from 'antd';
+import { Form, Input, Button } from 'antd';
 import {
   FacebookFilled,
   GoogleOutlined,
   WindowsFilled,
 } from '@ant-design/icons';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createStructuredSelector } from 'reselect';
-import { useInjectReducer } from 'utils/injectReducer';
-import { useInjectSaga } from 'utils/injectSaga';
-import {
-  makeSelectEmail,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectPassword,
-  makeSelectSuccess,
-} from 'containers/Auth/Login/selectors';
 import messages from './messages';
 import { StyledLogin } from './StyledLogin';
-import {
-  changeEmail,
-  changePassword,
-  fireLogin,
-  fireFacebookLogin,
-  fireGoogleLogin,
-} from './actions';
-import reducer from './reducer';
-import saga from './saga';
 import { StyledAuthContainer } from '../StyledAuthContainer';
 import AuthSideContainer from '../index';
 import { AUTH_TYPE } from '../constants';
 import { ROUTES } from '../../constants';
+import { facebookLogin, googleLogin, login } from './slice';
 
-const key = 'login';
+// const showNotification = () => {
+//   notification.open({
+//     message: <FormattedMessage {...messages.notificationToast} />,
+//   });
+// };
+export function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-const showNotification = () => {
-  notification.open({
-    message: <FormattedMessage {...messages.notificationToast} />,
-  });
-};
-export function Login({
-  loading,
-  onSignIn,
-  email,
-  password,
-  error,
-  onChangeEmail,
-  onChangePassword,
-  onGoogleSignIn,
-  onFacebookSignIn,
-}) {
-  useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
+  // use this if you are using login API and manage the loading error status accordingly
+  // const [loginUser, { isLoading, isError }] = useLoginMutation();
+
+  const onSignIn = () => {
+    // call loginUser mutation if you are calling login API and set Tokens accordingly
+    // loginUser()
+
+    setLoading(true);
+    dispatch(login());
+    setLoading(false);
+    // do navigation based on condition
+    navigate(ROUTES.HOME);
+  };
+
+  const onGoogleSignIn = () => {
+    dispatch(googleLogin());
+  };
+
+  const onFacebookSignIn = () => {
+    dispatch(facebookLogin());
+  };
+
+  const onChangeEmail = e => {
+    setEmail(e.target.value);
+  };
+
+  const onChangePassword = e => {
+    setPassword(e.target.value);
+  };
+
   return (
     <Form onFinish={onSignIn}>
       <StyledAuthContainer>
@@ -77,8 +80,14 @@ export function Login({
           </p>
           <div className="LoginSubContainer">
             <div className="socialIcons">
-              <FacebookFilled onClick={onFacebookSignIn} />
-              <GoogleOutlined onClick={onGoogleSignIn} />
+              <FacebookFilled
+                onClick={onFacebookSignIn}
+                data-testid="facebook-btn"
+              />
+              <GoogleOutlined
+                onClick={onGoogleSignIn}
+                data-testid="google-btn"
+              />
               <WindowsFilled />
             </div>
             <p className="emailLogin">
@@ -136,7 +145,8 @@ export function Login({
             <FormattedMessage {...messages.forgotPassword} />
           </Link>
         </StyledLogin>
-        {error === true && showNotification()}
+        {/* handle error stats */}
+        {/* {isError && showNotification()} */}
       </StyledAuthContainer>
     </Form>
   );
@@ -145,45 +155,6 @@ export function Login({
 Login.propTypes = {
   history: PropTypes.object,
   loading: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  success: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  onSignIn: PropTypes.func,
-  email: PropTypes.string,
-  password: PropTypes.string,
-  onChangePassword: PropTypes.func,
-  onChangeEmail: PropTypes.func,
-  onGoogleSignIn: PropTypes.func,
-  onFacebookSignIn: PropTypes.func,
 };
 
-const mapStateToProps = createStructuredSelector({
-  email: makeSelectEmail(),
-  password: makeSelectPassword(),
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
-  success: makeSelectSuccess(),
-});
-
-export function mapDispatchToProps(dispatch) {
-  return {
-    onChangeEmail: evt => dispatch(changeEmail(evt.target.value)),
-    onChangePassword: evt => dispatch(changePassword(evt.target.value)),
-    onSignIn: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(fireLogin());
-    },
-    onGoogleSignIn: () => {
-      dispatch(fireGoogleLogin());
-    },
-    onFacebookSignIn: () => {
-      dispatch(fireFacebookLogin());
-    },
-  };
-}
-
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-export default compose(withConnect)(Login);
+export default Login;

@@ -10,7 +10,9 @@ export default {
   title: 'Components/FileUpload',
   component: FileUpload,
 };
-const Template = args => <FileUpload {...args} />;
+function Template(args) {
+  return <FileUpload {...args} />;
+}
 
 export const FileUploadComponent = Template.bind({});
 FileUploadComponent.args = {};

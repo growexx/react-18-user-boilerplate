@@ -1,27 +1,26 @@
 /**
  * app.js
  *
- * This is the route file for the application
+ * This is the entry file for the application, only setup and boilerplate
  * code.
  */
 
-// Needed for redux-saga es6 generator support
-import '@babel/polyfill';
+import 'core-js/stable';
 
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
+import { ConfigProvider } from 'antd';
 import FontFaceObserver from 'fontfaceobserver';
-import 'sanitize.css/sanitize.css';
+import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
-
 // Font Awesome Initialization
 // Remove which is not needed
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import 'sanitize.css/sanitize.css';
 
 // Import root app
 import MainLayout from 'components/MainLayout';
@@ -31,13 +30,14 @@ import LanguageProvider from 'containers/LanguageProvider';
 
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicons/favicon.ico';
-import 'file-loader?name=.htaccess!./.htaccess'; // eslint-disable-line import/extensions
+import 'file-loader?name=.htaccess!./.htaccess';
+/* eslint-enable import/no-unresolved, import/extensions */
 
-import configureStore from './configureStore';
+import { store, history } from './configureStore';
+import { themeConfig } from './utils/constants';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
-
 // Make font awesome library to be used across project
 library.add(fab, far, fas);
 
@@ -50,17 +50,15 @@ openSansObserver.load().then(() => {
   document.body.classList.add('fontLoaded');
 });
 
-// Create redux store with history
-const initialState = {};
-const { store, history } = configureStore(initialState);
 const MOUNT_NODE = ReactDOM.createRoot(document.getElementById('app'));
-
 const renderMessage = message =>
   MOUNT_NODE.render(
     <Provider store={store}>
       <LanguageProvider messages={message}>
         <Router history={history}>
-          <MainLayout />
+          <ConfigProvider theme={themeConfig}>
+            <MainLayout />
+          </ConfigProvider>
         </Router>
       </LanguageProvider>
     </Provider>,
@@ -71,7 +69,8 @@ if (module.hot) {
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
   module.hot.accept(['./i18n', 'containers/App'], () => {
-    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+    // ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+    MOUNT_NODE.unmount();
     renderMessage(translationMessages);
   });
 }

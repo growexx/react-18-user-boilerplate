@@ -10,11 +10,11 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import history from 'utils/history';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
-import configureStore from '../../../../configureStore';
+import history from 'utils/history';
+import { store } from 'configureStore';
 import Logout from '../index';
-import Lodable from '../Loadable';
+import Loadable from '../Loadable';
 let globalStore;
 const componentWrapper = Component =>
   render(
@@ -29,7 +29,6 @@ const componentWrapper = Component =>
 
 describe('<Registration />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -42,7 +41,7 @@ describe('<Registration />', () => {
   it('Should render and match the snapshot Loadable', () => {
     const {
       container: { firstChild },
-    } = componentWrapper(Lodable);
+    } = componentWrapper(Loadable);
     expect(firstChild).toMatchSnapshot();
   });
 });

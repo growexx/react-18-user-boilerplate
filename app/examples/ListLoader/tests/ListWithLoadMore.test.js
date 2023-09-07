@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
 import request from 'utils/request';
-import configureStore from '../../../configureStore';
+import { store } from 'configureStore';
 import ListWithLoadMore from '../ListWithLoadMore';
 let globalStore;
 jest.mock('utils/request');
@@ -21,7 +21,6 @@ const componentWrapper = () =>
   );
 describe('<ListWithLoadMore />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 

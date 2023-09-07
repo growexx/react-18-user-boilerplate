@@ -4,8 +4,8 @@ import { act, render } from '@testing-library/react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import { MemoryRouter } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
+import { store } from 'configureStore';
 import App from '../index';
-import configureStore from '../../../configureStore';
 import { ROUTES } from '../../constants';
 import StorageService from '../../../utils/StorageService';
 import { TOKEN_KEY } from '../../../utils/constants';
@@ -25,7 +25,6 @@ const componentWrapper = () =>
 
 describe('<App />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
     StorageService.set(TOKEN_KEY, 'TOKENVALUE');
   });

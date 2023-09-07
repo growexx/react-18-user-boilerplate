@@ -1,150 +1,114 @@
-import React, { Component } from 'react';
-import moment from 'moment';
-import { Card, Space, Button } from 'antd';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
+import { Card, Space } from 'antd';
 import {
   CHANNEL_NAME,
   FULL_GENERIC_MOMENT_DATE_FORMAT,
 } from '../../containers/constants';
 import { TEST_IDS } from './constants';
+import { Container, MessageContainer, ActionButton } from './styled';
 
-const Container = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-`;
-const MessageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+function MultiTabSupport() {
+  const [messages, setMessages] = useState([]);
+  const [localStorageMessages, setLocalStorageMessages] = useState([]);
 
-const ActionButton = styled(Button)`
-  width: 200px;
-`;
-
-class MultiTabSupport extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      messages: [],
-      localStorageMessages: [],
-    };
-  }
-
-  sendMessageViaLocalStorage = () => {
+  const sendMessageViaLocalStorage = () => {
     const currentData = JSON.parse(localStorage.getItem('message')) || [];
     const newData = [...currentData, new Date().getTime()];
-    this.setState({ localStorageMessages: newData }, () => {
-      localStorage.setItem('message', JSON.stringify(newData));
-    });
+    setLocalStorageMessages(newData);
+    localStorage.setItem('message', JSON.stringify(newData));
   };
 
-  messageReceiveViaLocalStorage = ev => {
+  const messageReceiveViaLocalStorage = ev => {
     if (ev.key === 'message') {
-      const { localStorageMessages } = this.state;
       try {
         const message = JSON.parse(ev.newValue);
-        this.setState({
-          localStorageMessages: message || localStorageMessages,
-        });
+        setLocalStorageMessages(message || localStorageMessages);
       } catch (error) {
         // Some Error
       }
     }
   };
 
-  sendMessageViaBroadCastChannel() {
+  const sendMessageViaBroadCastChannel = () => {
     const broadcast = new BroadcastChannel(CHANNEL_NAME);
     broadcast.postMessage({
       type: 'test',
       date: new Date().getTime(),
     });
-  }
-
-  broadcastListener = event => {
-    const { messages } = this.state;
-    this.setState({ messages: [...messages, event.data.date] });
   };
 
-  componentDidMount() {
-    this.listen = new BroadcastChannel(CHANNEL_NAME);
-    this.listen.addEventListener('message', this.broadcastListener);
+  const broadcastListener = event => {
+    setMessages(prevMessages => [...prevMessages, event.data.date]);
+  };
 
-    window.addEventListener('storage', this.messageReceiveViaLocalStorage);
-    this.setState({
-      localStorageMessages: JSON.parse(localStorage.getItem('message')) || [],
-    });
-  }
-
-  clearLocalStorage() {
-    this.setState({
-      localStorageMessages: [],
-    });
+  const clearLocalStorage = () => {
+    setLocalStorageMessages([]);
     localStorage.setItem('message', JSON.stringify([]));
-  }
+  };
 
-  componentWillUnmount() {
-    this.listen.removeEventListener('message', this.broadcastListener);
-  }
+  useEffect(() => {
+    const listen = new BroadcastChannel(CHANNEL_NAME);
+    listen.addEventListener('message', broadcastListener);
 
-  render() {
-    const { messages, localStorageMessages } = this.state;
+    window.addEventListener('storage', messageReceiveViaLocalStorage);
+    setLocalStorageMessages(JSON.parse(localStorage.getItem('message')) || []);
 
-    return (
-      <>
-        <div>Received Messages</div>
-        <Container>
-          <Card
-            title="Broadcast Channel Approach with setState"
-            bordered={false}
-          >
-            <MessageContainer>
-              {messages.map(message => (
-                <Space>
-                  {moment(new Date(message)).format(
-                    FULL_GENERIC_MOMENT_DATE_FORMAT,
-                  )}
-                </Space>
-              ))}
-            </MessageContainer>
-          </Card>
-          <Card title="LocalStorage Approach with setState" bordered={false}>
-            <MessageContainer>
-              {localStorageMessages.map(message => (
-                <Space>
-                  {moment(new Date(message)).format(
-                    FULL_GENERIC_MOMENT_DATE_FORMAT,
-                  )}
-                </Space>
-              ))}
-            </MessageContainer>
-          </Card>
-        </Container>
-        <Container>
+    return () => {
+      listen.removeEventListener('message', broadcastListener);
+    };
+  }, []);
+
+  return (
+    <>
+      <div>Received Messages</div>
+      <Container>
+        <Card title="Broadcast Channel Approach with useState" bordered={false}>
+          <MessageContainer>
+            {messages.map(message => (
+              <Space key={message}>
+                {dayjs(new Date(message)).format(
+                  FULL_GENERIC_MOMENT_DATE_FORMAT,
+                )}
+              </Space>
+            ))}
+          </MessageContainer>
+        </Card>
+        <Card title="LocalStorage Approach with useState" bordered={false}>
+          <MessageContainer>
+            {localStorageMessages.map(message => (
+              <Space key={message}>
+                {dayjs(new Date(message)).format(
+                  FULL_GENERIC_MOMENT_DATE_FORMAT,
+                )}
+              </Space>
+            ))}
+          </MessageContainer>
+        </Card>
+      </Container>
+      <Container>
+        <ActionButton
+          data-testid={TEST_IDS.ADD_MESSAGE}
+          type="primary"
+          onClick={() => {
+            sendMessageViaBroadCastChannel();
+            sendMessageViaLocalStorage();
+          }}
+        >
+          Add Message
+        </ActionButton>{' '}
+        {localStorageMessages.length > 0 && (
           <ActionButton
-            data-testid={TEST_IDS.ADD_MESSAGE}
-            type="primary"
-            onClick={() => {
-              this.sendMessageViaBroadCastChannel();
-              this.sendMessageViaLocalStorage();
-            }}
+            data-testid={TEST_IDS.CLEAR_LOCAL_STORAGE}
+            type="secondary"
+            onClick={clearLocalStorage}
           >
-            Add Message
-          </ActionButton>{' '}
-          {localStorageMessages.length > 0 ? (
-            <ActionButton
-              data-testid={TEST_IDS.CLEAR_LOCAL_STORAGE}
-              type="secondary"
-              onClick={() => {
-                this.clearLocalStorage();
-              }}
-            >
-              Clear Local Storage
-            </ActionButton>
-          ) : null}
-        </Container>
-      </>
-    );
-  }
+            Clear Local Storage
+          </ActionButton>
+        )}
+      </Container>
+    </>
+  );
 }
 
 export default MultiTabSupport;

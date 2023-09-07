@@ -9,7 +9,7 @@ import React from 'react';
 import { List } from 'antd';
 import { API_ENDPOINTS } from 'containers/constants';
 
-const ListWithPagination = () => {
+function ListWithPagination() {
   const listData = [];
   for (let i = 0; i < 23; i++) {
     listData.push({
@@ -47,7 +47,7 @@ const ListWithPagination = () => {
       )}
     />
   );
-};
+}
 ListWithPagination.propTypes = {};
 
 export default ListWithPagination;

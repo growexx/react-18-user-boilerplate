@@ -6,7 +6,9 @@ export default {
   component: SideBar,
 };
 
-const Template = args => <SideBar {...args} />;
+function Template(args) {
+  return <SideBar {...args} />;
+}
 
 export const Sidebar = Template.bind({});
 Sidebar.args = {

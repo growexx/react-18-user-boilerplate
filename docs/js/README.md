@@ -20,9 +20,6 @@ add new parts of your application!
 ### Learn more
 
 - [Redux](redux.md)
-- [Immer](immer.md)
-- [reselect](reselect.md)
-- [redux-saga](redux-saga.md)
 - [react-intl](i18n.md)
 - [routing](routing.md)
 - [Asynchronously loaded components](async-components.md)

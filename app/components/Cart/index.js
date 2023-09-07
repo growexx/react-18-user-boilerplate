@@ -8,7 +8,7 @@ import { ShoppingCartOutlined } from '@ant-design/icons';
 import { Badge, Button } from 'antd';
 import CartDrawer from './CartDrawer';
 
-const Cart = () => {
+function Cart() {
   const productCount = JSON.parse(localStorage.products || '[]').length;
   const [visible, setVisible] = useState(false);
   const [count, setCount] = useState(productCount);
@@ -48,5 +48,5 @@ const Cart = () => {
       </div>
     </>
   );
-};
+}
 export default Cart;

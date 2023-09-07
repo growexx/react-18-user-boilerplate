@@ -7,15 +7,14 @@
  */
 
 import React from 'react';
-import { render } from 'react-testing-library';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import history from 'utils/history';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
-import { TwoFactorAuthentication, mapDispatchToProps } from '../index';
-import Lodable from '../Loadable';
-import { TEST_OTP_VALUE, TEST_OTP_VALUE_WITHOUT_LENGTH } from '../constants';
-import configureStore from '../../../../configureStore';
+import history from 'utils/history';
+import { store } from 'configureStore';
+import { TwoFactorAuthentication } from '../index';
+import Loadable from '../Loadable';
 let globalStore;
 const componentWrapper = Component =>
   render(
@@ -29,7 +28,6 @@ const componentWrapper = Component =>
   );
 describe('<TwoFactorAuthentication />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
   it('Should render and match the snapshot', () => {
@@ -38,19 +36,24 @@ describe('<TwoFactorAuthentication />', () => {
     } = componentWrapper(TwoFactorAuthentication);
     expect(firstChild).toMatchSnapshot();
   });
-  it('mapDispatch to props', () => {
-    const mockFn = jest.fn();
-    const returnValue = mapDispatchToProps(mockFn);
-    // when otp length is achieved
-    returnValue.onChangeValue(TEST_OTP_VALUE.toString());
-    // when otp length is not achieved
-    returnValue.onChangeValue(TEST_OTP_VALUE_WITHOUT_LENGTH.toString());
-    expect(mockFn).toBeCalled();
-  });
   it('Should render and match the snapshot Loadable', () => {
     const {
       container: { firstChild },
-    } = componentWrapper(Lodable);
+    } = componentWrapper(Loadable);
     expect(firstChild).toMatchSnapshot();
+  });
+
+  it('updates OTP value when typing', async () => {
+    const { getAllByRole } = componentWrapper(TwoFactorAuthentication);
+    const otpInputFields = getAllByRole('textbox');
+
+    otpInputFields.forEach(input => {
+      fireEvent.change(input, { target: { value: '1' } });
+      expect(input.value).toBe('1');
+    });
+
+    await waitFor(() => {
+      expect(window.location.pathname).toBe('/');
+    });
   });
 });

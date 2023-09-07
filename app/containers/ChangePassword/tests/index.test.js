@@ -10,11 +10,12 @@ import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import history from 'utils/history';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
-import ChangePassword, { mapDispatchToProps } from '../index';
-import Lodable from '../Loadable';
-import configureStore from '../../../configureStore';
+import '@testing-library/jest-dom';
+import history from 'utils/history';
+import { store } from 'configureStore';
+import ChangePassword from '../index';
+import Loadable from '../Loadable';
 let globalStore;
 const props = {
   error: {
@@ -36,7 +37,6 @@ const componentWrapper = Component =>
   );
 describe('<ChangePassword />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -46,39 +46,15 @@ describe('<ChangePassword />', () => {
     } = componentWrapper(ChangePassword);
     expect(firstChild).toMatchSnapshot();
   });
-  test('mapDispatch to props', async () => {
-    const mockFn = jest.fn();
-    const returnValue = await mapDispatchToProps(mockFn);
-    const eventObject = {
-      target: {
-        target: { name: 'currentPassword', value: 'test' },
-      },
-      preventDefault: jest.fn(),
-    };
-    const returnValueForSubmitData = await mapDispatchToProps(mockFn);
-    await returnValueForSubmitData.updateField(eventObject);
-    await returnValueForSubmitData.submitData(eventObject);
-
-    const eventObjectWithoutPreventDefault = {
-      target: {
-        value: 'test',
-      },
-    };
-    await returnValue.submitData(eventObjectWithoutPreventDefault);
-    await waitFor(() => {
-      expect(mockFn).toBeCalled();
-    });
-  });
   test('Should render and match the snapshot Loadable', async () => {
     const {
       container: { firstChild },
-    } = componentWrapper(Lodable);
+    } = componentWrapper(Loadable);
     expect(firstChild).toMatchSnapshot();
   });
-  test('Should Click Button', async () => {
-    const { container, getByPlaceholderText } = componentWrapper(
-      ChangePassword,
-    );
+  test('Should Click Button and show error for passwords not same', async () => {
+    const { container, getByPlaceholderText } =
+      componentWrapper(ChangePassword);
     fireEvent.change(getByPlaceholderText('Current Password'), {
       target: {
         name: 'currentPassword',
@@ -86,10 +62,10 @@ describe('<ChangePassword />', () => {
       },
     });
     fireEvent.change(getByPlaceholderText('New Password'), {
-      target: { name: 'newPassword', value: 'PassWord$' },
+      target: { name: 'newPassword', value: 'password123' },
     });
     fireEvent.change(getByPlaceholderText('Confirm Password'), {
-      target: { name: 'newPassword', value: 'PassWord$' },
+      target: { name: 'newPassword', value: 'password456' },
     });
     const preventDefault = jest.fn();
     const button = container.querySelector('button');
@@ -97,5 +73,40 @@ describe('<ChangePassword />', () => {
       preventDefault,
     });
     await waitFor(() => expect(button).toBeTruthy());
+  });
+
+  test('Should show error text when fields are empty', async () => {
+    const { container, getByPlaceholderText } =
+      componentWrapper(ChangePassword);
+
+    fireEvent.blur(getByPlaceholderText('Current Password'));
+    fireEvent.blur(getByPlaceholderText('Confirm Password'));
+    fireEvent.blur(getByPlaceholderText('New Password'));
+
+    const preventDefault = jest.fn();
+    const button = container.querySelector('button');
+    fireEvent.click(button, {
+      preventDefault,
+    });
+    await waitFor(() => expect(button).toBeTruthy());
+  });
+
+  test('Should submit form', async () => {
+    const { getByPlaceholderText, getByRole } =
+      componentWrapper(ChangePassword);
+    fireEvent.change(getByPlaceholderText('Current Password'), {
+      target: {
+        name: 'currentPassword',
+        value: 'PassWord$',
+      },
+    });
+
+    fireEvent.change(getByPlaceholderText('Confirm Password'), {
+      target: { name: 'confirmNewPassword', value: 'password123' },
+    });
+    fireEvent.change(getByPlaceholderText('New Password'), {
+      target: { name: 'newPassword', value: 'password123' },
+    });
+    getByRole('form').submit();
   });
 });

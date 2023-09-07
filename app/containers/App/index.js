@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 /**
  *
  * App
@@ -25,7 +24,6 @@ import ExportDataToCsv from 'examples/ExportDataToCsv/Loadable';
 import Users from 'examples/Users/Loadable';
 import Charts from 'examples/Charts/Loadable';
 import Products from 'examples/Products/Loadable';
-import SampleForm from 'examples/SampleForm/Loadable';
 import ChangePassword from 'containers/ChangePassword/Loadable';
 import MultiTabSupport from 'examples/MultiTabSupport/Loadable';
 import ForgotPassword from 'containers/Auth/ForgotPassword/Loadable';
@@ -45,6 +43,10 @@ const AppWrapper = styled.div`
   min-height: 100vh;
   flex-direction: column;
 `;
+
+function AdminPage() {
+  return <div>This is Admin Role Page</div>;
+}
 
 export default function App() {
   useEffect(() => {
@@ -91,7 +93,6 @@ export default function App() {
             element={<MultiTabSupport />}
           />
           <Route path={ROUTES.CHANGE_PASSWORD} element={<ChangePassword />} />
-          <Route path={ROUTES.SAMPLE_FORM} element={<SampleForm />} />
           <Route
             path={ROUTES.NUMERAL_CONVERTER}
             element={<NumeralConversion />}
@@ -102,7 +103,7 @@ export default function App() {
         <Route element={<RoleMiddleWare />}>
           <Route
             path={ROUTES.TEST_ADMIN_PAGE}
-            element={() => <div>This is Admin Role Page</div>}
+            element={AdminPage}
             // ShowError redirects to 403
             // showError
           />
