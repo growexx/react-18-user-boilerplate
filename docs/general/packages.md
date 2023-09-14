@@ -58,5 +58,5 @@ Following are the packages used in the boilerplate
 | recharts                | Charts                                          |
 | react-waypoint          | Skeleton loader                                 |
 | jest-styled-components  | Jest utilities for Styled Components            |
-| react-hook-form         | Form Control with react-hook-from               |
 | firebase                | Firebase sdk for adding firebase features       |
+| react-hook-form         | Form Control with react-hook-from               |
