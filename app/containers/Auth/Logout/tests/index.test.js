@@ -16,6 +16,15 @@ import { store } from 'configureStore';
 import Logout from '../index';
 import Loadable from '../Loadable';
 let globalStore;
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 const componentWrapper = Component =>
   render(
     <Provider store={globalStore}>

@@ -8,6 +8,15 @@ import request from 'utils/request';
 import { store } from 'configureStore';
 import ListWithLoadMore from '../ListWithLoadMore';
 let globalStore;
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 jest.mock('utils/request');
 const componentWrapper = () =>
   render(

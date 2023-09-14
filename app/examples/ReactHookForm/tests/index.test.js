@@ -12,6 +12,15 @@ import history from 'utils/history';
 import { store } from 'configureStore';
 import ReactHookForm from '../index';
 let globalStore;
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 const componentWrapper = () =>
   render(
     <Provider store={globalStore}>

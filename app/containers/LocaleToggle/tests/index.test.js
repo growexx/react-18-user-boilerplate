@@ -8,6 +8,15 @@ import LanguageProvider from '../../LanguageProvider';
 import { translationMessages } from '../../../i18n';
 import { changeLocale } from '../../LanguageProvider/slice';
 
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 describe('<LocaleToggle />', () => {
   let globalStore;
 

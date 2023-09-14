@@ -6,6 +6,15 @@ import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import { createMemoryHistory } from 'history';
 import { store } from 'configureStore';
 import Avatar from '../index';
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 
 describe('<Avatar />', () => {
   const stubProps = {

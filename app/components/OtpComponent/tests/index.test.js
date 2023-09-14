@@ -13,6 +13,15 @@ import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
 import { store } from 'configureStore';
 import OtpComponent from '../index';
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 let globalStore;
 const componentWrapper = Component =>
   render(

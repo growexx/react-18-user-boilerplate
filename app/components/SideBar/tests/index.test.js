@@ -10,6 +10,16 @@ import { MenuItems } from '../constants';
 import SideBar from '../index';
 
 let globalStore;
+
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 const props = {
   user: {
     role: 1,

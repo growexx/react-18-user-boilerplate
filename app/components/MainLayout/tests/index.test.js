@@ -10,6 +10,15 @@ import { store, history } from 'configureStore';
 import MainLayout from '../index';
 import Layouts from '../Layout';
 
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
+
 const tokenValue = 'test token';
 const componentWrapper = props =>
   render(

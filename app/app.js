@@ -33,6 +33,7 @@ import '!file-loader?name=[name].[ext]!./images/favicons/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
+import 'file-loader?name=firebase-messaging-sw.js!./firebase-messaging-sw';
 import { store, history } from './configureStore';
 import { themeConfig } from './utils/constants';
 

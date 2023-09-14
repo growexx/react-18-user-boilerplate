@@ -143,6 +143,6 @@ exports[`<App /> should render and match the snapshot 1`] = `
       path=""
     />
   </Routes>
-  <Memo(a) />
+  <Memo(l) />
 </App__AppWrapper>
 `;

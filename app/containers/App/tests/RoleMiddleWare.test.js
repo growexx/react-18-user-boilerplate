@@ -13,6 +13,15 @@ import RoleMiddleWare, { getDerivedStateFromProps } from '../RoleMiddleWare';
 import { ROLES, ROUTES } from '../../constants';
 
 jest.mock('utils/request');
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 let globalStore;
 const tokenValue = 'test token';
 const props = {

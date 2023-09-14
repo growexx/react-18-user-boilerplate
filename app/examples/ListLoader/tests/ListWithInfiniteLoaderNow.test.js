@@ -11,6 +11,15 @@ import ListWithInfiniteLoader from '../ListWithInfiniteLoader';
 import { responseWithLargeDataSet } from '../stub/test.stub';
 
 let globalStore;
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 jest.mock('utils/request');
 jest.mock('react-infinite-scroller', () => {
   function LoadMore({ children, loadMore }) {

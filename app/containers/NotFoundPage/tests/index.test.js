@@ -11,6 +11,15 @@ import history from 'utils/history';
 import { store } from 'configureStore';
 import NotFound from '../index';
 
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 let globalStore;
 
 const componentWrapper = () =>

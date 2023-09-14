@@ -31,7 +31,15 @@ import Profile from '../index';
 import { DATA_TEST_IDS } from '../constants';
 jest.mock('draft-js/lib/generateRandomKey', () => jest.fn(() => '123'));
 jest.mock('components/ImageUpload/Loadable');
-
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 const user = userEvent.setup();
 let globalStore;
 

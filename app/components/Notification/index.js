@@ -4,20 +4,23 @@
  * This is the Notification Component file.
  */
 import React, { useEffect, useState } from 'react';
+import { Waypoint } from 'react-waypoint';
+import { Badge, Button, List, Skeleton, Empty, notification } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { Waypoint } from 'react-waypoint';
-import { Badge, List, Skeleton, Empty, notification, Button } from 'antd';
 import { BellOutlined } from '@ant-design/icons';
 import { TEST_IDS } from 'components/Notification/stub';
 import {
   NotificationWrapper,
   StyledPopOver,
 } from 'components/Notification/StyledNotification';
+import { fcm } from 'utils/firebase';
 import {
   NOTIFICATION_LIMIT,
   getNotificationsMock,
 } from 'components/Notification/constants';
+import { onMessage } from 'firebase/messaging';
+import { withRouter } from '../../containers/App/withRouter';
 
 function Notification() {
   const [newItemsLoading, setNewItemsLoading] = useState(false);
@@ -30,31 +33,49 @@ function Notification() {
   useEffect(() => {
     setLoading(true);
     loadNotifications();
+    onMessage(fcm, payload => {
+      loadNotifications('pushNotification', payload);
+    });
   }, []);
 
-  const loadNotifications = () => {
-    setTimeout(() => {
-      getNotificationsMock()
-        .then(res => {
-          if (res.status) {
-            if (res.data.length !== NOTIFICATION_LIMIT) {
-              setHasMore(false);
+  const loadNotifications = (notificationType, payload) => {
+    if (notificationType === 'pushNotification') {
+      const {
+        notification: { body, icon, click_action: clickAction },
+      } = payload;
+      const notificationObject = {
+        update: body,
+        read: false,
+        clickAction,
+        icon,
+      };
+
+      setNotificationList(prev => [notificationObject, ...prev]);
+      setUnreadCount(prev => prev + 1);
+    } else {
+      setTimeout(() => {
+        getNotificationsMock()
+          .then(res => {
+            if (res.status) {
+              if (res.data.length !== NOTIFICATION_LIMIT) {
+                setHasMore(false);
+              }
+              setNotificationList([...notificationList, ...res.data]);
+              setLoading(false);
+              setUnreadCount(res.data.length + unreadCount);
+              setNewItemsLoading(false);
+            } else {
+              setLoading(false);
+              setNewItemsLoading(false);
             }
-            setNotificationList([...notificationList, ...res.data]);
-            setLoading(false);
-            setUnreadCount(res.data.length + unreadCount);
-            setNewItemsLoading(false);
-          } else {
+          })
+          .catch(err => {
+            notification.error({ message: err.message });
             setLoading(false);
             setNewItemsLoading(false);
-          }
-        })
-        .catch(err => {
-          notification.error({ message: err.message });
-          setLoading(false);
-          setNewItemsLoading(false);
-        });
-    }, 2000);
+          });
+      }, 2000);
+    }
   };
 
   const getNewNotificationsLoader = loaderCount => {
@@ -111,6 +132,13 @@ function Notification() {
     loadNotifications();
   };
 
+  const getIcon = icon => {
+    if (typeof icon === 'object') {
+      return icon;
+    }
+    return <img src={icon} alt="icon" />;
+  };
+
   const getNotificationContent = () => {
     const notificationsLength = notificationList.length;
     if (loading) {
@@ -129,7 +157,7 @@ function Notification() {
               onClick={() => handleNotificationClick(item, index)}
               data-testid={TEST_IDS.NOTIFICATION_ITEM}
             >
-              <span className="notificationIcon">{item.icon}</span>
+              <span className="notificationIcon">{getIcon(item.icon)}</span>
               <p className="notificationContent">{item.update}</p>
             </List.Item>
           ))

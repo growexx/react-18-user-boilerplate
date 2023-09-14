@@ -8,11 +8,11 @@ exports[`<InlineEdit /> Should render and match the snapshot 1`] = `
 
 .c0 .inputValue:hover {
   cursor: text;
-  background: rgba(9, 30, 66, 0.04);
+  background: rgba(9,30,66,0.04);
 }
 
 .c0 .placeHolderView {
-  color: #808080!important;
+  color: #808080 !important;
 }
 
 <div

@@ -9,6 +9,15 @@ import ConnectedLanguageProvider, { LanguageProvider } from '../index';
 
 import { translationMessages } from '../../../i18n';
 
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 const messages = defineMessages({
   someMessage: {
     id: 'some.id',

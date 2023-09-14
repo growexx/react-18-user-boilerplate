@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getMessaging, getToken } from 'firebase/messaging';
 import {
   getAuth,
   GoogleAuthProvider,
@@ -15,9 +16,8 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
-/**
- * auth constant for social login
- */
+
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
@@ -51,3 +51,30 @@ export const signInWithFacebook = () => {
       console.log(error.message);
     });
 };
+
+export const fcm = getMessaging(app);
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('../firebase-messaging-sw.js', { scope: '/' })
+    .then(async registration => {
+      getToken(fcm, {
+        vapidKey: process.env.REACT_APP_FIREBASE_VAPID_KEY,
+        serviceWorkerRegistration: registration,
+      })
+        .then(currentToken => {
+          if (currentToken) {
+            console.log('current token for client: ', currentToken);
+          } else {
+            console.log(
+              'No registration token available. Request permission to generate one.',
+            );
+          }
+        })
+        .catch(err => {
+          console.log('An error occurred while retrieving token. ', err);
+        });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}

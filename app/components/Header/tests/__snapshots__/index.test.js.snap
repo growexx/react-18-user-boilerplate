@@ -6,7 +6,12 @@ exports[`<Header /> should render a div 1`] = `
 }
 
 .c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
   flex: 1;
   line-height: 0;
 }
@@ -14,9 +19,17 @@ exports[`<Header /> should render a div 1`] = `
 .c1 {
   margin-left: auto;
   margin-right: 16px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
   align-self: center;
   cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -24,13 +37,13 @@ exports[`<Header /> should render a div 1`] = `
   font-size: 18px;
 }
 
-.c3 .ant-btn-group>.ant-btn:first-child {
+.c3 .ant-btn-group > .ant-btn:first-child {
   display: none;
 }
 
 .c3 .ant-dropdown-trigger,
 .c3 .ant-dropdown-trigger:hover {
-  border-radius: 50%!important;
+  border-radius: 50% !important;
   background-color: #4d186e;
   color: #fff;
 }
@@ -45,12 +58,12 @@ exports[`<Header /> should render a div 1`] = `
       class="u-mr-1 u-d-inline-block"
     >
       <button
-        class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-text btn-hover-none p-4"
+        class="ant-btn css-dev-only-do-not-override-18iikkb ant-btn-text btn-hover-none p-4"
         data-testid="badge-Cart"
         type="button"
       >
         <span
-          class="ant-badge css-dev-only-do-not-override-190m0jy"
+          class="ant-badge css-dev-only-do-not-override-18iikkb"
         >
           <span
             aria-label="shopping-cart"
@@ -85,12 +98,12 @@ exports[`<Header /> should render a div 1`] = `
         class="u-mr-1 u-d-inline-block"
       >
         <button
-          class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-text btn-hover-none p-4"
+          class="ant-btn css-dev-only-do-not-override-18iikkb ant-btn-text btn-hover-none p-4"
           data-testid="badge-Cart"
           type="button"
         >
           <span
-            class="ant-badge css-dev-only-do-not-override-190m0jy"
+            class="ant-badge css-dev-only-do-not-override-18iikkb"
           >
             <span
               aria-label="bell"
@@ -120,7 +133,7 @@ exports[`<Header /> should render a div 1`] = `
       class="c3"
     >
       <button
-        class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-circle ant-btn-primary ant-dropdown-trigger"
+        class="ant-btn css-dev-only-do-not-override-18iikkb ant-btn-circle ant-btn-primary ant-dropdown-trigger"
         type="button"
       >
         <span
@@ -150,7 +163,12 @@ exports[`<Header /> should render a div 1`] = `
 
 exports[`<Header /> should render a div with props 1`] = `
 .c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
   flex: 1;
   line-height: 0;
 }
@@ -162,7 +180,12 @@ exports[`<Header /> should render a div with props 1`] = `
 
 exports[`<Header /> should render a div with props 2`] = `
 .c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
   flex: 1;
   line-height: 0;
 }

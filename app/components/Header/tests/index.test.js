@@ -7,6 +7,15 @@ import { store, history } from 'configureStore';
 import Header from '../index';
 import { StyledAppHeader } from '../StyledAppHeader';
 
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
+
 describe('<Header />', () => {
   it('should render a div', () => {
     const { container } = render(

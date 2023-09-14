@@ -10,6 +10,15 @@ import { Provider } from 'react-redux';
 import { store } from 'configureStore';
 import { HomePage } from '../index';
 import { repoApi } from '../reposApiSlice';
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 
 describe('<HomePage />', () => {
   let globalStore = configureStore({

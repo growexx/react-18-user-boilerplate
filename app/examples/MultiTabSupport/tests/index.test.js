@@ -8,6 +8,15 @@ import { store } from 'configureStore';
 import MultiTabSupport from '../index';
 import { TEST_IDS } from '../constants';
 let globalStore;
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 global.BroadcastChannel = jest.fn(() => ({
   removeEventListener: jest.fn(),
   addEventListener: jest.fn((name, func) => {

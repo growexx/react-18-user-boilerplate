@@ -18,6 +18,15 @@ import { TEST_IDS } from 'components/InlineEdit/stub';
 import { store } from 'configureStore';
 
 let globalStore;
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 const props = {
   onSave: jest.fn(),
   value: 'testValue',

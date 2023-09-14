@@ -35,7 +35,7 @@ Following are the packages used in the boilerplate
 | babel                   | Javascript transpiler                           |
 | jest                    | Javascript testing solution                     |
 | shelljs                 | Typescript support                              |
-| @testing-library/react   | Javascript testing solution                     |
+| @testing-library/react  | Javascript testing solution                     |
 | corejs                  | To generate code documentation                  |
 | ngrok                   | Tunneling                                       |
 | plop                    | Micro-generator Framework                       |
@@ -58,4 +58,5 @@ Following are the packages used in the boilerplate
 | recharts                | Charts                                          |
 | react-waypoint          | Skeleton loader                                 |
 | jest-styled-components  | Jest utilities for Styled Components            |
+| firebase                | Firebase sdk for adding firebase features       |
 | react-hook-form         | Form Control with react-hook-from               |

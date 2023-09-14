@@ -2,18 +2,33 @@
 
 exports[`<Profile /> Should render and match the snapshot 1`] = `
 .c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 
 .c0 .ant-card {
-  flex: 1!important;
+  -webkit-flex: 1 !important;
+  -ms-flex: 1 !important;
+  flex: 1 !important;
   cursor: default;
 }
 
 .c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -30,16 +45,16 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
 
 .c1 .inputValue:hover {
   cursor: text;
-  background: rgba(9, 30, 66, 0.04);
+  background: rgba(9,30,66,0.04);
 }
 
 .c1 .placeHolderView {
-  color: #808080!important;
+  color: #808080 !important;
 }
 
 <div>
   <div
-    class="ant-card ant-card-bordered css-dev-only-do-not-override-190m0jy"
+    class="ant-card ant-card-bordered css-dev-only-do-not-override-18iikkb"
   >
     <div
       class="ant-card-body"
@@ -91,7 +106,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-190m0jy"
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-18iikkb"
           >
             <div
               class="ant-card-head"
@@ -111,7 +126,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
                     class="c2"
                   >
                     <button
-                      class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-default"
+                      class="ant-btn css-dev-only-do-not-override-18iikkb ant-btn-default"
                       data-testid="About_Edit"
                       type="button"
                     >
@@ -129,7 +144,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
           </div>
           <br />
           <div
-            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-190m0jy"
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-18iikkb"
           >
             <div
               class="ant-card-head"
@@ -149,7 +164,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
                     class="c2"
                   >
                     <button
-                      class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-default"
+                      class="ant-btn css-dev-only-do-not-override-18iikkb ant-btn-default"
                       data-testid="Experience_Edit"
                       type="button"
                     >
@@ -167,7 +182,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
           </div>
           <br />
           <div
-            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-190m0jy"
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-18iikkb"
           >
             <div
               class="ant-card-head"
@@ -187,7 +202,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
                     class="c2"
                   >
                     <button
-                      class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-default"
+                      class="ant-btn css-dev-only-do-not-override-18iikkb ant-btn-default"
                       data-testid="Education_Edit"
                       type="button"
                     >
@@ -205,7 +220,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
           </div>
           <br />
           <div
-            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-190m0jy"
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-18iikkb"
           >
             <div
               class="ant-card-head"
@@ -225,7 +240,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
                     class="c2"
                   >
                     <button
-                      class="ant-btn css-dev-only-do-not-override-190m0jy ant-btn-default"
+                      class="ant-btn css-dev-only-do-not-override-18iikkb ant-btn-default"
                       data-testid="LicensesAndCertifications_edit"
                       type="button"
                     >
@@ -243,7 +258,7 @@ exports[`<Profile /> Should render and match the snapshot 1`] = `
           </div>
           <br />
           <div
-            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-190m0jy"
+            class="ant-card ant-card-bordered ant-card-hoverable ant-card-type-inner css-dev-only-do-not-override-18iikkb"
           >
             <div
               class="ant-card-head"

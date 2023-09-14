@@ -13,6 +13,15 @@ import history from 'utils/history';
 import { store } from 'configureStore';
 import Charts from '../index';
 import { GET_COLORS } from '../constants';
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 
 const resizeObserverMock = jest.fn(() => ({
   observe: jest.fn(),

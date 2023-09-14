@@ -6,6 +6,16 @@ import { render } from '@testing-library/react';
 import { store } from 'configureStore';
 import ReposList from '../index';
 
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
+
 describe('<ReposList />', () => {
   it('should render the loading indicator when its loading', () => {
     const { container } = render(<ReposList loading />);

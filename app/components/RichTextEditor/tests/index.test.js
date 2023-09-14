@@ -16,6 +16,15 @@ import history from 'utils/history';
 import { store } from 'configureStore';
 import RichTextEditor from '../index';
 
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 jest.mock('draft-js/lib/generateRandomKey', () => () => '123');
 let globalStore;
 const props = {

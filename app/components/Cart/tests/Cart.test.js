@@ -7,7 +7,15 @@ import { createMemoryHistory } from 'history';
 import { store } from 'configureStore';
 import products from '../../../examples/Products/stub/product.json';
 import Cart from '../index';
-
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 const dummyData = products.products.slice(0, 2);
 
 describe('<Cart />', () => {
