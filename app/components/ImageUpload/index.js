@@ -4,46 +4,140 @@
  *
  */
 
-import React, { useState } from 'react';
-import { Upload } from 'antd';
-import ImgCrop from 'antd-img-crop';
-import { API_ENDPOINTS } from 'containers/constants';
+import React, { useCallback, useState } from 'react';
+import { Modal, Slider, Upload, notification } from 'antd';
+import Cropper from 'react-easy-crop';
+import getCroppedImg from './util/crop';
 
 function ImageUpload() {
   const [fileList, setFileList] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [rotation, setRotation] = useState(0);
+  const [zoom, setZoom] = useState(1);
+  const [photoURL, setPhotoURL] = useState(null);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
+  const handleModalClose = () => {
+    const files = [...fileList];
+    files.pop();
+    setFileList(files);
+    setIsModalOpen(false);
+    setZoom(1);
+    setRotation(0);
   };
 
-  const onPreview = async file => {
-    let src = file.url;
-    if (!src) {
-      src = await new Promise(resolve => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj);
-        reader.onload = () => resolve(reader.result);
-      });
+  const beforeUpload = file => {
+    setPhotoURL(URL.createObjectURL(file));
+    return false;
+  };
+
+  const onChange = ({ file, fileList: newFileList }) => {
+    const files = [...newFileList];
+
+    if (file?.status !== 'removed') {
+      setIsModalOpen(true);
+      files[files.length - 1].thumbUrl = '';
     }
-    const image = new Image();
-    image.src = src;
-    const imgWindow = window.open(src);
-    imgWindow.document.write(image.outerHTML);
+    setFileList(files);
+  };
+
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const handleImageCrop = async () => {
+    try {
+      const files = [...fileList];
+      const fileIndex = files.length - 1;
+      const croppedImage = await getCroppedImg(
+        photoURL,
+        croppedAreaPixels,
+        rotation,
+        files[fileIndex].type,
+      );
+      const file = new File([croppedImage], files[fileIndex].name, {
+        type: files[fileIndex].type,
+      });
+
+      files[fileIndex].originFileObj = file;
+      files[fileIndex].size = file.size;
+      files[fileIndex].thumbUrl = croppedImage;
+
+      setFileList(files);
+    } catch (err) {
+      notification.error({
+        message:
+          'There was an error while cropping the image. Please try again!',
+      });
+      const files = [...fileList];
+      files.pop();
+      setFileList(files);
+    } finally {
+      setIsModalOpen(false);
+      setZoom(1);
+      setRotation(0);
+    }
   };
 
   return (
-    <ImgCrop rotationSlider>
+    <>
       <Upload
-        action={API_ENDPOINTS.IMAGE_UPLOAD}
         listType="picture-card"
         fileList={fileList}
         onChange={onChange}
-        onPreview={onPreview}
-        maxCount={1}
+        beforeUpload={beforeUpload}
+        maxCount={4}
       >
-        {fileList.length < 1 && '+ Upload'}
+        {fileList.length < 4 && '+ Upload'}
       </Upload>
-    </ImgCrop>
+      <Modal
+        title="Crop Image"
+        centered
+        maskClosable={false}
+        open={isModalOpen}
+        onCancel={handleModalClose}
+        onOk={handleImageCrop}
+        className="imageCropModal"
+      >
+        <>
+          <div className="cropperContainer">
+            <Cropper
+              image={photoURL}
+              crop={crop}
+              zoom={zoom}
+              rotation={rotation}
+              aspect={1}
+              onZoomChange={setZoom}
+              onRotationChange={setRotation}
+              onCropChange={setCrop}
+              onCropComplete={onCropComplete}
+            />
+          </div>
+          <div className="sliderContainer">
+            <div className="slider">
+              <p>Zoom</p>
+              <Slider
+                min={1}
+                max={3}
+                step={0.1}
+                value={zoom}
+                onChange={e => setZoom(e)}
+              />
+            </div>
+            <div className="slider">
+              <p>Rotation</p>
+              <Slider
+                min={0}
+                max={360}
+                value={rotation}
+                onChange={e => setRotation(e)}
+              />
+            </div>
+          </div>
+        </>
+      </Modal>
+    </>
   );
 }
 
