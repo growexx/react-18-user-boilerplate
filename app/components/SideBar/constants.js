@@ -31,11 +31,6 @@ export const MenuItems = [
     icon: <SmileOutlined />,
   },
   {
-    to: ROUTES.SAMPLE_FORM,
-    tabName: 'Redux-Saga Form',
-    icon: <FormOutlined />,
-  },
-  {
     to: ROUTES.LOADER,
     tabName: 'Loader Demo',
     icon: <LoadingOutlined />,
@@ -80,6 +75,11 @@ export const MenuItems = [
     tabName: 'Products',
     icon: <ShoppingOutlined />,
   },
+  {
+    to: ROUTES.REACT_HOOK_FORM,
+    tabName: 'React Hook Form',
+    icon: <FormOutlined />,
+  },
 ];
 
 /**
@@ -93,3 +93,6 @@ export const GET_FILTERED_MENU_ITEM = role =>
       ? ROLE_BASED_SIDEBAR_MENU[role || ROLES.USER].includes(item.to)
       : true,
   );
+
+// component name as ga label
+export const GA_LABEL_SIDEBAR = 'SideBar';

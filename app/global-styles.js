@@ -1,30 +1,31 @@
 import { createGlobalStyle } from 'styled-components';
-import {
-  ROBOTO_BLACK_TTF,
-  ROBOTO_BOLD_ITALIC_TTF,
-} from './styles/fonts/Roboto';
 
-import injectFontFaces from './styles/injectFontFaces';
-const getFormattedURL = (name, format) => `url(${name}) format(${format})`;
 const GlobalStyle = createGlobalStyle`
-  ${injectFontFaces('Roboto', [
-    getFormattedURL(ROBOTO_BLACK_TTF, 'ttf'),
-    getFormattedURL(ROBOTO_BOLD_ITALIC_TTF, 'ttf'),
-  ])}
+  html,
   body {
     height: 100%;
     width: 100%;
+    margin: 0;
+    padding: 0;
   }
+
   body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
+
   body.fontLoaded {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
+
   #app {
     min-height: 100%;
     min-width: 100%;
   }
+
+  svg {
+    vertical-align: baseline;
+  }
+
   /**
   * display utility class
   */
@@ -605,6 +606,19 @@ margin-left: 30px
     width: 100%;
   }
 }
+
+  // Notification Component Styles
+  .notificationPopoverContainer .ant-popover-content .ant-popover-inner {
+    padding: 0;
+  }
+  .notificationPopoverContainer .ant-popover-title, 
+  .notificationPopoverContainer .ant-popover-title p, 
+  .notificationPopoverContainer .ant-list-item p   {
+    margin: 0;
+  }
+  .ant-skeleton .ant-skeleton-content .ant-skeleton-paragraph {
+    margin-top: 0;
+  }
 `;
 
 export default GlobalStyle;

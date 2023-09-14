@@ -73,8 +73,7 @@ export const getNotificationsSuccessMockForClick = () =>
   Promise.resolve({
     data: [
       {
-        icon:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZZrv3_PEnkdOIZvnr0COONt3kL7rSSq623dB3fyLCgT7GARpReF26nPOre6JCLHKu7KQ&usqp=CAU',
+        icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZZrv3_PEnkdOIZvnr0COONt3kL7rSSq623dB3fyLCgT7GARpReF26nPOre6JCLHKu7KQ&usqp=CAU',
         update: '70 new employees are shifted',
         timestamp: 1596119688264,
         read: false,

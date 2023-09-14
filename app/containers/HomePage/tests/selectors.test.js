@@ -1,26 +1,14 @@
-import { selectHome, makeSelectUsername } from '../selectors';
+import { makeSelectGetReposData } from '../selectors';
+import '@testing-library/jest-dom';
 
-describe('selectHome', () => {
-  it('should select the home state', () => {
-    const homeState = {
-      userData: {},
-    };
-    const mockedState = {
-      home: homeState,
-    };
-    expect(selectHome(mockedState)).toEqual(homeState);
-  });
-});
-
-describe('makeSelectUsername', () => {
-  const usernameSelector = makeSelectUsername();
-  it('should select the username', () => {
-    const username = 'mxstbr';
-    const mockedState = {
-      home: {
-        username,
+describe('selectRepo', () => {
+  it('should select the global state', () => {
+    const initialState = {
+      repos: {
+        queries: {},
       },
     };
-    expect(usernameSelector(mockedState)).toEqual(username);
+    const reposData = makeSelectGetReposData()(initialState, '');
+    expect(reposData).toStrictEqual([]);
   });
 });

@@ -7,10 +7,22 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { createServiceWorkerEnv } = require('../../scripts/service-worker-env');
+const { convertLegacyToken } = require('@ant-design/compatible/lib');
+const { theme } = require('antd/lib');
+
+const { defaultAlgorithm, defaultSeed } = theme;
+
+const mapToken = defaultAlgorithm(defaultSeed);
+const v4Token = convertLegacyToken(mapToken);
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
-
+  loader: 'less-loader',
+  options: {
+    lessOptions: {
+      modifyVars: v4Token,
+    },
+  },
   // In production, we skip all hot-reloading stuff
   entry: [
     require.resolve('react-app-polyfill/ie11'),

@@ -3,26 +3,18 @@
 exports[`<ChangePassword /> Should render and match the snapshot 1`] = `
 <div>
   <form
-    class="ant-form ant-form-horizontal"
+    method="post"
+    novalidate=""
+    role="form"
   >
     <div
-      class="ant-form-item ant-form-item-with-help ant-form-item-has-success"
+      class="ant-form-item css-dev-only-do-not-override-18iikkb"
     >
       <div
-        class="ant-row ant-form-item-row"
+        class="ant-row ant-form-item-row css-dev-only-do-not-override-18iikkb"
       >
         <div
-          class="ant-col ant-form-item-label ant-col-xs-24 ant-col-sm-6"
-        >
-          <label
-            class=""
-            title="Current Password"
-          >
-            Current Password
-          </label>
-        </div>
-        <div
-          class="ant-col ant-form-item-control ant-col-xs-24 ant-col-sm-14"
+          class="ant-col ant-form-item-control css-dev-only-do-not-override-18iikkb"
         >
           <div
             class="ant-form-item-control-input"
@@ -30,11 +22,17 @@ exports[`<ChangePassword /> Should render and match the snapshot 1`] = `
             <div
               class="ant-form-item-control-input-content"
             >
+              <label
+                for="currentPassword"
+              >
+                Current Password: 
+              </label>
               <span
-                class="ant-input-affix-wrapper ant-input-password ant-input-affix-wrapper-status-success"
+                class="ant-input-affix-wrapper ant-input-password css-dev-only-do-not-override-18iikkb"
               >
                 <input
-                  class="ant-input"
+                  class="ant-input css-dev-only-do-not-override-18iikkb"
+                  id="currentPassword"
                   name="currentPassword"
                   placeholder="Current Password"
                   type="password"
@@ -70,39 +68,17 @@ exports[`<ChangePassword /> Should render and match the snapshot 1`] = `
               </span>
             </div>
           </div>
-          <div
-            style="display: flex; flex-wrap: nowrap;"
-          >
-            <div
-              class="ant-form-item-explain ant-form-item-explain-connected"
-              role="alert"
-            >
-              <div
-                class="ant-form-item-explain-success"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </div>
     <div
-      class="ant-form-item ant-form-item-with-help ant-form-item-has-success"
+      class="ant-form-item css-dev-only-do-not-override-18iikkb"
     >
       <div
-        class="ant-row ant-form-item-row"
+        class="ant-row ant-form-item-row css-dev-only-do-not-override-18iikkb"
       >
         <div
-          class="ant-col ant-form-item-label ant-col-xs-24 ant-col-sm-6"
-        >
-          <label
-            class=""
-            title="New Password"
-          >
-            New Password
-          </label>
-        </div>
-        <div
-          class="ant-col ant-form-item-control ant-col-xs-24 ant-col-sm-14"
+          class="ant-col ant-form-item-control css-dev-only-do-not-override-18iikkb"
         >
           <div
             class="ant-form-item-control-input"
@@ -110,11 +86,17 @@ exports[`<ChangePassword /> Should render and match the snapshot 1`] = `
             <div
               class="ant-form-item-control-input-content"
             >
+              <label
+                for="newPassword"
+              >
+                New Password: 
+              </label>
               <span
-                class="ant-input-affix-wrapper ant-input-password ant-input-affix-wrapper-status-success"
+                class="ant-input-affix-wrapper ant-input-password css-dev-only-do-not-override-18iikkb"
               >
                 <input
-                  class="ant-input"
+                  class="ant-input css-dev-only-do-not-override-18iikkb"
+                  id="newPassword"
                   name="newPassword"
                   placeholder="New Password"
                   type="password"
@@ -150,39 +132,17 @@ exports[`<ChangePassword /> Should render and match the snapshot 1`] = `
               </span>
             </div>
           </div>
-          <div
-            style="display: flex; flex-wrap: nowrap;"
-          >
-            <div
-              class="ant-form-item-explain ant-form-item-explain-connected"
-              role="alert"
-            >
-              <div
-                class="ant-form-item-explain-success"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </div>
     <div
-      class="ant-form-item ant-form-item-with-help ant-form-item-has-success"
+      class="ant-form-item css-dev-only-do-not-override-18iikkb"
     >
       <div
-        class="ant-row ant-form-item-row"
+        class="ant-row ant-form-item-row css-dev-only-do-not-override-18iikkb"
       >
         <div
-          class="ant-col ant-form-item-label ant-col-xs-24 ant-col-sm-6"
-        >
-          <label
-            class=""
-            title="Confirm Password"
-          >
-            Confirm Password
-          </label>
-        </div>
-        <div
-          class="ant-col ant-form-item-control ant-col-xs-24 ant-col-sm-14"
+          class="ant-col ant-form-item-control css-dev-only-do-not-override-18iikkb"
         >
           <div
             class="ant-form-item-control-input"
@@ -190,11 +150,17 @@ exports[`<ChangePassword /> Should render and match the snapshot 1`] = `
             <div
               class="ant-form-item-control-input-content"
             >
+              <label
+                for="confirmNewPassword"
+              >
+                Confirm Password: 
+              </label>
               <span
-                class="ant-input-affix-wrapper ant-input-password ant-input-affix-wrapper-status-success"
+                class="ant-input-affix-wrapper ant-input-password css-dev-only-do-not-override-18iikkb"
               >
                 <input
-                  class="ant-input"
+                  class="ant-input css-dev-only-do-not-override-18iikkb"
+                  id="confirmNewPassword"
                   name="confirmNewPassword"
                   placeholder="Confirm Password"
                   type="password"
@@ -230,29 +196,17 @@ exports[`<ChangePassword /> Should render and match the snapshot 1`] = `
               </span>
             </div>
           </div>
-          <div
-            style="display: flex; flex-wrap: nowrap;"
-          >
-            <div
-              class="ant-form-item-explain ant-form-item-explain-connected"
-              role="alert"
-            >
-              <div
-                class="ant-form-item-explain-success"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </div>
     <div
-      class="ant-form-item"
+      class="ant-form-item css-dev-only-do-not-override-18iikkb"
     >
       <div
-        class="ant-row ant-form-item-row"
+        class="ant-row ant-form-item-row css-dev-only-do-not-override-18iikkb"
       >
         <div
-          class="ant-col ant-form-item-control"
+          class="ant-col ant-form-item-control css-dev-only-do-not-override-18iikkb"
         >
           <div
             class="ant-form-item-control-input"
@@ -262,8 +216,7 @@ exports[`<ChangePassword /> Should render and match the snapshot 1`] = `
             >
               <center>
                 <button
-                  class="ant-btn ant-btn-primary"
-                  disabled=""
+                  class="ant-btn css-dev-only-do-not-override-18iikkb ant-btn-primary"
                   type="submit"
                 >
                   <span>

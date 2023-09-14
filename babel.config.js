@@ -18,7 +18,6 @@ module.exports = {
         },
       },
     ],
-    ['import', { libraryName: 'antd', style: true }],
     'styled-components',
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-proposal-private-property-in-object', { loose: true }],

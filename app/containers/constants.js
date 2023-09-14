@@ -17,12 +17,12 @@ export const ROUTES = {
   TEST_ADMIN_PAGE: '/admin',
   UNAUTHORIZED: '/403',
   NUMERAL_CONVERTER: '/number-converter-demo',
-  SAMPLE_FORM: '/sample-form',
   CHANGE_PASSWORD: '/change-password',
   TWO_FACTOR_AUTHENTICATION: '/two-factor-authentication',
   FORGOT_PASSWORD: '/forgot-password',
   MULTI_TAB_SUPPORT: '/multi-tab-support',
   PRODUCTS: '/products',
+  REACT_HOOK_FORM: '/react-hook-form',
 };
 
 // API-ROUTES

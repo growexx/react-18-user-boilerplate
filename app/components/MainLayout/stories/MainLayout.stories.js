@@ -6,6 +6,8 @@ export default {
   component: MainLayout,
 };
 
-export const MainLayoutComponent = () => <MainLayout />;
+export function MainLayoutComponent() {
+  return <MainLayout />;
+}
 
 MainLayoutComponent.storyName = 'Base Layout Of App';

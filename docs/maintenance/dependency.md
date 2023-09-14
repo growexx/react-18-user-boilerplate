@@ -49,7 +49,7 @@ Note down the rolled back dependencies and state the reason in your `Update Log`
 
 ## Full Regression Testing
 
-Most of the errors/warnings would go away once you roll back the problemetic dependencies. But we need to make sure that the internal commands, tools, scaffolding etc. are functional too.
+Most of the errors/warnings would go away once you roll back the problematic dependencies. But we need to make sure that the internal commands, tools, scaffolding etc. are functional too.
 
 **Example App:**
 
@@ -75,7 +75,7 @@ Identify problems that occur and try to resolve them by rolling back the respect
 ```js
 import TestPage from 'containers/TestPage/Loadable';
 
-<Route path="/test" component={TestPage} />
+<Route path="/test" component={TestPage} />;
 ```
 
 - Use TestComp on TestPage -> bypass all tests in TestComp and TestPage (set true = true)
@@ -112,7 +112,6 @@ import TestPage from 'containers/TestPage/Loadable';
  react-router                            3.0.2  →    3.0.5
  react-router-redux                      4.0.7  →    4.0.8
  react-router-scroll                     0.4.1  →    0.4.2
- redux-saga                             0.14.3  →   0.14.8
  whatwg-fetch                            2.0.2  →    2.0.3
  babel-plugin-dynamic-import-node        1.0.0  →    1.0.2
  coveralls                             2.11.15  →  2.11.16
@@ -142,10 +141,8 @@ import TestPage from 'containers/TestPage/Loadable';
  react-dom                                        15.4.2  →                 15.5.4
  react-intl                                        2.2.3  →                  2.3.0
  redux-immutable                                  3.0.11  →                  3.1.0
- redux-saga                                       0.14.8  →                 0.15.3
  babel-cli                                        6.22.2  →                 6.24.1
  babel-core                                       6.22.1  →                 6.24.1
- babel-eslint                                      7.1.1  →                  7.2.3
  babel-loader                                     6.2.10  →                  6.4.1
  babel-plugin-transform-es2015-modules-commonjs   6.22.0  →                 6.24.1
  babel-plugin-transform-react-constant-elements   6.22.0  →                 6.23.0
@@ -207,6 +204,14 @@ import TestPage from 'containers/TestPage/Loadable';
 ```
 react-test-renderer                                     15.5.4
 ```
+
+**[6] REMOVED DEPENDENCIES**
+
+```
+babel-eslint
+
+```
+
 
 ## Errors Encountered
 

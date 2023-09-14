@@ -6,8 +6,17 @@ import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
 import { userExists } from 'utils/Helper';
 import Login from 'containers/Auth/Login/Loadable';
-import configureStore from '../../../configureStore';
+import { store } from 'configureStore';
 import AuthRoute from '../AuthRoute';
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 jest.mock('utils/Helper');
 jest.mock('react-router', () => ({
   ...jest.requireActual('react-router'),
@@ -31,7 +40,6 @@ const componentWrapper = () =>
 
 describe('<MainLayout />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
     userExists.mockImplementation(() => true);
   });

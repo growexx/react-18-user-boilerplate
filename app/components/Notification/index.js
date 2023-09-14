@@ -3,7 +3,7 @@
  *
  * This is the Notification Component file.
  */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Waypoint } from 'react-waypoint';
 import { Badge, Button, List, Skeleton, Empty, notification } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,21 +22,23 @@ import {
 import { onMessage } from 'firebase/messaging';
 import { withRouter } from '../../containers/App/withRouter';
 
-class Notification extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      newItemsLoading: false,
-      unreadCount: 0,
-      notificationList: [],
-      loading: false,
-      hasMore: true,
-    };
-    this.newNotificationsCursor = 0;
-  }
+function Notification() {
+  const [newItemsLoading, setNewItemsLoading] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [notificationList, setNotificationList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const newNotificationsCursor = 0;
 
-  loadNotifications = (notificationType, payload) => {
-    const { notificationList, unreadCount } = this.state;
+  useEffect(() => {
+    setLoading(true);
+    loadNotifications();
+    onMessage(fcm, payload => {
+      loadNotifications('pushNotification', payload);
+    });
+  }, []);
+
+  const loadNotifications = (notificationType, payload) => {
     if (notificationType === 'pushNotification') {
       const {
         notification: { body, icon, click_action: clickAction },
@@ -47,91 +49,36 @@ class Notification extends React.Component {
         clickAction,
         icon,
       };
-      this.setState({
-        notificationList: [notificationObject, ...notificationList],
-        unreadCount: unreadCount + 1,
-      });
+
+      setNotificationList(prev => [notificationObject, ...prev]);
+      setUnreadCount(prev => prev + 1);
     } else {
       setTimeout(() => {
         getNotificationsMock()
           .then(res => {
             if (res.status) {
               if (res.data.length !== NOTIFICATION_LIMIT) {
-                this.setState({
-                  hasMore: false,
-                });
+                setHasMore(false);
               }
-              this.setState({
-                notificationList: [...notificationList, ...res.data],
-                loading: false,
-                unreadCount: unreadCount + res.data.length,
-                newItemsLoading: false,
-              });
+              setNotificationList([...notificationList, ...res.data]);
+              setLoading(false);
+              setUnreadCount(res.data.length + unreadCount);
+              setNewItemsLoading(false);
             } else {
-              this.setState({
-                notificationList,
-                unreadCount,
-                loading: false,
-                newItemsLoading: false,
-              });
+              setLoading(false);
+              setNewItemsLoading(false);
             }
           })
           .catch(err => {
             notification.error({ message: err.message });
-            this.setState({
-              notificationList,
-              unreadCount,
-              loading: false,
-              newItemsLoading: false,
-            });
+            setLoading(false);
+            setNewItemsLoading(false);
           });
       }, 2000);
     }
   };
 
-  componentDidMount() {
-    this.setState({
-      loading: true,
-    });
-    this.loadNotifications();
-    onMessage(fcm, payload => {
-      this.loadNotifications('pushNotification', payload);
-    });
-  }
-
-  handleReadCount = () => {
-    const { notificationList } = this.state;
-    const unreadCount = notificationList.filter(
-      singleNotification => singleNotification.read === false,
-    ).length;
-    this.setState({
-      unreadCount,
-    });
-  };
-
-  handleNotificationClick = (item, index) => {
-    const { notificationList } = this.state;
-    const { read } = item;
-    if (read === false) {
-      const newItem = {
-        ...item,
-        read: true,
-      };
-      const currentItems = [...notificationList];
-      currentItems[index] = newItem;
-      this.setState(
-        {
-          notificationList: currentItems,
-        },
-        () => {
-          this.handleReadCount();
-        },
-      );
-    }
-  };
-
-  getNewNotificationsLoader = loaderCount => {
-    const { loading, newItemsLoading } = this.state;
+  const getNewNotificationsLoader = loaderCount => {
     const loaderArray = [];
     // eslint-disable-next-line no-plusplus
     for (let index = 0; index < loaderCount; index++) {
@@ -148,128 +95,130 @@ class Notification extends React.Component {
     return <div className="newNotificationsLoader">{loaderArray}</div>;
   };
 
-  markAllNotificationsAsRead = () => {
-    const { notificationList } = this.state;
+  const handleReadCount = () => {
+    const unread = notificationList.filter(
+      singleNotification => singleNotification.read === false,
+    ).length;
+    setUnreadCount(unread);
+  };
+
+  const handleNotificationClick = (item, index) => {
+    const { read } = item;
+    if (read === false) {
+      const newItem = {
+        ...item,
+        read: true,
+      };
+      const currentItems = [...notificationList];
+      currentItems[index] = newItem;
+      setNotificationList(currentItems);
+      handleReadCount();
+    }
+  };
+
+  const markAllNotificationsAsRead = () => {
     const updatedNotificationList = notificationList.map(
       updatedNotification => ({
         ...updatedNotification,
         read: true,
       }),
     );
-    this.setState({
-      notificationList: updatedNotificationList,
-    });
+
+    setNotificationList(updatedNotificationList);
   };
 
-  handleMoreNotifications = () => {
-    this.setState({
-      newItemsLoading: true,
-    });
-    this.loadNotifications();
+  const handleMoreNotifications = () => {
+    setNewItemsLoading(true);
+    loadNotifications();
   };
 
-  getIcon = icon => {
+  const getIcon = icon => {
     if (typeof icon === 'object') {
       return icon;
     }
     return <img src={icon} alt="icon" />;
   };
 
-  getNotificationContent = () => {
-    const { notificationList, loading, hasMore } = this.state;
+  const getNotificationContent = () => {
     const notificationsLength = notificationList.length;
     if (loading) {
-      return this.getNewNotificationsLoader(10);
+      return getNewNotificationsLoader(10);
     }
     return (
-      <>
-        <List>
-          {notificationsLength === 0 ? (
-            <Empty data-testid={TEST_IDS.EMPTY_CONTAINER} />
-          ) : (
-            notificationList.map((item, index) => (
-              <List.Item
-                // eslint-disable-next-line react/no-array-index-key
-                key={`${index}_${item}`}
-                className={item.read === false ? 'readNotifications' : ''}
-                onClick={() => this.handleNotificationClick(item, index)}
-                data-testid={TEST_IDS.NOTIFICATION_ITEM}
-              >
-                <span className="notificationIcon">
-                  {this.getIcon(item.icon)}
-                </span>
-                <p className="notificationContent">{item.update}</p>
-              </List.Item>
-            ))
-          )}
-          {!loading && hasMore && (
-            <Waypoint
-              data-testid={TEST_IDS.INFINITE_SCROLLING}
-              key={this.newNotificationsCursor}
-              onEnter={this.handleMoreNotifications}
+      <List>
+        {notificationsLength === 0 ? (
+          <Empty data-testid={TEST_IDS.EMPTY_CONTAINER} />
+        ) : (
+          notificationList.map((item, index) => (
+            <List.Item
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${index}_${item}`}
+              className={item.read === false ? 'readNotifications' : ''}
+              onClick={() => handleNotificationClick(item, index)}
+              data-testid={TEST_IDS.NOTIFICATION_ITEM}
             >
-              {this.getNewNotificationsLoader(2)}
-            </Waypoint>
-          )}
-        </List>
-      </>
-    );
-  };
-
-  setMarkAllRead = () => {
-    this.markAllNotificationsAsRead();
-    this.setState({
-      unreadCount: 0,
-    });
-  };
-
-  getTitle = () => {
-    const { unreadCount } = this.state;
-    return (
-      <>
-        <p>Notifications</p>
-        {unreadCount > 0 && (
-          <>
-            <FontAwesomeIcon
-              icon={faCheck}
-              title={TEST_IDS.MARK_ALL_READ}
-              onClick={this.setMarkAllRead}
-              data-testid={TEST_IDS.MARK_ALL_READ}
-            />
-          </>
+              <span className="notificationIcon">{getIcon(item.icon)}</span>
+              <p className="notificationContent">{item.update}</p>
+            </List.Item>
+          ))
         )}
-      </>
+        {!loading && hasMore && (
+          <Waypoint
+            data-testid={TEST_IDS.INFINITE_SCROLLING}
+            key={newNotificationsCursor}
+            onEnter={handleMoreNotifications}
+          >
+            {getNewNotificationsLoader(2)}
+          </Waypoint>
+        )}
+      </List>
     );
   };
 
-  render() {
-    const { unreadCount } = this.state;
-    return (
-      <NotificationWrapper>
-        <div className="u-mr-1 u-d-inline-block">
-          <Button
-            type="text"
-            data-testid="badge-Cart"
-            className="btn-hover-none p-4"
+  const setMarkAllRead = () => {
+    markAllNotificationsAsRead();
+    setUnreadCount(0);
+  };
+
+  const getTitle = () => (
+    <>
+      <p>Notifications</p>
+      {unreadCount > 0 && (
+        <FontAwesomeIcon
+          icon={faCheck}
+          title={TEST_IDS.MARK_ALL_READ}
+          onClick={setMarkAllRead}
+          data-testid={TEST_IDS.MARK_ALL_READ}
+        />
+      )}
+    </>
+  );
+
+  return (
+    <NotificationWrapper>
+      <div className="u-mr-1 u-d-inline-block">
+        <Button
+          type="text"
+          data-testid="badge-Cart"
+          className="btn-hover-none p-4"
+        >
+          <StyledPopOver
+            placement="bottomLeft"
+            content={getNotificationContent()}
+            title={getTitle}
+            overlayClassName="notificationPopoverContainer"
+            trigger="click"
           >
-            <StyledPopOver
-              placement="bottomLeft"
-              content={this.getNotificationContent()}
-              title={this.getTitle}
-              overlayClassName="notificationPopoverContainer"
-              trigger="click"
-            >
-              <Badge count={unreadCount} overflowCount={9} size="small">
-                <BellOutlined
-                  data-testid={TEST_IDS.BELL_ICON}
-                  className="u-font-size-xlg"
-                />
-              </Badge>
-            </StyledPopOver>
-          </Button>
-        </div>
-      </NotificationWrapper>
-    );
-  }
+            <Badge count={unreadCount} overflowCount={9} size="small">
+              <BellOutlined
+                data-testid={TEST_IDS.BELL_ICON}
+                className="u-font-size-xlg"
+              />
+            </Badge>
+          </StyledPopOver>
+        </Button>
+      </div>
+    </NotificationWrapper>
+  );
 }
-export default withRouter(Notification);
+export default Notification;

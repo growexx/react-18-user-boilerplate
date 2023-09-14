@@ -6,8 +6,8 @@
   - [OS X / Linux:](#os-x--linux)
   - [Windows](#windows)
 - [Issue with local caching when running in production mode (F5 / ctrl+F5 / cmd+r weird behavior)](#issue-with-local-caching-when-running-in-production-mode-f5--ctrlf5--cmdr-weird-behavior)
-    - [Quick fix on your local browser:](#quick-fix-on-your-local-browser)
-    - [Full in-depth explanation](#full-in-depth-explanation)
+  - [Quick fix on your local browser:](#quick-fix-on-your-local-browser)
+  - [Full in-depth explanation](#full-in-depth-explanation)
 - [Local webfonts not working for development](#local-webfonts-not-working-for-development)
 - [Non-route containers](#non-route-containers)
   - [Where do I put the reducer?](#where-do-i-put-the-reducer)
@@ -43,7 +43,7 @@ The fix is to kill the process and rerun `npm start`.
     > This will return the PID as the value following your username:
     >
     > ```Shell
-    > janedoe    29811  49.1  2.1  3394936 356956 s004  S+    4:45pm   2:40.07 node server
+    > growIt    29811  49.1  2.1  3394936 356956 s004  S+    4:45pm   2:40.07 node server
     > ```
     >
     > Note: If nothing is listed, you can try `lsof -i tcp:3000`

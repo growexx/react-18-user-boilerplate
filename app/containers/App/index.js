@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 /**
  *
  * App
@@ -25,11 +24,11 @@ import ExportDataToCsv from 'examples/ExportDataToCsv/Loadable';
 import Users from 'examples/Users/Loadable';
 import Charts from 'examples/Charts/Loadable';
 import Products from 'examples/Products/Loadable';
-import SampleForm from 'examples/SampleForm/Loadable';
 import ChangePassword from 'containers/ChangePassword/Loadable';
 import MultiTabSupport from 'examples/MultiTabSupport/Loadable';
 import ForgotPassword from 'containers/Auth/ForgotPassword/Loadable';
 import NumeralConversion from 'examples/NumeralConversion/Loadable';
+import ReactHookForm from 'examples/ReactHookForm/Loadable';
 import { FAV_ICONS } from './constants';
 import PrivateRoute from './PrivateRoute';
 import RoleMiddleWare from './RoleMiddleWare';
@@ -37,6 +36,7 @@ import AuthRoute from './AuthRoute';
 import GlobalStyle from '../../global-styles';
 import { ROUTES } from '../constants';
 import { manageSession } from '../../utils/Helper';
+import { initGA, recordPageViewGA } from '../../utils/googleAnalytics';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -44,13 +44,26 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
+function AdminPage() {
+  return <div>This is Admin Role Page</div>;
+}
+
 export default function App() {
   useEffect(() => {
+    // google analytics init
+    initGA();
+    // first time page render
+    recordPageViewGA(window.location.pathname);
     window.addEventListener('storage', manageSession, []);
     return () => {
       window.removeEventListener('storage', window);
     };
   }, []);
+
+  useEffect(() => {
+    // record page view on every route change
+    recordPageViewGA(window.location.pathname);
+  }, [window.location.pathname]);
 
   return (
     <AppWrapper data-testid="AppRoutes">
@@ -80,17 +93,17 @@ export default function App() {
             element={<MultiTabSupport />}
           />
           <Route path={ROUTES.CHANGE_PASSWORD} element={<ChangePassword />} />
-          <Route path={ROUTES.SAMPLE_FORM} element={<SampleForm />} />
           <Route
             path={ROUTES.NUMERAL_CONVERTER}
             element={<NumeralConversion />}
           />
+          <Route path={ROUTES.REACT_HOOK_FORM} element={<ReactHookForm />} />
         </Route>
         {/* RoleMiddleware */}
         <Route element={<RoleMiddleWare />}>
           <Route
             path={ROUTES.TEST_ADMIN_PAGE}
-            element={() => <div>This is Admin Role Page</div>}
+            element={AdminPage}
             // ShowError redirects to 403
             // showError
           />

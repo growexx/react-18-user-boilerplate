@@ -109,6 +109,7 @@ exports[`<TwoFactorAuthentication /> Should render and match the snapshot 1`] = 
 
 .c0 .sideContainer .registrationSideContainer button:hover {
   color: #fff;
+  border-color: #fff;
 }
 
 <div>
@@ -138,7 +139,7 @@ exports[`<TwoFactorAuthentication /> Should render and match the snapshot 1`] = 
             href="/register"
           >
             <button
-              class="ant-btn ant-btn-default"
+              class="ant-btn css-dev-only-do-not-override-18iikkb ant-btn-default"
               type="button"
             >
               SIGN UP

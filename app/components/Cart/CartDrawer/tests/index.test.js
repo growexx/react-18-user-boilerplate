@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import CartDrawer from '../index';
 import products from '../../../../examples/Products/stub/product.json';
 
@@ -8,7 +8,6 @@ const dummyData = products.products.slice(0, 2);
 describe('<CartDrawer />', () => {
   test('display should delete product', async () => {
     window.product = dummyData;
-    window.localStorage = {};
     window.setCount = mockFunction;
     window.localStorage.setItem = (key, value) => {
       window.localStorage[key] = value;
@@ -26,6 +25,8 @@ describe('<CartDrawer />', () => {
     );
     fireEvent.click(getAllByTestId('product-delete')[0]);
     fireEvent.click(getAllByRole('img')[0]);
-    expect(getByText('Product Deleted Successfully from cart')).toBeTruthy();
+    await waitFor(() => {
+      expect(getByText('Product Deleted Successfully from cart')).toBeTruthy();
+    });
   });
 });

@@ -1,0 +1,19 @@
+/**
+ *
+ * {{properCase name }} api Slice
+ *
+ */
+
+import { apiSlice } from 'apiSlice';
+export const {{properCase name }}Api = apiSlice.injectEndpoints({
+  endpoints: builder => ({
+    {{properCase name }}: builder.query({
+      query: () => ({
+        url: `/`,
+        method: 'GET',
+      }),
+    }),
+  }),
+});
+
+export const { use{{properCase name }}Query } = {{properCase name }}Api;

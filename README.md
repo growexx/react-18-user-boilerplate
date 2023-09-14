@@ -51,12 +51,6 @@ For easy use and development of stories in our boilerplate, follow these [instru
   
   More about access control can be found [here](docs/general/roleMiddleware.md).
   </dd>
-  <dt>Redux-Form Support</dt>
-  <dd>Boilerplate supports Redux-Form. It has demo and setup added out of the box for Redux-Form.
-
-More about Redux-Form can be found [here](docs/third-party-integrations/redux-form.md).
-
-  </dd>
   <dt>Google Analytics</dt>
   <dd>Google Analytics support is given in the boilerplate. This feature is optional and is based on requirement, so not merged in main branch.
   <br/>
@@ -76,13 +70,11 @@ More about google analytics can be found [here](docs/general/googleAnalytics.md)
   Support for graphql can be found in <b>feature/11-GraphQL-Support</b> branch.
 
 More about graphql setup can be found [here](docs/general/graphql.md).
-
-  </dd>
-  <dt>React-Final-Form Support</dt>
-  <dd>Boilerplate supports React-Final-Form. It has demo and setup added out of the box for React-Final-Form. This feature is optional and is based on requirement, so not merged in main branch.
+  <dt>React-Hook-Form Support</dt>
+  <dd>Boilerplate supports React-Hook-Form. All forms in boilerplate are redux-hook-form.
   <br/>
-  Support for React-Final-Form can be found in <b>feature/React-Final-Form</b> branch.
-  </dd>
+
+You can check out the guide to get you started with react-hook-form from [here](docs/general/reacthookform.md).
   <dt>Social Login with firebase</dt>
   <dd>Boilerplate supports social login using firebase. It has demo and setup added out of the box for firebase and it's authentication functions. This feature is optional and is based on requirement, so not merged in main branch.
   <br/>
@@ -97,10 +89,10 @@ More about firebase setup can be found [here](docs/general/firebase.md).
   More about two factor authentication setup can be found [here](docs/general/twoFactorAuthentication.md).
   </dd>
   
-<dt>Ecommerce Cart Functionality</dt>
+<dt>E-commerce Cart Functionality</dt>
   <dd>You can add and delete the product in the cart and also consistency is managed between the tabs using local storage. 
   
-  More about Ecommerce Cart Functionality setup can be found [here](docs/general/ecommerceCartFunctionality.md).
+  More about E-commerce Cart Functionality setup can be found [here](docs/general/ecommerceCartFunctionality.md).
   </dd>
   <dt>Real Time Chat</dt>
   <dd> Real time chat is feature of chatting and sending messages real time with the use of firebase.
@@ -147,10 +139,10 @@ There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on ho
 1.  Make sure that you have Node.js v8.15.1 and npm v5 or above installed.
 2.  Clone this repo using `git clone https://github.com/growexx/react-user-boilerplate.git`
 3.  Move to the appropriate directory: `cd <YOUR_PROJECT_NAME>`.<br />
-4.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
+4.  Add env file into the project's main directory. This is a mandatory step. If firebase credentials are not added in .env, then the application won't work. Either remove social login from login component when you clone or provide the firebase credentials values for env file that can be found [here](docs/general/env.md).  You can generate firebase credentials for your project from [here](https://firebase.google.com/)
+5.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
     _At this point you can run `npm start` to see the example app at `http://localhost:3000`._
-5.  Run `npm run clean` to delete the example app.
-6.  Add env file into the project's main directory. Values for env file can be found [here](docs/general/env.md).
+6.  Run `npm run clean` to delete the example app.
 
 Now you're ready to rumble!
 

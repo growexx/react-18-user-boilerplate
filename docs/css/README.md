@@ -179,7 +179,7 @@ it's one or the other unless you include or exclude specific directories.**
 
 ### Setup
 
-Install `sass-loader` and the `node-sass` dependancy.
+Install `sass-loader` and the `node-sass` dependency.
 
 ```
 npm i -D sass-loader node-sass
@@ -227,7 +227,7 @@ function Button() {
 
 ### Setup
 
-Install `less-loader` and the `less` dependancy.
+Install `less-loader` and the `less` dependency.
 
 ```
 npm i -D less-loader less

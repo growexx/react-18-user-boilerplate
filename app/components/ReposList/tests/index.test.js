@@ -3,8 +3,18 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 
+import { store } from 'configureStore';
 import ReposList from '../index';
-import configureStore from '../../../configureStore';
+
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 
 describe('<ReposList />', () => {
   it('should render the loading indicator when its loading', () => {
@@ -22,7 +32,6 @@ describe('<ReposList />', () => {
   });
 
   it('should render the repositories if loading was successful', () => {
-    const { store } = configureStore({ global: { currentUser: 'mxstbr' } });
     const repos = [
       {
         owner: {

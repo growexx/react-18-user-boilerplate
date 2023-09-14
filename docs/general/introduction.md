@@ -19,13 +19,12 @@ Here's a curated list of packages that you should be at least familiar with befo
 - [ ] [Redux](http://redux.js.org/)
 - [ ] [Redux Saga](https://redux-saga.github.io/redux-saga/)
 - [ ] [Reselect](https://github.com/reactjs/reselect)
-- [ ] [Immer](https://github.com/mweststrate/immer)
 - [ ] [Styled Components](https://github.com/styled-components/styled-components)
 
 ### Unit Testing
 
 - [ ] [Jest](http://facebook.github.io/jest/)
-- [ ] [react-testing-library](https://github.com/kentcdodds/react-testing-library)
+- [ ] [@testing-library/react](https://github.com/testing-library/react-testing-library#readme)
 
 ### Linting
 
@@ -36,7 +35,7 @@ Here's a curated list of packages that you should be at least familiar with befo
 Note that while `react-boilerplate` includes a lot of features, many of them are optional and you can find instructions in the docs on how to remove...
 
 - [`redux-saga` or `reselect`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/remove.md)
-- [offline-first, add to homescreen, performant web font loading and image optimisation](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/remove.md)
+- [offline-first, add to home-screen, performant web font loading and image optimisation](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/remove.md)
 - [`sanitize.css`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/css/remove.md)
 - [i18n (i.e. `react-intl`)](https://github.com/react-boilerplate/react-boilerplate/blob/0f88f55ed905f8432c3dd7b452d713df5fb76d8e/docs/js/i18n.md#removing-i18n-and-react-intl)
 
@@ -96,11 +95,11 @@ Webpack requires an entry point to your application. Think of it as a door to yo
 
 `app/app.js` is one of the biggest files of the boilerplate. It contains all the global setup to make sure your app runs smoothly. Let's break its contents down:
 
-- `@babel/polyfill` is imported. This enables cool stuff like generator functions, `Promise`s, etc.
+- `core-js/stable` is imported. This enables cool stuff like generator functions, `Promise`s, etc.
 - A `history` object is created, which remembers all the browsing history for your app. This is used by the ConnectedRouter to know which pages your users visit. (Very useful for analytics, by the way.)
 - A redux `store` is instantiated.
 - `ReactDOM.render()` not only renders the [root react component](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<LanguageProvider />` and `<ConnectedRouter />`.
-- Hot module replacement is set up via vanilla [Webpack HMR](https://webpack.js.org/guides/hot-module-replacement/) that makes all the reducers, injected sagas, components, containers, and i18n messages hot reloadable.
+- Hot module replacement is set up via vanilla [Webpack HMR](https://webpack.js.org/guides/hot-module-replacement/) that makes all the reducers, injected sagas, components, containers, and i18n messages hot re-loadable.
 - i18n internationalization support setup.
 - Offline plugin support to make your app [offline-first](https://developers.google.com/web/fundamentals/getting-started/codelabs/offline/).
 
@@ -191,7 +190,7 @@ Together these two methods work like magic. When you type something in the textb
 1.  `changeUsername()` will send text to the Redux store. The text can be accessed using `evt.target.value`. Here, `evt` is the `onChange` event emitted by pressing a key.
 2.  The Redux store will consult with its corresponding reducer, since a reducer knows what to do with the data.
 3.  When a reducer computes a new state tree, the store will update its state with the newly typed data.
-4.  An update has occured in the state, therefore `mapStateToProps()` will be triggered and your react component will get the new data.
+4.  An update has occurred in the state, therefore `mapStateToProps()` will be triggered and your react component will get the new data.
 5.  The updated data will be set as the `value` to your `<Input />`.
 
 _So you see, if you type something in the textbox, it will not be directly reflected in the DOM. It must pass through redux. Redux will update the state and return it to the component. It's the component's responsibility to show the updated data._

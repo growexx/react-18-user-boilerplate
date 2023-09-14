@@ -10,7 +10,7 @@ export const scope = 'boilerplate.components.Footer';
 export default defineMessages({
   copyRightMessage: {
     id: `${scope}.copyRightMessage.message`,
-    defaultMessage: `&copy; ${new Date().getFullYear()} React Boilerplate`,
+    defaultMessage: `© ${new Date().getFullYear()} React Boilerplate`,
   },
   copyRightSubMessage: {
     id: `${scope}.copyRightSubMessage.message`,

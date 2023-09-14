@@ -9,11 +9,20 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import history from 'utils/history';
 import { IntlProvider } from 'react-intl';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
+import history from 'utils/history';
+import { store } from 'configureStore';
 import { FontAwesomeDemo } from '../index';
-import configureStore from '../../../configureStore';
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 let globalStore;
 const componentWrapper = () =>
   render(
@@ -28,7 +37,6 @@ const componentWrapper = () =>
 
 describe('<FontAwesomeDemo />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
   it('Should render and match the snapshot', () => {

@@ -22,9 +22,7 @@ Boilerplate supports firebase cloud messaging setup.
         6. REACT_APP_FIREBASE_APP_ID
 
 - To get the value of following key, open the [Cloud Messaging](https://console.firebase.google.com/project/_/settings/cloudmessaging/) and select your project.
-
 - In the **Web Push certificates** tab, click **Generate Key Pair**. The console displays a notice that the key pair was generated, and displays the public key string and date added.
-
 - Copy the string and paste it as value of following key in env file.
 
 7. REACT_APP_FIREBASE_VAPID_KEY

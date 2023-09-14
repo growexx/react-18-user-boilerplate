@@ -2,14 +2,22 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
+import { store } from 'configureStore';
 import Footer from '../index';
-import configureStore from '../../../configureStore';
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 
 describe('<Footer />', () => {
   let globalStore;
 
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 

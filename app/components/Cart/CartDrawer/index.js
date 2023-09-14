@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 import { DollarCircleOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
-const CartDrawer = ({ visible, setVisible }) => {
+function CartDrawer({ visible, setVisible }) {
   const [productsData, setProductsData] = useState(window.product || []);
   useEffect(() => {
     setProductsData(window.product || []);
@@ -112,7 +112,7 @@ const CartDrawer = ({ visible, setVisible }) => {
       </Affix>
     </Drawer>
   );
-};
+}
 
 CartDrawer.propTypes = {
   visible: PropTypes.bool,

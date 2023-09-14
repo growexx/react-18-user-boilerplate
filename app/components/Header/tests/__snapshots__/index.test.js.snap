@@ -58,12 +58,12 @@ exports[`<Header /> should render a div 1`] = `
       class="u-mr-1 u-d-inline-block"
     >
       <button
-        class="ant-btn ant-btn-text btn-hover-none p-4"
+        class="ant-btn css-dev-only-do-not-override-18iikkb ant-btn-text btn-hover-none p-4"
         data-testid="badge-Cart"
         type="button"
       >
         <span
-          class="ant-badge"
+          class="ant-badge css-dev-only-do-not-override-18iikkb"
         >
           <span
             aria-label="shopping-cart"
@@ -98,12 +98,12 @@ exports[`<Header /> should render a div 1`] = `
         class="u-mr-1 u-d-inline-block"
       >
         <button
-          class="ant-btn ant-btn-text btn-hover-none p-4"
+          class="ant-btn css-dev-only-do-not-override-18iikkb ant-btn-text btn-hover-none p-4"
           data-testid="badge-Cart"
           type="button"
         >
           <span
-            class="ant-badge "
+            class="ant-badge css-dev-only-do-not-override-18iikkb"
           >
             <span
               aria-label="bell"
@@ -133,7 +133,7 @@ exports[`<Header /> should render a div 1`] = `
       class="c3"
     >
       <button
-        class="ant-btn ant-btn-circle ant-btn-primary ant-dropdown-trigger"
+        class="ant-btn css-dev-only-do-not-override-18iikkb ant-btn-circle ant-btn-primary ant-dropdown-trigger"
         type="button"
       >
         <span

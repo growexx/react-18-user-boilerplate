@@ -1,6 +1,13 @@
 import { initializeApp } from 'firebase/app';
 import { getMessaging, getToken } from 'firebase/messaging';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 
+// initializing firebase app
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -9,9 +16,42 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
-
-// Initialize Firebase
+/**
+ * auth constant for social login
+ */
 const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
+
+/**
+ * Sign In With Google
+ * @returns
+ */
+export const signInWithGoogle = () => {
+  signInWithPopup(auth, googleProvider)
+    .then(res => {
+      console.log(res.user);
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+};
+
+/**
+ * Sign In With Facebook
+ * @returns
+ */
+export const signInWithFacebook = () => {
+  signInWithPopup(auth, facebookProvider)
+    .then(res => {
+      console.log(res.user);
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+};
 
 export const fcm = getMessaging(app);
 if ('serviceWorker' in navigator) {

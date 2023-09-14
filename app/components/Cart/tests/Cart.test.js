@@ -4,15 +4,22 @@ import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import { createMemoryHistory } from 'history';
+import { store } from 'configureStore';
 import products from '../../../examples/Products/stub/product.json';
 import Cart from '../index';
-import configureStore from '../../../configureStore';
-
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 const dummyData = products.products.slice(0, 2);
 
 describe('<Cart />', () => {
   const history = createMemoryHistory();
-  const { store } = configureStore({}, history);
 
   it('should render a div', () => {
     const { container } = render(
@@ -31,7 +38,6 @@ describe('<Cart />', () => {
 describe('<Cart />', () => {
   test('display should update Carts', () => {
     window.product = dummyData;
-    window.localStorage = {};
     window.localStorage.setItem = (key, value) => {
       window.localStorage[key] = value;
     };

@@ -5,7 +5,7 @@ const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
-const compareVersions = require('compare-versions');
+const { compareVersions } = require('compare-versions');
 const chalk = require('chalk');
 
 const animateProgress = require('./helpers/progress');

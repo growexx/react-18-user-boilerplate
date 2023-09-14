@@ -1,26 +1,9 @@
 /* eslint-disable indent */
-/* eslint-disable react/jsx-indent-props */
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-
 import { Helmet } from 'react-helmet';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
-import { change } from 'redux-form';
-import { Field, reduxForm } from 'redux-form/immutable';
-import injectReducer from 'utils/injectReducer';
-import * as formValidations from 'utils/formValidations';
-import {
-  API_URL,
-  API_ENDPOINTS,
-  SORTING,
-  GET_SORT_ORDER,
-  GET_DEFAULT_PAGINATION,
-  FULL_GENERIC_MOMENT_DATE_FORMAT,
-} from 'containers/constants';
-import request from 'utils/request';
+import { Controller, Form, useForm } from 'react-hook-form';
 import {
   Space,
   Button,
@@ -30,25 +13,27 @@ import {
   Row,
   Col,
   Image,
+  Form as antForm,
   Tooltip,
   notification,
+  Input,
 } from 'antd';
 import debounce from 'lodash/debounce';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
-import reducer from './reducer';
-import { AInput } from '../../utils/Fields';
-import * as actions from './actions';
-import { makeSelectUser } from './selectors';
-
+import { useDispatch, useSelector } from 'react-redux';
+import request from 'utils/request';
+import * as formValidations from 'utils/formValidations';
 import {
-  ACCOUNT_STATUS,
-  POPUP_ACTION,
-  USERS_KEY,
-  MESSAGES,
-  TEST_IDS,
-} from './constants';
+  API_URL,
+  API_ENDPOINTS,
+  SORTING,
+  GET_SORT_ORDER,
+  GET_DEFAULT_PAGINATION,
+  FULL_GENERIC_MOMENT_DATE_FORMAT,
+} from 'containers/constants';
+import { ACCOUNT_STATUS, POPUP_ACTION, MESSAGES, TEST_IDS } from './constants';
 import { deleteUserAPIMock, getUsersAPIMock, updateUserAPIMock } from './stub';
 import {
   AccountStatusDropDown,
@@ -59,173 +44,170 @@ import {
   PageHeaderWrapper,
   SearchWrapper,
 } from './styled';
+import { updateUserFormField } from './slice';
 
 const logsTableProps = {
   showHeader: true,
 };
 
-export class Users extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // User Data
-      userList: [],
+const FormItem = antForm.Item;
 
-      isListLoading: true,
+export function Users({ demo }) {
+  const [userList, setUserList] = useState([]);
+  const [isListLoading, setIsListLoading] = useState(true);
+  const [pagination, setPagination] = useState(GET_DEFAULT_PAGINATION());
+  const [sortType] = useState(SORTING.ASC);
+  const [sortKey] = useState('id');
+  const [search, setSearch] = useState('');
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+  const [popUpAction, setPopUpAction] = useState('');
+  const [isPopUpLoading, setIsPopUpLoading] = useState(false);
+  const [userId, setUserId] = useState('');
+  const [status, setStatus] = useState('');
+  const [showUserModal, setShowUserModal] = useState(false);
+  const [initialValues, setInitialValues] = useState({});
 
-      // Table Pagination
-      pagination: GET_DEFAULT_PAGINATION(),
+  const dispatch = useDispatch();
+  const userStoreData = useSelector(state => state.usersExample);
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm({ defaultValues: initialValues });
 
-      sortType: SORTING.ASC,
-      sortKey: 'id',
-      search: '',
+  useEffect(() => {
+    loadUserDetails({ pagination });
+  }, []);
 
-      // Popup
-      isPopUpVisible: false,
-      popUpAction: '',
-      isPopUpLoading: false,
-      userId: '',
-      status: '',
+  useEffect(() => {
+    reset(initialValues);
+  }, [initialValues]);
 
-      // Modal
-      showUserModal: false,
-    };
-    this.debouncedLoadUserDetails = debounce(d => this.loadUserDetails(d), 300);
-  }
+  const debouncedLoadUserDetails = debounce(d => loadUserDetails(d), 300);
 
-  getColumnProps = () => {
-    const { isPopUpVisible, popUpAction, userId, isPopUpLoading } = this.state;
+  const fillFields = (key, value) => {
+    dispatch(updateUserFormField({ key, value }));
+  };
 
-    return [
-      {
-        title: 'User Id',
-        dataIndex: 'id',
-        key: 'id',
-        width: '10%',
-        sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-      },
-      {
-        title: 'Name',
-        dataIndex: 'firstName',
-        key: 'firstName',
-        width: '20%',
-        sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-        render: (_action, data) => `${data.firstName} ${data.lastName}`,
-      },
-      {
-        title: 'Email',
-        dataIndex: 'email',
-        key: 'email',
-        width: '20%',
-        sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-      },
-      {
-        title: 'Status',
-        dataIndex: 'status',
-        key: 'status',
-        width: '15%',
-        sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-        render: (_action, data) => (
-          <Switch
-            data-testid={TEST_IDS.STATUS_TOGGLE}
-            checkedChildren="Active"
-            unCheckedChildren="Suspend"
-            defaultChecked={data.status === ACCOUNT_STATUS.ACTIVE}
-            loading={isPopUpLoading && userId === data.id}
-            disabled={isPopUpLoading}
-            onChange={active => {
-              this.setState(
-                {
-                  userId: data.id,
-                  isPopUpLoading: true,
-                },
-                () => {
-                  this.handlePopupOk({
-                    status: active
-                      ? ACCOUNT_STATUS.ACTIVE
-                      : ACCOUNT_STATUS.SUSPENDED,
-                  });
-                },
-              );
+  const getColumnProps = () => [
+    {
+      title: 'User Id',
+      dataIndex: 'id',
+      key: 'id',
+      width: '10%',
+      sorter: true,
+      sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
+      title: 'Name',
+      dataIndex: 'firstName',
+      key: 'firstName',
+      width: '20%',
+      sorter: true,
+      sortDirections: ['descend', 'ascend', 'descend'],
+      render: (_action, data) => `${data.firstName} ${data.lastName}`,
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+      width: '20%',
+      sorter: true,
+      sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      width: '15%',
+      sorter: true,
+      sortDirections: ['descend', 'ascend', 'descend'],
+      render: (_action, data) => (
+        <Switch
+          data-testid={TEST_IDS.STATUS_TOGGLE}
+          checkedChildren="Active"
+          unCheckedChildren="Suspend"
+          defaultChecked={data.status === ACCOUNT_STATUS.ACTIVE}
+          loading={isPopUpLoading && userId === data.id}
+          disabled={isPopUpLoading}
+          onChange={active => {
+            setUserId(data.id);
+            setIsPopUpLoading(true);
+            handlePopupOk({
+              status: active ? ACCOUNT_STATUS.ACTIVE : ACCOUNT_STATUS.SUSPENDED,
+            });
+          }}
+        />
+      ),
+    },
+    {
+      title: 'Last Access Date',
+      dataIndex: 'lastAccessDate',
+      key: 'lastAccessDate',
+      width: '15%',
+      render: v => (
+        <Space size="middle">
+          {dayjs(v).format(FULL_GENERIC_MOMENT_DATE_FORMAT)}
+        </Space>
+      ),
+    },
+    {
+      title: 'Actions',
+      dataIndex: 'action',
+      key: 'action',
+      width: '20%',
+      render: (action, data) => (
+        <Space size="middle">
+          <Button
+            data-testid={TEST_IDS.EDIT_BUTTON}
+            type="secondary"
+            htmlType="submit"
+            onClick={() => editUser(data.id)}
+            title={userId ? 'Edit User' : 'Add User'}
+          >
+            <FontAwesomeIcon icon={faEdit} />
+          </Button>
+          <Popconfirm
+            title={MESSAGES.DELETE}
+            open={
+              isPopUpVisible &&
+              popUpAction === POPUP_ACTION.DELETE &&
+              userId === data.id
+            }
+            onConfirm={() => handlePopupOk({ isDeleted: true })}
+            okButtonProps={{
+              loading: isPopUpLoading,
+              'data-testid': TEST_IDS.DELETE_BUTTON_CONFIRMED,
             }}
-          />
-        ),
-      },
-      {
-        title: 'Last Access Date',
-        dataIndex: 'lastAccessDate',
-        key: 'lastAccessDate',
-        width: '15%',
-        render: v => (
-          <Space size="middle">
-            {moment(v).format(FULL_GENERIC_MOMENT_DATE_FORMAT)}
-          </Space>
-        ),
-      },
-      {
-        title: 'Actions',
-        dataIndex: 'action',
-        key: 'action',
-        width: '20%',
-        render: (action, data) => (
-          <Space size="middle">
+            cancelButtonProps={{
+              'data-testid': TEST_IDS.DELETE_CONFIRMATION_CANCEL,
+            }}
+            onCancel={handlePopupCancel}
+          >
             <Button
-              data-testid={TEST_IDS.EDIT_BUTTON}
+              data-testid={TEST_IDS.DELETE_BUTTON}
               type="secondary"
               htmlType="submit"
-              onClick={() => this.editUser(data.id)}
-              title={userId ? 'Edit User' : 'Add User'}
+              onClick={() => showPopConfirm(POPUP_ACTION.DELETE, data.id)}
+              title={MESSAGES.TITLE.DELETE}
             >
-              <FontAwesomeIcon icon={faEdit} />
+              <FontAwesomeIcon icon={faTrash} />
             </Button>
-            <Popconfirm
-              title={MESSAGES.DELETE}
-              open={
-                isPopUpVisible &&
-                popUpAction === POPUP_ACTION.DELETE &&
-                userId === data.id
-              }
-              onConfirm={() => this.handlePopupOk({ isDeleted: true })}
-              okButtonProps={{
-                loading: isPopUpLoading,
-                'data-testid': TEST_IDS.DELETE_BUTTON_CONFIRMED,
-              }}
-              cancelButtonProps={{
-                'data-testid': TEST_IDS.DELETE_CONFIRMATION_CANCEL,
-              }}
-              onCancel={this.handlePopupCancel}
-            >
-              <Button
-                data-testid={TEST_IDS.DELETE_BUTTON}
-                type="secondary"
-                htmlType="submit"
-                onClick={() =>
-                  this.showPopConfirm(POPUP_ACTION.DELETE, data.id)
-                }
-                title={MESSAGES.TITLE.DELETE}
-              >
-                <FontAwesomeIcon icon={faTrash} />
-              </Button>
-            </Popconfirm>
-          </Space>
-        ),
-      },
-    ];
-  };
+          </Popconfirm>
+        </Space>
+      ),
+    },
+  ];
 
   /**
    * Individual row Action Popup handler
    */
-  handlePopupCancel = () => {
-    this.setState({
-      userId: '',
-      popUpAction: '',
-      isPopUpVisible: false,
-    });
+  const handlePopupCancel = () => {
+    setUserId('');
+    setInitialValues({});
+    setPopUpAction('');
+    setIsPopUpVisible(false);
   };
 
   /**
@@ -233,147 +215,124 @@ export class Users extends Component {
    * @param {*} action
    * @param {*} userId
    */
-  showPopConfirm = (action, userId) => {
-    this.setState({
-      userId,
-      popUpAction: action,
-      isPopUpVisible: true,
-    });
+  const showPopConfirm = (action, userId) => {
+    setUserId(userId);
+    setPopUpAction(action);
+    setIsPopUpVisible(true);
   };
-
-  showError(error) {
-    error.response
-      .json()
-      .then(err => notification.error({ message: err.message }));
-  }
 
   /**
    * Handles Popup Ok Action
    * Used for Delete, Toggle Status
    */
-  handlePopupOk = payload => {
-    const { demo } = this.props;
-    const { userId, popUpAction, userList } = this.state;
+  const handlePopupOk = payload => {
     const resetAction = () => {
-      this.setState({
-        isPopUpLoading: false,
-        isPopUpVisible: false,
-        userId: '',
-        popUpAction: '',
-      });
+      setIsPopUpLoading(false);
+      setIsPopUpVisible(false);
+      setUserId('');
+      setInitialValues({});
+      setPopUpAction('');
     };
+
     const currentUser = userList.find(u => u.id === userId);
-    this.setState(
-      {
-        isPopUpLoading: true,
-      },
-      () => {
-        const isDelete = popUpAction === POPUP_ACTION.DELETE;
-        if (isDelete) {
-          (demo
-            ? deleteUserAPIMock(userId)
-            : request(`${API_URL}?id=${userId}`, { method: 'DELETE' })
-          )
-            .then(response => {
-              resetAction();
-              notification.success({
-                message: response && response.message,
-              });
-              this.loadUserDetails();
-            })
-            .catch(error => {
-              this.showError(error);
-              resetAction();
-            });
-        } else {
-          (demo
-            ? updateUserAPIMock({ ...currentUser, ...payload })
-            : request(`${API_URL}`, {
-                method: 'PUT',
-                body: {
-                  ...currentUser,
-                  ...payload,
-                },
-              })
-          )
-            .then(() => {
-              resetAction();
-              notification.success({ message: 'Updated User' });
-              this.loadUserDetails();
-            })
-            .catch(error => {
-              this.showError(error);
-              resetAction();
-            });
-        }
-      },
-    );
+    const isDelete = popUpAction === POPUP_ACTION.DELETE;
+
+    setIsPopUpLoading(true);
+
+    if (isDelete) {
+      (demo
+        ? deleteUserAPIMock(userId)
+        : request(`${API_URL}?id=${userId}`, { method: 'DELETE' })
+      )
+        .then(response => {
+          resetAction();
+          notification.success({
+            message: response && response.message,
+          });
+          loadUserDetails();
+        })
+        .catch(error => {
+          notification.error({ message: error.message });
+          resetAction();
+        });
+    } else {
+      (demo
+        ? updateUserAPIMock({ ...currentUser, ...payload })
+        : request(`${API_URL}`, {
+            method: 'PUT',
+            body: {
+              ...currentUser,
+              ...payload,
+            },
+          })
+      )
+        .then(() => {
+          resetAction();
+          notification.success({ message: 'Updated User' });
+          loadUserDetails();
+        })
+        .catch(error => {
+          notification.error({ message: error.message });
+          resetAction();
+        });
+    }
   };
 
-  componentDidMount() {
-    const { pagination } = this.state;
-    this.loadUserDetails({ pagination });
-  }
+  const getLatestValue = (newValue, oldValue) =>
+    newValue === '' ? newValue : newValue || oldValue;
 
-  getLatestValue(newValue, oldValue) {
-    return newValue === '' ? newValue : newValue || oldValue;
-  }
-
-  getUpdatedPagination({ status: newStatus, pagination }) {
-    const { status } = this.state;
+  const getUpdatedPagination = ({ status: newStatus, pagination }) => {
     if (status !== newStatus) {
       return GET_DEFAULT_PAGINATION();
     }
 
     return pagination;
-  }
+  };
 
-  loadUserDetails = ({
+  const loadUserDetails = ({
     pagination: newPagination,
     sortType: newSortType,
     sortKey: newSortKey,
     search: newSearch,
     status: newStatus,
   } = {}) => {
-    let { pagination, sortType, search, status, sortKey } = this.state;
-    const { demo } = this.props;
-    pagination = newPagination || pagination;
-    sortType = newSortType || sortType;
-    sortKey = newSortKey || sortKey;
-    search = this.getLatestValue(newSearch, search);
-    status = this.getLatestValue(newStatus, status);
-    pagination = this.getUpdatedPagination({
-      pagination,
-      status,
+    let paginationData = newPagination || pagination;
+    const sortTypeData = newSortType || sortType;
+    const sortKeyData = newSortKey || sortKey;
+    const searchData = getLatestValue(newSearch, search);
+    const statusData = getLatestValue(newStatus, status);
+    paginationData = getUpdatedPagination({
+      pagination: paginationData,
+      status: statusData,
     });
 
     // Actual API Call
     const data = { method: 'GET' };
 
-    let requestURL = `${API_URL}${API_ENDPOINTS.USERS}?pagination=1&pageSize=${pagination.pageSize}&skip=${pagination.current}&sortType=${sortType}&`; // prettier-ignore
-    if (search) {
-      requestURL += `search=${search}&`;
+    let requestURL = `${API_URL}${API_ENDPOINTS.USERS}?pagination=1&pageSize=${paginationData.pageSize}&skip=${paginationData.current}&sortType=${sortTypeData}&`; // prettier-ignore
+    if (searchData) {
+      requestURL += `search=${searchData}&`;
     }
-    if (status) {
-      requestURL += `status=${status}&`;
+    if (statusData) {
+      requestURL += `status=${statusData}&`;
     }
 
     (demo
       ? getUsersAPIMock({
-          limit: pagination.pageSize,
-          skip: pagination.current,
-          sortType,
-          sortKey,
-          search,
-          status,
+          limit: paginationData.pageSize,
+          skip: paginationData.current,
+          sortType: sortTypeData,
+          sortKey: sortKeyData,
+          search: searchData,
+          status: statusData,
         })
       : request(requestURL, data)
     )
       .then(response =>
-        this.setUserDetails(response, {
-          pagination,
-          search,
-          status,
+        setUserDetails(response, {
+          pagination: paginationData,
+          search: searchData,
+          status: statusData,
         }),
       )
       .catch(error => {
@@ -383,14 +342,12 @@ export class Users extends Component {
       });
   };
 
-  setUserDetails = (response, { pagination, status }) => {
+  const setUserDetails = (response, { pagination, status }) => {
     if (get(response, 'status')) {
-      this.setState({
-        userList: get(response, 'data', []),
-        pagination: get(response, 'pagination', pagination),
-        isListLoading: false,
-        status,
-      });
+      setUserList(get(response, 'data', []));
+      setPagination(get(response, 'pagination', pagination));
+      setIsListLoading(false);
+      setStatus(status);
     } else {
       notification.error({ message: get(response, 'message') });
     }
@@ -402,26 +359,23 @@ export class Users extends Component {
    * @param {*} _filters
    * @param {*} sorter
    */
-  onTableOptionChange = (pagination, _filters, sorter) => {
-    this.loadUserDetails({
+  const onTableOptionChange = (pagination, _filters, sorter) => {
+    loadUserDetails({
       pagination,
       sortType: GET_SORT_ORDER(sorter.order),
       sortKey: sorter.columnKey,
     });
   };
 
-  onSearchUser = e => {
+  const onSearchUser = e => {
     const { value } = e.target;
-    this.setState(
-      { search: value, pagination: GET_DEFAULT_PAGINATION() },
-      () => {
-        this.debouncedLoadUserDetails({ search: value });
-      },
-    );
+    setSearch(value);
+    setPagination(GET_DEFAULT_PAGINATION());
+    debouncedLoadUserDetails({ search: value });
   };
 
-  onStatusSelectChange = status => {
-    this.loadUserDetails({ status });
+  const onStatusSelectChange = status => {
+    loadUserDetails({ status });
   };
 
   /**
@@ -429,7 +383,7 @@ export class Users extends Component {
    * @param {*} record
    * @returns
    */
-  expandableRowRender = record => (
+  const expandableRowRender = record => (
     <Row gutter={5} className="p-2">
       <Col span={6}>
         <Image src={record.profileUrl} width={100} height={100} />
@@ -442,278 +396,248 @@ export class Users extends Component {
    * Edit existing User
    * @param {string} userId
    */
-  editUser = userId => {
-    const { userList } = this.state;
-    const { fillFields, dispatch } = this.props;
-    // eslint-disable-next-line no-underscore-dangle
+  const editUser = userId => {
     const user = userList.find(item => item.id === userId);
     if (user) {
       const storeData = {
         ...user,
       };
       Object.keys(storeData).forEach(key => {
-        dispatch(change(USERS_KEY, key, storeData[key]));
-        fillFields(key, storeData[key]);
+        fillFields(key, storeData[key].toString());
       });
-      this.setState({
-        userId,
-        showUserModal: true,
-        isPopUpVisible: false,
-      });
+      setInitialValues(storeData);
+      setUserId(userId);
+      setShowUserModal(true);
+      setIsPopUpVisible(false);
     }
   };
 
   /**
    * This modal handler verified data and submits to the backend
    */
-  updateUser = () => {
-    const { userStoreData, reset, demo } = this.props;
-    const { showUserModal, userId } = this.state;
-    this.setState(
-      {
-        isListLoading: true,
+  const updateUser = () => {
+    setIsListLoading(true);
+    const isUpdate = !!userId;
+    const payload = {
+      method: isUpdate ? 'PUT' : 'POST',
+      body: {
+        ...userStoreData,
+        id: userStoreData.id,
       },
-      () => {
-        const isUpdate = !!userId;
-        const payload = {
-          method: isUpdate ? 'PUT' : 'POST',
-          body: {
+    };
+    const URL = `${API_URL}`;
+
+    (demo
+      ? updateUserAPIMock(
+          {
             ...userStoreData,
             id: userStoreData.id,
           },
-        };
-        const URL = `${API_URL}`;
-
-        (demo
-          ? updateUserAPIMock(
-              {
-                ...userStoreData,
-                id: userStoreData.id,
-              },
-              !isUpdate,
-            )
-          : request(URL, payload)
+          !isUpdate,
         )
-          .then(res => {
-            this.setState(
-              {
-                isListLoading: false,
-                showUserModal: !showUserModal,
-                userId: '',
-              },
-              () => {
-                this.loadUserDetails();
-              },
-            );
-            notification.success({ message: res.message });
-            reset();
-          })
-          .catch(error => {
-            this.showError(error);
-            this.setState({
-              isListLoading: false,
-            });
-          });
-      },
-    );
+      : request(URL, payload)
+    )
+      .then(res => {
+        setIsListLoading(false);
+        setShowUserModal(!showUserModal);
+        setUserId('');
+        setInitialValues({});
+
+        loadUserDetails();
+        notification.success({ message: res.message });
+        reset();
+      })
+      .catch(error => {
+        notification.error({ message: error.message });
+        setIsListLoading(false);
+      });
   };
 
   /**
    * Toggle Modal
    */
-  toggleModals = () => {
-    const { reset } = this.props;
+  const toggleModals = () => {
     reset();
-    const { showUserModal, userId } = this.state;
-    this.setState({
-      showUserModal: !showUserModal,
-      userId: showUserModal ? '' : userId,
-    });
+    setShowUserModal(!showUserModal);
+    if (showUserModal) {
+      setUserId('');
+      setInitialValues({});
+    }
   };
 
   /**
    * Modal
    * @returns {Modal} Form
    */
-  userModal = () => {
-    const { showUserModal, isListLoading, userId } = this.state;
-    const {
-      pristine,
-      submitting,
-      invalid,
-      updateField,
-      handleSubmit,
-      userStoreData,
-    } = this.props;
-    const performingAction = pristine || submitting || invalid || isListLoading;
-    const cancelDisabled = submitting || isListLoading;
-
-    return (
-      <Modal
-        title={userId ? 'Edit User' : 'Add User'}
-        open={showUserModal}
-        onOk={handleSubmit(this.updateUser)}
-        confirmLoading={isListLoading}
-        onCancel={() => this.toggleModals()}
-        okButtonProps={{
-          disabled: performingAction,
-          'data-testid': TEST_IDS.USER_MODAL_OK,
-        }}
-        okText={userId ? 'Update' : 'Add'}
-        cancelButtonProps={{
-          disabled: cancelDisabled,
-          'data-testid': TEST_IDS.USER_MODAL_CANCEL,
-        }}
+  const userModal = () => (
+    <Modal
+      title={userId ? 'Edit User' : 'Add User'}
+      open={showUserModal}
+      onOk={handleSubmit(updateUser)}
+      confirmLoading={isListLoading}
+      onCancel={() => toggleModals()}
+      okButtonProps={{
+        disabled: isListLoading,
+        'data-testid': TEST_IDS.USER_MODAL_OK,
+      }}
+      okText={userId ? 'Update' : 'Add'}
+      cancelButtonProps={{
+        disabled: isListLoading,
+        'data-testid': TEST_IDS.USER_MODAL_CANCEL,
+      }}
+    >
+      <Form
+        control={control}
+        onSubmit={handleSubmit(updateUser)}
+        className="mb-3"
       >
-        <form onSubmit={this.updateUser} className="mb-3">
-          <Field
+        <FormItem>
+          <label htmlFor="email">Email *</label>
+          <Controller
+            control={control}
             name="email"
-            disabled={!!userId}
-            component={AInput}
-            label="Email *"
-            placeholder="john.doe@growexx.com"
-            onChange={updateField}
-            defaultValue={userStoreData && userStoreData.email}
+            rules={{
+              required: formValidations.VALIDATION_MESSAGES.REQUIRED,
+            }}
+            render={({ field }) => (
+              <Input
+                id="email"
+                placeholder="john.doe@growexx.com"
+                disabled={!!userId}
+                {...field}
+                onChange={e => {
+                  field.onChange(e);
+                  fillFields('email', e.target.value);
+                }}
+              />
+            )}
           />
-          <Field
+          {errors.email && (
+            <div style={{ color: 'red' }}>{errors.email.message}</div>
+          )}
+        </FormItem>
+        <FormItem>
+          <label htmlFor="firstName">First Name *</label>
+          <Controller
+            control={control}
             name="firstName"
-            component={AInput}
-            label="First Name *"
-            placeholder="John"
-            onChange={updateField}
-            defaultValue={userStoreData && userStoreData.firstName}
+            rules={{
+              required: formValidations.VALIDATION_MESSAGES.REQUIRED,
+            }}
+            render={({ field }) => (
+              <Input
+                id="firstName"
+                placeholder="John"
+                {...field}
+                onChange={e => {
+                  field.onChange(e);
+                  fillFields('firstName', e.target.value);
+                }}
+              />
+            )}
           />
-          <Field
+          {errors.firstName && (
+            <div style={{ color: 'red' }}>{errors.firstName.message}</div>
+          )}
+        </FormItem>
+        <FormItem>
+          <label htmlFor="lastName">Last Name *</label>
+          <Controller
+            control={control}
             name="lastName"
-            component={AInput}
-            label="Last Name *"
-            placeholder="Doe"
-            onChange={updateField}
-            defaultValue={userStoreData && userStoreData.lastName}
+            rules={{
+              required: formValidations.VALIDATION_MESSAGES.REQUIRED,
+            }}
+            render={({ field }) => (
+              <Input
+                id="lastName"
+                placeholder="Doe"
+                {...field}
+                onChange={e => {
+                  field.onChange(e);
+                  fillFields('lastName', e.target.value);
+                }}
+              />
+            )}
           />
-        </form>
-      </Modal>
-    );
-  };
+          {errors.lastName && (
+            <div style={{ color: 'red' }}>{errors.lastName.message}</div>
+          )}
+        </FormItem>
+      </Form>
+    </Modal>
+  );
 
-  render() {
-    const { userList, isListLoading, pagination, search } = this.state;
-    const options = Object.keys(ACCOUNT_STATUS).map(key => ({
-      value: ACCOUNT_STATUS[key],
-      label: ACCOUNT_STATUS[key],
-    }));
+  const options = Object.keys(ACCOUNT_STATUS).map(key => ({
+    value: ACCOUNT_STATUS[key],
+    label: ACCOUNT_STATUS[key],
+  }));
 
-    return (
-      <div>
-        <Helmet>
-          <title>Users List</title>
-          <meta name="description" content="Users" />
-        </Helmet>
-        <PageHeaderWrapper
-          title="Users"
-          extra={[
-            <FiltersWrapper>
-              <FilterItems>
-                <AccountStatusDropDown
-                  placeholder="User Status"
+  return (
+    <div>
+      <Helmet>
+        <title>Users List</title>
+        <meta name="description" content="Users" />
+      </Helmet>
+      <PageHeaderWrapper
+        title="Users"
+        extra={[
+          <FiltersWrapper key="users">
+            <FilterItems>
+              <AccountStatusDropDown
+                placeholder="User Status"
+                allowClear
+                onChange={onStatusSelectChange}
+                options={options}
+                disabled={isListLoading}
+              />
+            </FilterItems>
+            <FilterItems>
+              <Tooltip title="Search by Name, Email">
+                <SearchWrapper
                   allowClear
-                  onChange={this.onStatusSelectChange}
-                  options={options}
-                  disabled={isListLoading}
+                  placeholder="Search User"
+                  value={search}
+                  onChange={onSearchUser}
+                  onSearch={value => loadUserDetails({ search: value })}
                 />
-              </FilterItems>
-              <FilterItems>
-                <Tooltip title="Search by Name, Email">
-                  <SearchWrapper
-                    allowClear
-                    placeholder="Search User"
-                    // isListLoading
-                    value={search}
-                    onChange={this.onSearchUser}
-                    onSearch={value => this.loadUserDetails({ search: value })}
-                  />
-                </Tooltip>
-              </FilterItems>
-              <FilterItems>
-                <Button
-                  data-testid={TEST_IDS.ADD_USER}
-                  color="primary"
-                  onClick={() => this.toggleModals()}
-                >
-                  Add User
-                </Button>
-              </FilterItems>
-            </FiltersWrapper>,
-          ]}
+              </Tooltip>
+            </FilterItems>
+            <FilterItems>
+              <Button
+                data-testid={TEST_IDS.ADD_USER}
+                color="primary"
+                onClick={() => toggleModals()}
+              >
+                Add User
+              </Button>
+            </FilterItems>
+          </FiltersWrapper>,
+        ]}
+      />
+      <MainContentWrapper>
+        <DataTableWrapper
+          {...logsTableProps}
+          expandedRowRender={expandableRowRender}
+          rowKey={record => record.id}
+          pagination={pagination}
+          loading={isListLoading}
+          columns={getColumnProps()}
+          dataSource={userList}
+          onChange={onTableOptionChange}
         />
-        <MainContentWrapper>
-          <DataTableWrapper
-            {...logsTableProps}
-            expandedRowRender={this.expandableRowRender}
-            rowKey={record => record.id}
-            pagination={pagination}
-            loading={isListLoading}
-            columns={this.getColumnProps(this)}
-            dataSource={userList}
-            onChange={this.onTableOptionChange}
-          />
-          {this.userModal()}
-        </MainContentWrapper>
-      </div>
-    );
-  }
+        {userModal()}
+      </MainContentWrapper>
+    </div>
+  );
 }
 
 Users.propTypes = {
-  // Redux-form
-  handleSubmit: PropTypes.func.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired,
-  pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
-  invalid: PropTypes.bool,
-
-  // Mocks API response
   demo: PropTypes.bool,
-  // Action
-  updateField: PropTypes.func.isRequired,
-  fillFields: PropTypes.func.isRequired,
-  // Store
-  userStoreData: PropTypes.object,
 };
 
-// Mocks API Response
 Users.defaultProps = {
   demo: true,
 };
 
-const withReducer = injectReducer({
-  key: USERS_KEY,
-  reducer,
-});
-
-const mapStateToProps = createStructuredSelector({
-  userStoreData: makeSelectUser(),
-});
-
-export const mapDispatchToProps = dispatch => ({
-  updateField: e =>
-    dispatch(actions.updateField(e.target.name, e.target.value)),
-  fillFields: (key, value) => dispatch(actions.updateField(key, value)),
-});
-
-const withConnect = connect(mapStateToProps, mapDispatchToProps); // prettier-ignore
-
-export default compose(
-  withReducer,
-  withConnect,
-  reduxForm({
-    form: USERS_KEY,
-    fields: ['firstName', 'lastName', 'email'],
-    validate: formValidations.createValidator({
-      firstName: [formValidations.required],
-      lastName: [formValidations.required],
-      email: [formValidations.required, formValidations.validEmail],
-    }),
-  }),
-)(Users);
+export default Users;

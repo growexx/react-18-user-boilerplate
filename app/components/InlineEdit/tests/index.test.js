@@ -9,14 +9,24 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
-import configureStore from 'configureStore';
 import InlineEdit from 'components/InlineEdit/index';
 import { TEST_IDS } from 'components/InlineEdit/stub';
+import { store } from 'configureStore';
+
 let globalStore;
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 const props = {
   onSave: jest.fn(),
   value: 'testValue',
@@ -35,7 +45,6 @@ const componentWrapper = () =>
 
 describe('<InlineEdit />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
   it('Should render and match the snapshot', () => {

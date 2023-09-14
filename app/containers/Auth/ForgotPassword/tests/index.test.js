@@ -8,13 +8,22 @@ import React from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import history from 'utils/history';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
+import history from 'utils/history';
 import request from 'utils/request';
+import { store } from 'configureStore';
 import ForgotPassword from '../Loadable';
-import configureStore from '../../../../configureStore';
 import { TEST_IDS } from '../stub/test.stub';
 jest.mock('utils/request');
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 let globalStore;
 
 const componentWrapper = () =>
@@ -30,7 +39,6 @@ const componentWrapper = () =>
 
 describe('<ForgotPassword />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -64,7 +72,6 @@ describe('<ForgotPassword />', () => {
 
 describe('Forgot Password Request', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -83,5 +90,19 @@ describe('Forgot Password Request', () => {
       });
       fireEvent.click(getByTestId(TEST_IDS.RESET_PASSWORD));
     });
+  });
+
+  it('error in reset request', async () => {
+    const errMessage = 'Error in reset request!';
+    request.mockImplementation(() => Promise.reject(new Error(errMessage)));
+
+    const { getByTestId, getByPlaceholderText } = componentWrapper();
+    await act(async () => {
+      fireEvent.change(getByPlaceholderText('Email'), {
+        target: { value: 'john.doe@growexx.com' },
+      });
+      fireEvent.click(getByTestId(TEST_IDS.RESET_PASSWORD));
+    });
+    expect(request).toHaveBeenCalledTimes(1);
   });
 });

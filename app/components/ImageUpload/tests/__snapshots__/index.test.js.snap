@@ -3,13 +3,13 @@
 exports[`<ImageUpload /> Should render and match the snapshot 1`] = `
 <div>
   <span
-    class="ant-upload-picture-card-wrapper"
+    class="ant-upload-wrapper css-dev-only-do-not-override-18iikkb ant-upload-picture-card-wrapper"
   >
     <div
       class="ant-upload-list ant-upload-list-picture-card"
     >
       <div
-        class="ant-upload ant-upload-select ant-upload-select-picture-card"
+        class="ant-upload ant-upload-select"
       >
         <span
           class="ant-upload"

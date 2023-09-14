@@ -4,10 +4,19 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { HistoryRouter as Router } from 'redux-first-history/rr6';
 import history from 'utils/history';
-import configureStore from '../../../configureStore';
+import { store } from 'configureStore';
 import MultiTabSupport from '../index';
 import { TEST_IDS } from '../constants';
 let globalStore;
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 global.BroadcastChannel = jest.fn(() => ({
   removeEventListener: jest.fn(),
   addEventListener: jest.fn((name, func) => {
@@ -20,13 +29,13 @@ global.BroadcastChannel = jest.fn(() => ({
   postMessage: jest.fn(),
 }));
 
-global.window = Object.assign(global.window, {
-  addEventListener: jest.fn((name, func) => {
+global.window.addEventListener = jest.fn((name, func) => {
+  if (name === 'storage') {
     func({
       key: 'message',
-      newValue: [],
+      newValue: JSON.stringify([new Date().getTime()]),
     });
-  }),
+  }
 });
 
 const componentWrapper = () =>
@@ -41,7 +50,6 @@ const componentWrapper = () =>
   );
 describe('<MultiTabSupport />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 
@@ -55,7 +63,6 @@ describe('<MultiTabSupport />', () => {
 
 describe('<MultiTabSupport /> Test add message and clear local storage', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
   });
 

@@ -94,11 +94,11 @@ exports[`<App /> should render and match the snapshot 1`] = `
       />
       <Route
         element={<Unknown />}
-        path="/sample-form"
+        path="/number-converter-demo"
       />
       <Route
         element={<Unknown />}
-        path="/number-converter-demo"
+        path="/react-hook-form"
       />
     </Route>
     <Route

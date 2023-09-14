@@ -30,6 +30,7 @@ exports[`<FeaturePage /> should render its heading 1`] = `
 .c0 table {
   margin: 10px;
   overflow: hidden;
+  border-collapse: collapse;
 }
 
 .c0 table th {

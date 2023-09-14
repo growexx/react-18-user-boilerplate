@@ -8,9 +8,18 @@ import { TOKEN_KEY } from 'utils/constants';
 import { userExists } from 'utils/Helper';
 import StorageService from 'utils/StorageService';
 import Login from 'containers/Auth/Login/Loadable';
-import configureStore from '../../../configureStore';
+import { store } from 'configureStore';
 import PrivateRoute from '../PrivateRoute';
 
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 jest.mock('utils/Helper');
 jest.mock('react-router', () => ({
   ...jest.requireActual('react-router'),
@@ -39,7 +48,6 @@ const login = () => StorageService.set(TOKEN_KEY, tokenValue);
 
 describe('<PrivateRoute />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
     login();
   });
@@ -58,7 +66,6 @@ describe('<PrivateRoute />', () => {
 
 describe('<PrivateRoute />', () => {
   beforeAll(() => {
-    const { store } = configureStore({});
     globalStore = store;
     userExists.mockImplementation(() => true);
   });

@@ -6,6 +6,8 @@ export default {
   component: Header,
 };
 
-export const HeaderComponent = () => <Header />;
+export function HeaderComponent() {
+  return <Header />;
+}
 
 HeaderComponent.storyName = 'Header Of App';

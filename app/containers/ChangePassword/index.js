@@ -4,164 +4,148 @@
  *
  */
 
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Form, Button } from 'antd';
+import React from 'react';
+import { Form as antForm, Button, Input } from 'antd';
 import { Helmet } from 'react-helmet';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
-import { Field, reduxForm } from 'redux-form';
+import { Controller, useForm, Form } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import * as formValidations from 'utils/formValidations';
-import { APassword } from 'utils/Fields';
-import useInjectSaga from 'utils/injectSaga';
-import useInjectReducer from 'utils/injectReducer';
-import {
-  makeSelectConfirmNewPassword,
-  makeSelectCurrentPassword,
-  makeSelectNewPassword,
-  makeSelectLoading,
-} from './selectors';
-import reducer from './reducer';
-import saga from './saga';
-import { FORM_KEY, passwordsMustMatch } from './constants';
+import { passwordsMustMatch } from './constants';
+import { changePasswordSubmit } from './slice';
 
-import { fireSubmit, updateField as updateAction } from './actions';
+const FormItem = antForm.Item;
+export function ChangePassword() {
+  const dispatch = useDispatch();
+  // use this if you are using login API and manage the loading error status accordingly
+  // const [changePassword, { isLoading, isError }] = useChangePasswordMutation();
 
-const FormItem = Form.Item;
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+    trigger,
+    getValues,
+  } = useForm();
 
-export class ChangePassword extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    const {
-      invalid,
-      loading,
-      currentPassword,
-      newPassword,
-      confirmNewPassword,
-      pristine,
-      reset,
-      submitting,
-      updateField,
-      submitData,
-    } = this.props;
-    return (
-      <div>
-        <Helmet>
-          <title>ChangePassword</title>
-          <meta name="description" content="Description of ChangePassword" />
-        </Helmet>
-        <Form
-          onFinish={() => {
-            submitData();
-            reset();
-          }}
-        >
-          <Field
-            label="Current Password"
-            name="currentPassword"
-            component={APassword}
-            placeholder="Current Password"
-            onChange={updateField}
-            hasFeedback
-            value={currentPassword}
-          />
-
-          <Field
-            label="New Password"
-            name="newPassword"
-            component={APassword}
-            placeholder="New Password"
-            onChange={updateField}
-            value={newPassword}
-          />
-
-          <Field
-            label="Confirm Password"
-            name="confirmNewPassword"
-            component={APassword}
-            placeholder="Confirm Password"
-            onChange={updateField}
-            value={confirmNewPassword}
-          />
-          <FormItem>
-            <center>
-              <Button
-                loading={loading}
-                type="primary"
-                disabled={pristine || submitting || invalid}
-                htmlType="submit"
-              >
-                Submit
-              </Button>
-            </center>
-          </FormItem>
-        </Form>
-      </div>
-    );
-  }
-}
-
-ChangePassword.propTypes = {
-  updateField: PropTypes.func.isRequired,
-  submitData: PropTypes.func.isRequired,
-  pristine: PropTypes.bool,
-  reset: PropTypes.func,
-  submitting: PropTypes.bool,
-  invalid: PropTypes.bool,
-  currentPassword: PropTypes.any,
-  newPassword: PropTypes.any,
-  confirmNewPassword: PropTypes.any,
-  loading: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-};
-
-const mapStateToProps = createStructuredSelector({
-  currentPassword: makeSelectCurrentPassword(),
-  newPassword: makeSelectNewPassword(),
-  confirmNewPassword: makeSelectConfirmNewPassword(),
-  loading: makeSelectLoading(),
-});
-
-export function mapDispatchToProps(dispatch) {
-  return {
-    updateField: evt => {
-      dispatch(updateAction(evt.target.name, evt.target.value));
-    },
-    submitData: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(fireSubmit());
-    },
+  const onSubmit = () => {
+    submitData();
+    reset({});
   };
+
+  const submitData = () => {
+    dispatch(changePasswordSubmit());
+    // use this if you are using change password API and manage the loading error status accordingly
+    // changePassword();
+  };
+
+  const handleConfirmPasswordChange = async () => {
+    await trigger('confirmNewPassword');
+  };
+
+  return (
+    <div>
+      <Helmet>
+        <title>Change Password</title>
+        <meta name="description" content="Description of ChangePassword" />
+      </Helmet>
+      <Form control={control} onSubmit={handleSubmit(onSubmit)} role="form">
+        <FormItem>
+          <label htmlFor="currentPassword">Current Password: </label>
+          <Controller
+            control={control}
+            name="currentPassword"
+            rules={{
+              required: formValidations.VALIDATION_MESSAGES.REQUIRED,
+            }}
+            render={({ field }) => (
+              <Input.Password
+                id="currentPassword"
+                style={{
+                  borderColor: `${errors.currentPassword ? 'red' : ''}`,
+                }}
+                placeholder="Current Password"
+                {...field}
+                onChange={e => {
+                  field.onChange(e);
+                }}
+              />
+            )}
+          />
+          {errors.currentPassword && (
+            <p style={{ color: 'red' }}>{errors.currentPassword.message}</p>
+          )}
+        </FormItem>
+
+        <FormItem>
+          <label htmlFor="newPassword">New Password: </label>
+          <Controller
+            control={control}
+            name="newPassword"
+            rules={{
+              required: formValidations.VALIDATION_MESSAGES.REQUIRED,
+            }}
+            render={({ field }) => (
+              <Input.Password
+                id="newPassword"
+                style={{
+                  borderColor: `${errors.newPassword ? 'red' : ''}`,
+                }}
+                placeholder="New Password"
+                {...field}
+                onChange={e => {
+                  field.onChange(e);
+                  if (getValues('confirmNewPassword')) {
+                    handleConfirmPasswordChange();
+                  }
+                }}
+              />
+            )}
+          />
+          {errors.newPassword && (
+            <p style={{ color: 'red' }}>{errors.newPassword.message}</p>
+          )}
+        </FormItem>
+
+        <FormItem>
+          <label htmlFor="confirmNewPassword">Confirm Password: </label>
+          <Controller
+            control={control}
+            name="confirmNewPassword"
+            rules={{
+              required: formValidations.VALIDATION_MESSAGES.REQUIRED,
+              validate: passwordsMustMatch,
+            }}
+            render={({ field }) => (
+              <Input.Password
+                id="confirmNewPassword"
+                style={{
+                  borderColor: `${errors.confirmNewPassword ? 'red' : ''}`,
+                }}
+                placeholder="Confirm Password"
+                {...field}
+                onChange={e => {
+                  field.onChange(e);
+                  handleConfirmPasswordChange();
+                }}
+              />
+            )}
+          />
+          {errors.confirmNewPassword && (
+            <p style={{ color: 'red' }}>{errors.confirmNewPassword.message}</p>
+          )}
+        </FormItem>
+
+        <FormItem>
+          <center>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </center>
+        </FormItem>
+      </Form>
+    </div>
+  );
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-const withReducer = useInjectReducer({
-  key: FORM_KEY,
-  reducer,
-});
-
-const withSaga = useInjectSaga({ key: FORM_KEY, saga });
-
-export default compose(
-  withReducer,
-  withSaga,
-  withConnect,
-  reduxForm({
-    form: FORM_KEY,
-    fields: ['currentPassword', 'newPassword', 'confirmNewPassword'],
-    validate: formValidations.createValidator({
-      currentPassword: [formValidations.required],
-      newPassword: [formValidations.required],
-      confirmNewPassword: [formValidations.required, passwordsMustMatch],
-    }),
-    touchOnChange: true,
-  }),
-)(ChangePassword);
+export default ChangePassword;

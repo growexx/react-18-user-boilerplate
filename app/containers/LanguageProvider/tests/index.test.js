@@ -1,14 +1,23 @@
 import React from 'react';
+
 import { render } from '@testing-library/react';
 import { FormattedMessage, defineMessages } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
 
+import { store } from 'configureStore';
 import ConnectedLanguageProvider, { LanguageProvider } from '../index';
-import configureStore from '../../../configureStore';
 
 import { translationMessages } from '../../../i18n';
 
+// if not using firebase messaging remove this mock
+jest.mock('firebase/messaging', () => {
+  const actualModule = jest.requireActual('firebase/messaging');
+  return {
+    ...actualModule,
+    onMessage: jest.fn(),
+    getMessaging: jest.fn(),
+  };
+});
 const messages = defineMessages({
   someMessage: {
     id: 'some.id',
@@ -33,7 +42,6 @@ describe('<ConnectedLanguageProvider />', () => {
   let globalState;
 
   beforeAll(() => {
-    const { store } = configureStore({}, browserHistory);
     globalState = store;
   });
 

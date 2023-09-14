@@ -28,9 +28,6 @@
   - [LESS](css/README.md#less)
 - [JS](js)
   - [Redux](js/redux.md)
-  - [Immer](js/immer.md)
-  - [reselect](js/reselect.md)
-  - [redux-saga](js/redux-saga.md)
   - [i18n](js/i18n.md)
   - [routing](js/routing.md)
 - [Maintenance](maintenance)
@@ -39,7 +36,7 @@
 
 ## Overview
 
-### Quickstart
+### Quick start
 
 1.  First, let's kick the tyres by launching the sample _Repospective_ app
     bundled with this project to demo some of its best features:
@@ -101,7 +98,7 @@ See the [CSS documentation](./css/README.md) for more information.
 
 ### JS
 
-We bundle all your clientside scripts and chunk them into several files using
+We bundle all your client side scripts and chunk them into several files using
 code splitting where possible. We then automatically optimize your code when
 building for production so you don't have to worry about that.
 
