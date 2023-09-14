@@ -8,9 +8,7 @@ React Boilerplate v4.0.0 is out and it's a doozy! Here are the highlights:
 
 - React has added many new features and it's time for React Boilerplate to embrace them.
   - We now use `React.lazy` and `Suspense` for component lazy-loading instead of an external library.
-  - We've added `useInjectSaga` and `useInjectReducer` hooks to manage saga and reducer injection. They're integrated into the generators and thus become the new defaults. (Should you need them, the HOCs are still there.)
   - The generators don't support classes anymore. The `PureComponent` vs `Component` choice was replaced with an option to wrap your component inside `React.memo`.
-- After much deliberation, `Immutable.js` is finally gone. We've added `Immer` instead. With it, we can write very concise and readable reducers while sticking to native JavaScript data structures.
 - Following the release of React Hooks, it's become even clearer that `@testing-library/react` is now the industry-standard for React DOM testing. Workarounds for the incompatibilities between `enzyme` and `styled-components` are gone and we can now write leaner and more meaningful tests.
 
 There are many more changes to our documentation, internals and general project setup. You can find a full changelog below.
@@ -21,7 +19,6 @@ We hope you enjoy this release and welcome any feedback, bug reports or feature 
 
 ### Main
 
-- **Remove `Immutable.js` in favor of `Immer`** (**@julienben**, **@robertaird**)
 - **Migrate from `enzyme` to `@testing-library/react`** (**@mensae**)
   - New instructions for snapshot and behavior testing
 - **Embracing Hooks** (**@julienben**)
@@ -42,11 +39,8 @@ We hope you enjoy this release and welcome any feedback, bug reports or feature 
 
 - Many dependency updates including: (**@julienben**)
   - react and react-dom (`16.8.6` to `18.2.0`)
-  - react-redux (`7` to `8`) (**@bumi001**, **@jwinn**)
   - react-router-dom (`4` to `5`)
-  - redux-saga (`0.16` to `1`)
   - sanitize.css (`8` to `13`)
-- Update default saga injection mode to DAEMON (**@howardya**)
 - Update generators to reflect all the stack changes
 - Migrate default Node version to `lts/dubnium` (**@julienben**)
 - Fix support for `stylelint` (**@jwinn**)
@@ -231,7 +225,6 @@ Many fixes to documentation thanks to @Aftabnack, @auchenberg, @danielrob, @greg
 - Refactor all selectors and generators with new naming convention, thanks to @Dattaya
 - Update generator templates, thanks to @Virsaviya @jeremyadavis
 - Add support for the `--host` parameter when running `npm start`, thanks to @ifedotov
-- Showcase reselects `createStructuredSelector` in the example, thanks to @Dattaya
 - Exclude test files from coverage report, thanks to @samit4me
 - Lint the templates for the generators, thanks to @Dattaya
 - Huge improvement to DX testing a freshly cleaned project, thanks to @outdooricon
@@ -297,10 +290,8 @@ website!
 
 - **New industry-standard JS utilities** We're now making the most of...
 
-  - ImmutableJS
-  - reselect
   - react-router-redux
-  - redux-saga
+  - redux-toolkit
 
 - **Huge CSS Improvements**
 

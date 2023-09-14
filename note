@@ -86,7 +86,6 @@ react-waypoint                                      ^10.1.0  →  ^10.3.0
 recharts                                             ^2.0.9  →   ^2.5.0
 redux                                                 4.0.1  →    4.2.1
 redux-saga                                            1.0.2  →    1.2.3
-reselect                                              4.0.0  →    4.1.7
 rimraf                                                2.6.3  →    4.4.1
 sanitize.css                                          8.0.0  →   13.0.0
 storybook-addon-react-docgen                        ^1.2.42  →  ^1.2.43
@@ -147,8 +146,6 @@ react-helmet                                        6.0.0  →    6.1.0
 react-waypoint                                    ^10.1.0  →  ^10.3.0
 recharts                                          ^2.0.10  →   ^2.5.0
 redux                                               4.0.5  →    4.2.1
-redux-saga                                          1.0.5  →    1.2.3
-reselect                                            4.0.0  →    4.1.70
 stylelint-processor-styled-components               1.6.0  →   1.10.0
 validator                                         ^13.5.2  →  ^13.9.0
 webpack-hot-middleware                             2.24.4  →   2.25.3
