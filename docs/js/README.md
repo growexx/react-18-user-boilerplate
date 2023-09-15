@@ -2,11 +2,7 @@
 
 ## State management
 
-This boilerplate manages application state using [Redux](redux.md), makes it
-immutable with [`Immer`](immer.md) and keeps access performant
-via [`reselect`](reselect.md).
-
-For managing asynchronous flows (e.g. logging in) we use [`redux-saga`](redux-saga.md).
+This boilerplate manages application state using Redux-toolkit, makes it
 
 For routing, we use [`react-router` in combination with `connected-react-router`](routing.md).
 
