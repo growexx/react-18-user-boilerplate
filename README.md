@@ -11,7 +11,7 @@
 
 <dl>
   <dt>Quick scaffolding</dt>
-  <dd>Create components, containers, routes, selectors and slices - and their tests - right from the CLI!</dd>
+  <dd>Create components, containers, routes and their tests - right from the CLI!</dd>
 
   <dt>Instant feedback</dt>
   <dd>Enjoy the best DX (Developer eXperience) and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!</dd>
@@ -52,22 +52,18 @@ For easy use and development of stories in our boilerplate, follow these [instru
   More about access control can be found [here](docs/general/roleMiddleware.md).
   </dd>
   <dt>Google Analytics</dt>
-  <dd>Google Analytics support is given in the boilerplate. This feature is optional and is based on requirement, so not merged in main branch.
+  <dd>Google Analytics support is given in the boilerplate.
   <br/>
-  Support for Google Analytics can be found in <b>feature/18-Analytics-Tools</b> branch.
 
 More about google analytics can be found [here](docs/general/googleAnalytics.md).
 
   </dd>
-  <dt>Hooks Support</dt>
-  <dd>Boilerplate supports hooks and all current components are converted to hooks. This feature is optional and is based on requirement, so not merged in main branch.
-  <br/>
-  Support for Hooks can be found in <b>feature/12-Hooks-Support</b> branch.
-  </dd>
+
   <dt>Graphql Support</dt>
   <dd>Boilerplate supports graphql. It has demo and setup added out of the box for graphql. This feature is optional and is based on requirement, so not merged in main branch.
   <br/>
-  Support for graphql can be found in <b>feature/11-GraphQL-Support</b> branch.
+
+Support for graphql can be found in [feature/11-GraphQL-Support](https://github.com/growexx/react-18-user-boilerplate/tree/feature/11-graphql-support) branch.
 
 More about graphql setup can be found [here](docs/general/graphql.md).
   <dt>React-Hook-Form Support</dt>
@@ -83,9 +79,8 @@ You can check out the guide to get you started with react-hook-form from [here](
 You can check out the guide to get you started with redux-toolkit [here](docs/general/reduxtoolkit.md).
 
   <dt>Social Login with firebase</dt>
-  <dd>Boilerplate supports social login using firebase. It has demo and setup added out of the box for firebase and it's authentication functions. This feature is optional and is based on requirement, so not merged in main branch.
+  <dd>Boilerplate supports social login using firebase. It has demo and setup added out of the box for firebase and it's authentication functions.
   <br/>
-  Support for firebase authentication can be found in <b>feature/social-login</b> branch.
 
 More about firebase setup can be found [here](docs/general/firebase.md).
 
@@ -104,7 +99,7 @@ More about firebase setup can be found [here](docs/general/firebase.md).
   <dt>Real Time Chat</dt>
   <dd> Real time chat is feature of chatting and sending messages real time with the use of firebase.
   
-  Support for firebase authentication can be found in <b>feature/RB-66-Real-Time-Chat</b> branch.
+Support for firebase authentication can be found in [feature/RB-66-Real-Time-Chat](https://github.com/growexx/react-user-boilerplate/tree/feature/RB-66-Real-Time-Chat) branch.
 
 More about Real Time Chat setup can be found [here](docs/general/realTimeChat.md).
 
@@ -122,7 +117,8 @@ More about Firebase cloud messaging setup can be found [here](docs/general/fireb
   <dt>Notifications with socket.io</dt>
   <dd> Boilerplate supports  Real time notifications with socket.io.
     <br /> 
-  Example can be found in <b>feature/RB-87-Notifications-socket.io</b> branch.
+
+Example can be found in [feature/RB-87-Notifications-socket.io](https://github.com/growexx/react-user-boilerplate/tree/feature/RB-87-Notifications-socket.io) branch.
   </dd>
 </dl>
 
@@ -143,8 +139,8 @@ There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on ho
 
 ## Quick start
 
-1.  Make sure that you have Node.js v8.15.1 and npm v5 or above installed.
-2.  Clone this repo using `git clone https://github.com/growexx/react-user-boilerplate.git`
+1.  Make sure that you have Node.js v18 and npm v9 or above installed.
+2.  Clone this repo using `git clone git@github.com:growexx/react-18-user-boilerplate.git`
 3.  Move to the appropriate directory: `cd <YOUR_PROJECT_NAME>`.<br />
 4.  Add env file into the project's main directory. This is a mandatory step. If firebase credentials are not added in .env, then the application won't work. Either remove social login from login component when you clone or provide the firebase credentials values for env file that can be found [here](docs/general/env.md).  You can generate firebase credentials for your project from [here](https://firebase.google.com/)
 5.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
