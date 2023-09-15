@@ -1,6 +1,7 @@
 # Features
-**React Version : ^16.14.0**  
+**React Version : ^18.2.0**  
 <div>
+
 
 | Feature                 | Description                                     |
 | ----------------------- | ----------------------------------------------- |
@@ -9,7 +10,6 @@
 | Quick Scaffolding       | Create components, containers, routes, selectors and sagas - and their tests - right from the CLI with npm run generate.                                                                   |
 | Webpack                 | Webpack support added out of box with basic    loaders. |                                          
 | Babel                   | Babel loader support added out of box.          |
-| Redux-Saga              | Built in support for redux, react-redux and saga|
 | i18n international support      | Supports multiple languages with react-intl.    |
 | SEO support             | SEO support with react-helmet                   |
 | Webpack Chunk Analyzer  | npm run analyze                                 |
@@ -23,7 +23,6 @@
 | Hooks Support           | Hooks support provided for the boilerplate.     |
 | Graphql Support         | Graphql support provided for the boilerplate.   |
 | React-Hook-Form         | React-Hook-Form support added.                  |
-| Redux-Form              | Redux-Form support added.                       |
 | Social login            | Boilerplate supports social login using firebase|
 | Two Factor Authentication          | Two Factor authentication with otp.             |
 |                         |                                                 |
@@ -59,9 +58,6 @@
 | Numeral Conversion      | Numeral js library added for all numeric actions|   
 | Local storage           | Util to add, delete and get items from local storage |      
 | Event Emitter           | Util to on and off emitter events.              |
-| Form Validations        | Redux form fields with validations              |
-| Inject reducer          | Inject reducer in redux form.                   |
-| Inject saga             | Inject saga in redux form.                      |
 | Loadable                | Load the component asynchronously.              |
 | Request                 | fetch request helper function.                  |
 | Google Analytics        | Analytics helper util.                          |
@@ -75,7 +71,6 @@
 | Loader demo             | Infinite, Load More, Pagination Demo.           |
 | Export CSV              | Table Data Export to csv.                       |
 | Numeral Conversion      | Numeral conversion library examples.            |
-| Redux-form with saga    | redux-form with all form fields.                |
 | Image Upload            | Profile image upload demo.                      |
 | File Upload             | Image Upload component demo.                    |
 | Rich Text Editor        | Rich text editor demo.                          |
@@ -98,4 +93,4 @@
 | **Code-Quality**        |                                                 |
 |                         |                                                 |
 | Sonar standards         | All code is written according to standards of sonar.|
-|                         |                                                 |
+|                         |                                                 |  
