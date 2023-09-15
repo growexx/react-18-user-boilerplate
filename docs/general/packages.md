@@ -25,7 +25,6 @@ Following are the packages used in the boilerplate
 | react-helmet            | Library to handle document Head changes         |
 | react-intl              | Internationalization and localization for react |
 | react-redux             | State bindings for react                        |
-| reselect                | Selector library for redux                      |
 | sanitize.css            | Library for consistent cross-browser styling    |
 | sha255                  | Library to compute SHA256 of strings or bytes   |
 | styled-components       | Css in JS library                               |

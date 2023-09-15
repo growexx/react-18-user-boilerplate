@@ -67,10 +67,17 @@ Support for graphql can be found in [feature/11-GraphQL-Support](https://github.
 
 More about graphql setup can be found [here](docs/general/graphql.md).
   <dt>React-Hook-Form Support</dt>
-  <dd>Boilerplate supports React-Hook-Form. All forms in boilerplate are redux-hook-form.
+  <dd>Boilerplate supports React-Hook-Form. All forms in boilerplate are react-hook-form.
   <br/>
 
 You can check out the guide to get you started with react-hook-form from [here](docs/general/reacthookform.md).
+
+  <dt>State Management</dt>
+  <dd>Global State Management using redux-toolkit including rtk-query
+  <br/>
+
+You can check out the guide to get you started with redux-toolkit [here](docs/general/reduxtoolkit.md).
+
   <dt>Social Login with firebase</dt>
   <dd>Boilerplate supports social login using firebase. It has demo and setup added out of the box for firebase and it's authentication functions.
   <br/>
@@ -128,7 +135,7 @@ But wait... there's more!
 
 There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on how to structure your React.js apps with scalability in mind. It provides rationale for the majority of boilerplate's design decisions.
 
-<sub><i>Keywords: React.js, Redux, Hot Reloading, ESNext, Babel, react-router, Offline First, ServiceWorker, `styled-components`, redux-saga, FontFaceObserver, storybook</i></sub>
+<sub><i>Keywords: React.js, Redux, Hot Reloading, ESNext, Babel, react-router, Offline First, ServiceWorker, `styled-components`, redux-toolkit, FontFaceObserver, storybook</i></sub>
 
 ## Quick start
 
@@ -151,7 +158,7 @@ Now you're ready to rumble!
 - [**Testing**](docs/testing): How to work with the built-in test harness
 - [**Styling**](docs/css): How to work with the CSS tooling
 - [**Packages**](docs/general/packages.md): Open Source Packages used in the project.
-- [**Your app**](docs/js): Supercharging your app with Routing, Redux, simple
+- [**Your app**](docs/js): Supercharging your app with Routing, Redux-toolkit, simple
   asynchronicity helpers, etc.
 - [**Troubleshooting**](docs/general/gotchas.md): Solutions to common problems faced by developers.
 

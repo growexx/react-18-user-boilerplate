@@ -7,5 +7,3 @@
 3. Firebase helper util is already created in utils folder (app/utils/firebase.js). This file contains code for initialization and capturing of social clicks.
 
 4. Firebase social login demo is added into login component. (app/containers/Auth/Login/index.js)
-
-5. Saga file for login (app/containers/Auth/Login/saga.js) contains function calls for google and facebook.

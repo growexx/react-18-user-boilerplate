@@ -619,6 +619,33 @@ margin-left: 30px
   .ant-skeleton .ant-skeleton-content .ant-skeleton-paragraph {
     margin-top: 0;
   }
+
+  /* Image crop modal styles */
+  .imageCropModal{
+    .cropperContainer{
+      position: relative;
+      height: 50vh;
+      width: auto;
+    }
+    .sliderContainer{
+      width: 100%;
+      .slider{
+        display: flex;
+        align-items: center;
+        color: #000000;
+        width: 100%;
+        padding: 0 10px;
+        margin-top: 10px;
+        p{
+          min-width: 80px;
+          margin: 0;
+        }
+        .ant-slider{
+          flex: 1;
+        }
+      }
+    }
+  }
 `;
 
 export default GlobalStyle;

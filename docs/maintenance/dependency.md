@@ -180,7 +180,6 @@ import TestPage from 'containers/TestPage/Loadable';
  react-helmet                                4.0.0  →       5.1.3
  react-router                                3.0.5  →       4.1.1
  redux-immutable                             3.1.0  →       4.0.0
- reselect                                    2.5.4  →       3.0.1
  sanitize.css                                4.1.0  →       5.0.0
  babel-loader                                6.4.1  →       7.0.0
  circular-dependency-plugin                  2.0.0  →       3.0.0
