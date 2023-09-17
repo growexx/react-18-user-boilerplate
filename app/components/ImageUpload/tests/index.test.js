@@ -18,6 +18,7 @@ import image from './test.jpg';
 
 jest.mock('../util/crop');
 
+const imageObjectUrl = 'https://picsum.photos/1000';
 const uploadFile = async (file, container) => {
   const fileInput = container.querySelector('input');
 
@@ -25,12 +26,12 @@ const uploadFile = async (file, container) => {
   return fileInput;
 };
 
+global.URL.createObjectURL = jest.fn().mockImplementation(() => imageObjectUrl);
+
 describe('<ImageUpload />', () => {
-  global.URL.createObjectURL = jest
-    .fn()
-    .mockImplementation(
-      () => 'blob:http://localhost:3000/5fdbeacb-6b06-442a-99f2-67c62d385498',
-    );
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
   it('Should render and match the snapshot', () => {
     const {
@@ -104,11 +105,7 @@ describe('<ImageUpload />', () => {
   });
 
   it('should handle image crop', async () => {
-    getCroppedImg.mockImplementation(() =>
-      Promise.resolve(
-        'http://localhost:3000/df130384-4930-4392-876c-e0d3a25d53c7',
-      ),
-    );
+    getCroppedImg.mockImplementation(() => Promise.resolve(imageObjectUrl));
     const { container, getByText } = render(
       <IntlProvider locale={DEFAULT_LOCALE}>
         <ImageUpload />
