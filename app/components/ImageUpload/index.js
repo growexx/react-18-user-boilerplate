@@ -87,9 +87,9 @@ function ImageUpload() {
         fileList={fileList}
         onChange={onChange}
         beforeUpload={beforeUpload}
-        maxCount={4}
+        maxCount={2}
       >
-        {fileList.length < 4 && '+ Upload'}
+        {fileList.length < 2 && '+ Upload'}
       </Upload>
       <Modal
         title="Crop Image"
