@@ -30,3 +30,6 @@ export default defineMessages({
     defaultMessage: '@',
   },
 });
+
+export const fetchReposError =
+  'There was an error while fetching repos. Please try again!';

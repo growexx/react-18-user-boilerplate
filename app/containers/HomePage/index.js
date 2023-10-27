@@ -7,13 +7,13 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
-
+import { notification } from 'antd';
 import ReposList from 'components/ReposList';
 import AtPrefix from './AtPrefix';
 import Form from './Form';
 import Input from './Input';
 import Section from './Section';
-import messages from './messages';
+import messages, { fetchReposError } from './messages';
 import { useLazyGetReposQuery } from './reposApiSlice';
 
 export function HomePage() {
@@ -34,7 +34,13 @@ export function HomePage() {
 
   const onSubmitForm = (e = { preventDefault: () => {} }) => {
     e.preventDefault();
-    trigger(username);
+    trigger(username).then(res => {
+      if (res.isError) {
+        notification.error({
+          message: fetchReposError,
+        });
+      }
+    });
   };
 
   const onChangeUsername = e => setUsername(e.target.value);
