@@ -23,6 +23,7 @@ export const ROUTES = {
   MULTI_TAB_SUPPORT: '/multi-tab-support',
   PRODUCTS: '/products',
   REACT_HOOK_FORM: '/react-hook-form',
+  AG_GRID: '/ag-grid',
 };
 
 // API-ROUTES
