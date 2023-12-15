@@ -84,6 +84,7 @@ function AgGrid({ demo }) {
       getUsersAPIMock({
         skip: pagination.current,
         search: filters.name ? filters.name.filter : '',
+        status: filters.status ? filters.status.filter : '',
         sortKey: sortKey === 'name' ? 'firstName' : sortKey,
         sortType,
       }).then(response => {
@@ -151,10 +152,10 @@ function AgGrid({ demo }) {
         const query = new URLSearchParams(window.location.search);
         reRenderTimes = Math.max(0, reRenderTimes);
         if (firstRender) {
-          if (query.get('page')) reRenderTimes += 1;
+          if (query.get('page') && +query.get('page') > 1) reRenderTimes += 1;
           if (query.get('sortType') && query.get('sortType') !== 'createdAt')
             reRenderTimes += 1;
-          if (query.get('name')) reRenderTimes += 1;
+          if (query.get('name') || query.get('status')) reRenderTimes += 1;
         }
 
         // loading
@@ -177,6 +178,13 @@ function AgGrid({ demo }) {
           if (query.get('name')) {
             filters.name = {
               filter: query.get('name'),
+              filterType: 'text',
+              type: 'contains',
+            };
+          }
+          if (query.get('status')) {
+            filters.status = {
+              filter: query.get('status'),
               filterType: 'text',
               type: 'contains',
             };
@@ -256,7 +264,7 @@ function AgGrid({ demo }) {
           overlayNoRowsTemplate="No Users found"
           paginationPageSizeSelector={false}
           defaultColDef={{
-            sortable: true,
+            sortable: false,
             suppressMenu: true,
             floatingFilterComponentParams: {
               suppressFilterButton: true,

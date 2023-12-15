@@ -3,10 +3,12 @@
  */
 
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import request from 'utils/request';
 import AgGrid from '../index';
+import CustomStatusFilter from '../customStatusFilter';
+import { statusFilters } from '../constants';
 
 jest.mock('utils/request');
 
@@ -17,7 +19,7 @@ describe('<AgGrid />', () => {
 
   it('demo = false; should render and match the snapshot', async () => {
     window.location = {
-      search: '?page=1&sortKey=email&sortType=-1&name=serena',
+      search: '?page=1&sortKey=email&sortType=-1&name=serena&status=Active',
     };
 
     const {
@@ -93,5 +95,80 @@ describe('<AgGrid />', () => {
     await waitFor(() => {
       expect(getByText(/test error/i)).toBeInTheDocument();
     });
+  });
+});
+
+describe('<AgGrid />: Custom Select Filter', () => {
+  beforeEach(() => {
+    delete window.location;
+  });
+
+  afterEach(() => {
+    request.mockClear();
+  });
+
+  it('should be able to select filters from custom filter', async () => {
+    window.location = {
+      search: '?epicName=test',
+    };
+    const ref = React.createRef();
+    const { getAllByRole, getAllByText } = render(
+      <CustomStatusFilter
+        ref={ref}
+        field="epicName"
+        selectOptions={statusFilters}
+        parentFilterInstance={callback =>
+          callback({ onFloatingFilterChanged: (a, b) => a + b })
+        }
+      />,
+    );
+    act(() => ref.current.onParentModelChanged({ filter: {} }));
+    await waitFor(() => {
+      fireEvent.blur(getAllByRole('combobox')[0]);
+      fireEvent.focus(getAllByRole('combobox')[0]);
+      fireEvent.mouseDown(getAllByRole('combobox')[0]);
+      fireEvent.change(getAllByRole('combobox')[0], {
+        target: {
+          value: 'Suspended',
+        },
+      });
+      fireEvent.click(
+        document.querySelectorAll('.ant-select-item-option-content')[0],
+      );
+    });
+    expect(getAllByText('Suspended')[0]).toBeInTheDocument();
+  });
+
+  it('should be able to select filters from custom filter', async () => {
+    window.location = {
+      search: '?epicName=test',
+    };
+    const ref = React.createRef();
+    const { getAllByRole, getAllByText } = render(
+      <CustomStatusFilter
+        ref={ref}
+        field="epicName"
+        selectOptions={statusFilters}
+        parentFilterInstance={callback =>
+          callback({ onFloatingFilterChanged: (a, b) => a + b })
+        }
+      />,
+    );
+    act(() => ref.current.onParentModelChanged());
+    await waitFor(() => {
+      fireEvent.blur(getAllByRole('combobox')[0]);
+      fireEvent.focus(getAllByRole('combobox')[0]);
+      fireEvent.mouseDown(getAllByRole('combobox')[0]);
+      fireEvent.change(getAllByRole('combobox')[0], {
+        target: {
+          value: 'Suspended',
+        },
+      });
+      fireEvent.click(
+        document.querySelectorAll('.ant-select-item-option-content')[0],
+      );
+    });
+    fireEvent.focus(getAllByRole('combobox')[0]);
+    expect(getAllByText('Suspended')[0]).toBeInTheDocument();
   });
 });
