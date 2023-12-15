@@ -77,6 +77,7 @@
 | Google Analytics events | Sidebar clicks capturing GA demo.               |
 | Apollo Hooks demo       | Basic demo for apollo hooks.                    |
 | React-Hook-Form         | Basic demo  for React-Hook-Form.                |
+| AG Grid                 | Full featured demo  for AG Grid Table including searching, sorting, custom filters and pagination with deeplinking                  |
 | Social Login demo       | Basic demo  for google and facebook login.      |
 | Two Factor              | Basic demo  for OtpComponent and two factor     |
 | User Management         | Basic demo User list with Pagination, Sort, Search, Filter, Add/Edit/Delete User     |

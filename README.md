@@ -72,6 +72,12 @@ More about graphql setup can be found [here](docs/general/graphql.md).
 
 You can check out the guide to get you started with react-hook-form from [here](docs/general/reacthookform.md).
 
+  <dt>AG Grid</dt>
+  <dd>Boilerplate supports AG Grid with pagination, sorting, searching and custom filtering with deeplinking for all operations
+  <br/>
+
+You can check out the guide to get you started with AG Grid from [here](docs/general/aggrid.md).
+
   <dt>State Management</dt>
   <dd>Global State Management using redux-toolkit including rtk-query
   <br/>

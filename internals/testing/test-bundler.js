@@ -1,3 +1,6 @@
+// needed for errors in test such as: ReferenceError: TextEncoder is not defined
+import { TextEncoder, TextDecoder } from 'util';
+
 // needed for regenerator-runtime
 import 'core-js/stable';
 
@@ -20,3 +23,5 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: jest.fn(),
   })),
 });
+
+Object.assign(global, { TextDecoder, TextEncoder });

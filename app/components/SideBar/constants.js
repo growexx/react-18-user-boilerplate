@@ -16,6 +16,7 @@ import {
   MessageOutlined,
   ShoppingOutlined,
   SearchOutlined,
+  TableOutlined,
 } from '@ant-design/icons';
 import {
   ROUTES,
@@ -79,6 +80,11 @@ export const MenuItems = [
     to: ROUTES.REACT_HOOK_FORM,
     tabName: 'React Hook Form',
     icon: <FormOutlined />,
+  },
+  {
+    to: ROUTES.AG_GRID,
+    tabName: 'AG Grid',
+    icon: <TableOutlined />,
   },
 ];
 
